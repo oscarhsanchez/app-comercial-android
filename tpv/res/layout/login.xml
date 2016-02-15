@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/main_linear_layout_login"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+    
+    <RelativeLayout
+           style="@style/basic_style"
+           android:orientation="vertical">
+        
+        <LinearLayout 
+            style="@style/basic_style"
+            android:orientation="vertical">
+            
+            <RelativeLayout style="@style/basic_style" android:layout_height="wrap_content">
+                
+                <LinearLayout 
+			       style="@style/wrap_style"
+			       android:gravity="left"
+			       android:orientation="horizontal"
+			       android:layout_margin="10dp"
+			       android:layout_alignParentLeft="true">
+			    </LinearLayout>
+			    
+                <Button
+                    android:id="@+id/close_button"
+                    style="@style/btnCerrar"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="right"
+                    android:onClick="closeApp"
+                    android:text="Cerrar" />
+                
+            </RelativeLayout>
+          
+	        
+	        
+		    <LinearLayout 
+		       style="@style/basic_style"
+		       android:layout_height="wrap_content"
+		       android:gravity="center"
+		       android:orientation="horizontal"
+		       android:layout_marginTop="@dimen/login_logo_margin_top"
+		       android:layout_marginBottom="20dp">
+		       
+		           <ImageView
+		               android:id="@+id/loginLogo"
+			            android:layout_width="@dimen/login_logo_width"
+			            android:layout_height="@dimen/login_logo_height"
+			            android:src="@drawable/logo_bg_white"
+			            android:layout_gravity="bottom|center" />
+			    
+			    
+		    </LinearLayout>
+		    
+		    <TableLayout 
+		        style="@style/wrap_style"
+		        android:layout_gravity="center_horizontal">
+		        
+		        <TableRow style="@style/wrap_style" android:layout_marginBottom="10dp">
+				       <TextView
+				           android:id="@+id/tvUser"
+			              	android:layout_marginRight="15dp"
+			              	android:layout_column="1"
+					        android:layout_height="wrap_content"
+					        android:text="@string/username"
+					        android:textColor="@color/orangeGpo"
+					        android:textAppearance="@style/defaultTextAppearance" />
+				
+					    <EditText
+					        android:id="@+id/editUser"
+					        style="@style/editText"
+					        android:layout_column="2"
+					        android:layout_width="300dp"
+					        android:layout_height="wrap_content"
+					        android:autoText="false" 
+					        android:inputType="textNoSuggestions">
+					        <requestFocus />
+					    </EditText>
+					    
+			    </TableRow>
+			
+			    <TableRow style="@style/wrap_style" android:layout_marginBottom="15dp">
+			        <TextView
+			            android:id="@+id/tvPassword"
+				        android:layout_marginRight="15dp"
+				        android:layout_column="1"
+				        android:layout_height="wrap_content"
+				        android:text="@string/password"
+				        android:textColor="@color/orangeGpo"
+				        android:textAppearance="@style/defaultTextAppearance" 
+				        />
+			
+				    <EditText
+				        style="@style/editText"
+				        android:id="@+id/editPassword"
+				        android:layout_width="300dp"
+				        android:layout_column="2"
+				        android:layout_height="wrap_content"
+				        android:inputType="textPassword"
+				        android:imeOptions="flagNoExtractUi"/>
+			    </TableRow>
+			    
+			    <TableRow style="@style/wrap_style">
+			        
+			        <LinearLayout 
+				       style="@style/wrap_style"
+				       android:layout_column="2">
+				        <Button
+				            android:id="@+id/btn_iniciar"
+				            android:text="@string/iniciar_sesion" 
+				            android:onClick="login" 
+				            style="@style/boton_generico"/>
+					</LinearLayout>
+			    </TableRow>
+		        
+		    </TableLayout>
+		    
+		</LinearLayout>
+		
+        <LinearLayout 
+            android:id="@+id/panelversion"
+            style="@style/fill_width_wrap_height"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:padding="10dp">
+		    
+            <TextView
+		    	android:id="@+id/lblVersion"
+		    	style="@style/wrap_style"    
+		        android:text="Versión: " />
+            
+            <TextView
+                android:id="@+id/lblEntorno"
+		    	style="@style/wrap_style"    
+		        android:text="Entorno: " />
+            
+		</LinearLayout>
+        
+        
+		
+	</RelativeLayout>
+	
+</LinearLayout>

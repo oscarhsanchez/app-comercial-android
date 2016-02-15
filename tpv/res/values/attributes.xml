@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- View styles -->
+	<attr name="button" format="reference" />
+	<attr name="list" format="reference" />
+	<attr name="listItem" format="reference" />
+
+	<!-- Attributes -->
+	<attr name="pageMargin" format="reference|dimension" />
+ 
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="login_buttons_wrapper_width">600dp</dimen>
+    <dimen name="menu_button_panel_control_width">140dp</dimen>
+    <dimen name="menu_button_panel_control_height">140dp</dimen>
+    <dimen name="menu_button_panel_control_secundario_width">290dp</dimen>
+    <dimen name="menu_button_panel_control_secundario_height">65dp</dimen>
+    <dimen name="menu_button_panel_control_terciario_width">190dp</dimen>
+    <dimen name="menu_button_panel_control_terciario_height">40dp</dimen>
+    <dimen name="login_logo_margin_top">60dp</dimen>
+    <dimen name="login_logo_height">90dp</dimen>
+    <dimen name="login_logo_width">400dp</dimen>
+    <dimen name="menu_button_panel_control_textsize">19sp</dimen>
+    <dimen name="menu_button_secundario_panel_control_textsize">17sp</dimen>
+    <dimen name="menu_button_terciario_panel_control_textsize">15sp</dimen>
+    <dimen name="login_logo_gkm_width">50dp</dimen>
+</resources>

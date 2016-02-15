@@ -1,0 +1,4 @@
+bin/
+gen/com/google/android/gms/R.java
+gen/tpv/app/R.java
+project.properties

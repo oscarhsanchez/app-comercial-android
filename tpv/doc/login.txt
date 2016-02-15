@@ -1,0 +1,6 @@
+Procedimiento de Login:
+
+No mas entrar en la aplicación debemos verificar si existe base de datos creada o no, para ello nos basamos en la tabla de parámetros.
+Si existe el parámetro databasestatus a 1 (ver documento de parámetros) significa que la base de datos ya había sido construida del todo así que lo único que seria necesario hacer caso no hubiese que resetear la base de datos es soltar el servicio de actualizaciones.
+El logia con cache viene caso no hubiese dado el caso de un login normal. De todas formas se informa al usuario debido a que no conviene estar operando sin comunicaciones.
+Para hacer login con cache es imprescindible que la base de datos haya sido creada del todo. 

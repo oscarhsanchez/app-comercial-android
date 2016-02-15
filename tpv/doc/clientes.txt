@@ -1,0 +1,6 @@
+ASIGNACION GENERICA: Son clientes que se cargan en todos lo cliente independientemente del usuario y que todos pueden atenderles.
+ASIGNACION_TEMPORAL: Esto es o que comentamos que en caso de ausencia de un usario se le podia asignar la visita a otro vendedor
+
+Los clientes temporales se borran segun la hora del servidor y ambos clientes vienen por WS distintos.
+
+

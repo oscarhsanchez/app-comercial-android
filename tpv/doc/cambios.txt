@@ -1,0 +1,14 @@
+26/12/2011 - Por Millán
+
+En el objeto UsuarioMvx, se cambió el nombre de la propiedad/atributo Id por CodUsuMvx.
+En el objeto EmpresaMvx, se cambió el tipo de la propiedad/atributo CodEmpresaMvx, ahora es un entero.
+En el objeto Zona, se cambió la propiedad/atributo CodZon que era tipo string, por Id  de tipo entero.
+En el objeto ClienteMVX, se cambió el nombre de la propiedad/atributo Delegacion, por CodDelegacion. Además de añadirse nuevas propiedades/atributos.
+En el objeto Cliente, se añadieron nuevas propiedades/atributos.
+En el objeto AgrLmArt, se cambió la propiedad/atributo CodAgr que era tipo string, por IdAgrCom de tipo entero.
+Se añadió el objeto SubZona.
+En el servicio UsuarioWS se añadió el método GetUserMvx.
+En el servicio EmpresWS se modificó el método GetEmpresa debido al cambio de tipo de CodEmpresaMvx. El parámetro pCodEmpMvx ahora es de tipo entero.
+El servicio ClienteWS sufrió muchos cambios y prácticamente hubo que rehacerlo entero, por lo que es imposible explicar detalladamente todo lo que se hizo.
+
+
