@@ -231,10 +231,8 @@ public class WsRequest {
 	
 	private List<NameValuePair> getDefaultHeaders() {
 		List<NameValuePair> header = new ArrayList<NameValuePair>();
-		header.add(new BasicNameValuePair("Userid", String.valueOf(GPOVallasApplication.usuarioLogueado.id_usuario)));
-		header.add(new BasicNameValuePair("Deviceid", GPOVallasApplication.macAddress));
-		header.add(new BasicNameValuePair("Token", GPOVallasApplication.token));
-		header.add(new BasicNameValuePair("Entitysecret",GPOVallasApplication.entitySecret));
+		header.add(new BasicNameValuePair("Authorization", GPOVallasApplication.token));
+		
 		return header;		
 		
 	}
