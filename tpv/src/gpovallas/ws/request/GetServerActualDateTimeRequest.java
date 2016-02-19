@@ -9,7 +9,7 @@ import org.apache.http.NameValuePair;
 
 public class GetServerActualDateTimeRequest extends WsRequest {
 	
-	private final String metodo = "usuarios/login/serverDateTime";        
+	private final String metodo = "login/serverDateTime";        
 
 	public <T> T execute(Class<T> responseClass) {
 		List<NameValuePair> param = new ArrayList<NameValuePair>(2);

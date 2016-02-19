@@ -38,15 +38,8 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 	
 	
 	private String sqlCliente = "CREATE TABLE IF NOT EXISTS CLIENTE ("
-			+ "pk_cliente TEXT NOT NULL PRIMARY KEY, fk_entidad INTEGER, fk_delegacion TEXT, fk_subzona TEXT, fk_linea_mercado TEXT, fk_forma_pago TEXT, fk_cliente_cond_esp TEXT, "
-			+ "fk_provincia_entidad TEXT, fk_pais_entidad TEXT, cod_cliente TEXT, bool_es_captacion INTEGER, nombre_comercial TEXT, raz_social TEXT, bool_albaran_valorado INTEGER,"
-			+ "nif TEXT, direccion TEXT, poblacion TEXT, codpostal TEXT, telefono_fijo TEXT, telefono_movil TEXT, fax TEXT, mail TEXT, web TEXT,"
-			+ "dia_pago INTEGER, observaciones TEXT, tipo_iva INTEGER, estacionalidad_periodo1_desde TEXT, estacionalidad_periodo1_hasta TEXT, estacionalidad_periodo2_desde TEXT, estacionalidad_periodo2_hasta TEXT,"
-			+ "bool_asignacion_generica INTEGER, varios1 TEXT, varios2 TEXT, varios3 TEXT, varios4 TEXT, varios5 TEXT, varios6 TEXT, varios7 TEXT, varios8 TEXT, varios9 TEXT, varios10 TEXT," 
-			+ "fk_cliente_facturacion TEXT, raz_social_facturacion TEXT, nif_facturacion TEXT, direccion_facturacion TEXT, poblacion_facturacion TEXT, codpostal_facturacion TEXT, fk_provincia_facturacion TEXT, fk_pais_facturacion TEXT, "
-			+ "longitud REAL, latitud REAL, credito_maximo REAL, bool_facturacion_final_mes INTEGER, fecha_baja TEXT, direccion_entrega TEXT, poblacion_entrega TEXT, codpostal_entrega TEXT, fk_provincia_entrega TEXT,"
-			+ "hora_apertura TEXT, hora_cierre TEXT, horario_entrega_inicial TEXT, horario_entrega_final TEXT, is_downloaded INTEGER DEFAULT 0,"
-			+ "token TEXT NOT NULL, estado INTEGER, "
+			+ "pk_cliente TEXT NOT NULL, fk_pais TEXT NOT NULL, fk_empresa TEXT, codigo_user TEXT, rfc TEXT, razon_social TEXT, nombre_comercial TEXT, porcentaje_comision FLOAT, dias_credito INTEGER, credito_maximo FLOAT, estatus TEXT," 
+			+ "token TEXT NOT NULL PRIMARY KEY, estado INTEGER, "
 			+ "PendienteEnvio INTEGER DEFAULT 0 );"
 			;
 	

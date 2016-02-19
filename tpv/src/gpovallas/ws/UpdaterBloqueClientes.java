@@ -1,6 +1,10 @@
 package gpovallas.ws;
 
+import gpovallas.app.GPOVallasApplication;
+import gpovallas.obj.Pagination;
 import gpovallas.ws.Updater.Bloque;
+import gpovallas.ws.request.GetClientesRequest;
+import gpovallas.ws.response.GetClientesResponse;
 import android.content.Context;
 
 public class UpdaterBloqueClientes extends UpdaterBloque {
@@ -16,11 +20,11 @@ public class UpdaterBloqueClientes extends UpdaterBloque {
 		
 		//Obtenemos la fecha y hora del servidor		
 		fechaUpd = getServerDateTime();						
-		//updateClientes();
+		updateClientes();
 		
 		return true;
 	}
-	/*
+	
 	public Boolean updateClientes(){
 
 		if (!initUpdateOK("GetClientes")) return false;
@@ -29,7 +33,7 @@ public class UpdaterBloqueClientes extends UpdaterBloque {
 		pagination.page = 0;
 		pagination.pageSize = GPOVallasApplication.defaultPageSize;
 		
-		GetClientsUserAssignedResponse clientes = (new GetClientUserAssignedRequest()).execute(GPOVallasApplication.FechaUpd.toString(), pagination, estado, GetClientsUserAssignedResponse.class);
+		GetClientesResponse clientes = (new GetClientesRequest()).execute(GPOVallasApplication.FechaUpd.toString(), pagination, estado, GetClientesResponse.class);
 		if (clientes == null || clientes.failed()) {
 			updatesFallidos.add("Clientes");
 			return false;
@@ -45,7 +49,7 @@ public class UpdaterBloqueClientes extends UpdaterBloque {
 		
 		//Comprobamos la paginacion para ver si hay que volver a hacer peticiones
 		while (clientes.pagination.page < clientes.pagination.totalPages) {
-			clientes = (new GetClientUserAssignedRequest()).execute(GPOVallasApplication.FechaUpd.toString(), clientes.pagination, estado, GetClientsUserAssignedResponse.class);
+			clientes = (new GetClientesRequest()).execute(GPOVallasApplication.FechaUpd.toString(), clientes.pagination, estado, GetClientesResponse.class);
 			
 			if (clientes == null || clientes.failed()) {
 				updatesFallidos.add("Clientes");
@@ -66,5 +70,5 @@ public class UpdaterBloqueClientes extends UpdaterBloque {
 		
 		return true;
 	}
-	*/
+	
 }
