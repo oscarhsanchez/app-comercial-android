@@ -46,4 +46,6 @@
     <string name="proovedor">Proovedor</string>
     <string name="articulo">Artículo</string>
     <string name="clasificacion_popup">Descripción: %1$s \nTotal(%%):\t\t  %2$s \nTotal(€):\t\t  %3$s </string>
+    <string name="campo_requerido">Requerido</string>
+    <string name="error_generico">Error interno, intentar otra vez.</string>
 </resources>

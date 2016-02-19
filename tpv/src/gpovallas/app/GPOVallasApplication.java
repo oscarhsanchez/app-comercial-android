@@ -3,8 +3,6 @@ package gpovallas.app;
 import gpovallas.exceptions.EfinanzasSender;
 import gpovallas.obj.Cliente;
 import gpovallas.obj.ControlVersiones;
-import gpovallas.obj.Delegacion;
-import gpovallas.obj.Device;
 import gpovallas.obj.EntityUser;
 import gpovallas.ws.Updater;
 
@@ -51,6 +49,7 @@ public class GPOVallasApplication extends Application {
 	public static Activity currentActivity;
 	public static String token = "";
 	public static String macAddress = "";
+	public static Pais pais = Pais.Mexico;
 	public static String SesionId = null;
 	public static String FechaUpd = null;
 	public static String UbicacionId = "";
@@ -58,8 +57,6 @@ public class GPOVallasApplication extends Application {
 	public static Object ResultRequestObject = null;
 	public static EntityUser usuarioAsignado = null;
 	public static EntityUser usuarioLogueado = null;
-	public static Delegacion delegacion = null;
-	public static Device device = null;
 	public static Boolean dispositivoAutorizado = false;
 	public static HashMap<String, String> codFpByParam = new HashMap<String, String>();
 	public static Integer defaultPageSize = 200;
@@ -69,7 +66,7 @@ public class GPOVallasApplication extends Application {
 
 	public static enum Entorno {
 		TEST 		("Test", "http://efinanzas.com/api/v1/"),
-		PRODUCCION  ("Producción", "http://api.efinanzas.com/");
+		PRODUCCION  ("Producción", "http://api.gpovallas.com/");
 
 
 		public final String descripcion;
@@ -78,6 +75,18 @@ public class GPOVallasApplication extends Application {
 		Entorno(String pDescripcion, String pRuta) {
 			descripcion = pDescripcion;
 			ruta = pRuta;
+		}
+	}
+	
+	public static enum Pais {
+		Mexico("MX");
+		private String sigla;
+		private Pais(String sigla){
+			this.sigla = sigla;
+		}
+		@Override
+		public String toString() {
+			return sigla;
 		}
 	}
 

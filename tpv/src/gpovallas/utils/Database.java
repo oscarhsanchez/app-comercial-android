@@ -438,7 +438,7 @@ public class Database {
 		if (result < 0) {
 			try {
 				EnviarEmail email = new EnviarEmail(GPOVallasApplication.context);
-				email.enviarLog(error, GPOVallasApplication.device.cod_terminal_tpv, GPOVallasApplication.appVersion.toString());
+				//email.enviarLog(error, GPOVallasApplication.device.cod_terminal_tpv, GPOVallasApplication.appVersion.toString());
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

@@ -1,33 +1,10 @@
 package gpovallas.ws;
 
 import gpovallas.obj.Cliente;
-import gpovallas.obj.ClienteTpv;
-import gpovallas.obj.ContactoCliente;
 import gpovallas.obj.ControlVersiones;
-import gpovallas.obj.Delegacion;
-import gpovallas.obj.EfectoPendiente;
-import gpovallas.obj.ElementoTrade;
-import gpovallas.obj.Empresa;
-import gpovallas.obj.EmpresaMvx;
-import gpovallas.obj.EstadisticasConsProd;
-import gpovallas.obj.EstadisticasFactCli;
 import gpovallas.obj.Estado;
-import gpovallas.obj.FrecuenciaVisitaCliente;
-import gpovallas.obj.NifData;
 import gpovallas.obj.ParameterApp;
 import gpovallas.obj.ParameterTpv;
-import gpovallas.obj.Perfil;
-import gpovallas.obj.PerfilUsuario;
-import gpovallas.obj.Permiso;
-import gpovallas.obj.SubFamiliaMvx;
-import gpovallas.obj.SubZona;
-import gpovallas.obj.TipoDistribucion;
-import gpovallas.obj.TipoNevera;
-import gpovallas.obj.TradeCli;
-import gpovallas.obj.Vendedor;
-import gpovallas.obj.Visita;
-import gpovallas.obj.VisitasCaptacion;
-import gpovallas.obj.Zona;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
@@ -37,38 +14,16 @@ public class ComunicadorSerializable {
 	public ComunicadorSerializable() {
 
 	}
-	public static String getPrimaryKeyByClass(Class clase){
+	public static String getPrimaryKeyByClass(@SuppressWarnings("rawtypes") Class clase){
         String pk = null;
 
-        HashMap<Class, String[]> mapPK = new HashMap<Class, String[]>();        
+        @SuppressWarnings("rawtypes")
+		HashMap<Class, String[]> mapPK = new HashMap<Class, String[]>();        
     
         mapPK.put(Cliente.class, new String[]{ "CodCliMvx" });
-        mapPK.put(ClienteTpv.class, new String[]{  });        
-        mapPK.put(ContactoCliente.class, new String[]{ "Id" });
         mapPK.put(ControlVersiones.class, new String[]{ "IdCtrlVer" });
-        mapPK.put(Delegacion.class, new String[]{ "Id" });
-        mapPK.put(EfectoPendiente.class, new String[]{ "CodEfecto" });
-        mapPK.put(ElementoTrade.class, new String[]{ "Id" });
-        mapPK.put(Empresa.class, new String[]{ "IdEmpresa" });
-        mapPK.put(EmpresaMvx.class, new String[]{ "CodEmpresaMvx" });
-        mapPK.put(EstadisticasConsProd.class, new String[]{ "Id" });
-        mapPK.put(EstadisticasFactCli.class, new String[]{ "Id" });  
-        mapPK.put(FrecuenciaVisitaCliente.class, new String[]{ "Id" });   
-        mapPK.put(NifData.class, new String[]{ "Nif" });
         mapPK.put(ParameterApp.class, new String[]{ "IdParameterApp" });
         mapPK.put(ParameterTpv.class, new String[]{ "Id" });
-        mapPK.put(Perfil.class, new String[]{ "IdPerfil" });
-        mapPK.put(PerfilUsuario.class, new String[]{ "IdPerfil" });
-        mapPK.put(Permiso.class, new String[]{ "IdPermiso" });      
-        mapPK.put(SubFamiliaMvx.class, new String[]{ "CodSubFamilia" });
-        mapPK.put(SubZona.class, new String[]{ "Id" });      
-        mapPK.put(TipoDistribucion.class, new String[]{ "Id" });
-        mapPK.put(TipoNevera.class, new String[]{ "CodTipo" });
-        mapPK.put(TradeCli.class, new String[]{ "Id" });
-        mapPK.put(Vendedor.class, new String[]{ "CodVendedor" });
-        mapPK.put(Visita.class, new String[]{ "Id" });
-        mapPK.put(VisitasCaptacion.class, new String[]{ "UniIdTpv" });
-        mapPK.put(Zona.class, new String[]{ "Id" });
 
 
         String[] pkAux = mapPK.containsKey(clase) ? mapPK.get(clase) : new String[]{  };
@@ -81,6 +36,7 @@ public class ComunicadorSerializable {
 		if (valor == null)
 			return null;
 
+		@SuppressWarnings("rawtypes")
 		Class clasePropiedad = (Class) tipo;
 		Object valorPropiedad = null;
 
@@ -104,7 +60,8 @@ public class ComunicadorSerializable {
 	
 	public void initializeField(Field field){
         Type tipo = field.getType();
-        Class clasePropiedad = (Class) tipo;
+        @SuppressWarnings("rawtypes")
+		Class clasePropiedad = (Class) tipo;
         Object valor = null;
         if (tipo.equals(String.class) || tipo.equals(Integer.class)
                 || tipo.equals(Double.class) || tipo.equals(Float.class)

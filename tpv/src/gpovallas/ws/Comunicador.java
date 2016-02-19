@@ -139,10 +139,7 @@ public abstract class Comunicador {
 
     public HashMap<String, String> getSecurityHeaderParams() {
     	HashMap<String, String> params = new HashMap<String, String>();
- 		params.put("Userid", String.valueOf(GPOVallasApplication.usuarioLogueado.id_usuario));
- 		params.put("deviceId", GPOVallasApplication.macAddress);
- 		params.put("Token", GPOVallasApplication.token);
- 		params.put("Entitysecret", GPOVallasApplication.entitySecret);
+ 		params.put("Authorization", GPOVallasApplication.token);
  		
  		return params;
     }

@@ -1,10 +1,6 @@
 package gpovallas.ws;
 
-import gpovallas.app.GPOVallasApplication;
-import gpovallas.obj.Pagination;
 import gpovallas.ws.Updater.Bloque;
-import gpovallas.ws.request.GetClientUserAssignedRequest;
-import gpovallas.ws.response.GetClientsUserAssignedResponse;
 import android.content.Context;
 
 public class UpdaterBloqueClientes extends UpdaterBloque {
@@ -24,8 +20,9 @@ public class UpdaterBloqueClientes extends UpdaterBloque {
 		
 		return true;
 	}
-	
+	/*
 	public Boolean updateClientes(){
+
 		if (!initUpdateOK("GetClientes")) return false;
 		
 		Pagination pagination = new Pagination();
@@ -69,4 +66,5 @@ public class UpdaterBloqueClientes extends UpdaterBloque {
 		
 		return true;
 	}
+	*/
 }
