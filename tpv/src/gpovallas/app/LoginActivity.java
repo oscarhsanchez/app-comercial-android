@@ -4,7 +4,9 @@ import gpovallas.app.ApplicationStatus.DebugMode;
 import gpovallas.app.constants.GPOVallasConstants;
 import gpovallas.utils.Dialogs;
 import gpovallas.utils.Utils;
+import gpovallas.ws.request.GetParametrosRequest;
 import gpovallas.ws.request.LoginRequest;
+import gpovallas.ws.response.GetParametrosResponse;
 import gpovallas.ws.response.LoginResponse;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -88,7 +90,6 @@ public class LoginActivity extends GPOVallasActivity {
 	public void onResume(){
 		super.onResume();
 		GPOVallasApplication.guardarLog(db, "LoginActivity", "OnResume");
-
 	}
 
 	public void login(View v) {
@@ -116,6 +117,8 @@ public class LoginActivity extends GPOVallasActivity {
 				GPOVallasApplication.token = response.Session.access_token;
 				Log.d(TAG,"renew token " + response.Session.renew_token);
 				
+				new ParametrosTask().execute();
+				
 				Editor editor = sharedPref.edit();
 				editor.putString(GPOVallasConstants.ACCESS_TOKEN, GPOVallasApplication.token);
 				editor.putString(GPOVallasConstants.RENEW_TOKEN, response.Session.renew_token);
@@ -125,6 +128,7 @@ public class LoginActivity extends GPOVallasActivity {
 				Intent intent = new Intent(LoginActivity.this, UpdateDataActivity.class);
 				startActivity(intent);
 				ApplicationStatus.getInstance().setCache(false);
+				
 				
 			} else {
 				Log.d(TAG, "No se pudo iniciar sesion correctamente");
@@ -139,6 +143,33 @@ public class LoginActivity extends GPOVallasActivity {
 							getString(R.string.error_generico), 
 							getString(android.R.string.ok)).show();
 				}
+			}
+			
+		}
+		
+	}
+	
+	private class ParametrosTask extends AsyncTask<String, Integer, GetParametrosResponse>{
+
+		@Override
+		protected GetParametrosResponse doInBackground(String... params) {
+			GetParametrosRequest request = new GetParametrosRequest();
+			return request.execute(GPOVallasApplication.FechaUpd, 1, GetParametrosResponse.class);
+		}
+		
+		@Override
+		protected void onPostExecute(GetParametrosResponse response) {
+			if(progressDialog!=null) progressDialog.dismiss();
+			if (response != null && !response.failed()) {
+				
+				if (!response._save()) {
+					Log.d(TAG,"No se pudieron guardar bien los parametros correctamente");
+				}
+				
+				
+			} else {
+				Log.d(TAG, "No se pudieron cargar los parametros correctamente");
+				
 			}
 			
 		}

@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.Random;
 import java.util.Vector;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -38,24 +39,14 @@ public class Updater {
 	}
 
 	public static enum Bloque {
+		AGENCIAS ("Agencias"),
 		BLOQUE0 ("Bloque 0"),
-		ALMACEN ("Almacen"),
-		ARTICULOS ("Articulos"),
+		BRIEFS ("Briefs"),
+		CATORCENAS ("Catorcenas"),
 		CLIENTES ("Clientes"),
-		DOCUMENTOS ("Documentos"),
-		PROMOCIONES ("Promociones"),
-		CAPTACIONES ("Captaciones"),
-		TARIFAS ("Tarifas"),
-		REPOSITORIO ("Repositorio"),
-		CONDICIONES_PAGO ("Condiciones de pago"),
-		AGRUPACIONES_COMERCIALES ("Agrupaciones comerciales"),
-		CONDICIONES_COMERCIALES ("Condiciones comerciales"),
-		FORMAS_PAGO ("Formas de pago"),
-		PEDIDOS ("Pedidos"),		
-		CARGA_DESCARGA ("Carga / Descarga"),
-		AJUSTES ("Ajustes"),
-		TRADE_NEVERAS ("Trade / Neveras"),
-		PARAMETROS_APP ("Par�metros de Aplicaci�n");
+		METADATA ("Metadata"),
+		PARAMETROS_APP ("Par�metros de Aplicaci�n"),
+		UBICACIONES ("Ubicaciones") ;
 
 		private final String descripcion;
 
@@ -83,7 +74,6 @@ public class Updater {
 				mail.enviarEstadoMemoria();
 				Log.i("PARTIAL UPDATER", "INFORME DE ESTADO DE MEMORIA ENVIADO");
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
@@ -96,10 +86,19 @@ public class Updater {
 		GPOVallasApplication.updaterTipo = Updater.TipoUpdate.PARCIAL;
 		
 		UpdaterBloqueClientes bloqueClientes = new UpdaterBloqueClientes(contexto, Updater.Bloque.CLIENTES);
-	
+		UpdaterBloqueUbicaciones bloqueUbicaciones = new UpdaterBloqueUbicaciones(contexto, Updater.Bloque.UBICACIONES);
+		UpdaterBloqueMetadata bloqueMetadata = new UpdaterBloqueMetadata(contexto, Updater.Bloque.METADATA);
+		UpdaterBloqueAgencias bloqueAgencias = new UpdaterBloqueAgencias(contexto, Updater.Bloque.AGENCIAS);
+		UpdaterBloqueBriefs bloqueBriefs = new UpdaterBloqueBriefs(contexto, Updater.Bloque.BRIEFS);
+		UpdaterBloqueCatorcenas bloqueCatorcenas = new UpdaterBloqueCatorcenas(contexto, Updater.Bloque.CATORCENAS);
 
 		Vector<UpdaterBloque> updaters = new Vector<UpdaterBloque>();
 		updaters.add(bloqueClientes);
+		updaters.add(bloqueUbicaciones);
+		updaters.add(bloqueMetadata);
+		updaters.add(bloqueAgencias);
+		updaters.add(bloqueBriefs);
+		updaters.add(bloqueCatorcenas);
 		
 		boolean res = false;
 		try {
@@ -155,7 +154,6 @@ public class Updater {
 				mail.enviarEstadoMemoria();
 				Log.i("PARTIAL UPDATER", "INFORME DE ESTADO DE MEMORIA ENVIADO");
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
@@ -229,11 +227,20 @@ public class Updater {
 		//db.close();
 
 		UpdaterBloqueClientes bloqueClientes = new UpdaterBloqueClientes(contexto, Updater.Bloque.CLIENTES);
+		UpdaterBloqueUbicaciones bloqueUbicaciones = new UpdaterBloqueUbicaciones(contexto, Updater.Bloque.UBICACIONES);
+		UpdaterBloqueMetadata bloqueMetadata = new UpdaterBloqueMetadata(contexto, Updater.Bloque.METADATA);
+		UpdaterBloqueAgencias bloqueAgencias = new UpdaterBloqueAgencias(contexto, Updater.Bloque.AGENCIAS);
+		UpdaterBloqueBriefs bloqueBriefs = new UpdaterBloqueBriefs(contexto, Updater.Bloque.BRIEFS);
+		UpdaterBloqueCatorcenas bloqueCatorcenas = new UpdaterBloqueCatorcenas(contexto, Updater.Bloque.CATORCENAS);
 
 		Vector<UpdaterBloque> updaters = new Vector<UpdaterBloque>();
 
 		updaters.add(bloqueClientes);
-		
+		updaters.add(bloqueUbicaciones);
+		updaters.add(bloqueMetadata);
+		updaters.add(bloqueAgencias);
+		updaters.add(bloqueBriefs);
+		updaters.add(bloqueCatorcenas);
 
 		Boolean dbComplete = true;
 
@@ -284,6 +291,7 @@ public class Updater {
 	};	
 	
 	
+	@SuppressLint("SimpleDateFormat")
 	public static String generateNewIdTPV(){
 		String UniIdTpv = null;
 

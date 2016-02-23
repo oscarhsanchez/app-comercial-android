@@ -4,7 +4,7 @@ import gpovallas.obj.Cliente;
 import gpovallas.obj.ControlVersiones;
 import gpovallas.obj.Estado;
 import gpovallas.obj.ParameterApp;
-import gpovallas.obj.ParameterTpv;
+import gpovallas.obj.Parametro;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
@@ -23,7 +23,7 @@ public class ComunicadorSerializable {
         mapPK.put(Cliente.class, new String[]{ "CodCliMvx" });
         mapPK.put(ControlVersiones.class, new String[]{ "IdCtrlVer" });
         mapPK.put(ParameterApp.class, new String[]{ "IdParameterApp" });
-        mapPK.put(ParameterTpv.class, new String[]{ "Id" });
+        mapPK.put(Parametro.class, new String[]{ "Id" });
 
 
         String[] pkAux = mapPK.containsKey(clase) ? mapPK.get(clase) : new String[]{  };

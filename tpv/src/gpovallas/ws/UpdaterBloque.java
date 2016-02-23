@@ -2,6 +2,7 @@ package gpovallas.ws;
 
 import gpovallas.app.ApplicationStatus;
 import gpovallas.app.GPOVallasApplication;
+import gpovallas.app.constants.GPOVallasConstants;
 import gpovallas.utils.Text;
 import gpovallas.ws.request.GetServerActualDateTimeRequest;
 import gpovallas.ws.response.GetServerActualDateTimeResponse;
@@ -10,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Vector;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -47,6 +49,7 @@ public abstract class UpdaterBloque {
 				int hour = cursor.getInt(3);
 				int minute = cursor.getInt(4);
 				int second = cursor.getInt(5);
+				@SuppressWarnings("deprecation")
 				Date date = new Date(year, month, day, hour, minute, second);
 				cursor.close();
 				return date;
@@ -127,6 +130,7 @@ public abstract class UpdaterBloque {
 	}
 
 
+	@SuppressLint("DefaultLocale")
 	protected boolean initUpdateOK(String peticion, Boolean checkRegistrosPendienteEnvio){
 
 		String fechaUltimaActualizacion = getFechaActualizacionPeticion(peticion);
@@ -139,28 +143,14 @@ public abstract class UpdaterBloque {
 		if (checkRegistrosPendienteEnvio){
 
 			HashMap<String, String> mapeos = new HashMap<String, String>();
-	        mapeos.put("GetAgrupacionesClientes", "AGRCLIENTE");
-	        mapeos.put("GetClientes", "CLIENTE");
-	        mapeos.put("GetContactosClientes", "CLIENTE_CONTACTO");
-	        mapeos.put("GetPresupuestos", "PRESUPUESTO");
-	        mapeos.put("GetPedidos", "PEDIDO");
-	        mapeos.put("GetPedidosSugeridos", "PEDIDO_SUGERIDO");
-	        mapeos.put("GetAlbaranes", "ALBARAN");
-	        mapeos.put("GetFacturas", "FACTURA");
-	        mapeos.put("GetRecibosCobros", "RECIBO_COBRO");
-	        mapeos.put("GetArchivos", "REPO_ARCHIVO");
-	        mapeos.put("GetCaptaciones", "CLIENTE");
-	        mapeos.put("GetCaptacionesAgr", "AGRCLIENTE");
-	        mapeos.put("GetCaptacionesCondsEspeciales", "CLIENTE_COND_ESPECIAL");
-	        mapeos.put("GetCaptacionesCondsPago", "CLIENTE_COND_PAGO");
-	        mapeos.put("GetCaptacionesContactos", "CLIENTE_CONTACTO");	        
-	        mapeos.put("GetIncidencias", "INCIDENCIA");
-	        mapeos.put("GetRegistrosIncidencias", "REGISTRO_INCIDENCIA");
-	        mapeos.put("GetInventarios", "INVENTARIO");
-	        mapeos.put("GetMovAlmacen", "MOVIMIENTOALM");
-	        mapeos.put("GetReferenciaMpv", "REFERENCIA_MPV");
-	        mapeos.put("GetVisitasClientes", "VISITA");
-	        mapeos.put("GetMarcaArticulo", "MARCAS");
+	        mapeos.put("GetClientes", GPOVallasConstants.DB_TABLE_CLIENTE);
+	        mapeos.put("GetUbicaciones", GPOVallasConstants.DB_TABLE_UBICACION);
+	        mapeos.put("GetContactos", GPOVallasConstants.DB_TABLE_CONTACTO);
+	        mapeos.put("GetMetaCategory", GPOVallasConstants.DB_TABLE_META_CATEGORY);
+	        mapeos.put("GetMetaVenues", GPOVallasConstants.DB_TABLE_META_VENUE);
+	        mapeos.put("GetCatorcenas", GPOVallasConstants.DB_TABLE_CATORCENA);
+	        mapeos.put("GetBriefs", GPOVallasConstants.DB_TABLE_BRIEF);
+	        mapeos.put("GetAgencias", GPOVallasConstants.DB_TABLE_AGENCIA);
 	        
 	        
 	        if (db != null) {
