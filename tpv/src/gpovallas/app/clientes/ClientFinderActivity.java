@@ -8,6 +8,7 @@ import gpovallas.app.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -22,13 +23,14 @@ import android.widget.ListView;
 
 public class ClientFinderActivity extends GPOVallasListActivity {
 
+	private static final String TAG = ClientFinderActivity.class.getSimpleName();
+	
 	private EditText txtSearchFilter;
 	private EditText txtSearchFilterCodCli;
 	private ArrayList<HashMap<String, String>> arrClientes;
 	private SQLiteDatabase db;
 	private String filter_codCli;
 	private String filter_nombreCli;
-	private Integer isCaptacion = 0;
 	
 	private ClientFinderAdapter arrayAdapter;
 
@@ -51,11 +53,6 @@ public class ClientFinderActivity extends GPOVallasListActivity {
 
 		setBreadCrumb("Clientes", "Buscador de cliente");
 
-
-		Bundle data = getIntent().getExtras();
-		if (data != null && data.size() > 0){
-			isCaptacion = data.getInt("isCaptacion",0);
-		}
 		Log.v("CVlient Finder", "ClientFinder on create");
 
 		db = ApplicationStatus.getInstance().getDb(getApplicationContext());
@@ -111,36 +108,37 @@ public class ClientFinderActivity extends GPOVallasListActivity {
 
 		arrClientes = new ArrayList<HashMap<String, String>>();
 
-		String sql = "SELECT IFNULL(nombre_comercial, '') AS Nombre, cod_cliente, codpostal, direccion, is_downloaded, pk_cliente  " +
-						"FROM CLIENTE WHERE bool_es_captacion = "+isCaptacion+" ";
+		String sql = "SELECT IFNULL(nombre_comercial, '') AS Nombre, rfc, pk_cliente, razon_social, fk_empresa  " +
+						"FROM CLIENTE WHERE estado = 1 ";
 
 		filter_codCli = filter_codCli.replace("'", "''");
 		filter_nombreCli = filter_nombreCli.replace("'", "''");
 
 		if (!filter_codCli.equals("")){
-			sql += " AND cod_cliente LIKE '%" + filter_codCli + "%' ";
+			sql += " AND pk_cliente LIKE '%" + filter_codCli + "%' ";
 		} else if (!filter_nombreCli.equals("")){
-			sql += " AND nombre_comercial LIKE '%" + filter_nombreCli + "%' ";
+			sql += " AND razon_social LIKE '%" + filter_nombreCli + "%' ";
 		}
 
 		sql += "ORDER BY Nombre ASC";
 
 		Cursor c = db.rawQuery(sql, null);
+		Log.i(TAG,""+c.getCount());
 		if(c.moveToFirst()){
 			do {
+				Log.i(TAG,c.getString(c.getColumnIndex("Nombre")));
 				HashMap<String,String> map = new HashMap<String, String>();
 				map.put("PkCliente", c.getString(c.getColumnIndex("pk_cliente")));
-				map.put("CodCli", c.getString(c.getColumnIndex("cod_cliente")));
+				map.put("rfc", c.getString(c.getColumnIndex("rfc")));
 				map.put("Nombre", c.getString(c.getColumnIndex("Nombre")));
-				map.put("CodPostal", c.getString(c.getColumnIndex("codpostal")));
-				map.put("Direccion", c.getString(c.getColumnIndex("direccion")));
-				map.put("isDownloaded", c.getString(c.getColumnIndex("is_downloaded")));
+				map.put("razon_social", c.getString(c.getColumnIndex("razon_social")));
+				map.put("fk_empresa", c.getString(c.getColumnIndex("fk_empresa")));
 				arrClientes.add(map);
 			} while (c.moveToNext());
 		}
 		c.close();
 
-		arrayAdapter = new ClientFinderAdapter(this, arrClientes,false);
+		arrayAdapter = new ClientFinderAdapter(this, arrClientes);
 		setListAdapter(arrayAdapter);
 
 	}
@@ -150,6 +148,8 @@ public class ClientFinderActivity extends GPOVallasListActivity {
 
 		//HashMap<String,String> map = arrClientes.get(position);
 		//String CodCli = map.get("CodCli");
+		Log.i(TAG, "Posicion cliqueada " + position);
+		startActivity(new Intent(ClientFinderActivity.this, ClientDetailTabsActivity.class));
 	
 	}
 	

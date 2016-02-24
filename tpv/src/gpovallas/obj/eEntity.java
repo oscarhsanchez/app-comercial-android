@@ -8,8 +8,11 @@ import java.util.HashMap;
 
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class eEntity extends ComunicadorSerializable {
+	
+	private static final String TAG = eEntity.class.getSimpleName();
 	
 	@ColumnAnnotation(annotation="omitted")
 	public String tableName = "";
@@ -44,6 +47,7 @@ public class eEntity extends ComunicadorSerializable {
 		}
 				
 		String sql = "INSERT OR REPLACE INTO " + tableName + "(" + strCampos + ") VALUES (" + strValues + ")";
+		Log.i(TAG, sql);
 		db.execSQL(sql);
 		
 	}

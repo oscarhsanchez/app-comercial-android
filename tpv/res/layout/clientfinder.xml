@@ -46,24 +46,19 @@
 		    style="@style/listViewRow">
 
 	     	 <TextView
-		         android:layout_weight="0.15"
+		         android:layout_weight="0.25"
 		         style="@style/listview_textview_th"
-		         android:text="Cód." />
+		         android:text="Código" />
 
 		     <TextView
-		        android:layout_weight="0.45"
+		        android:layout_weight="0.25"
 		        style="@style/listview_textview_th"
-		        android:text="Cliente"/>
+		        android:text="RFC"/>
 		     
 		     <TextView
-		        android:layout_weight="0.1"
+		        android:layout_weight="0.50"
 		        style="@style/listview_textview_th"
-		        android:text="CP"/>
-		     
-		     <TextView
-		        android:layout_weight="0.3"
-		        style="@style/listview_textview_th"
-		        android:text="Dirección"/>
+		        android:text="Nombre"/>
 
 	    </LinearLayout>
 

@@ -1,19 +1,48 @@
 package gpovallas.app;
 
-import android.app.ListActivity;
-import android.content.Intent;
+import java.util.ArrayList;
+
+import com.google.android.gms.maps.model.LatLng;
+
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class GPOVallasListActivity extends ListActivity {
+public class GPOVallasFragmentActivity extends FragmentActivity {
+
+	protected boolean boolLogin = false;
+	protected SQLiteDatabase db;
+	public ArrayList<LatLng> directionPoints;
 
 	public void onCreate(Bundle savedInstanceState) {
+
 		super.onCreate(savedInstanceState);
+		GPOVallasApplication.context = getBaseContext();
+		db = ApplicationStatus.getInstance().getDbRead(getApplicationContext());
 	}
+
+	@Override
+	public void onBackPressed() {
+	// do something on back.
+	return;
+	}
+
+	@Override
+	protected void onResume(){
+		super.onResume();
+		GPOVallasApplication.currentActivity = this;
+		
+		/*if (!boolLogin && GPOVallasApplication.usuarioAsignado == null){
+			Intent intent = new Intent(this, LoginActivity.class);
+			startActivity(intent);
+		}*/
+		((GPOVallasApplication)getApplicationContext()).resetDisconnectTimer();
+	}
+	
 
 	public void closeApp(View v){
 		Log.v(this.getClass().getName(), "Cerrando actividad");
@@ -21,23 +50,6 @@ public class GPOVallasListActivity extends ListActivity {
 		finish();
 	}
 
-	@Override
-	protected void onResume(){
-		super.onResume();
-		GPOVallasApplication.currentActivity = this;
-		/*if (GPOVallasApplication.usuarioAsignado == null){
-			Intent intent = new Intent(this, LoginActivity.class);
-			startActivity(intent);
-		}*/
-		((GPOVallasApplication)getApplicationContext()).resetDisconnectTimer();
-	}
-
-
-	@Override
-	public void onBackPressed() {
-		// do something on back.
-		return;
-	}
 	public void setBreadCrumb(String textoNivel1, String textoNivel2){
 
 		View v = findViewById(R.id.header);
@@ -52,22 +64,11 @@ public class GPOVallasListActivity extends ListActivity {
 
 	}
 
-	public void changeButtonToSelectionMode(boolean editionMode){
-		View v = findViewById(R.id.header);
-		Button closeButton = (Button) v.findViewById(R.id.close_button);
-		if(editionMode){
-			closeButton.setVisibility(View.GONE);
-		}else{
-			closeButton.setVisibility(View.VISIBLE);
-		}
-	}
 
-	public void closeEditionMode(View v){
-		Log.v(this.getClass().getName(), "Cerrando modo seleccion");
-	}
-
-	@Override
-	public void onUserInteraction(){
-		((GPOVallasApplication)getApplicationContext()).resetDisconnectTimer();
-	}
+	
+    @Override
+    public void onUserInteraction(){
+    	((GPOVallasApplication)getApplicationContext()).resetDisconnectTimer();
+    }
+	
 }
