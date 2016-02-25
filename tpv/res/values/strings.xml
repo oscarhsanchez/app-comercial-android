@@ -48,4 +48,10 @@
     <string name="clasificacion_popup">Descripción: %1$s \nTotal(%%):\t\t  %2$s \nTotal(€):\t\t  %3$s </string>
     <string name="campo_requerido">Requerido</string>
     <string name="error_generico">Error interno, intentar otra vez.</string>
+    
+    <!-- Clientes -->
+    <string name="tab_datos_generales">Datos Generales</string>
+    <string name="tab_contactos">Contactos</string>
+    
+    
 </resources>

@@ -4,6 +4,7 @@ import gpovallas.adapter.ClientFinderAdapter;
 import gpovallas.app.ApplicationStatus;
 import gpovallas.app.GPOVallasListActivity;
 import gpovallas.app.R;
+import gpovallas.app.constants.GPOVallasConstants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -146,10 +147,11 @@ public class ClientFinderActivity extends GPOVallasListActivity {
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id){
 
-		//HashMap<String,String> map = arrClientes.get(position);
-		//String CodCli = map.get("CodCli");
-		Log.i(TAG, "Posicion cliqueada " + position);
-		startActivity(new Intent(ClientFinderActivity.this, ClientDetailTabsActivity.class));
+		Log.i(TAG, "Posicion cliqueada " + position + " cliente pk " + arrClientes.get(position).get("PkCliente"));
+		String clientPk = arrClientes.get(position).get("PkCliente");
+		Intent intent = new Intent(ClientFinderActivity.this, ClientDetailTabsActivity.class);
+		intent.putExtra(GPOVallasConstants.CLIENT_PK_INTENT, clientPk);
+		startActivity(intent);
 	
 	}
 	

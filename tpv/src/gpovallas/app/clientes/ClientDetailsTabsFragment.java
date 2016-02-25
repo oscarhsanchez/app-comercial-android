@@ -1,6 +1,7 @@
 package gpovallas.app.clientes;
 
 import gpovallas.app.R;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -20,10 +21,12 @@ public class ClientDetailsTabsFragment extends Fragment implements OnTabChangeLi
 	private static final String TAG = ClientDetailsTabsFragment.class.getSimpleName();
 	private View mRoot;
 	private TabHost mTabHost;
+	private ViewGroup mContainer;
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mRoot = inflater.inflate(R.layout.client_tabs_fragment, null);
+        mRoot = inflater.inflate(R.layout.client_tabs_fragment, container);
+        mContainer = container;
         mTabHost = (TabHost) mRoot.findViewById(android.R.id.tabhost);
 
         setupTabs();
@@ -47,6 +50,7 @@ public class ClientDetailsTabsFragment extends Fragment implements OnTabChangeLi
             final int iTabActual = t;
             mTabHost.getTabWidget().getChildAt(t).setOnTouchListener(new View.OnTouchListener() {
 
+				@SuppressLint("ClickableViewAccessibility")
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					
@@ -76,22 +80,26 @@ public class ClientDetailsTabsFragment extends Fragment implements OnTabChangeLi
 	
 	private void setupTabs() {
         mTabHost.setup(); // you must call this before adding your tabs!
-        mTabHost.addTab(newTab("Datos Generales",R.drawable.btn_breaf, 0, R.id.tab_datos));
-        mTabHost.addTab(newTab("Contactos", R.drawable.btn_conoce, 0, R.id.tab_contactos));
+        mTabHost.addTab(newTab(getActivity().getString(R.string.tab_datos_generales),
+        		R.drawable.btn_breaf, 
+        		R.id.tab_datos));
+        mTabHost.addTab(newTab(getActivity().getString(R.string.tab_contactos), 
+        		R.drawable.btn_conoce, 
+        		R.id.tab_contactos));
     }
     
-    private TabSpec newTab(String tag, int drawableIcon, int labelId, int tabContentId) {
+    private TabSpec newTab(String tab_title, int drawableIcon, int tabContentId) {
 
-        Log.d(TAG, "buildTab(): tag=" + tag);
-        View indicator = LayoutInflater.from(mTabHost.getContext()).inflate(R.layout.tabs_bg, null);
+        Log.d(TAG, "buildTab(): tag=" + tab_title);
+        View indicator = LayoutInflater.from(mTabHost.getContext()).inflate(R.layout.tabs_bg, mContainer);
 
         ImageView img = (ImageView) indicator.findViewById(R.id.tabsImage);
         img.setImageResource(drawableIcon);
 
         TextView tv = (TextView) indicator.findViewById(R.id.tabsText);
-        tv.setText(tag);
+        tv.setText(tab_title);
 
-        TabSpec tabSpec = mTabHost.newTabSpec(tag);
+        TabSpec tabSpec = mTabHost.newTabSpec(tab_title);
         tabSpec.setIndicator(indicator);
         tabSpec.setContent(tabContentId);
 
@@ -102,16 +110,16 @@ public class ClientDetailsTabsFragment extends Fragment implements OnTabChangeLi
     	
     	switch (tab) {
             case R.id.tab_datos:
-            	updateTab("Datos Generales", R.id.tab_datos, new ClientTabDatosFragment());
+            	((ClientDetailTabsActivity) getActivity()).loadFragment(R.id.tab_datos, ClientTabDatosFragment.class);
                 break;
             case R.id.tab_contactos:
-            	((ClientDetailTabsActivity) getActivity()).loadFragment("Contactos",R.id.tab_contactos, ClientTabContactosFragment.class, null);
+            	((ClientDetailTabsActivity) getActivity()).loadFragment(R.id.tab_contactos, ClientTabContactosFragment.class);
                 break;
         }
 
     }
     
-    public void updateTab(String tabId, int placeholder, Fragment fragment) {
+    public void updateTab(int placeholder, Fragment fragment) {
 
     	switch (placeholder) {
             case R.id.tab_datos:
@@ -122,9 +130,7 @@ public class ClientDetailsTabsFragment extends Fragment implements OnTabChangeLi
                 break;
         }
 
-
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
         transaction.addToBackStack(null);
         transaction.replace(placeholder, fragment);
         transaction.commitAllowingStateLoss();
@@ -132,7 +138,6 @@ public class ClientDetailsTabsFragment extends Fragment implements OnTabChangeLi
 	
 	@Override
 	public void onTabChanged(String arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
