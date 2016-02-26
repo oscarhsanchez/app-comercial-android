@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:id="@+id/update_parcial" android:title="Forzar Actualización" android:titleCondensed="Forzar Actualización"></item>  
-</menu>

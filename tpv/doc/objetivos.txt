@@ -1,4 +1,0 @@
-27/12/2011 - Por Jaime
-
-Por otro lado os pido a todos que centréis vuestro esfuerzos en la entrega del 16 de Enero, que incluye: Empresa, Usuarios, Delegaciones,  Clientes, Rutas y algunas tablas euxiliares.
-El resto de entidades las dejamos para más adelante ya que es posible que sufran modificaciones.

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:id="@+id/infoMenuItem" android:title="Información" android:titleCondensed="info." android:icon="@drawable/info_small"></item>
-    <item android:id="@+id/printerMenu" android:title="Informacion sobre la impresora" android:titleCondensed="Info. Impr." android:icon="@drawable/printer_small"></item>
-    <item android:id="@+id/sendDB" android:title="Enviar DB" android:titleCondensed="Enviar DB" android:icon="@drawable/icon_mover_visita"></item>
-    <item android:id="@+id/update" android:title="Update" android:titleCondensed="Update"></item>
-</menu>
