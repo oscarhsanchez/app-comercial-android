@@ -51,6 +51,13 @@
     
     <!-- Clientes -->
     <string name="tab_datos_generales">Datos Generales</string>
+    <string name="lbl_cliente_codigo">Código:</string>
+    <string name="lbl_cliente_rfc">RFC:</string>
+    <string name="lbl_clientes_razonSocial">Razón Social:</string>
+    <string name="lbl_clientes_nomComercial">Nombre Comercial:</string>
+    <string name="lbl_clientes_porcentComision">% Comisión:</string>
+    <string name="lbl_clientes_diasCredito">Días de Crédito:</string>
+    <string name="lbl_clientes_creditoMax">Crédito Máximo:</string>
     <string name="tab_contactos">Contactos</string>
     
     
