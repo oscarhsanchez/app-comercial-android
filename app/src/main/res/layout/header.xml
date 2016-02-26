@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/orangeGpo"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingRight="5dp" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/logo_bg_orange" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/header_separator" />
+
+            <TextView
+                android:id="@+id/header_breadcrumb_n1"
+                style="@style/header_breadcrumb_n1"
+                android:text="Rutas" />
+
+            <ImageView
+                android:id="@+id/header_breadcrumb_separator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/header_breadcrumb_separator" />
+
+            <TextView
+                android:id="@+id/header_breadcrumb_n2"
+                style="@style/header_breadcrumb_n2"
+                android:text="Nueva visita" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/close_button"
+            style="@style/btn_cerrar_header"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:onClick="closeApp"
+            android:padding="3dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/btn_cerrar_default" />
+    </LinearLayout>
+
+</LinearLayout>

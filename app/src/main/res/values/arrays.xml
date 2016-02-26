@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="frecuencia_array">
+        <item>1 semana</item>
+        <item>2 semanas</item>
+        <item>3 semanas</item>
+        <item>4 semanas</item>
+        <item>5 semanas</item>
+    </string-array>
+    <string-array name="datosdepago">
+        <item>Efectivo</item>
+        <item>Tarjeta</item>
+    </string-array>
+</resources>

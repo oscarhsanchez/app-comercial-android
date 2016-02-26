@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, LoginActivity!</string>
+    <string name="app_name">GPOVallas</string>
+	<string name="username">Usuario:</string>
+    <string name="textoEntrada">Bienvenido a la TPV del grupo GKM, favor introducir tus datos de entrada como vendedor.
+        \nCaso en caso de dificultades favor llamar al número 93-333-XXXX.</string>
+    <string name="password">Contraseña:</string>
+    <color name="fondo">#ffffff</color>
+    <color name="letra">#222222</color>
+    <string name="iniciando_sesion">Iniciando sesión, por favor, espere...</string>
+    <string name="cerrar">Cerrar</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+
+    <string name="frecuencia_prompt">Escoja la frecuencia</string>
+    <string name="zona_prompt">Zona</string>
+    <string name="subzona_prompt">Subzona</string>
+    <string name="forma_pago_prompt">Seleccione una forma de pago</string>
+    <string name="condicion_pago_prompt">Seleccione una condición de pago</string>
+    <string name="crash_toast_text">Ha ocurrido un error desconocido por Tpv GKM, por favor, envíe el feedback al centro de soporte</string>
+    <string name="captacion_fase_prompt">Seleccione una fase</string>
+    <string name="captacion_posibilidad_prompt">Seleccione una posibilidad</string>
+    <string name="captacion_resultado_prompt">Seleccione un resultado</string>
+    <string name="linea_mercado_prompt">Seleccione una línea de mercado</string>
+    <string name="ubicacion_prompt">Seleccione una ubicación</string>
+    <string name="layout_prompt">Seleccione un layout</string>
+    <string name="tipo_nevera_prompt">Seleccione un tipo de nevera</string>
+    <string name="elem_trade_prompt">Seleccione un elemento de trade</string>
+    <string name="tipo_pedido_prompt">Seleccione un tipo de pedido</string>
+    <string name="stock_prompt">Stock</string>
+	<string name="rapelfinal">Vol.fac.final</string>
+	<string name="grupo_prompt">Seleccione un grupo</string>
+	<string name="familia_prompt">Seleccione una familia</string>
+	<string name="serie_prompt">Seleccione una serie</string>
+	<string name="probabilidad_prompt">Seleccione probabilidad</string>
+	<string name="pais_prompt">Seleccione un país</string>
+	<string name="provincia_prompt">Seleccione una provincia</string>
+	<string name="poblacion_prompt">Seleccione una población</string>
+	<string name="almacen_prompt">Seleccione un almacén</string>
+	
+	<string name="grupo">Grupo</string>
+    <string name="familia">Familia</string>
+    <string name="subfamilia">Subfamilia</string>
+    <string name="marca">Marca</string>
+    <string name="proovedor">Proovedor</string>
+    <string name="articulo">Artículo</string>
+    <string name="clasificacion_popup">Descripción: %1$s \nTotal(%%):\t\t  %2$s \nTotal(€):\t\t  %3$s </string>
+    <string name="campo_requerido">Requerido</string>
+    <string name="error_generico">Error interno, intentar otra vez.</string>
+    
+    <!-- Clientes -->
+    <string name="tab_datos_generales">Datos Generales</string>
+    <string name="tab_contactos">Contactos</string>
+    
+    
+</resources>
