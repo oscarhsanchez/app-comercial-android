@@ -476,7 +476,7 @@
     <style name="listview_textview_th" parent="@style/listview_textview">
         <item name="android:background">@color/gpoListHeader</item>
         <item name="android:textColor">#FFFFFF</item>
-        <item name="android:textSize">21sp</item>
+        <item name="android:textSize">19sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:gravity">center</item>

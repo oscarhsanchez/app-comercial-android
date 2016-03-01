@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false">
+    <LinearLayout
+        style="@style/main_linear_layout_bg_gris"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false">
+
+        <gpovallas.com.Header
+            android:id="@+id/header"
+            style="@style/header" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableLayout
+                style="@style/wrap_style"
+                android:layout_gravity="center_horizontal">
+
+                <TableRow style="@style/wrap_style" android:layout_marginBottom="10dp" android:layout_marginTop="10dp">
+                    <TextView
+                        android:id="@+id/Lblnombre"
+                        android:layout_marginRight="15dp"
+                        android:layout_column="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contacto_nombre"
+                        android:textColor="@color/orangeGpo"
+                        android:textAppearance="@style/defaultTextAppearance" />
+
+                    <EditText
+                        android:id="@+id/editcontacto_nombre"
+                        style="@style/editText"
+                        android:layout_column="2"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:autoText="false"
+                        android:inputType="textNoSuggestions">
+                        <requestFocus />
+                    </EditText>
+
+                </TableRow>
+
+                <TableRow style="@style/wrap_style" android:layout_marginBottom="15dp">
+                    <TextView
+                        android:id="@+id/LblApellidos"
+                        android:layout_marginRight="15dp"
+                        android:layout_column="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contacto_apellidos"
+                        android:textColor="@color/orangeGpo"
+                        android:textAppearance="@style/defaultTextAppearance"
+                        />
+
+                    <EditText
+                        style="@style/editText"
+                        android:id="@+id/editcontacto_apellido"
+                        android:layout_column="2"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:autoText="false"
+                        android:inputType="textNoSuggestions"/>
+                </TableRow>
+                <TableRow style="@style/wrap_style" android:layout_marginBottom="15dp">
+                    <TextView
+                        android:id="@+id/LblTitulo"
+                        android:layout_marginRight="15dp"
+                        android:layout_column="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contacto_titulo"
+                        android:textColor="@color/orangeGpo"
+                        android:textAppearance="@style/defaultTextAppearance"
+                        />
+
+                    <EditText
+                        style="@style/editText"
+                        android:id="@+id/editcontacto_titulo"
+                        android:layout_column="2"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:autoText="false"
+                        android:inputType="textNoSuggestions"/>
+                </TableRow>
+                <TableRow style="@style/wrap_style" android:layout_marginBottom="15dp">
+                    <TextView
+                        android:id="@+id/LblCargo"
+                        android:layout_marginRight="15dp"
+                        android:layout_column="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contacto_cargo"
+                        android:textColor="@color/orangeGpo"
+                        android:textAppearance="@style/defaultTextAppearance"
+                        />
+
+                    <EditText
+                        style="@style/editText"
+                        android:id="@+id/editcontacto_cargo"
+                        android:layout_column="2"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:autoText="false"
+                        android:inputType="textNoSuggestions"/>
+                </TableRow>
+                <TableRow style="@style/wrap_style" android:layout_marginBottom="15dp">
+                    <TextView
+                        android:id="@+id/LblTelefono"
+                        android:layout_marginRight="15dp"
+                        android:layout_column="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contacto_telefono"
+                        android:textColor="@color/orangeGpo"
+                        android:textAppearance="@style/defaultTextAppearance"
+                        />
+
+                    <EditText
+                        style="@style/editText"
+                        android:id="@+id/editcontacto_telefono"
+                        android:layout_column="2"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:autoText="false"
+                        android:inputType="phone"
+                        android:phoneNumber="true" />
+                </TableRow>
+                <TableRow style="@style/wrap_style" android:layout_marginBottom="15dp">
+                    <TextView
+                        android:id="@+id/LblCelular"
+                        android:layout_marginRight="15dp"
+                        android:layout_column="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contacto_celular"
+                        android:textColor="@color/orangeGpo"
+                        android:textAppearance="@style/defaultTextAppearance"
+                        />
+
+                    <EditText
+                        style="@style/editText"
+                        android:id="@+id/editcontacto_celular"
+                        android:layout_column="2"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:autoText="false"
+                        android:phoneNumber="true"
+                        android:inputType="phone" />
+                </TableRow>
+                <TableRow style="@style/wrap_style" android:layout_marginBottom="15dp">
+                    <TextView
+                        android:id="@+id/LblEmail"
+                        android:layout_marginRight="15dp"
+                        android:layout_column="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contacto_email"
+                        android:textColor="@color/orangeGpo"
+                        android:textAppearance="@style/defaultTextAppearance"
+                        />
+
+                    <EditText
+                        style="@style/editText"
+                        android:id="@+id/editcontacto_email"
+                        android:layout_column="2"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:autoText="false"
+                        android:inputType="textEmailAddress"/>
+                </TableRow>
+
+                <TableRow style="@style/wrap_style">
+
+                    <LinearLayout
+                        style="@style/wrap_style"
+                        android:layout_column="2">
+                        <Button
+                            android:id="@+id/btn_actualizar_contacto"
+                            android:text="Guardar"
+                            android:onClick="save"
+                            style="@style/boton_generico"/>
+                    </LinearLayout>
+                </TableRow>
+
+            </TableLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

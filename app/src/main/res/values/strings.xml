@@ -51,7 +51,25 @@
     
     <!-- Clientes -->
     <string name="tab_datos_generales">Datos Generales</string>
+    <string name="lbl_cliente_codigo">Código:</string>
+    <string name="lbl_cliente_rfc">RFC:</string>
+    <string name="lbl_clientes_razonSocial">Razón Social:</string>
+    <string name="lbl_clientes_nomComercial">Nombre Comercial:</string>
+    <string name="lbl_clientes_porcentComision">% Comisión:</string>
+    <string name="lbl_clientes_diasCredito">Días de Crédito:</string>
+    <string name="lbl_clientes_creditoMax">Crédito Máximo:</string>
     <string name="tab_contactos">Contactos</string>
+
+    <!--Contactos -->
+    <string name="contacto_nombre">Nombre:</string>
+    <string name="contacto_apellidos">Apellidos:</string>
+    <string name="contacto_titulo">Titulo:</string>
+    <string name="contacto_cargo">Cargo:</string>
+    <string name="contacto_telefono">Telefono:</string>
+    <string name="contacto_celular">Celular:</string>
+    <string name="contacto_email">Email:</string>
+    <string name="contacto_save">Guardando cambios...</string>
+    <string name="contacto_error">No se guardaron los cambios. Verifique su información</string>
     
     
 </resources>

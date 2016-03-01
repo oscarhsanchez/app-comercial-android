@@ -14,4 +14,7 @@
     <dimen name="menu_button_secundario_panel_control_textsize">17sp</dimen>
     <dimen name="menu_button_terciario_panel_control_textsize">15sp</dimen>
     <dimen name="login_logo_gkm_width">50dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 </resources>

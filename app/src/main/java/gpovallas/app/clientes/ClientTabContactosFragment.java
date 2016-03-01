@@ -8,6 +8,8 @@ import gpovallas.adapter.ClientTabContactosAdapter;
 import gpovallas.app.ApplicationStatus;
 import gpovallas.app.R;
 import gpovallas.app.constants.GPOVallasConstants;
+
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -46,9 +48,11 @@ public class ClientTabContactosFragment extends Fragment {
 		mListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {
-				Log.i(TAG, "Posicion cliqueada " + position + " cliente pk " + arrContactos.get(position).get("nombre"));
-				
+			public void onItemClick(AdapterView adapter, View v, int position, long id) {
+				Log.i(TAG, "Posicion cliqueada " + position + " cliente pk " + arrContactos.get(position).get("pk_contacto_cliente"));
+				Intent x = new Intent(ClientTabContactosFragment.this.getActivity(),ClientTabDetailsContactosActivity.class);
+				x.putExtra(GPOVallasConstants.CONTACT_PK_INTENT,arrContactos.get(position).get("pk_contacto_cliente"));
+				startActivity(x);
 			}
 			
 		});
@@ -61,7 +65,7 @@ public class ClientTabContactosFragment extends Fragment {
 
 		arrContactos = new ArrayList<HashMap<String, String>>();
 
-		String sql = "SELECT IFNULL(nombre, '') AS nombre, apellidos, telefono  " +
+		String sql = "SELECT pk_contacto_cliente,IFNULL(nombre, '') AS nombre, apellidos, telefono  " +
 						"FROM CONTACTO"; //WHERE fk_cliente = "+mPkCliente;
 
 		Cursor c = db.rawQuery(sql, null);
@@ -70,6 +74,7 @@ public class ClientTabContactosFragment extends Fragment {
 			do {
 				Log.i(TAG,c.getString(c.getColumnIndex("nombre")));
 				HashMap<String,String> map = new HashMap<String, String>();
+				map.put("pk_contacto_cliente", c.getString(c.getColumnIndex("pk_contacto_cliente")));
 				map.put("nombre", c.getString(c.getColumnIndex("nombre")));
 				map.put("apellidos", c.getString(c.getColumnIndex("apellidos")));
 				map.put("telefono", c.getString(c.getColumnIndex("telefono")));

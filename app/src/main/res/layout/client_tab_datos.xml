@@ -1,11 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
-    <TextView android:layout_width="wrap_content"
-    android:layout_height="wrap_content" 
-    android:text="Datos Generales"/>
+    android:orientation="vertical"
+    style="@style/basic_style">
 
-</LinearLayout>
+    <TableLayout
+        style="@style/wrap_style"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp">
+
+        <TableRow
+            style="@style/wrap_style"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp">
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_cliente_codigo"
+                android:layout_column="1"
+                style="@style/basic_style"
+                android:textColor="@color/orangeGpo"
+                android:textAppearance="@style/defaultTextAppearance"/>
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/cli_codigo"
+                android:layout_column="2"
+                style="@style/basic_style"
+                android:textAppearance="@style/defaultTextAppearance"/>
+        </TableRow>
+
+        <TableRow
+            style="@style/wrap_style"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_cliente_rfc"
+                android:layout_column="1"
+                style="@style/basic_style"
+                android:textColor="@color/orangeGpo"
+                android:textAppearance="@style/defaultTextAppearance"/>
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/cli_rfc"
+                android:layout_column="2"
+                style="@style/basic_style"
+                android:textAppearance="@style/defaultTextAppearance"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_clientes_razonSocial"
+                android:layout_column="1"
+                style="@style/basic_style"
+                android:textColor="@color/orangeGpo"
+                android:textAppearance="@style/defaultTextAppearance"/>
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/cli_razonSocial"
+                android:layout_column="2"
+                style="@style/basic_style"
+                android:textAppearance="@style/defaultTextAppearance"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_clientes_nomComercial"
+                android:layout_column="1"
+                style="@style/basic_style"
+                android:textColor="@color/orangeGpo"
+                android:textAppearance="@style/defaultTextAppearance"/>
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/cli_nomComercial"
+                android:layout_column="2"
+                style="@style/basic_style"
+                android:textAppearance="@style/defaultTextAppearance"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_clientes_porcentComision"
+                android:layout_column="1"
+                style="@style/basic_style"
+                android:textColor="@color/orangeGpo"
+                android:textAppearance="@style/defaultTextAppearance"/>
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/cli_porcentComision"
+                android:layout_column="2"
+                style="@style/basic_style"
+                android:textAppearance="@style/defaultTextAppearance"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_clientes_diasCredito"
+                android:layout_column="1"
+                style="@style/basic_style"
+                android:textColor="@color/orangeGpo"
+                android:textAppearance="@style/defaultTextAppearance"/>
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/cli_diasCredito"
+                android:layout_column="2"
+                style="@style/basic_style"
+                android:textAppearance="@style/defaultTextAppearance"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_clientes_creditoMax"
+                android:layout_column="1"
+                style="@style/basic_style"
+                android:textColor="@color/orangeGpo"
+                android:textAppearance="@style/defaultTextAppearance"/>
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/cli_creditoMax"
+                android:layout_column="2"
+                style="@style/basic_style"
+                android:textAppearance="@style/defaultTextAppearance"/>
+        </TableRow>
+
+
+
+    </TableLayout>
+
+
+</ScrollView>
