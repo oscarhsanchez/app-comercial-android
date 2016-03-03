@@ -1,17 +1,5 @@
 package gpovallas.ws;
 
-import gpovallas.app.ApplicationStatus;
-import gpovallas.app.GPOVallasApplication;
-import gpovallas.db.TpvSQLiteHelper;
-import gpovallas.email.EnviarEmail;
-import gpovallas.obj.DbParameters;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Random;
-import java.util.Vector;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -19,291 +7,304 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Random;
+import java.util.Vector;
+
+import gpovallas.app.ApplicationStatus;
+import gpovallas.app.GPOVallasApplication;
+import gpovallas.db.TpvSQLiteHelper;
+import gpovallas.email.EnviarEmail;
+import gpovallas.obj.DbParameters;
+
 public class Updater {
 
-	private ProgressDialog progressDialog;
-	private Context contexto;
-	
+    private ProgressDialog progressDialog;
+    private Context contexto;
 
-	public Updater.Bloque bloqueActual = null;
 
-	public static enum TipoUpdate {
-		TOTAL,
-		PARCIAL,
-		DIARIA
-	}
+    public Updater.Bloque bloqueActual = null;
 
-	public static enum ResultadoUpdate {
-		CORRECTA,
-		FALLIDA
-	}
+    public static enum TipoUpdate {
+        TOTAL,
+        PARCIAL,
+        DIARIA
+    }
 
-	public static enum Bloque {
-		AGENCIAS ("Agencias"),
-		BLOQUE0 ("Bloque 0"),
-		BRIEFS ("Briefs"),
-		CATORCENAS ("Catorcenas"),
-		CLIENTES ("Clientes"),
-		METADATA ("Metadata"),
-		PARAMETROS_APP ("Par�metros de Aplicaci�n"),
-		UBICACIONES ("Ubicaciones") ;
+    public static enum ResultadoUpdate {
+        CORRECTA,
+        FALLIDA
+    }
 
-		private final String descripcion;
+    public static enum Bloque {
+        AGENCIAS("Agencias"),
+        BLOQUE0("Bloque 0"),
+        BRIEFS("Briefs"),
+        CATORCENAS("Catorcenas"),
+        CLIENTES("Clientes"),
+        METADATA("Metadata"),
+        PARAMETROS_APP("Par�metros de Aplicaci�n"),
+        UBICACIONES("Ubicaciones");
 
-		Bloque(String pDescripcion) {
-	        descripcion = pDescripcion;
-	    }
-	}
+        private final String descripcion;
 
-	public Updater(Context c) {
-		contexto = c;
-	}
+        Bloque(String pDescripcion) {
+            descripcion = pDescripcion;
+        }
+    }
 
-	public Vector<String> partialUpdate(){
-		return partialUpdate(false);
-	}
+    public Updater(Context c) {
+        contexto = c;
+    }
 
-	public Vector<String> partialUpdate(Boolean usarTransacciones){
+    public Vector<String> partialUpdate() {
+        return partialUpdate(false);
+    }
 
-		SQLiteDatabase db = ApplicationStatus.getInstance().getDb(contexto);
+    public Vector<String> partialUpdate(Boolean usarTransacciones) {
 
-		//Enviamos un mail al Comienzo para DEBUG de Memoria
-		EnviarEmail mail = new EnviarEmail(contexto);
-		if (GPOVallasApplication.sendMailMemoryStatus) {
-			try {
-				mail.enviarEstadoMemoria();
-				Log.i("PARTIAL UPDATER", "INFORME DE ESTADO DE MEMORIA ENVIADO");
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-		}
+        SQLiteDatabase db = ApplicationStatus.getInstance().getDb(contexto);
 
-		Vector<String> updatesFallidos = new Vector<String>();
+        //Enviamos un mail al Comienzo para DEBUG de Memoria
+        EnviarEmail mail = new EnviarEmail(contexto);
+        if (GPOVallasApplication.sendMailMemoryStatus) {
+            try {
+                mail.enviarEstadoMemoria();
+                Log.i("PARTIAL UPDATER", "INFORME DE ESTADO DE MEMORIA ENVIADO");
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
 
-		if (GPOVallasApplication.updaterEnEjecucion) return updatesFallidos;
+        Vector<String> updatesFallidos = new Vector<String>();
 
-		GPOVallasApplication.updaterEnEjecucion = true;
-		GPOVallasApplication.updaterTipo = Updater.TipoUpdate.PARCIAL;
-		
-		UpdaterBloqueClientes bloqueClientes = new UpdaterBloqueClientes(contexto, Updater.Bloque.CLIENTES);
-		UpdaterBloqueUbicaciones bloqueUbicaciones = new UpdaterBloqueUbicaciones(contexto, Updater.Bloque.UBICACIONES);
-		UpdaterBloqueMetadata bloqueMetadata = new UpdaterBloqueMetadata(contexto, Updater.Bloque.METADATA);
-		UpdaterBloqueAgencias bloqueAgencias = new UpdaterBloqueAgencias(contexto, Updater.Bloque.AGENCIAS);
-		UpdaterBloqueBriefs bloqueBriefs = new UpdaterBloqueBriefs(contexto, Updater.Bloque.BRIEFS);
-		UpdaterBloqueCatorcenas bloqueCatorcenas = new UpdaterBloqueCatorcenas(contexto, Updater.Bloque.CATORCENAS);
+        if (GPOVallasApplication.updaterEnEjecucion) return updatesFallidos;
 
-		Vector<UpdaterBloque> updaters = new Vector<UpdaterBloque>();
-		updaters.add(bloqueClientes);
-		updaters.add(bloqueUbicaciones);
-		updaters.add(bloqueMetadata);
-		updaters.add(bloqueAgencias);
-		updaters.add(bloqueBriefs);
-		updaters.add(bloqueCatorcenas);
-		
-		boolean res = false;
-		try {
-			for(int i=0; i<updaters.size(); i++){
+        GPOVallasApplication.updaterEnEjecucion = true;
+        GPOVallasApplication.updaterTipo = Updater.TipoUpdate.PARCIAL;
 
-				if (usarTransacciones){
-					db.beginTransaction();
-				}
+        UpdaterBloqueClientes bloqueClientes = new UpdaterBloqueClientes(contexto, Updater.Bloque.CLIENTES);
+        UpdaterBloqueUbicaciones bloqueUbicaciones = new UpdaterBloqueUbicaciones(contexto, Updater.Bloque.UBICACIONES);
+        UpdaterBloqueMetadata bloqueMetadata = new UpdaterBloqueMetadata(contexto, Updater.Bloque.METADATA);
+        UpdaterBloqueAgencias bloqueAgencias = new UpdaterBloqueAgencias(contexto, Updater.Bloque.AGENCIAS);
+        UpdaterBloqueBriefs bloqueBriefs = new UpdaterBloqueBriefs(contexto, Updater.Bloque.BRIEFS);
+        UpdaterBloqueCatorcenas bloqueCatorcenas = new UpdaterBloqueCatorcenas(contexto, Updater.Bloque.CATORCENAS);
 
-				UpdaterBloque updater = (UpdaterBloque) updaters.get(i);
-				res = updater.update(0); //Como es Actualizacion parcial enviamos el estado = 0
-				updatesFallidos.addAll(updater.getUpdatesFallidos());
+        Vector<UpdaterBloque> updaters = new Vector<UpdaterBloque>();
+        updaters.add(bloqueClientes);
+        updaters.add(bloqueUbicaciones);
+        updaters.add(bloqueMetadata);
+        updaters.add(bloqueAgencias);
+        updaters.add(bloqueBriefs);
+        updaters.add(bloqueCatorcenas);
 
-				if (usarTransacciones){
-					db.setTransactionSuccessful();
-					db.endTransaction();
-				}
+        boolean res = false;
+        try {
+            for (int i = 0; i < updaters.size(); i++) {
 
-				if (GPOVallasApplication.token == null || !GPOVallasApplication.updaterEnEjecucion){				
+                if (usarTransacciones) {
+                    db.beginTransaction();
+                }
 
-					break;
-				}
-				System.gc();
-			}
+                UpdaterBloque updater = (UpdaterBloque) updaters.get(i);
+                res = updater.update(0); //Como es Actualizacion parcial enviamos el estado = 0
+                updatesFallidos.addAll(updater.getUpdatesFallidos());
 
-			Deleter.delete(contexto);
-		}catch(Exception e){
-			if (usarTransacciones) db.endTransaction();
-			e.printStackTrace();			
-		}
-		
-		GPOVallasApplication.updaterParcialLastResultado = (updatesFallidos.size() > 0 || !res) ? Updater.ResultadoUpdate.FALLIDA : Updater.ResultadoUpdate.CORRECTA;
-		GPOVallasApplication.updaterParcialLastDate = Calendar.getInstance().getTime();
-		
-		GPOVallasApplication.updaterEnEjecucion = false;
+                if (usarTransacciones) {
+                    db.setTransactionSuccessful();
+                    db.endTransaction();
+                }
 
-		
-		return updatesFallidos;
-	}
-	
-	public Vector<String> stockUpdate(){
-		return stockUpdate(false);
-	}
-	
-	public Vector<String> stockUpdate(Boolean usarTransacciones){
+                if (GPOVallasApplication.token == null || !GPOVallasApplication.updaterEnEjecucion) {
 
-		SQLiteDatabase db = ApplicationStatus.getInstance().getDb(contexto);
+                    break;
+                }
+                System.gc();
+            }
 
-		//Enviamos un mail al Comienzo para DEBUG de Memoria
-		EnviarEmail mail = new EnviarEmail(contexto);
-		if (GPOVallasApplication.sendMailMemoryStatus) {
-			try {
-				mail.enviarEstadoMemoria();
-				Log.i("PARTIAL UPDATER", "INFORME DE ESTADO DE MEMORIA ENVIADO");
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-		}
+            // TODO: Preguntar acerca del deleter
+            //Deleter.delete(contexto);
+        } catch (Exception e) {
+            if (usarTransacciones) db.endTransaction();
+            e.printStackTrace();
+        }
 
-		Vector<String> updatesFallidos = new Vector<String>();
+        GPOVallasApplication.updaterParcialLastResultado = (updatesFallidos.size() > 0 || !res) ? Updater.ResultadoUpdate.FALLIDA : Updater.ResultadoUpdate.CORRECTA;
+        GPOVallasApplication.updaterParcialLastDate = Calendar.getInstance().getTime();
 
-		if (GPOVallasApplication.stockEnEjecucion) return updatesFallidos;
+        GPOVallasApplication.updaterEnEjecucion = false;
 
-		GPOVallasApplication.stockEnEjecucion = true;
-		GPOVallasApplication.updaterTipo = Updater.TipoUpdate.PARCIAL;
-				
-		Vector<UpdaterBloque> updaters = new Vector<UpdaterBloque>();
-		boolean res = false;
-		try {
-			for(int i=0; i<updaters.size(); i++){
 
-				if (usarTransacciones){
-					db.beginTransaction();
-				}
+        return updatesFallidos;
+    }
 
-				UpdaterBloque updater = (UpdaterBloque) updaters.get(i);
-				res = updater.update(0); //Como es Actualizacion parcial enviamos el estado = 0
-				updatesFallidos.addAll(updater.getUpdatesFallidos());
+    public Vector<String> stockUpdate() {
+        return stockUpdate(false);
+    }
 
-				if (usarTransacciones){
-					db.setTransactionSuccessful();
-					db.endTransaction();
-				}
+    public Vector<String> stockUpdate(Boolean usarTransacciones) {
 
-				if (GPOVallasApplication.token == null || !GPOVallasApplication.stockEnEjecucion){				
+        SQLiteDatabase db = ApplicationStatus.getInstance().getDb(contexto);
 
-					break;
-				}				
-			}
+        //Enviamos un mail al Comienzo para DEBUG de Memoria
+        EnviarEmail mail = new EnviarEmail(contexto);
+        if (GPOVallasApplication.sendMailMemoryStatus) {
+            try {
+                mail.enviarEstadoMemoria();
+                Log.i("PARTIAL UPDATER", "INFORME DE ESTADO DE MEMORIA ENVIADO");
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
 
-			
-		}catch(Exception e){
-			if (usarTransacciones) db.endTransaction();
-			e.printStackTrace();			
-		}
-		
-		GPOVallasApplication.updaterStockLastResultado = (updatesFallidos.size() > 0 || !res) ? Updater.ResultadoUpdate.FALLIDA : Updater.ResultadoUpdate.CORRECTA;
-		GPOVallasApplication.updaterStockLastDate = Calendar.getInstance().getTime();
-		GPOVallasApplication.stockEnEjecucion = false;
+        Vector<String> updatesFallidos = new Vector<String>();
 
-		
-		return updatesFallidos;
-	}
+        if (GPOVallasApplication.stockEnEjecucion) return updatesFallidos;
 
-	public Vector<String> update(Activity activity, ProgressDialog pProgressDialog){
+        GPOVallasApplication.stockEnEjecucion = true;
+        GPOVallasApplication.updaterTipo = Updater.TipoUpdate.PARCIAL;
 
-		progressDialog = pProgressDialog;
-		GPOVallasApplication.updaterTipo = Updater.TipoUpdate.TOTAL;
-		Vector<String> updatesFallidos = new Vector<String>();
-	
+        Vector<UpdaterBloque> updaters = new Vector<UpdaterBloque>();
+        boolean res = false;
+        try {
+            for (int i = 0; i < updaters.size(); i++) {
 
-		TpvSQLiteHelper tpv_dbh = new TpvSQLiteHelper(contexto);
-		SQLiteDatabase db = ApplicationStatus.getInstance().getDb(contexto);
+                if (usarTransacciones) {
+                    db.beginTransaction();
+                }
 
-		DbParameters dbParameters = new DbParameters(contexto);
+                UpdaterBloque updater = (UpdaterBloque) updaters.get(i);
+                res = updater.update(0); //Como es Actualizacion parcial enviamos el estado = 0
+                updatesFallidos.addAll(updater.getUpdatesFallidos());
 
-		// si la base de datos est� en modo de reseteo significa que
-		// primero debemos los datos pendientes caso existan.
-		// despu�s
-		if (!dbParameters.hasParameter("databasestatus", DbParameters.Tipo.LOCAL)) {
-			// BD en modo de reseteo total, debemos eliminar sus tablas
-			tpv_dbh.clearTables(db);
-			tpv_dbh.createTables(db);
-			dbParameters.setValue("databasestatus", DbParameters.Tipo.LOCAL, "0");
-		}
-		//db.close();
+                if (usarTransacciones) {
+                    db.setTransactionSuccessful();
+                    db.endTransaction();
+                }
 
-		UpdaterBloqueClientes bloqueClientes = new UpdaterBloqueClientes(contexto, Updater.Bloque.CLIENTES);
-		UpdaterBloqueUbicaciones bloqueUbicaciones = new UpdaterBloqueUbicaciones(contexto, Updater.Bloque.UBICACIONES);
-		UpdaterBloqueMetadata bloqueMetadata = new UpdaterBloqueMetadata(contexto, Updater.Bloque.METADATA);
-		UpdaterBloqueAgencias bloqueAgencias = new UpdaterBloqueAgencias(contexto, Updater.Bloque.AGENCIAS);
-		UpdaterBloqueBriefs bloqueBriefs = new UpdaterBloqueBriefs(contexto, Updater.Bloque.BRIEFS);
-		UpdaterBloqueCatorcenas bloqueCatorcenas = new UpdaterBloqueCatorcenas(contexto, Updater.Bloque.CATORCENAS);
+                if (GPOVallasApplication.token == null || !GPOVallasApplication.stockEnEjecucion) {
 
-		Vector<UpdaterBloque> updaters = new Vector<UpdaterBloque>();
+                    break;
+                }
+            }
 
-		updaters.add(bloqueClientes);
-		updaters.add(bloqueUbicaciones);
-		updaters.add(bloqueMetadata);
-		updaters.add(bloqueAgencias);
-		updaters.add(bloqueBriefs);
-		updaters.add(bloqueCatorcenas);
 
-		Boolean dbComplete = true;
+        } catch (Exception e) {
+            if (usarTransacciones) db.endTransaction();
+            e.printStackTrace();
+        }
 
-		for(int i=0; i<updaters.size(); i++){
+        GPOVallasApplication.updaterStockLastResultado = (updatesFallidos.size() > 0 || !res) ? Updater.ResultadoUpdate.FALLIDA : Updater.ResultadoUpdate.CORRECTA;
+        GPOVallasApplication.updaterStockLastDate = Calendar.getInstance().getTime();
+        GPOVallasApplication.stockEnEjecucion = false;
 
-			UpdaterBloque updater = (UpdaterBloque) updaters.get(i);
 
-			bloqueActual = updater.bloque;
+        return updatesFallidos;
+    }
 
-			activity.runOnUiThread(changeMessage);
+    public Vector<String> update(Activity activity, ProgressDialog pProgressDialog) {
 
-			db.beginTransaction();
-			updater.update(1); //Como es Actualizacion total enviamos el estado = 1
-			updatesFallidos.addAll(updater.getUpdatesFallidos());
-			if (updater.getUpdatesFallidos().size()>0){
-				Log.i("Updater Total: ", "Ha fallado el bloque " + updater.bloque.name());
-			}
-			db.setTransactionSuccessful();
-			db.endTransaction();
+        progressDialog = pProgressDialog;
+        GPOVallasApplication.updaterTipo = Updater.TipoUpdate.TOTAL;
+        Vector<String> updatesFallidos = new Vector<String>();
 
-			if (updater.getUpdatesFallidos().size() > 0) dbComplete = false;
 
-			if (GPOVallasApplication.token == null){
-				break;
-			}
-			System.gc();
-		}
+        TpvSQLiteHelper tpv_dbh = new TpvSQLiteHelper(contexto);
+        SQLiteDatabase db = ApplicationStatus.getInstance().getDb(contexto);
 
-		if (dbComplete){
-			new DbParameters(contexto).setValue("databasestatus",
-					DbParameters.Tipo.LOCAL, "1");
-		}
+        DbParameters dbParameters = new DbParameters(contexto);
 
-		GPOVallasApplication.updaterParcialLastResultado = (updatesFallidos.size() > 0) ? Updater.ResultadoUpdate.FALLIDA : Updater.ResultadoUpdate.CORRECTA;
-		GPOVallasApplication.updaterParcialLastDate = Calendar.getInstance().getTime();
+        // si la base de datos est� en modo de reseteo significa que
+        // primero debemos los datos pendientes caso existan.
+        // despu�s
+        if (!dbParameters.hasParameter("databasestatus", DbParameters.Tipo.LOCAL)) {
+            // BD en modo de reseteo total, debemos eliminar sus tablas
+            tpv_dbh.clearTables(db);
+            tpv_dbh.createTables(db);
+            dbParameters.setValue("databasestatus", DbParameters.Tipo.LOCAL, "0");
+        }
+        //db.close();
 
-		return updatesFallidos;
+        UpdaterBloqueClientes bloqueClientes = new UpdaterBloqueClientes(contexto, Updater.Bloque.CLIENTES);
+        UpdaterBloqueUbicaciones bloqueUbicaciones = new UpdaterBloqueUbicaciones(contexto, Updater.Bloque.UBICACIONES);
+        UpdaterBloqueMetadata bloqueMetadata = new UpdaterBloqueMetadata(contexto, Updater.Bloque.METADATA);
+        UpdaterBloqueAgencias bloqueAgencias = new UpdaterBloqueAgencias(contexto, Updater.Bloque.AGENCIAS);
+        UpdaterBloqueBriefs bloqueBriefs = new UpdaterBloqueBriefs(contexto, Updater.Bloque.BRIEFS);
+        UpdaterBloqueCatorcenas bloqueCatorcenas = new UpdaterBloqueCatorcenas(contexto, Updater.Bloque.CATORCENAS);
 
-	}
+        Vector<UpdaterBloque> updaters = new Vector<UpdaterBloque>();
 
-	private Runnable changeMessage = new Runnable() {
-	    @Override
-	    public void run() {
+        updaters.add(bloqueClientes);
+        updaters.add(bloqueUbicaciones);
+        updaters.add(bloqueMetadata);
+        updaters.add(bloqueAgencias);
+        updaters.add(bloqueBriefs);
+        updaters.add(bloqueCatorcenas);
 
-	    	if (bloqueActual != null)
-	    		progressDialog.setMessage("Actualizando el bloque " + bloqueActual.descripcion);
-	    }
-	};	
-	
-	
-	@SuppressLint("SimpleDateFormat")
-	public static String generateNewIdTPV(){
-		String UniIdTpv = null;
+        Boolean dbComplete = true;
 
-		Random r;
-		r=new Random();
-		r.setSeed(new Date().getTime());
+        for (int i = 0; i < updaters.size(); i++) {
 
-		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z");
-		Calendar cal = Calendar.getInstance();
-		UniIdTpv = GPOVallasApplication.usuarioAsignado.cod_usuario_entidad + "|" + formatDate.format(cal.getTime()) + "|" + r.nextInt(100000);
+            UpdaterBloque updater = (UpdaterBloque) updaters.get(i);
 
-		return UniIdTpv;
-	}
+            bloqueActual = updater.bloque;
+
+            activity.runOnUiThread(changeMessage);
+
+            db.beginTransaction();
+            updater.update(1); //Como es Actualizacion total enviamos el estado = 1
+            updatesFallidos.addAll(updater.getUpdatesFallidos());
+            if (updater.getUpdatesFallidos().size() > 0) {
+                Log.i("Updater Total: ", "Ha fallado el bloque " + updater.bloque.name());
+            }
+            db.setTransactionSuccessful();
+            db.endTransaction();
+
+            if (updater.getUpdatesFallidos().size() > 0) dbComplete = false;
+
+            if (GPOVallasApplication.token == null) {
+                break;
+            }
+            System.gc();
+        }
+
+        if (dbComplete) {
+            new DbParameters(contexto).setValue("databasestatus",
+                    DbParameters.Tipo.LOCAL, "1");
+        }
+
+        GPOVallasApplication.updaterParcialLastResultado = (updatesFallidos.size() > 0) ? Updater.ResultadoUpdate.FALLIDA : Updater.ResultadoUpdate.CORRECTA;
+        GPOVallasApplication.updaterParcialLastDate = Calendar.getInstance().getTime();
+
+        return updatesFallidos;
+
+    }
+
+    private Runnable changeMessage = new Runnable() {
+        @Override
+        public void run() {
+
+            if (bloqueActual != null)
+                progressDialog.setMessage("Actualizando el bloque " + bloqueActual.descripcion);
+        }
+    };
+
+
+    @SuppressLint("SimpleDateFormat")
+    public static String generateNewIdTPV() {
+        String UniIdTpv = null;
+
+        Random r;
+        r = new Random();
+        r.setSeed(new Date().getTime());
+
+        SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z");
+        Calendar cal = Calendar.getInstance();
+        UniIdTpv = GPOVallasApplication.usuarioAsignado.cod_usuario_entidad + "|" + formatDate.format(cal.getTime()) + "|" + r.nextInt(100000);
+
+        return UniIdTpv;
+    }
 
 }

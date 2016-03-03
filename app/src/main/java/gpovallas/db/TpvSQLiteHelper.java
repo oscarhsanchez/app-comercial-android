@@ -22,15 +22,15 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 	private String sqlParameters = "CREATE TABLE IF NOT EXISTS TPVPARAMETERS("
 			+ "ID INTEGER NULL, "
 			+ "fk_pais TEXT NULL, "
-			+ "CLAVE TEXT NOT NULL, "
-			+ "VALOR TEXT NULL, "
-			+ "DESCRIPCION TEXT NULL, "
-			+ "FECHA TEXT NULL, "
-			+ "TOKEN TEXT NULL, "
-			+ "TIPO TEXT NULL, "
-			+ "ESTADO INTEGER NULL, "
+			+ "clave TEXT NOT NULL, "
+			+ "valor TEXT NULL, "
+			+ "descripcion TEXT NULL, "
+			+ "fecha TEXT NULL, "
+			+ "token TEXT NULL, "
+			+ "tipo TEXT NULL, "
+			+ "estado INTEGER NULL, "
 			+ "PendienteEnvio INTEGER DEFAULT 0,"
-			+ "PRIMARY KEY(CLAVE));";
+			+ "PRIMARY KEY(clave));";
 	
 	private String sqlLoginCache = "CREATE TABLE IF NOT EXISTS LOGINCACHE ("
 			+ "username text NOT NULL PRIMARY KEY," + "passwd text NULL,"
@@ -56,6 +56,7 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 			"credito_maximo FLOAT, " +
 			"estatus TEXT, " +
 			"estado INTEGER, " +
+			"PendienteEnvio INTEGER DEFAULT 0," +
 			"token TEXT NOT NULL PRIMARY KEY);";
 	
 	private String sqlContacto = "CREATE TABLE IF NOT EXISTS CONTACTO (pk_contacto_cliente TEXT NOT NULL, " + 
@@ -69,6 +70,7 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 			"celular TEXT, " +
 			"email TEXT, " +
 			"estado INTEGER, " +
+			"PendienteEnvio INTEGER DEFAULT 0," +
 			"token TEXT NOT NULL PRIMARY KEY);";
 	
 	private String sqlCatorcena = "CREATE TABLE IF NOT EXISTS CATORCENA (id INTEGER NOT NULL, " +
@@ -79,6 +81,7 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 			"catorcena_inicio INTEGER, " + 
 			"catorcena_termino INTEGER, " + 
 			"estado INTEGER, " +
+			"PendienteEnvio INTEGER DEFAULT 0," +
 			"token TEXT NOT NULL PRIMARY KEY);";
 	
 	private String sqlBrief = "CREATE TABLE IF NOT EXISTS BRIEF (pk_brief TEXT NOT NULL, " + 
@@ -93,6 +96,7 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 			"fecha_entrega TEXT, " +
 			"estado INTEGER, " +
 			"token TEXT NOT NULL PRIMARY KEY, " +
+			"PendienteEnvio INTEGER DEFAULT 0," +
 			"codigo_user TEXT);";
 	
 	private String sqlUbicacion = "CREATE TABLE IF NOT EXISTS UBICACION (pk_ubicacion TEXT NOT NULL, " +
@@ -114,6 +118,7 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 			"longitud FLOAT, " +
 			"reserva INTEGER, " +
 			"estado INTEGER, " +
+			"PendienteEnvio INTEGER DEFAULT 0," +
 			"token TEXT NOT NULL PRIMARY KEY);";
 	
 	private String sqlMetaCategory = "CREATE TABLE IF NOT EXISTS META_CATEGORY (id TEXT NOT NULL, " +

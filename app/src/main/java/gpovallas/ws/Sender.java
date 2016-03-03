@@ -11,15 +11,16 @@ import android.util.Log;
 
 public class Sender {
 
+	private static final String TAG = Sender.class.getSimpleName();
 	private Context contexto;
 	private SQLiteDatabase db;
 	public Boolean boolTodoEnviado;
-	private EnviarEmail email = null;
+	// private EnviarEmail email = null;
 
 	public Sender(Context c) {
 		db = ApplicationStatus.getInstance().getDb(c);
 		boolTodoEnviado = true;
-		email = new EnviarEmail(c);
+		//email = new EnviarEmail(c);
 	}
 
 	public Boolean send(){
@@ -29,17 +30,17 @@ public class Sender {
 		try {
 			GPOVallasApplication.senderEnEjecucion = true;
 
+			//TODO: Poner la variable de sender como dice en el login en false, actualizar lo de sendClientes por el metodo sendContactos, copiar la logica que viene como ejemplo
 			//Comprobamos la variable Sender en ejecucion por si hemos salido a la pantalla de Login activity. En tal caso la variable SenderEnEjecucion se pone a false para forzar la parada.			
-			if (GPOVallasApplication.senderEnEjecucion) {
+			/*if (GPOVallasApplication.senderEnEjecucion) {
 				Boolean result = sendClientes();
 				if (!result) boolTodoEnviado = false;
-			}
-
+			}*/
+			Log.i(TAG,"Estamos en el metodo sen del Sender");
 			GPOVallasApplication.senderEnEjecucion = false;
 			return boolTodoEnviado;
 		} catch (Exception e) {
 			GPOVallasApplication.senderEnEjecucion = false;
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -92,7 +93,7 @@ public class Sender {
 
 	}
 	
-	public void sendMailReport(String reporte) {
+	/* public void sendMailReport(String reporte) {
 		try {
 			String dispositivo = GPOVallasApplication.macAddress;
 			String version = GPOVallasApplication.appVersion.toString() + "-" + GPOVallasApplication.ddbbVersion.toString();
@@ -100,7 +101,7 @@ public class Sender {
 		} catch (Exception e) {
 			Log.e("Sender",  "Error al intentar enviar el informe " + e);
 		}
-	}
+	} */
 	
 
 
