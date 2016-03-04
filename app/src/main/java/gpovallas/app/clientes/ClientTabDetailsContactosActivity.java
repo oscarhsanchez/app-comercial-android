@@ -1,27 +1,29 @@
 package gpovallas.app.clientes;
 
 
-import android.os.AsyncTask;
+
 import gpovallas.app.ApplicationStatus;
 import gpovallas.app.GPOVallasActivity;
+import gpovallas.app.GPOVallasApplication;
 import gpovallas.app.R;
 import gpovallas.app.constants.GPOVallasConstants;
-import gpovallas.utils.Dialogs;
-import gpovallas.ws.WsResponse;
-import gpovallas.ws.request.PostContactoSaveRequest;
+import gpovallas.obj.Contacto;
+import gpovallas.utils.Database;
 import android.app.ProgressDialog;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import java.util.HashMap;
-import gpovallas.obj.Contact;
+import gpovallas.utils.Text;
+import android.app.Dialog;
+import android.content.ContentValues;
+import gpovallas.utils.Dialogs;
 
 public class ClientTabDetailsContactosActivity extends GPOVallasActivity {
     private static final String TAG = ClientTabDetailsContactosActivity.class.getSimpleName();
     private SQLiteDatabase db;
+    private String token_contacto;
     private String pk_contacto;
     private EditText mTextNombre;
     private EditText mTextApellidos;
@@ -30,7 +32,7 @@ public class ClientTabDetailsContactosActivity extends GPOVallasActivity {
     private EditText mTextTelefono;
     private EditText mTextCelular;
     private EditText mTextEmail;
-    private Contact contacto;
+    private Contacto contacto;
     private ProgressDialog progressDialog;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -43,11 +45,66 @@ public class ClientTabDetailsContactosActivity extends GPOVallasActivity {
         mTextTelefono = (EditText) findViewById(R.id.editcontacto_telefono);
         mTextCelular = (EditText) findViewById(R.id.editcontacto_celular);
         mTextEmail = (EditText) findViewById(R.id.editcontacto_email);
-        contacto = new Contact();
+        contacto = new Contacto();
         setBreadCrumb("Contactos", "Detalles");
+        token_contacto = getIntent().getStringExtra(GPOVallasConstants.CONTACT_TOKEN);
         pk_contacto = getIntent().getStringExtra(GPOVallasConstants.CONTACT_PK_INTENT);
-        db = ApplicationStatus.getInstance().getDb(getApplicationContext());
-        populate();
+        db = ApplicationStatus.getInstance().getDbRead(getApplicationContext());
+        if(token_contacto.isEmpty()){
+            Log.i(TAG,"nuevo contacto");
+        }else{
+            Log.i(TAG,token_contacto);
+            loadData();
+        }
+
+    }
+
+    public void save(View v){
+        //progressDialog = ProgressDialog.show(ClientTabDetailsContactosActivity.this, "", getString(R.string.contacto_save), true);
+
+        String nombre = mTextNombre.getText().toString();
+        String apellidos = mTextApellidos.getText().toString();
+        String titulo =mTextTitulo.getText().toString();
+        String cargo = mTextCargo.getText().toString();
+        String telefono =  mTextTelefono.getText().toString();
+        String celular = mTextCelular.getText().toString();
+        String email = mTextEmail.getText().toString();
+
+
+        if (Text.isEmpty(nombre) || Text.isEmpty(apellidos) || Text.isEmpty(titulo) || Text.isEmpty(cargo) || Text.isEmpty(telefono)
+                || Text.isEmpty(celular) || Text.isEmpty(email)){
+            Dialog alertDialog = Dialogs.newAlertDialog(this, "Información","Debe rellenar todos los campos", "OK");
+            alertDialog.show();
+            return;
+        }
+
+        ContentValues reg = new ContentValues();
+        reg.put("fk_cliente",pk_contacto);
+        reg.put("nombre", nombre);
+        reg.put("apellidos", apellidos);
+        reg.put("titulo", titulo);
+        reg.put("cargo", cargo);
+        reg.put("telefono",telefono);
+        reg.put("celular",celular);
+        reg.put("email",email);
+        reg.put("estado",0);
+        reg.put("fk_pais", GPOVallasApplication.Pais.Mexico.toString());
+        if(!token_contacto.isEmpty()){
+            reg.put("token",token_contacto);
+        }
+        reg.put("PendienteEnvio", 1);
+
+        Boolean result = Database.saveValues(db, GPOVallasConstants.DB_TABLE_CONTACTO, token_contacto, reg);
+        Dialog alertDialog = Dialogs.newAlertDialog(this, "Información","Cambios Guardos.", "OK");
+        alertDialog.show();
+        setResult(result ? ClientTabDetailsContactosActivity.RESULT_OK : 1);
+    }
+
+
+    public void loadData(){
+
+        contacto = (Contacto) Database.getObjectByToken(db,GPOVallasConstants.DB_TABLE_CONTACTO, token_contacto, Contacto.class);
+
         mTextNombre.setText(contacto.nombre);
         mTextApellidos.setText(contacto.apellidos);
         mTextTitulo.setText(contacto.titulo);
@@ -55,76 +112,6 @@ public class ClientTabDetailsContactosActivity extends GPOVallasActivity {
         mTextTelefono.setText(contacto.telefono);
         mTextCelular.setText(contacto.celular);
         mTextEmail.setText(contacto.email);
-    }
-
-    public void save(View v){
-        progressDialog = ProgressDialog.show(ClientTabDetailsContactosActivity.this, "", getString(R.string.contacto_save), true);
-        contacto.nombre = mTextNombre.getText().toString();
-        contacto.apellidos = mTextApellidos.getText().toString();
-        contacto.titulo =mTextTitulo.getText().toString();
-        contacto.cargo = mTextCargo.getText().toString();
-        contacto.telefono =  mTextTelefono.getText().toString();
-        contacto.celular = mTextCelular.getText().toString();
-        contacto.email = mTextEmail.getText().toString();
-        new SaveTask().execute(contacto);
-    }
-
-
-    private class SaveTask extends AsyncTask<Object, Integer, WsResponse>{
-        @Override
-        protected WsResponse doInBackground(Object... params) {
-            PostContactoSaveRequest request = new PostContactoSaveRequest();
-            return request.execute((Contact) params[0], WsResponse.class);
-        }
-
-        @Override
-        protected void onPostExecute(WsResponse response) {
-            if(progressDialog!=null) progressDialog.dismiss();
-            if (response != null && !response.failed()) {
-                Log.i(TAG, "OK");
-                String query="UPDATE CONTACTO SET nombre='"+contacto.nombre+"',apellidos='"+contacto.apellidos+"',titulo='"+contacto.titulo+
-                        "',cargo='"+contacto.cargo+"',telefono='"+contacto.telefono+"'"+
-                        ",celular='"+contacto.celular+"',email='"+contacto.email+
-                        "' WHERE token='"+contacto.token+"' AND pk_contacto_cliente ='"+contacto.pk_contacto_cliente+"'";
-                Log.i(TAG,query);
-                db.execSQL(query);
-            }else{
-                Dialogs.newAlertDialog(ClientTabDetailsContactosActivity.this,
-                        getString(android.R.string.dialog_alert_title),
-                        getString(R.string.contacto_error),
-                        getString(android.R.string.ok)).show();
-            }
-        }
-    }
-
-
-    public void populate(){
-
-        String sql = "SELECT * "+
-                        "FROM CONTACTO WHERE pk_contacto_cliente ="+pk_contacto;
-
-
-        Cursor c = db.rawQuery(sql, null);
-        Log.i(TAG, "" + c.getCount());
-        if(c.moveToFirst()){
-            do {
-                Log.i(TAG, c.getString(c.getColumnIndex("nombre")));
-                HashMap<String,String> map = new HashMap<String, String>();
-                contacto.pk_contacto_cliente = c.getString(c.getColumnIndex("pk_contacto_cliente"));
-                contacto.fk_cliente = c.getString(c.getColumnIndex("fk_cliente"));
-                contacto.fk_pais = c.getString(c.getColumnIndex("fk_pais"));
-                contacto.nombre = c.getString(c.getColumnIndex("nombre"));
-                contacto.apellidos = c.getString(c.getColumnIndex("apellidos"));
-                contacto.titulo = c.getString(c.getColumnIndex("titulo"));
-                contacto.cargo = c.getString(c.getColumnIndex("cargo"));
-                contacto.telefono =  c.getString(c.getColumnIndex("telefono"));
-                contacto.celular = c.getString(c.getColumnIndex("celular"));
-                contacto.email = c.getString(c.getColumnIndex("email"));
-                contacto.token = c.getString(c.getColumnIndex("token"));
-                contacto.estado = c.getInt(c.getColumnIndex("estado"));
-            } while (c.moveToNext());
-        }
-        c.close();
 
     }
 

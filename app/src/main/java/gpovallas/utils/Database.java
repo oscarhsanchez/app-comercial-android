@@ -379,7 +379,6 @@ public class Database {
 	}
 	
 	public static Object getObjectBy(SQLiteDatabase db, String tableName, String where, Class clase){
-		
 		Cursor c = db.rawQuery("SELECT * FROM "+tableName+" WHERE " + where, null);
 		Object obj = null;
 		if(c.moveToFirst()){

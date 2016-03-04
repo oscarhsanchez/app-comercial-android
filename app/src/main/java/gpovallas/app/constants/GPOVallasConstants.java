@@ -19,6 +19,7 @@ public class GPOVallasConstants {
 	
 	// Client Intent Attributes
 	public static String CLIENT_PK_INTENT = "client_pk_intent";
-	public static String CONTACT_PK_INTENT = "contact_pk_intent";
+	public static String CONTACT_PK_INTENT = "contacto_pk_intent";
+	public static String CONTACT_TOKEN = "contact_token_intent";
 	
 }

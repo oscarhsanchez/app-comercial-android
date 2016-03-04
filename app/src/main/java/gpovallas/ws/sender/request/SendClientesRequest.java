@@ -68,6 +68,5 @@ public class SendClientesRequest extends WsRequest {
 			return (T) (response);
 		}
 	}
-	
-	
+
 }

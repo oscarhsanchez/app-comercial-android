@@ -70,10 +70,13 @@ public class ClientFinderActivity extends GPOVallasListActivity {
 		filter_nombreCli = "";
 
 		txtSearchFilter = (EditText)findViewById(R.id.et_search_filter);
-		txtSearchFilter.addTextChangedListener(new TextWatcher(){
+		txtSearchFilter.addTextChangedListener(new TextWatcher() {
 
-			public void onTextChanged(CharSequence s, int start, int before, int count) {}
-			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+			}
+
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+			}
 
 			public void afterTextChanged(Editable s) {
 				filter_nombreCli = s.toString();
@@ -82,18 +85,21 @@ public class ClientFinderActivity extends GPOVallasListActivity {
 		});
 
 		txtSearchFilterCodCli = (EditText)findViewById(R.id.et_search_filter_cod);
-		txtSearchFilterCodCli.addTextChangedListener(new TextWatcher(){
+		txtSearchFilterCodCli.addTextChangedListener(new TextWatcher() {
 
-			public void onTextChanged(CharSequence s, int start, int before, int count) {}
-			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+			}
 
-			public void afterTextChanged(Editable s){
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+			}
+
+			public void afterTextChanged(Editable s) {
 				filter_codCli = s.toString();
 				populate();
 			}
 		});
 
-		txtSearchFilterCodCli.setFilters(new InputFilter[]{ alphaNumericFilter});
+		txtSearchFilterCodCli.setFilters(new InputFilter[]{alphaNumericFilter});
 	}
 	
 	
@@ -158,6 +164,6 @@ public class ClientFinderActivity extends GPOVallasListActivity {
 	public void finalizar(View v){
 		finish();
 	}
-	
-	
+
+
 }

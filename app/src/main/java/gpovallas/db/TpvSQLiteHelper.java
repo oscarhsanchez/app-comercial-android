@@ -59,7 +59,7 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 			"PendienteEnvio INTEGER DEFAULT 0," +
 			"token TEXT NOT NULL PRIMARY KEY);";
 	
-	private String sqlContacto = "CREATE TABLE IF NOT EXISTS CONTACTO (pk_contacto_cliente TEXT NOT NULL, " + 
+	private String sqlContacto = "CREATE TABLE IF NOT EXISTS CONTACTO (pk_contacto_cliente TEXT NULL, " +
 			"fk_cliente TEXT NOT NULL, " +
 			"fk_pais TEXT NOT NULL, " +
 			"nombre TEXT, " +
