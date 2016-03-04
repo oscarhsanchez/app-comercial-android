@@ -15,6 +15,8 @@ import android.widget.TextView;
 import gpovallas.app.ApplicationStatus;
 import gpovallas.app.R;
 import gpovallas.app.constants.GPOVallasConstants;
+import gpovallas.obj.Cliente;
+import gpovallas.utils.Database;
 
 public class ClientTabDatosFragment extends Fragment {
 
@@ -22,21 +24,27 @@ public class ClientTabDatosFragment extends Fragment {
 	private String mPkCliente;
 	private View mRoot;
 	private ListView mListView;
+	private TextView t;
 	private SQLiteDatabase db;
-	
+	private Cliente cliente;
+
 	@Override
 	@Nullable
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		mRoot = inflater.inflate(R.layout.client_tab_datos, container, false);
-		//mListView = (ListView) mRoot.findViewById(android.R.id.list);
-		Bundle bundle = getArguments();
-		if (bundle != null) {
-			mPkCliente = bundle.getString(GPOVallasConstants.CLIENT_PK_INTENT);
-			Log.i(TAG, mPkCliente);
+		try{
+			db = ApplicationStatus.getInstance().getDb(getActivity());
+			mRoot = inflater.inflate(R.layout.client_tab_datos, container, false);
+			Bundle bundle = getArguments();
+			Log.i(TAG,bundle.toString());
+			if (bundle != null) {
+				mPkCliente = bundle.getString(GPOVallasConstants.CLIENT_PK_INTENT);
+				Log.i(TAG, mPkCliente);
+			}
+			loadData();
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-		db = ApplicationStatus.getInstance().getDb(getActivity());
-		populate(mPkCliente);
 		return mRoot;
 	}
 
@@ -46,7 +54,7 @@ public class ClientTabDatosFragment extends Fragment {
 				"credito_maximo FROM CLIENTE WHERE pk_cliente = '" + pKCliente+"'";
 		Log.i(TAG, "populate:" + sql);
 
-		Cursor c = db.rawQuery(sql,null);
+		Cursor c = db.rawQuery(sql, null);
 		Log.i(TAG, "cursor: "+c.getCount());
 		if(c.moveToFirst()){
 
@@ -66,6 +74,25 @@ public class ClientTabDatosFragment extends Fragment {
 			t.setText(Float.toString(c.getFloat(6)));
 		}
 		c.close();
+	}
+
+	public void loadData(){
+		cliente = (Cliente) Database.getObjectBy(db, GPOVallasConstants.DB_TABLE_CLIENTE, "pk_cliente = '" + mPkCliente+"'", Cliente.class);
+
+		t = (TextView) mRoot.findViewById(R.id.cli_codigo);
+		t.setText(cliente.codigo_user);
+		t = (TextView) mRoot.findViewById(R.id.cli_rfc);
+		t.setText(cliente.rfc);
+		t = (TextView) mRoot.findViewById(R.id.cli_razonSocial);
+		t.setText(cliente.razon_social);
+		t = (TextView) mRoot.findViewById(R.id.cli_nomComercial);
+		t.setText(cliente.nombre_comercial);
+		t = (TextView) mRoot.findViewById(R.id.cli_porcentComision);
+		t.setText(Double.toString(cliente.porcentaje_comision));
+		t = (TextView) mRoot.findViewById(R.id.cli_diasCredito);
+		t.setText(Integer.toString(cliente.dias_credito));
+		t = (TextView) mRoot.findViewById(R.id.cli_creditoMax);
+		t.setText(Double.toString(cliente.credito_maximo));
 	}
 	
 }
