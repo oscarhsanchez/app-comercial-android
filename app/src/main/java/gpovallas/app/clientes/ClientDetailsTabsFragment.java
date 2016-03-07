@@ -131,6 +131,12 @@ public class ClientDetailsTabsFragment extends Fragment implements OnTabChangeLi
         }
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        // Quitamos todos los fragmentos que haya, vamos a agregar uno nuevo
+        for (Fragment f :getFragmentManager().getFragments()) {
+            transaction.remove(f);
+        }
+
         transaction.addToBackStack(null);
         transaction.replace(placeholder, fragment);
         transaction.commitAllowingStateLoss();
