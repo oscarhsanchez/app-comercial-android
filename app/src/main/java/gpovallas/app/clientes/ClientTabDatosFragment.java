@@ -58,8 +58,8 @@ public class ClientTabDatosFragment extends Fragment {
 		Log.i(TAG, "cursor: "+c.getCount());
 		if(c.moveToFirst()){
 
-			t = (TextView) mRoot.findViewById(R.id.cli_codigo);
-			t.setText(c.getString(0));
+			/*t = (TextView) mRoot.findViewById(R.id.cli_codigo);
+			t.setText(c.getString(0));*/
 			t = (TextView) mRoot.findViewById(R.id.cli_rfc);
 			t.setText(c.getString(1));
 			t = (TextView) mRoot.findViewById(R.id.cli_razonSocial);
@@ -70,8 +70,8 @@ public class ClientTabDatosFragment extends Fragment {
 			t.setText(Float.toString(c.getFloat(4)));
 			t = (TextView) mRoot.findViewById(R.id.cli_diasCredito);
 			t.setText(Integer.toString(c.getInt(5)));
-			t = (TextView) mRoot.findViewById(R.id.cli_creditoMax);
-			t.setText(Float.toString(c.getFloat(6)));
+			/*t = (TextView) mRoot.findViewById(R.id.cli_creditoMax);
+			t.setText(Float.toString(c.getFloat(6)));*/
 		}
 		c.close();
 	}
@@ -79,8 +79,8 @@ public class ClientTabDatosFragment extends Fragment {
 	public void loadData(){
 		cliente = (Cliente) Database.getObjectBy(db, GPOVallasConstants.DB_TABLE_CLIENTE, "pk_cliente = '" + mPkCliente+"'", Cliente.class);
 
-		t = (TextView) mRoot.findViewById(R.id.cli_codigo);
-		t.setText(cliente.codigo_user);
+		/*t = (TextView) mRoot.findViewById(R.id.cli_codigo);
+		t.setText(cliente.codigo_user);*/
 		t = (TextView) mRoot.findViewById(R.id.cli_rfc);
 		t.setText(cliente.rfc);
 		t = (TextView) mRoot.findViewById(R.id.cli_razonSocial);
@@ -91,8 +91,8 @@ public class ClientTabDatosFragment extends Fragment {
 		t.setText(Double.toString(cliente.porcentaje_comision));
 		t = (TextView) mRoot.findViewById(R.id.cli_diasCredito);
 		t.setText(Integer.toString(cliente.dias_credito));
-		t = (TextView) mRoot.findViewById(R.id.cli_creditoMax);
-		t.setText(Double.toString(cliente.credito_maximo));
+		/*t = (TextView) mRoot.findViewById(R.id.cli_creditoMax);
+		t.setText(Double.toString(cliente.credito_maximo));*/
 	}
 	
 }
