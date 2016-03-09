@@ -33,4 +33,6 @@
     <color name="fondo_menu_main">#ffdcdcdc</color>
     <color name="fondo_main">#EEEEEE</color>
     <color name="text_color">#575757</color>
+    <color name="fondo_datos_grales_center">#E0E0E0</color>
+    <color name="text_datos_generales_center">#5C5C5C</color>
 </resources>

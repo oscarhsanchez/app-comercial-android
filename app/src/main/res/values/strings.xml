@@ -59,10 +59,19 @@
     <string name="lbl_cliente_codigo">Código:</string>
     <string name="lbl_cliente_rfc">RFC:</string>
     <string name="lbl_clientes_razonSocial">Razón Social:</string>
-    <string name="lbl_clientes_nomComercial">Nombre Comercial:</string>
-    <string name="lbl_clientes_porcentComision">% Comisión:</string>
+    <string name="lbl_clientes_nomComercial">Empresa:</string>
+    <string name="lbl_clientes_porcentComision">Comisión:</string>
     <string name="lbl_clientes_diasCredito">Días de Crédito:</string>
     <string name="lbl_clientes_creditoMax">Crédito Máximo:</string>
+    <string name="lbl_clientes_ejecutivo">Ejecutivo:</string>
+    <string name="lbl_clientes_direccion">Dirección:</string>
+    <string name="lbl_clientes_no_exterior">No. Exterior:</string>
+    <string name="lbl_clientes_colonia">Colonia:</string>
+    <string name="lbl_clientes_cp">C.P.</string>
+    <string name="lbl_clientes_ciudad">Ciudad:</string>
+    <string name="lbl_clientes_no_interior">No. Interior:</string>
+    <string name="lbl_clientes_delegacion">Delegación</string>
+    <string name="lbl_clientes_pais">País:</string>
 
 
     <!--Contactos -->
