@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:id="@+id/tabsLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/tabsLayout"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:gravity="center|bottom"
-	android:orientation="vertical"
-	android:background="@android:color/transparent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:gravity="center_horizontal|center_vertical"
+    android:orientation="vertical">
 
-    
-
-    <LinearLayout android:layout_centerHorizontal="true" android:layout_alignParentBottom="true" android:layout_width="wrap_content"
+    <!--LinearLayout android:layout_centerHorizontal="true" android:layout_alignParentBottom="true" android:layout_width="wrap_content"
     	    android:layout_height="wrap_content" android:gravity="center|bottom" android:layout_marginBottom="17dp">
 
         <ImageView
@@ -20,17 +18,18 @@
 			android:layout_height="25dp"
 			 />
 
-    </LinearLayout>
-    
+    </LinearLayout-->
+
     <TextView android:id="@+id/tabsText"
-		    android:layout_width="fill_parent"
-			android:layout_height="15dp"
-			android:gravity="center"
-			android:text="Inicio"
-			android:textSize="11sp"
-			android:layout_alignParentBottom="true"
-			android:layout_centerHorizontal="true"
-			android:layout_marginBottom="2dp" 
-			android:visibility="visible"/>
+              android:layout_width="fill_parent"
+              android:layout_height="20dp"
+              android:layout_centerVertical="true"
+              android:layout_centerHorizontal="true"
+              android:layout_marginBottom="2dp"
+              android:gravity="center"
+              android:text="Inicio"
+              android:textColor="@drawable/client_tab_selector_text"
+              android:textSize="15sp"
+              android:visibility="visible"/>
 
 </RelativeLayout>

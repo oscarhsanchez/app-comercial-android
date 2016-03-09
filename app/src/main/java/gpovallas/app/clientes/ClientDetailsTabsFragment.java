@@ -56,6 +56,13 @@ public class ClientDetailsTabsFragment extends Fragment implements OnTabChangeLi
 					
 					if (event.getAction() == MotionEvent.ACTION_UP) {
                         
+                        // Poner todos los tabs en naranja
+                        for (int i = 0; i < mTabHost.getTabWidget().getTabCount(); i++) {
+                            mTabHost.getTabWidget().getChildTabViewAt(i).setBackgroundResource(R.color.orangeGpo);
+                        }
+
+                        // Colorear la vista actual de gris
+                        v.setBackgroundResource(R.color.bg_generic);
 
                         String tabId = mTabHost.getCurrentTabTag();
 
@@ -67,6 +74,15 @@ public class ClientDetailsTabsFragment extends Fragment implements OnTabChangeLi
                                 break;
                             case 1:
                                 loadTab(R.id.tab_contactos);
+                                break;
+                            case 2:
+                                loadTab(R.id.tab_acciones);
+                                break;
+                            case 3:
+                                loadTab(R.id.tab_propuestas);
+                                break;
+                            case 4:
+                                loadTab(R.id.tab_facturas);
                                 break;
                         }
                     }
@@ -81,20 +97,27 @@ public class ClientDetailsTabsFragment extends Fragment implements OnTabChangeLi
 	private void setupTabs() {
         mTabHost.setup(); // you must call this before adding your tabs!
         mTabHost.addTab(newTab(getActivity().getString(R.string.tab_datos_generales),
-        		R.drawable.btn_breaf, 
         		R.id.tab_datos));
         mTabHost.addTab(newTab(getActivity().getString(R.string.tab_contactos), 
-        		R.drawable.btn_conoce, 
         		R.id.tab_contactos));
+        mTabHost.addTab(newTab(getActivity().getString(R.string.tab_acciones),
+                R.id.tab_acciones));
+        mTabHost.addTab(newTab(getActivity().getString(R.string.tab_propuestas),
+                R.id.tab_propuestas));
+        mTabHost.addTab(newTab(getActivity().getString(R.string.tab_facturas),
+                R.id.tab_facturas));
     }
     
-    private TabSpec newTab(String tab_title, int drawableIcon, int tabContentId) {
+    private TabSpec newTab(String tab_title, /*int drawableIcon,*/ int tabContentId) {
 
         Log.d(TAG, "buildTab(): tag=" + tab_title);
         View indicator = LayoutInflater.from(mTabHost.getContext()).inflate(R.layout.tabs_bg, mContainer);
 
-        ImageView img = (ImageView) indicator.findViewById(R.id.tabsImage);
-        img.setImageResource(drawableIcon);
+        /*ImageView img = (ImageView) indicator.findViewById(R.id.tabsImage);
+        img.setImageResource(drawableIcon);*/
+        if (tabContentId == R.id.tab_datos) {
+            indicator.setBackgroundResource(R.color.bg_generic);
+        }
 
         TextView tv = (TextView) indicator.findViewById(R.id.tabsText);
         tv.setText(tab_title);
@@ -115,6 +138,15 @@ public class ClientDetailsTabsFragment extends Fragment implements OnTabChangeLi
             case R.id.tab_contactos:
             	((ClientDetailTabsActivity) getActivity()).loadFragment(R.id.tab_contactos, ClientTabContactosFragment.class);
                 break;
+            case R.id.tab_acciones:
+                ((ClientDetailTabsActivity) getActivity()).loadFragment(R.id.tab_acciones, ClientTabAccionesFragment.class);
+                break;
+            case R.id.tab_propuestas:
+                ((ClientDetailTabsActivity) getActivity()).loadFragment(R.id.tab_propuestas, ClientTabPropuestasFragment.class);
+                break;
+            case R.id.tab_facturas:
+                ((ClientDetailTabsActivity) getActivity()).loadFragment(R.id.tab_facturas, ClientTabFacturasFragment.class);
+                break;
         }
 
     }
@@ -127,6 +159,15 @@ public class ClientDetailsTabsFragment extends Fragment implements OnTabChangeLi
                 break;
             case R.id.tab_contactos:
                 mTabHost.setCurrentTab(1);
+                break;
+            case R.id.tab_acciones:
+                mTabHost.setCurrentTab(2);
+                break;
+            case R.id.tab_propuestas:
+                mTabHost.setCurrentTab(3);
+                break;
+            case R.id.tab_facturas:
+                mTabHost.setCurrentTab(4);
                 break;
         }
 

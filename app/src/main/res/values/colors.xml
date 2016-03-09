@@ -21,6 +21,8 @@
 	<color name="transparent">#000000</color>
 	<color name="boton_tick_on">#D5E4F4</color>
 	<color name="boton_tick_off">#ffffff</color>
+    <color name="bg_generic">#ECECEC</color>
+    <color name="grey_list_th">#aeaeae</color>
 	
 	<color name="bg_colorFiltro">#2CAECC</color>
 	<color name="txt_color">#738485</color>

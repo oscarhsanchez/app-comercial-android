@@ -51,12 +51,12 @@
 		         android:text="Código" />
 
 		     <TextView
-		        android:layout_weight="0.25"
+		        android:layout_weight="0.37"
 		        style="@style/listview_textview_th"
 		        android:text="RFC"/>
 		     
 		     <TextView
-		        android:layout_weight="0.50"
+		        android:layout_weight="0.37"
 		        style="@style/listview_textview_th"
 		        android:text="Nombre"/>
 

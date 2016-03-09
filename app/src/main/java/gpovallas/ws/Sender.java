@@ -30,8 +30,7 @@ public class Sender {
 		try {
 			GPOVallasApplication.senderEnEjecucion = true;
 
-			//TODO: Poner la variable de sender como dice en el login en false, actualizar lo de sendClientes por el metodo sendContactos, copiar la logica que viene como ejemplo
-			//Comprobamos la variable Sender en ejecucion por si hemos salido a la pantalla de Login activity. En tal caso la variable SenderEnEjecucion se pone a false para forzar la parada.			
+			//Comprobamos la variable Sender en ejecucion por si hemos salido a la pantalla de Login activity. En tal caso la variable SenderEnEjecucion se pone a false para forzar la parada.
 			if (GPOVallasApplication.senderEnEjecucion) {
 				Boolean result = sendContactos();
 				if (!result) boolTodoEnviado = false;

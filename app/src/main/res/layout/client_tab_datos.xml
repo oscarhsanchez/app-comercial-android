@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    style="@style/basic_style">
+<!--ScrollView style="@style/basic_style"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"-->
 
-    <TableLayout
+    <!--TableLayout
         style="@style/wrap_style"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp">
@@ -193,7 +192,62 @@
 
 
 
-    </TableLayout>
+    </TableLayout-->
+
+    <LinearLayout style="@style/basic_style"
+                  xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical"
+                  android:gravity="center_vertical"
+                  android:weightSum="1">
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="0dp"
+                      android:layout_weight="0.33"
+                      android:background="@color/orangeGpo"
+                      android:baselineAligned="false"
+                      android:orientation="horizontal"
+                      android:weightSum="1">
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+                          android:layout_weight="0.3"
+                          android:orientation="vertical">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="Columna 1"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="Columna 1"/>
+
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+                          android:layout_weight="0.1"
+                          android:orientation="vertical">
+
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+                          android:layout_weight="0.3"
+                          android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="Columna 2"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="Columna 2"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+                          android:layout_weight="0.3"
+                          android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="Columna 3"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="Columna 3"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 
-</ScrollView>
+<!--/ScrollView-->

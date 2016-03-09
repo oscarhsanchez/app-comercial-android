@@ -123,9 +123,7 @@ public class Updater {
                 }
                 System.gc();
             }
-
-            // TODO: Preguntar acerca del deleter
-            //Deleter.delete(contexto);
+            Deleter.delete(contexto);
         } catch (Exception e) {
             if (usarTransacciones) db.endTransaction();
             e.printStackTrace();
