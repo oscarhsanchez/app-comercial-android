@@ -77,4 +77,11 @@
     <string name="contacto_error">Debe rellenar todos los campos</string>
     <string name="contacto_nuevo">Nuevo</string>
     
+    <!-- Clientes Propuestas -->
+    <string name="c_facturas_th_ejecutivo">Ejecutivo</string>
+    <string name="c_facturas_th_fecha">Fecha de Inicio</string>
+    <string name="c_facturas_th_presupuesto">Presupuesto</string>
+    <string name="c_facturas_th_estado">Estado de la Propuesta</string>
+    <string name="c_facturas_no_resultados">No se encontraron facturas</string>
+    
 </resources>

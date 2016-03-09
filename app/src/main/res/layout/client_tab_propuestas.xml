@@ -1,7 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+
+    <LinearLayout
+        style="@style/listViewRow">
+
+        <TextView
+            style="@style/listview_textview_th"
+            android:layout_weight="0.3"
+            android:text="@string/c_facturas_th_ejecutivo"/>
+
+        <TextView
+            style="@style/listview_textview_th"
+            android:layout_weight="0.17"
+            android:text="@string/c_facturas_th_fecha"/>
+
+        <TextView
+            style="@style/listview_textview_th"
+            android:layout_weight="0.23"
+            android:text="@string/c_facturas_th_presupuesto"/>
+
+        <TextView
+            style="@style/listview_textview_th"
+            android:layout_weight="0.3"
+            android:text="@string/c_facturas_th_estado"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/basic_style">
+
+        <ListView android:id="@android:id/list"
+                  style="@style/basic_style"
+                  android:cacheColorHint="#ECECEC"
+                  android:textFilterEnabled="true">
+        </ListView>
+
+        <TextView android:id="@android:id/empty"
+                  style="@style/basic_style"
+                  android:gravity="center"
+                  android:text="@string/c_facturas_no_resultados"/>
+
+    </LinearLayout>
 
 </LinearLayout>
