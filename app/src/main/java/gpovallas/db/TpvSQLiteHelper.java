@@ -1,16 +1,16 @@
 package gpovallas.db;
 
-import gpovallas.app.GPOVallasApplication;
-import gpovallas.app.constants.GPOVallasConstants;
-import gpovallas.obj.DbParameters;
-
-import java.util.Vector;
-
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import java.util.Vector;
+
+import gpovallas.app.GPOVallasApplication;
+import gpovallas.app.constants.GPOVallasConstants;
+import gpovallas.obj.DbParameters;
 
 public class TpvSQLiteHelper extends SQLiteOpenHelper {
 
@@ -41,8 +41,9 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 	
 	
 	private String sqlCliente = "CREATE TABLE IF NOT EXISTS CLIENTE ("
-			+ "pk_cliente TEXT NOT NULL, fk_pais TEXT NOT NULL, fk_empresa TEXT, codigo_user TEXT, rfc TEXT, razon_social TEXT, nombre_comercial TEXT, porcentaje_comision FLOAT, dias_credito INTEGER, credito_maximo FLOAT, estatus TEXT," 
-			+ "token TEXT NOT NULL PRIMARY KEY, estado INTEGER, "
+			+ "pk_cliente TEXT NOT NULL, fk_pais TEXT NOT NULL, fk_empresa TEXT, codigo_user TEXT, rfc TEXT, razon_social TEXT, nombre_comercial TEXT, direccion TEXT, domicilio_calle TEXT, domicilio_no_exterior TEXT, domicilio_no_interior TEXT,"
+			+ "domicilio_colonia TEXT, domicilio_delegacion TEXT, domicilio_estado TEXT, domicilio_pais TEXT, domicilio_cp TEXT, porcentaje_comision FLOAT, dias_credito INTEGER, credito_maximo FLOAT, estatus TEXT,"
+			+ "token TEXT NOT NULL PRIMARY KEY, estado INTEGER, telefono TEXT,"
 			+ "PendienteEnvio INTEGER DEFAULT 0 );"
 			;
 	

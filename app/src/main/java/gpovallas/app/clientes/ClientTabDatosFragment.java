@@ -20,7 +20,7 @@ import gpovallas.utils.Database;
 
 public class ClientTabDatosFragment extends Fragment {
 
-	/*private static final String TAG = ClientTabDatosFragment.class.getSimpleName();
+	private static final String TAG = ClientTabDatosFragment.class.getSimpleName();
 	private String mPkCliente;
 	private View mRoot;
 	private ListView mListView;
@@ -59,7 +59,7 @@ public class ClientTabDatosFragment extends Fragment {
 		if(c.moveToFirst()){
 
 			/*t = (TextView) mRoot.findViewById(R.id.cli_codigo);
-			t.setText(c.getString(0));*/
+			t.setText(c.getString(0));
 			t = (TextView) mRoot.findViewById(R.id.cli_rfc);
 			t.setText(c.getString(1));
 			t = (TextView) mRoot.findViewById(R.id.cli_razonSocial);
@@ -79,20 +79,36 @@ public class ClientTabDatosFragment extends Fragment {
 	public void loadData(){
 		cliente = (Cliente) Database.getObjectBy(db, GPOVallasConstants.DB_TABLE_CLIENTE, "pk_cliente = '" + mPkCliente+"'", Cliente.class);
 
-		/*t = (TextView) mRoot.findViewById(R.id.cli_codigo);
-		t.setText(cliente.codigo_user);*/
+		t = (TextView) mRoot.findViewById(R.id.cli_nomComercial);
+		t.setText(cliente.nombre_comercial);
 		t = (TextView) mRoot.findViewById(R.id.cli_rfc);
 		t.setText(cliente.rfc);
 		t = (TextView) mRoot.findViewById(R.id.cli_razonSocial);
 		t.setText(cliente.razon_social);
-		t = (TextView) mRoot.findViewById(R.id.cli_nomComercial);
-		t.setText(cliente.nombre_comercial);
-		t = (TextView) mRoot.findViewById(R.id.cli_porcentComision);
-		t.setText(Double.toString(cliente.porcentaje_comision));
 		t = (TextView) mRoot.findViewById(R.id.cli_diasCredito);
 		t.setText(Integer.toString(cliente.dias_credito));
-		/*t = (TextView) mRoot.findViewById(R.id.cli_creditoMax);
-		t.setText(Double.toString(cliente.credito_maximo));*/
+		//ejecutivo
+
+		t = (TextView) mRoot.findViewById(R.id.cli_porcentComision);
+		t.setText(Double.toString(cliente.porcentaje_comision));
+		t =(TextView) mRoot.findViewById(R.id.cli_direccion);
+		t.setText(cliente.domicilio_calle);
+		t = (TextView) mRoot.findViewById(R.id.cli_noExterior);
+		t.setText(cliente.domicilio_no_exterior);
+		t = (TextView) mRoot.findViewById(R.id.cli_noInterior);
+		t.setText(cliente.domicilio_no_interior);
+		t = (TextView) mRoot.findViewById(R.id.cli_colonia);
+		t.setText(cliente.domicilio_colonia);
+		t = (TextView) mRoot.findViewById(R.id.cli_delegacion);
+		t.setText(cliente.domicilio_delegacion);
+		t = (TextView) mRoot.findViewById(R.id.cli_cp);
+		t.setText(cliente.domicilio_cp);
+		t = (TextView) mRoot.findViewById(R.id.cli_pais);
+		t.setText(cliente.domicilio_pais);
+		t = (TextView) mRoot.findViewById(R.id.cli_ciudad);
+		t.setText(cliente.estado);
+
+
 	}
-	*/
+
 }
