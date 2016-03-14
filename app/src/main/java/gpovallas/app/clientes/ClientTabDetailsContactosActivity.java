@@ -98,6 +98,7 @@ public class ClientTabDetailsContactosActivity extends GPOVallasActivity {
         Dialog alertDialog = Dialogs.newAlertDialog(this, "Información","Cambios Guardos.", "OK");
         alertDialog.show();
         setResult(result ? ClientTabDetailsContactosActivity.RESULT_OK : 1);
+
     }
 
 

@@ -52,8 +52,8 @@ public class ClientTabContactosAdapter extends BaseAdapter {
 		codigo.setText(contacto.get("nombre"));
 		TextView nombre = (TextView)view.findViewById(R.id.txtApellidos);
 		nombre.setText(contacto.get("apellidos"));
-		TextView rfc = (TextView)view.findViewById(R.id.txtTelefono);
-		rfc.setText(contacto.get("telefono"));
+		TextView rfc = (TextView)view.findViewById(R.id.txtCargo);
+		rfc.setText(contacto.get("cargo"));
 
 		return view;
 	}

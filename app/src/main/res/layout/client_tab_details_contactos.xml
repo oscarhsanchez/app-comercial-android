@@ -177,6 +177,7 @@
                             android:id="@+id/btn_actualizar_contacto"
                             android:text="Guardar"
                             android:onClick="save"
+                            android:layout_gravity="center_vertical|center_horizontal"
                             style="@style/boton_generico"/>
                     </LinearLayout>
                 </TableRow>

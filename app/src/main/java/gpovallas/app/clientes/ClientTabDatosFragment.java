@@ -20,7 +20,7 @@ import gpovallas.utils.Database;
 
 public class ClientTabDatosFragment extends Fragment {
 
-	private static final String TAG = ClientTabDatosFragment.class.getSimpleName();
+	/*private static final String TAG = ClientTabDatosFragment.class.getSimpleName();
 	private String mPkCliente;
 	private View mRoot;
 	private ListView mListView;
@@ -94,5 +94,5 @@ public class ClientTabDatosFragment extends Fragment {
 		t = (TextView) mRoot.findViewById(R.id.cli_creditoMax);
 		t.setText(Double.toString(cliente.credito_maximo));
 	}
-	
+	*/
 }

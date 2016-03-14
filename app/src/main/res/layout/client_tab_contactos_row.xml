@@ -5,16 +5,17 @@
      android:padding="10dp">
  
      <TextView android:id="@+id/txtNombre"
-        android:layout_weight="0.25"
+        android:layout_weight="0.30"
         android:gravity="center"
         style="@style/listview_textview"/>
 
     <TextView android:id="@+id/txtApellidos"
-        android:layout_weight="0.25"
-        style="@style/listview_textview" />
+        android:layout_weight="0.30"
+        style="@style/listview_textview"
+        android:gravity="center" />
     
-     <TextView android:id="@+id/txtTelefono"
-        android:layout_weight="0.50"
+     <TextView android:id="@+id/txtCargo"
+        android:layout_weight="0.40"
         style="@style/listview_textview" 
         android:gravity="center"/>
 	

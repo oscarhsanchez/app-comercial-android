@@ -1,7 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:paddingTop="5dip" android:paddingBottom="5dip" android:paddingRight="22dip">
+        <Button
+            android:id="@+id/btn_new_accion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@drawable/btn_add"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/listViewRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_weight="0.25"
+            style="@style/listview_textview_th"
+            android:text="Tipo de acción"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_weight="0.25"
+            style="@style/listview_textview_th"
+            android:text="Ejecutivo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_weight="0.25"
+            style="@style/listview_textview_th"
+            android:text="Fecha"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_weight="0.25"
+            style="@style/listview_textview_th"
+            android:text="Hora"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/basic_style"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView android:id="@android:id/list"
+            android:textFilterEnabled="true"
+            android:cacheColorHint="#ECECEC"
+            style="@style/basic_style"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ListView>
+
+        <TextView android:id="@android:id/empty"
+            style="@style/basic_style"
+            android:gravity="center"
+            android:text="No se han encontrado acciones"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 
 </LinearLayout>

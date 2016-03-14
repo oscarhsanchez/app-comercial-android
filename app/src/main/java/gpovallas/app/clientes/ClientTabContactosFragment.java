@@ -73,17 +73,12 @@ public class ClientTabContactosFragment extends Fragment {
 		populate();
         return mRoot;
 	}
-
-	public void new_contacto(View v){
-		Intent x = new Intent(ClientTabContactosFragment.this.getActivity(),ClientTabDetailsContactosActivity.class);
-		startActivity(x);
-	}
 	
 	public void populate(){
 
 		arrContactos = new ArrayList<HashMap<String, String>>();
 
-		String sql = "SELECT fk_cliente,token,IFNULL(nombre, '') AS nombre, apellidos, telefono  " +
+		String sql = "SELECT fk_cliente,token,IFNULL(nombre, '') AS nombre, apellidos, cargo  " +
 						"FROM CONTACTO"; //WHERE fk_cliente = "+mPkCliente;
 
 		Cursor c = db.rawQuery(sql, null);
@@ -96,7 +91,7 @@ public class ClientTabContactosFragment extends Fragment {
 				map.put("token", c.getString(c.getColumnIndex("token")));
 				map.put("nombre", c.getString(c.getColumnIndex("nombre")));
 				map.put("apellidos", c.getString(c.getColumnIndex("apellidos")));
-				map.put("telefono", c.getString(c.getColumnIndex("telefono")));
+				map.put("cargo", c.getString(c.getColumnIndex("cargo")));
 				arrContactos.add(map);
 			} while (c.moveToNext());
 		}

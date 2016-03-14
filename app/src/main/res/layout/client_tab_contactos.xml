@@ -5,32 +5,32 @@
     android:orientation="vertical" >
 
 	<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:orientation="vertical" android:paddingTop="5dip" android:paddingBottom="5dip">
+		android:orientation="vertical" android:paddingTop="5dip" android:paddingBottom="5dip" android:paddingRight="22dip">
 		<Button
 			android:id="@+id/btn_new_contacto"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			style="@style/boton_generico"
-			android:text="@string/contacto_nuevo" />
+			android:layout_gravity="right"
+			android:background="@drawable/btn_add"/>
 	</LinearLayout>
          
    	<LinearLayout
 	    style="@style/listViewRow">
 
      	 <TextView
-	         android:layout_weight="0.25"
+	         android:layout_weight="0.30"
 	         style="@style/listview_textview_th"
 	         android:text="Nombre" />
 
 	     <TextView
-	        android:layout_weight="0.25"
+	        android:layout_weight="0.30"
 	        style="@style/listview_textview_th"
 	        android:text="Apellidos"/>
 	     
 	     <TextView
-	        android:layout_weight="0.50"
+	        android:layout_weight="0.40"
 	        style="@style/listview_textview_th"
-	        android:text="Telefono"/>
+	        android:text="Cargo"/>
 
     </LinearLayout>
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/listViewRow"
+    android:padding="10dp">
+
+    <TextView android:id="@+id/txtTipoAccion"
+        android:layout_weight="0.25"
+        android:gravity="center"
+        style="@style/listview_textview"/>
+
+    <TextView android:id="@+id/txtEjecutivo"
+        android:layout_weight="0.25"
+        style="@style/listview_textview"
+        android:gravity="center"/>
+
+    <TextView android:id="@+id/txtFecha"
+        android:layout_weight="0.25"
+        style="@style/listview_textview"
+        android:gravity="center"/>
+
+    <TextView android:id="@+id/txtHora"
+        android:layout_weight="0.25"
+        style="@style/listview_textview"
+        android:gravity="center"/>
+
+</LinearLayout>
