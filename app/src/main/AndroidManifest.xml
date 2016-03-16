@@ -74,6 +74,11 @@
             android:screenOrientation="sensorLandscape">
         </activity>
 
+        <activity
+            android:name=".clientes.ClientTabDetailsAccionesActivity"
+            android:screenOrientation="sensorLandscape">
+        </activity>
+
         <receiver
             android:name="gpovallas.services.receivers.StartReceiver"
             android:enabled="true"

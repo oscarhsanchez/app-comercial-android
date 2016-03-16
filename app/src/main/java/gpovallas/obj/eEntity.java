@@ -24,7 +24,7 @@ public class eEntity extends ComunicadorSerializable {
 		
 		Class clazz = this.getClass();
 		Field[] fields = clazz.getFields();
-		
+
 		for (Field field : fields) {			
 			field.setAccessible(true);
 			String name = field.getName();

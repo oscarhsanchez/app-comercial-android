@@ -85,7 +85,15 @@
     <string name="contacto_save">Cambios Guardos.</string>
     <string name="contacto_error">Debe rellenar todos los campos</string>
     <string name="contacto_nuevo">Nuevo</string>
-    
+
+    <!--Acciones -->
+    <string name="accion_tipoaccion">Tipo Accion:</string>
+    <string name="accion_ejecutivo">Ejecutivo:</string>
+    <string name="accion_fecha">Fecha:</string>
+    <string name="accion_hora">Hora:</string>
+    <string name="accion_titulo">Titulo:</string>
+    <string name="accion_resumen">Resumen:</string>
+
     <!-- Clientes Propuestas -->
     <string name="c_facturas_th_ejecutivo">Ejecutivo</string>
     <string name="c_facturas_th_fecha">Fecha de Inicio</string>

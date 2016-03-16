@@ -15,37 +15,27 @@
     </LinearLayout>
 
     <LinearLayout
-        style="@style/listViewRow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        style="@style/listViewRow">
 
         <TextView
             android:layout_weight="0.25"
             style="@style/listview_textview_th"
-            android:text="Tipo de acción"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:text="Tipo de acción" />
 
         <TextView
-            android:layout_weight="0.25"
             style="@style/listview_textview_th"
             android:text="Ejecutivo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_weight="0.25" />
 
         <TextView
             android:layout_weight="0.25"
             style="@style/listview_textview_th"
-            android:text="Fecha"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:text="Fecha"/>
 
         <TextView
             android:layout_weight="0.25"
             style="@style/listview_textview_th"
-            android:text="Hora"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:text="Hora"/>
 
     </LinearLayout>
 

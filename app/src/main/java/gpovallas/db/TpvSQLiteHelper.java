@@ -73,6 +73,25 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 			"estado INTEGER, " +
 			"PendienteEnvio INTEGER DEFAULT 0," +
 			"token TEXT NOT NULL PRIMARY KEY);";
+
+	private String sqlAccion = "CREATE TABLE IF NOT EXISTS ACCION ( pk_accion TEXT NULL, "+
+			"fk_pais TEXT NOT NULL, "+
+			"fk_cliente TEXT NOT NULL, "+
+			"fk_tipo_accion, "+
+			"codigo_user TEXT, "+
+			"fecha TEXT,"+
+			"hora TEXT,"+
+			"titulo TEXT,"+
+			"resumen TEXT,"+
+			"estado INTEGER,"+
+			"PendienteEnvio INTEGER DEFAULT 0,"+
+			"token TEXT NOT NULL PRIMARY KEY);";
+
+	private String sqlTipoAccion = "CREATE TABLE IF NOT EXISTS TIPOACCION (pk_tipo_accion TEXT NOT NULL,"+
+			"descripcion TEXT NULL,"+
+			"estado INTEGER,"+
+			"PendienteEnvio INTEGER DEFAULT 0," +
+			"token TEXT NOT NULL PRIMARY KEY);";
 	
 	private String sqlCatorcena = "CREATE TABLE IF NOT EXISTS CATORCENA (id INTEGER NOT NULL, " +
 			"anio INTEGER, " +
@@ -174,6 +193,8 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 		v.add(GPOVallasConstants.DB_TABLE_CLIENTE);
 		v.add(GPOVallasConstants.DB_TABLE_AGENCIA);
 		v.add(GPOVallasConstants.DB_TABLE_CONTACTO);
+		v.add(GPOVallasConstants.DB_TABLE_ACCION);
+		v.add(GPOVallasConstants.DB_TABLE_TIPO_ACCION);
 		v.add(GPOVallasConstants.DB_TABLE_CATORCENA);
 		v.add(GPOVallasConstants.DB_TABLE_BRIEF);
 		v.add(GPOVallasConstants.DB_TABLE_UBICACION);
@@ -209,6 +230,12 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 		
 		db.execSQL(sqlContacto);
 		Log.i("SQL Helper", sqlContacto);
+
+		db.execSQL(sqlAccion);
+		Log.i("SQL Helper", sqlAccion);
+
+		db.execSQL(sqlTipoAccion);
+		Log.i("SQL Helper", sqlTipoAccion);
 		
 		db.execSQL(sqlCatorcena);
 		Log.i("SQL Helper", sqlCatorcena);

@@ -5,8 +5,13 @@ import gpovallas.obj.Pagination;
 import gpovallas.ws.Updater.Bloque;
 import gpovallas.ws.request.GetClientesRequest;
 import gpovallas.ws.request.GetContactosRequest;
+import gpovallas.ws.request.GetAccionesRequest;
+import gpovallas.ws.request.GetTipoAccionesResquest;
+import gpovallas.ws.response.GetAccionesResponse;
 import gpovallas.ws.response.GetClientesResponse;
 import gpovallas.ws.response.GetContactosResponse;
+import gpovallas.ws.response.GetTipoAccionesResponse;
+
 import android.content.Context;
 
 public class UpdaterBloqueClientes extends UpdaterBloque {
@@ -23,7 +28,8 @@ public class UpdaterBloqueClientes extends UpdaterBloque {
 		fechaUpd = getServerDateTime();						
 		updateClientes();
 		updateContactos();
-		
+		updateAcciones();
+		updateTiposAcciones();
 		return true;
 	}
 	
@@ -118,5 +124,91 @@ public class UpdaterBloqueClientes extends UpdaterBloque {
 		
 		return true;
 	}
-	
+
+	private Boolean updateAcciones(){
+
+		if (!initUpdateOK("GetAcciones")) return false;
+		Pagination pagination = new Pagination();
+		pagination.page = 0;
+		pagination.pageSize = GPOVallasApplication.defaultPageSize;
+		GetAccionesResponse acciones = (new GetAccionesRequest()).execute(GPOVallasApplication.FechaUpd.toString(), pagination, estado, GetAccionesResponse.class);
+		if (acciones == null || acciones.failed()) {
+			updatesFallidos.add("Acciones");
+			return false;
+		}
+
+		if (!acciones._save()) {
+			updatesFallidos.add("Acciones");
+			return false;
+		}
+
+		acciones.pagination.page = acciones.pagination.page + 1;
+
+
+		//Comprobamos la paginacion para ver si hay que volver a hacer peticiones
+		while (acciones.pagination.page < acciones.pagination.totalPages) {
+			acciones = (new GetAccionesRequest()).execute(GPOVallasApplication.FechaUpd.toString(), acciones.pagination, estado, GetAccionesResponse.class);
+
+			if (acciones == null || acciones.failed()) {
+				updatesFallidos.add("Acciones");
+				return false;
+			}
+
+			if (!acciones._save()) {
+				updatesFallidos.add("Acciones");
+				return false;
+			}
+
+			acciones.pagination.page = acciones.pagination.page + 1;
+
+		}
+
+		//Gardamos la fecha de actualizacion
+		saveUpdate("GetAcciones", fechaUpd);
+
+		return true;
+	}
+
+	private Boolean updateTiposAcciones(){
+
+		if (!initUpdateOK("GetTiposAcciones")) return false;
+
+		Pagination pagination = new Pagination();
+		pagination.page = 0;
+		pagination.pageSize = GPOVallasApplication.defaultPageSize;
+		GetTipoAccionesResponse acciones = (new GetTipoAccionesResquest()).execute(GPOVallasApplication.FechaUpd.toString(), pagination, estado, GetTipoAccionesResponse.class);
+		if (acciones == null || acciones.failed()) {
+			updatesFallidos.add("TipoAcciones");
+			return false;
+		}
+		if (!acciones._save()) {
+			updatesFallidos.add("TipoAcciones");
+			return false;
+		}
+		acciones.pagination.page = acciones.pagination.page + 1;
+
+
+		//Comprobamos la paginacion para ver si hay que volver a hacer peticiones
+		while (acciones.pagination.page < acciones.pagination.totalPages) {
+			acciones = (new GetTipoAccionesResquest()).execute(GPOVallasApplication.FechaUpd.toString(), acciones.pagination, estado, GetTipoAccionesResponse.class);
+
+			if (acciones == null || acciones.failed()) {
+				updatesFallidos.add("TipoAcciones");
+				return false;
+			}
+
+			if (!acciones._save()) {
+				updatesFallidos.add("TipoAcciones");
+				return false;
+			}
+
+			acciones.pagination.page = acciones.pagination.page + 1;
+
+		}
+
+		//Gardamos la fecha de actualizacion
+		saveUpdate("GetTipoAcciones", fechaUpd);
+
+		return true;
+	}
 }

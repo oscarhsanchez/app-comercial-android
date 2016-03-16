@@ -49,10 +49,10 @@ public class ClientTabAccionesFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView adapter, View v, int position, long id) {
                 Log.i(TAG, "Posicion cliqueada " + position + " cliente pk " + arrAcciones.get(position).get("token"));
-                /*Intent x = new Intent(ClientTabContactosFragment.this.getActivity(),ClientTabDetailsContactosActivity.class);
-                x.putExtra(GPOVallasConstants.CONTACT_PK_INTENT,arrContactos.get(position).get("fk_cliente"));
-                x.putExtra(GPOVallasConstants.CONTACT_TOKEN,arrContactos.get(position).get("token"));
-                startActivity(x);*/
+                Intent x = new Intent(ClientTabAccionesFragment.this.getActivity(),ClientTabDetailsAccionesActivity.class);
+                x.putExtra(GPOVallasConstants.ACTION_PK_INTENT,arrAcciones.get(position).get("pk_accion"));
+                x.putExtra(GPOVallasConstants.ACTION_TOKEN,arrAcciones.get(position).get("token"));
+                startActivity(x);
             }
 
         });
@@ -60,10 +60,10 @@ public class ClientTabAccionesFragment extends Fragment {
         mNewAccionView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent x = new Intent(ClientTabContactosFragment.this.getActivity(),ClientTabDetailsContactosActivity.class);
-                x.putExtra(GPOVallasConstants.CONTACT_PK_INTENT,mPkCliente);
-                x.putExtra(GPOVallasConstants.CONTACT_TOKEN,"");
-                startActivity(x);*/
+                Intent x = new Intent(ClientTabAccionesFragment.this.getActivity(),ClientTabDetailsAccionesActivity.class);
+                x.putExtra(GPOVallasConstants.ACTION_PK_INTENT,mPkCliente);
+                x.putExtra(GPOVallasConstants.ACTION_TOKEN,"");
+                startActivity(x);
             }
         });
         populate();
@@ -74,8 +74,8 @@ public class ClientTabAccionesFragment extends Fragment {
 
         arrAcciones = new ArrayList<HashMap<String, String>>();
 
-        String sql = "SELECT fk_cliente,token,IFNULL(nombre, '') AS nombre, apellidos, cargo  " +
-                "FROM CONTACTO"; //WHERE fk_cliente = "+mPkCliente;
+        String sql = "SELECT pk_accion,fk_tipo_accion,token,codigo_user AS nombre, fecha, hora  " +
+                "FROM "+GPOVallasConstants.DB_TABLE_ACCION; //WHERE fk_cliente = "+mPkCliente;
 
         Cursor c = db.rawQuery(sql, null);
         Log.i(TAG,""+c.getCount());
@@ -83,11 +83,12 @@ public class ClientTabAccionesFragment extends Fragment {
             do {
                 Log.i(TAG,c.getString(c.getColumnIndex("nombre")));
                 HashMap<String,String> map = new HashMap<String, String>();
-                map.put("fk_cliente", c.getString(c.getColumnIndex("fk_cliente")));
+                map.put("pk_accion",c.getString(c.getColumnIndex("pk_accion")));
+                map.put("fk_tipo_accion", c.getString(c.getColumnIndex("fk_tipo_accion")));
                 map.put("token", c.getString(c.getColumnIndex("token")));
                 map.put("nombre", c.getString(c.getColumnIndex("nombre")));
-                map.put("apellidos", c.getString(c.getColumnIndex("apellidos")));
-                map.put("cargo", c.getString(c.getColumnIndex("cargo")));
+                map.put("fecha", c.getString(c.getColumnIndex("fecha")));
+                map.put("hora", c.getString(c.getColumnIndex("hora")));
                 arrAcciones.add(map);
             } while (c.moveToNext());
         }

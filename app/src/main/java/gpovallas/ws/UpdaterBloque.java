@@ -146,6 +146,8 @@ public abstract class UpdaterBloque {
 	        mapeos.put("GetClientes", GPOVallasConstants.DB_TABLE_CLIENTE);
 	        mapeos.put("GetUbicaciones", GPOVallasConstants.DB_TABLE_UBICACION);
 	        mapeos.put("GetContactos", GPOVallasConstants.DB_TABLE_CONTACTO);
+			//mapeos.put("GetAcciones", GPOVallasConstants.DB_TABLE_ACCION);
+			mapeos.put("GetTiposAcciones", GPOVallasConstants.DB_TABLE_TIPO_ACCION);
 	        mapeos.put("GetMetaCategory", GPOVallasConstants.DB_TABLE_META_CATEGORY);
 	        mapeos.put("GetMetaVenues", GPOVallasConstants.DB_TABLE_META_VENUE);
 	        mapeos.put("GetCatorcenas", GPOVallasConstants.DB_TABLE_CATORCENA);

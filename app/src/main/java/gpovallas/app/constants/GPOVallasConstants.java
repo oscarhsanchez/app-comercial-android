@@ -11,6 +11,8 @@ public class GPOVallasConstants {
 	public static String DB_TABLE_CLIENTE = "CLIENTE";
 	public static String DB_TABLE_AGENCIA = "AGENCIA";
 	public static String DB_TABLE_CONTACTO = "CONTACTO";
+	public static String DB_TABLE_ACCION = "ACCION";
+	public static String DB_TABLE_TIPO_ACCION = "TIPOACCION";
 	public static String DB_TABLE_CATORCENA = "CATORCENA";
 	public static String DB_TABLE_BRIEF = "BRIEF";
 	public static String DB_TABLE_UBICACION = "UBICACION";
@@ -22,5 +24,7 @@ public class GPOVallasConstants {
 	public static String CLIENT_PK_INTENT = "client_pk_intent";
 	public static String CONTACT_PK_INTENT = "contacto_pk_intent";
 	public static String CONTACT_TOKEN = "contact_token_intent";
+	public static String ACTION_PK_INTENT = "action_pk_intent";
+	public static String ACTION_TOKEN = "action_token_intent";
 	
 }
