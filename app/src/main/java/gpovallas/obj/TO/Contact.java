@@ -1,4 +1,4 @@
-package gpovallas.obj;
+package gpovallas.obj.TO;
 
 public class Contact {
     public Contact() {

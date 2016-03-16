@@ -27,6 +27,7 @@ import gpovallas.app.GPOVallasApplication;
 import gpovallas.app.R;
 import gpovallas.app.constants.GPOVallasConstants;
 import gpovallas.obj.Accion;
+import gpovallas.obj.TipoAccion;
 import gpovallas.utils.Database;
 import gpovallas.utils.Dialogs;
 import gpovallas.utils.Text;
@@ -44,6 +45,8 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
     private EditText mTextResumen;
     private Accion accion;
     private ArrayList<HashMap<String, String>> arrTipoAccion;
+    private Integer pk_Tipo_accion;
+    private ArrayAdapter<String> dataAdapter;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +85,7 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
             categories.add(tipo.get("descripcion"));
         }
 
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+        dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
 
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -99,7 +102,7 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
         String resumen = mTextResumen.getText().toString();
 
 
-        if (/*Text.isEmpty(tipoaccion) || */Text.isEmpty(ejecutivo) || Text.isEmpty(fecha) || Text.isEmpty(hora) || Text.isEmpty(titulo)
+        if (pk_Tipo_accion <= 0 || Text.isEmpty(ejecutivo) || Text.isEmpty(fecha) || Text.isEmpty(hora) || Text.isEmpty(titulo)
                 || Text.isEmpty(resumen)){
             Dialog alertDialog = Dialogs.newAlertDialog(this, "Información", "Debe rellenar todos los campos", "OK");
             alertDialog.show();
@@ -107,8 +110,8 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
         }
 
         ContentValues reg = new ContentValues();
-        reg.put("fk_cliente",pk_accion);
-        //reg.put("fk_tipo_accion", tipoaccion);
+        reg.put("fk_cliente", pk_accion);
+        reg.put("fk_tipo_accion", pk_Tipo_accion);
         reg.put("codigo_user", ejecutivo);
         reg.put("fecha", fecha);
         reg.put("hora", hora);
@@ -133,7 +136,17 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
 
         accion = (Accion) Database.getObjectByToken(db, GPOVallasConstants.DB_TABLE_ACCION, token_accion, Accion.class);
 
-        //mTextTipo.setText(accion.fk_tipo_accion);
+        pk_Tipo_accion = Integer.parseInt(accion.fk_tipo_accion);
+
+        HashMap<String, String> tipo = null;
+
+        for (HashMap<String, String> tip : arrTipoAccion){
+            if(tip.get("pk_tipo_accion").equals(String.valueOf(pk_Tipo_accion))){
+                tipo = tip;
+                break;
+            }
+        }
+        spinner.setSelection(dataAdapter.getPosition(tipo.get("descripcion")));
 
         mTextNombre.setText(accion.codigo_user);
         mTextFecha.setText(accion.fecha);
@@ -149,6 +162,7 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
         // On selecting a spinner item
         HashMap<String, String> tipo =arrTipoAccion.get(position);
         Log.i(TAG, "SELECT " + tipo.get("pk_tipo_accion"));
+        pk_Tipo_accion = Integer.parseInt(tipo.get("pk_tipo_accion"));
     }
 
     @Override

@@ -100,5 +100,10 @@
     <string name="c_facturas_th_presupuesto">Presupuesto</string>
     <string name="c_facturas_th_estado">Estado de la Propuesta</string>
     <string name="c_facturas_no_resultados">No se encontraron facturas</string>
+
+    <!-- Medios -->
+
+    <string name="tab_listado">Listado de Medios</string>
+    <string name="tab_ubicaciones">Ubicaciones</string>
     
 </resources>

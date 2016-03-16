@@ -22,6 +22,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import gpovallas.app.clientes.ClientFinderActivity;
+import gpovallas.app.medios.MeanTabsActivity;
 import gpovallas.services.receivers.StartReceiver;
 import gpovallas.utils.Dialogs;
 import gpovallas.ws.Sender;
@@ -50,7 +51,8 @@ public class ControlPanelActivity extends GPOVallasActivity {
     }
 
     public void openCatalogo(View v) {
-
+        Log.v("Control Panel","Cargando MediosTab");
+        startActivity(new Intent(this, MeanTabsActivity.class));
     }
 
     public void openCircuito(View v) {
