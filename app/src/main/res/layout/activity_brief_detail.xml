@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView style="@style/main_linear_layout_bg_gris"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="gpovallas.app.briefs.BriefDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:orientation="vertical">
+
+        <gpovallas.com.Header
+            android:id="@+id/header"
+            style="@style/header"/>
+
+        <TableLayout
+            style="@style/wrap_style"
+            android:layout_gravity="center_horizontal">
+
+            <TableRow
+                style="@style/wrap_style"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/briefs_cliente"
+                    android:textAppearance="@style/defaultTextAppearance"
+                    android:textColor="@color/orangeGpo"/>
+
+                <Spinner
+                    android:id="@+id/spinnerCliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"/>
+
+            </TableRow>
+
+            <TableRow
+                style="@style/wrap_style"
+                android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/briefs_ejecutivo"
+                    android:textAppearance="@style/defaultTextAppearance"
+                    android:textColor="@color/orangeGpo"
+                    />
+
+                <EditText
+                    android:id="@+id/txtEjecutivo"
+                    style="@style/editText"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:autoText="false"
+                    android:inputType="textPersonName"/>
+            </TableRow>
+
+            <TableRow
+                style="@style/wrap_style"
+                android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/briefs_fecha_inicio"
+                    android:textAppearance="@style/defaultTextAppearance"
+                    android:textColor="@color/orangeGpo"
+                    />
+
+                <EditText
+                    android:id="@+id/txtFechaInicio"
+                    style="@style/editTextDate"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:autoText="false"
+                    android:inputType="date"/>
+            </TableRow>
+
+            <TableRow
+                style="@style/wrap_style"
+                android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/briefs_temporalidad"
+                    android:textAppearance="@style/defaultTextAppearance"
+                    android:textColor="@color/orangeGpo"
+                    />
+
+                <EditText
+                    android:id="@+id/txtTemporalidad"
+                    style="@style/editText"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:autoText="false"
+                    android:inputType="textNoSuggestions"/>
+            </TableRow>
+
+            <TableRow
+                style="@style/wrap_style"
+                android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/briefs_objetivos"
+                    android:textAppearance="@style/defaultTextAppearance"
+                    android:textColor="@color/orangeGpo"/>
+
+            </TableRow>
+
+            <TableRow
+                style="@style/wrap_style"
+                android:layout_marginBottom="15dp">
+
+                <EditText
+                    android:id="@+id/txtObjetivos"
+                    style="@style/editTextMultiLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_column="1"
+                    android:lines="4"
+                    android:autoText="false"
+                    android:inputType="textMultiLine"/>
+
+            </TableRow>
+
+            <TableRow
+                style="@style/wrap_style"
+                android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/briefs_paises_plazas"
+                    android:textAppearance="@style/defaultTextAppearance"
+                    android:textColor="@color/orangeGpo"/>
+
+            </TableRow>
+
+            <TableRow
+                style="@style/wrap_style"
+                android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/briefs_tipos_subtipos"
+                    android:textAppearance="@style/defaultTextAppearance"
+                    android:textColor="@color/orangeGpo"/>
+
+            </TableRow>
+
+            <TableRow
+                style="@style/wrap_style"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp">
+
+                <LinearLayout
+                    style="@style/wrap_style"
+                    android:layout_column="1"
+                    android:layout_span="2"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:gravity="center"
+                        android:text="@string/briefs_fecha_solicitud"
+                        android:textAppearance="@style/defaultTextAppearance"
+                        android:textColor="@color/orangeGpo"/>
+
+                    <EditText
+                        android:id="@+id/txtFechaSolicitud"
+                        style="@style/editTextDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:autoText="false"
+                        android:inputType="date"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:gravity="center"
+                        android:text="@string/briefs_fecha_entrega"
+                        android:textAppearance="@style/defaultTextAppearance"
+                        android:textColor="@color/orangeGpo"/>
+
+                    <EditText
+                        android:id="@+id/txtFechaEntrega"
+                        style="@style/editTextDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:autoText="false"
+                        android:inputType="date"/>
+
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow style="@style/wrap_style">
+
+                <LinearLayout
+                    style="@style/wrap_style"
+                    android:layout_column="2">
+
+                    <Button
+                        android:id="@+id/btn_actualizar_brief"
+                        style="@style/boton_generico"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:onClick="save"
+                        android:text="Guardar"/>
+
+                </LinearLayout>
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>

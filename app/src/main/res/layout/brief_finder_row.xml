@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    style="@style/listViewRow"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="8dp">
+
+    <TextView android:id="@+id/txtFecha"
+              style="@style/listview_textview"
+              android:layout_weight="0.25"
+              android:gravity="center"/>
+
+    <TextView android:id="@+id/txtCliente"
+              style="@style/listview_textview"
+              android:layout_weight="0.37"
+              android:gravity="center"/>
+
+    <TextView android:id="@+id/txtEjecutivo"
+              style="@style/listview_textview"
+              android:layout_weight="0.37"
+              android:gravity="center"/>
+
+</LinearLayout>

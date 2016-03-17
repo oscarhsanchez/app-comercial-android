@@ -1,14 +1,5 @@
 package gpovallas.app.clientes;
 
-import gpovallas.adapter.ClientFinderAdapter;
-import gpovallas.app.ApplicationStatus;
-import gpovallas.app.GPOVallasListActivity;
-import gpovallas.app.R;
-import gpovallas.app.constants.GPOVallasConstants;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -22,6 +13,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import gpovallas.adapter.ClientFinderAdapter;
+import gpovallas.app.ApplicationStatus;
+import gpovallas.app.GPOVallasListActivity;
+import gpovallas.app.R;
+import gpovallas.app.constants.GPOVallasConstants;
+
 public class ClientFinderActivity extends GPOVallasListActivity {
 
 	private static final String TAG = ClientFinderActivity.class.getSimpleName();
@@ -32,7 +32,7 @@ public class ClientFinderActivity extends GPOVallasListActivity {
 	private SQLiteDatabase db;
 	private String filter_codCli;
 	private String filter_nombreCli;
-	
+
 	private ClientFinderAdapter arrayAdapter;
 
 	private InputFilter alphaNumericFilter = new InputFilter() {
@@ -44,23 +44,19 @@ public class ClientFinderActivity extends GPOVallasListActivity {
         		}
         	}
             return null;
-        }
+ 	       }
 	};
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.clientfinder);
-
 		setBreadCrumb("Clientes", "Buscador de cliente");
 
 		Log.v("CVlient Finder", "ClientFinder on create");
-
 		db = ApplicationStatus.getInstance().getDb(getApplicationContext());
 
 		init();
-		
-        populate();
+		populate();
 
     }
 

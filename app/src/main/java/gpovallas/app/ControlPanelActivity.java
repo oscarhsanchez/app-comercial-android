@@ -21,6 +21,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 import java.util.Date;
 
+import gpovallas.app.briefs.BriefFinderActivity;
 import gpovallas.app.clientes.ClientFinderActivity;
 import gpovallas.services.receivers.StartReceiver;
 import gpovallas.utils.Dialogs;
@@ -46,7 +47,8 @@ public class ControlPanelActivity extends GPOVallasActivity {
     }
 
     public void openBrief(View v) {
-
+        Log.v("Control Panel", "cargando BriefFinder");
+        startActivity(new Intent(this, BriefFinderActivity.class));
     }
 
     public void openCatalogo(View v) {

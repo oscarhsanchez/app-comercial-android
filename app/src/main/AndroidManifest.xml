@@ -17,6 +17,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH"/>
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <supports-screens
@@ -26,8 +27,6 @@
         android:normalScreens="true"
         android:requiresSmallestWidthDp="1024"
         android:smallScreens="true"/>
-
-    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".GPOVallasApplication"
@@ -61,6 +60,20 @@
             android:name=".clientes.ClientDetailTabsActivity"
             android:screenOrientation="sensorLandscape"
             android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".clientes.ClientTabDetailsContactosActivity"
+            android:screenOrientation="sensorLandscape">
+        </activity>
+        <activity
+            android:name=".briefs.BriefFinderActivity"
+            android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+        <activity
+            android:name=".briefs.BriefDetailActivity"
+            android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
@@ -68,11 +81,6 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"/>
-
-        <activity
-            android:name=".clientes.ClientTabDetailsContactosActivity"
-            android:screenOrientation="sensorLandscape">
-        </activity>
 
         <receiver
             android:name="gpovallas.services.receivers.StartReceiver"
@@ -84,7 +92,7 @@
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
 
@@ -93,6 +101,8 @@
             android:enabled="true"
             android:exported="true">
         </service>
+
+
     </application>
 
 </manifest>
