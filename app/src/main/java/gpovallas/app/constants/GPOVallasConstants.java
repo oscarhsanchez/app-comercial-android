@@ -19,6 +19,9 @@ public class GPOVallasConstants {
 	public static String DB_TABLE_META_CATEGORY = "META_CATEGORY";
 	public static String DB_TABLE_META_VENUE = "META_VENUE";
 	public static String DB_TABLE_PROPUESTA = "PROPUESTA";
+	public static String DB_TABLE_PAISES = "PAISES";
+	public static String DB_TABLE_TIPOS_MEDIOS= "TIPOS_MEDIOS";
+	public static String DB_TABLE_SUBTIPOS_MEDIOS = "SUBTIPOS_MEDIOS";
 	
 	// Client Intent Attributes
 	public static String CLIENT_PK_INTENT = "client_pk_intent";

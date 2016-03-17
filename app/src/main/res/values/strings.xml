@@ -105,5 +105,13 @@
 
     <string name="tab_listado">Listado de Medios</string>
     <string name="tab_ubicaciones">Ubicaciones</string>
-    
+
+
+    <!-- Facturas -->
+    <string name="facturas_TextView_th_numero_Factura">No. de Factura</string>
+    <string name="facturas_TextView_th_RFC">RFC</string>
+    <string name="facturas_TextView_th_estado">Estado</string>
+
+    <string name="search_not_found_records">No se ha encontrado información que coincida con los criterios de búsqueda indicados</string>
+
 </resources>

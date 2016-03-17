@@ -161,6 +161,32 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 		    "tipcount INTEGER, " +
 		    "estado INTEGER, " +
 		    "token TEXT NOT NULL PRIMARY KEY);";
+
+	private String sqlPaises = "CREATE TABLE IF NOT EXISTS PAISES (pk_pais TEXT NOT NULL, "+
+			"nombre TEXT, "+
+			"estado TEXT, "+
+			"PendienteEnvio INTEGER DEFAULT 0," +
+			"token TEXT NOT NULL PRIMARY KEY);";
+
+	private String sqlTiposMedios = "CREATE TABLE IF NOT EXISTS TIPOS_MEDIOS (pk_tipo TEXT NOT NULL, "+
+			"fk_pais TEXT NOT NULL, "+
+			"fk_empresa TEXT, "+
+			"unidad_negocio TEXT, "+
+			"descripcion TEXT,"+
+			"estado TEXT,"+
+			"token TEXT NOT NULL PRIMARY KEY, "+
+			"PendienteEnvio INTEGER DEFAULT 0," +
+			"nombre TEXT);";
+
+	private String sqlSubtiposMedios = "CREATE TABLE IF NOT EXISTS SUBTIPOS_MEDIOS (pk_subtipo TEXT NOT NULL, "+
+			"fk_tipo TEXT NOT NULL, "+
+			"fk_empresa TEXT, "+
+			"unidad_negocio TEXT, "+
+			"fk_pais TEXT NOT NULL, "+
+			"descripcion TEXT, "+
+			"estado TEXT, "+
+			"PendienteEnvio INTEGER DEFAULT 0," +
+			"token TEXT NOT NULL PRIMARY KEY);";
     	
 	public TpvSQLiteHelper(Context contexto, String nombre,
 			CursorFactory factory, int version) {
@@ -200,6 +226,9 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 		v.add(GPOVallasConstants.DB_TABLE_UBICACION);
 		v.add(GPOVallasConstants.DB_TABLE_META_CATEGORY);
 		v.add(GPOVallasConstants.DB_TABLE_META_VENUE);
+		v.add(GPOVallasConstants.DB_TABLE_PAISES);
+		v.add(GPOVallasConstants.DB_TABLE_TIPOS_MEDIOS);
+		v.add(GPOVallasConstants.DB_TABLE_SUBTIPOS_MEDIOS);
 		
 		for(int i=0; i<v.size(); i++){
 			db.execSQL("DROP TABLE IF EXISTS " + v.get(i));
@@ -210,24 +239,24 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 
 	public void createTables(SQLiteDatabase db) {
 
-		db.execSQL(sqlCreateTablaBloqueFechaUpdate);		
+		db.execSQL(sqlCreateTablaBloqueFechaUpdate);
 		Log.i("SQL Helper", sqlCreateTablaBloqueFechaUpdate);
-		
-		db.execSQL(sqlParameters);		
+
+		db.execSQL(sqlParameters);
 		Log.i("SQL Helper", sqlParameters);
-		
+
 		db.execSQL(sqlLog);
 		Log.i("SQL Helper", sqlLog);
-		
+
 		db.execSQL(sqlLoginCache);
 		Log.i("SQL Helper", sqlLoginCache);
-		
+
 		db.execSQL(sqlCliente);
 		Log.i("SQL Helper", sqlCliente);
-		
+
 		db.execSQL(sqlAgencia);
 		Log.i("SQL Helper", sqlAgencia);
-		
+
 		db.execSQL(sqlContacto);
 		Log.i("SQL Helper", sqlContacto);
 
@@ -236,22 +265,30 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 
 		db.execSQL(sqlTipoAccion);
 		Log.i("SQL Helper", sqlTipoAccion);
-		
+
 		db.execSQL(sqlCatorcena);
 		Log.i("SQL Helper", sqlCatorcena);
-		
+
 		db.execSQL(sqlBrief);
 		Log.i("SQL Helper", sqlBrief);
-		
+
 		db.execSQL(sqlUbicacion);
 		Log.i("SQL Helper", sqlUbicacion);
-		
+
 		db.execSQL(sqlMetaCategory);
 		Log.i("SQL Helper", sqlMetaCategory);
-		
+
 		db.execSQL(sqlMetaVenue);
 		Log.i("SQL Helper", sqlMetaVenue);
-        
+
+		db.execSQL(sqlPaises);
+		Log.i("SQL Helper", sqlPaises);
+
+		db.execSQL(sqlTiposMedios);
+		Log.i("SQL Helper", sqlTiposMedios);
+
+		db.execSQL(sqlSubtiposMedios);
+        Log.i("SQL Helper", sqlSubtiposMedios);
 		
 		//Insertamos la version como Parametro
 		DbParameters dbParameters = new DbParameters(db);
