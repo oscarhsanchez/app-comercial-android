@@ -82,6 +82,16 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"/>
 
+        <activity
+            android:name=".clientes.ClientTabDetailsAccionesActivity"
+            android:screenOrientation="sensorLandscape">
+        </activity>
+
+        <activity
+            android:name=".medios.MeanTabsActivity"
+            android:screenOrientation="sensorLandscape">
+        </activity>
+
         <receiver
             android:name="gpovallas.services.receivers.StartReceiver"
             android:enabled="true"

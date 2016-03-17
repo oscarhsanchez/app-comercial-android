@@ -49,13 +49,13 @@ public class ClientTabAccionesAdapter extends BaseAdapter {
         }
 
         TextView tipoaccion = (TextView)view.findViewById(R.id.txtTipoAccion);
-        tipoaccion.setText(accion.get("nombre"));
+        tipoaccion.setText(accion.get("fk_tipo_accion"));
         TextView ejecutivo = (TextView)view.findViewById(R.id.txtEjecutivo);
-        ejecutivo.setText(accion.get("apellidos"));
+        ejecutivo.setText(accion.get("nombre"));
         TextView fecha = (TextView)view.findViewById(R.id.txtFecha);
-        fecha.setText(accion.get("cargo"));
+        fecha.setText(accion.get("fecha"));
         TextView hora = (TextView)view.findViewById(R.id.txtHora);
-        hora.setText(accion.get("fk_cliente"));
+        hora.setText(accion.get("hora"));
 
         return view;
     }

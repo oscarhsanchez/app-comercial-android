@@ -1,21 +1,21 @@
 package gpovallas.ws;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Vector;
+
 import gpovallas.app.ApplicationStatus;
 import gpovallas.app.GPOVallasApplication;
 import gpovallas.app.constants.GPOVallasConstants;
 import gpovallas.utils.Text;
 import gpovallas.ws.request.GetServerActualDateTimeRequest;
 import gpovallas.ws.response.GetServerActualDateTimeResponse;
-
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Vector;
-
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 public abstract class UpdaterBloque {
 
@@ -146,12 +146,17 @@ public abstract class UpdaterBloque {
 	        mapeos.put("GetClientes", GPOVallasConstants.DB_TABLE_CLIENTE);
 	        mapeos.put("GetUbicaciones", GPOVallasConstants.DB_TABLE_UBICACION);
 	        mapeos.put("GetContactos", GPOVallasConstants.DB_TABLE_CONTACTO);
+			//mapeos.put("GetAcciones", GPOVallasConstants.DB_TABLE_ACCION);
+			mapeos.put("GetTiposAcciones", GPOVallasConstants.DB_TABLE_TIPO_ACCION);
 	        mapeos.put("GetMetaCategory", GPOVallasConstants.DB_TABLE_META_CATEGORY);
 	        mapeos.put("GetMetaVenues", GPOVallasConstants.DB_TABLE_META_VENUE);
 	        mapeos.put("GetCatorcenas", GPOVallasConstants.DB_TABLE_CATORCENA);
 	        mapeos.put("GetBriefs", GPOVallasConstants.DB_TABLE_BRIEF);
 	        mapeos.put("GetAgencias", GPOVallasConstants.DB_TABLE_AGENCIA);
-	        
+	        mapeos.put("GetMetaPaises",GPOVallasConstants.DB_TABLE_PAISES);
+			mapeos.put("GetTiposMedios",GPOVallasConstants.DB_TABLE_TIPOS_MEDIOS);
+			mapeos.put("GetSubtiposMedios",GPOVallasConstants.DB_TABLE_SUBTIPOS_MEDIOS);
+
 	        
 	        if (db != null) {
 				Cursor c = db.query(mapeos.get(peticion).toUpperCase(), new String[] { "PendienteEnvio" } , "PendienteEnvio = ?", new String[] { "1" }, null, null, null);

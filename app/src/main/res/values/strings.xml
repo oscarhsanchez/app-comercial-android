@@ -92,12 +92,35 @@
     <string name="contacto_error">Debe rellenar todos los campos</string>
     <string name="contacto_nuevo">Nuevo</string>
 
+    <!--Acciones -->
+    <string name="accion_tipoaccion">Tipo Accion:</string>
+    <string name="accion_ejecutivo">Ejecutivo:</string>
+    <string name="accion_fecha">Fecha:</string>
+    <string name="accion_hora">Hora:</string>
+    <string name="accion_titulo">Titulo:</string>
+    <string name="accion_resumen">Resumen:</string>
+
+
     <!-- Clientes Propuestas -->
     <string name="c_facturas_th_ejecutivo">Ejecutivo</string>
     <string name="c_facturas_th_fecha">Fecha de Inicio</string>
     <string name="c_facturas_th_presupuesto">Presupuesto</string>
     <string name="c_facturas_th_estado">Estado de la Propuesta</string>
     <string name="c_facturas_no_resultados">No se encontraron facturas</string>
+
+    <!-- Medios -->
+
+    <string name="tab_listado">Listado de Medios</string>
+    <string name="tab_ubicaciones">Ubicaciones</string>
+
+
+    <!-- Facturas -->
+    <string name="facturas_TextView_th_numero_Factura">No. de Factura</string>
+    <string name="facturas_TextView_th_RFC">RFC</string>
+    <string name="facturas_TextView_th_estado">Estado</string>
+
+    <string name="search_not_found_records">No se ha encontrado información que coincida con los criterios de búsqueda indicados</string>
+
 
     <!-- Briefs -->
     <string name="briefs_th_fecha">Fecha</string>

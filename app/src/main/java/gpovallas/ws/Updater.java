@@ -46,7 +46,8 @@ public class Updater {
         CLIENTES("Clientes"),
         METADATA("Metadata"),
         PARAMETROS_APP("Par�metros de Aplicaci�n"),
-        UBICACIONES("Ubicaciones");
+        UBICACIONES("Ubicaciones"),
+        MEDIOS("Medios Tipos y Subtipos");
 
         private final String descripcion;
 
@@ -91,6 +92,7 @@ public class Updater {
         UpdaterBloqueAgencias bloqueAgencias = new UpdaterBloqueAgencias(contexto, Updater.Bloque.AGENCIAS);
         UpdaterBloqueBriefs bloqueBriefs = new UpdaterBloqueBriefs(contexto, Updater.Bloque.BRIEFS);
         UpdaterBloqueCatorcenas bloqueCatorcenas = new UpdaterBloqueCatorcenas(contexto, Updater.Bloque.CATORCENAS);
+        UpdaterBloqueMedios bloqueMedios = new UpdaterBloqueMedios(contexto, Updater.Bloque.MEDIOS);
 
         Vector<UpdaterBloque> updaters = new Vector<UpdaterBloque>();
         updaters.add(bloqueClientes);
@@ -99,6 +101,7 @@ public class Updater {
         updaters.add(bloqueAgencias);
         updaters.add(bloqueBriefs);
         updaters.add(bloqueCatorcenas);
+        updaters.add(bloqueMedios);
 
         boolean res = false;
         try {
@@ -231,6 +234,7 @@ public class Updater {
         UpdaterBloqueAgencias bloqueAgencias = new UpdaterBloqueAgencias(contexto, Updater.Bloque.AGENCIAS);
         UpdaterBloqueBriefs bloqueBriefs = new UpdaterBloqueBriefs(contexto, Updater.Bloque.BRIEFS);
         UpdaterBloqueCatorcenas bloqueCatorcenas = new UpdaterBloqueCatorcenas(contexto, Updater.Bloque.CATORCENAS);
+        UpdaterBloqueMedios bloqueMedios = new UpdaterBloqueMedios(contexto, Updater.Bloque.MEDIOS);
 
         Vector<UpdaterBloque> updaters = new Vector<UpdaterBloque>();
 
@@ -240,6 +244,7 @@ public class Updater {
         updaters.add(bloqueAgencias);
         updaters.add(bloqueBriefs);
         updaters.add(bloqueCatorcenas);
+        updaters.add(bloqueMedios);
 
         Boolean dbComplete = true;
 

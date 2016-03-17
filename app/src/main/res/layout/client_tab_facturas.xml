@@ -1,7 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              style="@style/main_linear_layout">
+
+    <gpovallas.com.Header
+        style="@style/header" android:id="@+id/header"/>
+
+    <LinearLayout
+        style="@style/basic_layout_padding">
+        <LinearLayout
+            style="@style/container_filter">
+            <ImageView
+                android:id="@+id/img_search_icon"
+                android:layout_width="0dp"
+                style="@style/wrap_style"
+                android:adjustViewBounds="true"
+                android:layout_weight="0.05"
+                android:src="@android:drawable/ic_menu_search"/>
+
+            <EditText android:id="@+id/et_search_filter_fact1"
+                android:layout_width="0dp"
+                style="@style/editText"
+                android:layout_marginRight="10dp"
+                android:layout_weight="0.15"
+                android:hint="Cod. Facturas..."/>
+
+            <EditText android:id="@+id/et_search_filter"
+                android:layout_width="0dp"
+                style="@style/editText"
+                android:layout_weight="0.60"
+                android:hint="Filtrar por..."/>
+
+            <Button android:id="@+id/btn_search_filter"
+                android:layout_width="0dp"
+                style="@style/wrap_style"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                android:text="Todos"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="2dp"
+                android:onClick="deleteSearchFilter"
+                android:layout_marginRight="10dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/listViewRow">
+
+            <TextView
+                android:layout_weight="0.35"
+                style="@style/listview_textview_th"
+                android:text="@string/facturas_TextView_th_numero_Factura"/>
+
+            <TextView
+                android:layout_weight="0.35"
+                style="@style/listview_textview_th"
+                android:text="@string/facturas_TextView_th_RFC" />
+
+            <TextView
+                android:layout_weight="0.30"
+                style="@style/listview_textview_th"
+                android:text="@string/facturas_TextView_th_estado"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/basic_style">
+
+            <ListView
+                android:id="@android:id/list"
+                android:textFilterEnabled="true"
+                android:cacheColorHint="@color/bg_generic"
+                style="@style/basic_style">
+
+            </ListView>
+
+            <TextView
+                android:id="@android:id/empty"
+                style="@style/basic_style"
+                android:gravity="center"
+                android:text="@string/search_not_found_records"/>
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

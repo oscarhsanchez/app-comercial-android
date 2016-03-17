@@ -1,13 +1,16 @@
 package gpovallas.ws;
 
+import android.content.Context;
+
 import gpovallas.app.GPOVallasApplication;
 import gpovallas.obj.Pagination;
 import gpovallas.ws.Updater.Bloque;
 import gpovallas.ws.request.GetMetaCategoryRequest;
+import gpovallas.ws.request.GetMetaPaisesRequest;
 import gpovallas.ws.request.GetMetaVenueRequest;
 import gpovallas.ws.response.GetMetaCategoryResponse;
+import gpovallas.ws.response.GetMetaPaisesResponse;
 import gpovallas.ws.response.GetMetaVenueResponse;
-import android.content.Context;
 
 public class UpdaterBloqueMetadata extends UpdaterBloque {
 
@@ -24,7 +27,8 @@ public class UpdaterBloqueMetadata extends UpdaterBloque {
 		fechaUpd = getServerDateTime();						
 		updateCategories();
 		updateVenues();
-		
+		updatePaises();
+
 		return true;
 		
 	}
@@ -118,6 +122,51 @@ public class UpdaterBloqueMetadata extends UpdaterBloque {
 		//Gardamos la fecha de actualizacion
 		saveUpdate("GetMetaVenues", fechaUpd);		
 		
+		return true;
+	}
+
+	private Boolean updatePaises(){
+		if (!initUpdateOK("GetMetaPaises")) return false;
+
+		Pagination pagination = new Pagination();
+		pagination.page = 0;
+		pagination.pageSize = GPOVallasApplication.defaultPageSize;
+
+		GetMetaPaisesResponse paises = (new GetMetaPaisesRequest()).execute(GPOVallasApplication.FechaUpd.toString(), pagination, estado, GetMetaPaisesResponse.class);
+		if (paises == null || paises.failed()) {
+			updatesFallidos.add("Pais");
+			return false;
+		}
+
+		if (!paises._save()) {
+			updatesFallidos.add("Pais");
+			return false;
+		}
+
+		paises.pagination.page = paises.pagination.page + 1;
+
+
+		//Comprobamos la paginacion para ver si hay que volver a hacer peticiones
+		while (paises.pagination.page < paises.pagination.totalPages) {
+			paises = (new GetMetaPaisesRequest()).execute(GPOVallasApplication.FechaUpd.toString(), paises.pagination, estado, GetMetaPaisesResponse.class);
+
+			if (paises == null || paises.failed()) {
+				updatesFallidos.add("Pais");
+				return false;
+			}
+
+			if (!paises._save()) {
+				updatesFallidos.add("Pais");
+				return false;
+			}
+
+			paises.pagination.page = paises.pagination.page + 1;
+
+		}
+
+		//Gardamos la fecha de actualizacion
+		saveUpdate("GetMetaPaises", fechaUpd);
+
 		return true;
 	}
 

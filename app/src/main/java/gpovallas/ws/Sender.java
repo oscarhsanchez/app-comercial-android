@@ -3,6 +3,7 @@ package gpovallas.ws;
 import gpovallas.app.ApplicationStatus;
 import gpovallas.app.GPOVallasApplication;
 import gpovallas.app.constants.GPOVallasConstants;
+import gpovallas.ws.sender.request.SendAccionesRequest;
 import gpovallas.ws.sender.request.SendContactosRequest;
 
 import android.content.Context;
@@ -34,6 +35,8 @@ public class Sender {
 			if (GPOVallasApplication.senderEnEjecucion) {
 				Boolean result = sendContactos();
 				if (!result) boolTodoEnviado = false;
+				result = sendAcciones();
+				if (!result) boolTodoEnviado = false;
 			}
 			Log.i(TAG,"Estamos en el metodo sen del Sender");
 			GPOVallasApplication.senderEnEjecucion = false;
@@ -52,7 +55,7 @@ public class Sender {
 
 		WsResponse response = (new SendContactosRequest()).execute(WsResponse.class);
 		if (response != null && !response.failed()) {
-			Log.i("guarda contactos","OK");
+			Log.i("guarda contactos", "OK");
 			Sender.setDatosEnviadosOk(db, GPOVallasConstants.DB_TABLE_CONTACTO);
 			GPOVallasApplication.guardarLogPeticion(db, this.getClass().getName(), "sendContactos", "OK");
 			return true;
@@ -63,7 +66,22 @@ public class Sender {
 			GPOVallasApplication.guardarLogPeticion(db, this.getClass().getName(), "sendContactos", "FAILED");
 			return false;
 		}
+	}
 
+	public Boolean sendAcciones(){
+		Sender.setDatosEnviando(db,GPOVallasConstants.DB_TABLE_ACCION);
+		WsResponse response = (new SendAccionesRequest()).execute(WsResponse.class);
+		if(response != null && !response.failed()){
+			Log.i("guarda acciones","OK");
+			Sender.setDatosEnviadosOk(db, GPOVallasConstants.DB_TABLE_ACCION);
+			GPOVallasApplication.guardarLogPeticion(db,this.getClass().getName(),"sendAcciones","OK");
+			return  true;
+		} else {
+			Log.i("guarda acciones","FALSE");
+			Sender.setDatosEnviadosKo(db, GPOVallasConstants.DB_TABLE_ACCION);
+			GPOVallasApplication.guardarLogPeticion(db,this.getClass().getName(),"sendAcciones","FAILED");
+			return false;
+		}
 	}
 	
 	public static void setDatosEnviadosOk(SQLiteDatabase db, String tabla){
