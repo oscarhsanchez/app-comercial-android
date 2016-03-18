@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ import gpovallas.ws.WsRequest;
  * Created by synergy on 16/03/16.
  */
 public class GetSubtiposMediosRequest extends WsRequest {
-    private final String metodo = "medios/suptipos";
+    private final String metodo = "medios/subtipos";
 
     public <T> T execute(String lastUpdate, Pagination pagination,Integer state, Class<T> responseClass){
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
@@ -24,9 +25,9 @@ public class GetSubtiposMediosRequest extends WsRequest {
         lastUpdate = ">=["+lastUpdate+"]";
 
         List<NameValuePair> param = new ArrayList<NameValuePair>(2);
-        //param.add(new BasicNameValuePair("updated_at",lastUpdate));
-        //param.add(new BasicNameValuePair("pagination",pagStr));
-        //param.add(new BasicNameValuePair("estado",String.valueOf(state)));
+        param.add(new BasicNameValuePair("updated_at",lastUpdate));
+        param.add(new BasicNameValuePair("pagination",pagStr));
+        param.add(new BasicNameValuePair("estado",String.valueOf(state)));
 
         return super.executeGetDefaultHeaders(metodo,param,responseClass);
     }

@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import gpovallas.app.ApplicationStatus;
 import gpovallas.app.GPOVallasApplication;
 import gpovallas.obj.Pagination;
-import gpovallas.obj.TiposMedios;
+import gpovallas.obj.TipoMedio;
 import gpovallas.ws.WsResponse;
 
 /**
@@ -13,7 +13,7 @@ import gpovallas.ws.WsResponse;
  */
 public class GetTiposMediosResponse extends WsResponse {
     public Pagination pagination;
-    public TiposMedios[] tipos_medios;
+    public TipoMedio[] tipos_medios;
 
     public boolean _save() {
         SQLiteDatabase db = ApplicationStatus.getInstance().getDb(GPOVallasApplication.context);

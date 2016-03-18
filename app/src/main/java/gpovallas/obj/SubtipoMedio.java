@@ -15,6 +15,6 @@ public class SubtipoMedio extends eEntity {
     public String unidad_negocio;
     public String fk_pais;
     public String descripcion;
-    public String estado;
+    public Integer estado;
     public String token;
 }

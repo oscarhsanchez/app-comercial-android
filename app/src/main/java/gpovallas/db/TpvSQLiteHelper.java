@@ -108,10 +108,11 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 			"fk_pais TEXT NOT NULL, " +
 			"fk_cliente TEXT NOT NULL, " +
 			"cod_user TEXT, " +
+			"paises_plazas TEXT, " +
 			"objetivo TEXT, " +
 			"fecha_inicio TEXT, " +
 			"fecha_fin TEXT, " +
-			"productos TEXT, " +
+			"tipologia_medios TEXT, " +
 			"fecha_solicitud TEXT, " +
 			"fecha_entrega TEXT, " +
 			"estado INTEGER, " +
@@ -164,7 +165,7 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 
 	private String sqlPaises = "CREATE TABLE IF NOT EXISTS PAISES (pk_pais TEXT NOT NULL, "+
 			"nombre TEXT, "+
-			"estado TEXT, "+
+			"estado INTEGER, "+
 			"PendienteEnvio INTEGER DEFAULT 0," +
 			"token TEXT NOT NULL PRIMARY KEY);";
 
@@ -173,7 +174,7 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 			"fk_empresa TEXT, "+
 			"unidad_negocio TEXT, "+
 			"descripcion TEXT,"+
-			"estado TEXT,"+
+			"estado INTEGER,"+
 			"token TEXT NOT NULL PRIMARY KEY, "+
 			"PendienteEnvio INTEGER DEFAULT 0," +
 			"nombre TEXT);";
@@ -184,7 +185,7 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 			"unidad_negocio TEXT, "+
 			"fk_pais TEXT NOT NULL, "+
 			"descripcion TEXT, "+
-			"estado TEXT, "+
+			"estado INTEGER, "+
 			"PendienteEnvio INTEGER DEFAULT 0," +
 			"token TEXT NOT NULL PRIMARY KEY);";
     	

@@ -10,6 +10,6 @@ public class Pais extends eEntity{
 
     public String pk_pais;
     public String nombre;
-    public String estado;
+    public Integer estado;
     public String token;
 }

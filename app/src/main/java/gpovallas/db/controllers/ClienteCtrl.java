@@ -14,11 +14,11 @@ import gpovallas.utils.Database;
 /**
  * Created by daniel on 16/03/16.
  */
-public class ClientesCtrl {
+public class ClienteCtrl {
 
     private SQLiteDatabase mDatabase;
 
-    public ClientesCtrl(SQLiteDatabase database) {
+    public ClienteCtrl(SQLiteDatabase database) {
         mDatabase = database;
     }
 

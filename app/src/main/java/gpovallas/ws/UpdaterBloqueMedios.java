@@ -27,7 +27,7 @@ public class UpdaterBloqueMedios extends UpdaterBloque {
         //Obtenemos fecha y hora del Servidor
         fechaUpd = getServerDateTime();
         updateTiposMedios();
-        //updateSubtiposMedios();
+        updateSubtiposMedios();
         return true;
     }
 
