@@ -7,9 +7,11 @@ import gpovallas.obj.Pagination;
 import gpovallas.ws.Updater.Bloque;
 import gpovallas.ws.request.GetMetaCategoryRequest;
 import gpovallas.ws.request.GetMetaPaisesRequest;
+import gpovallas.ws.request.GetMetaPlazasRequest;
 import gpovallas.ws.request.GetMetaVenueRequest;
 import gpovallas.ws.response.GetMetaCategoryResponse;
 import gpovallas.ws.response.GetMetaPaisesResponse;
+import gpovallas.ws.response.GetMetaPlazasResponse;
 import gpovallas.ws.response.GetMetaVenueResponse;
 
 public class UpdaterBloqueMetadata extends UpdaterBloque {
@@ -28,7 +30,7 @@ public class UpdaterBloqueMetadata extends UpdaterBloque {
 		updateCategories();
 		updateVenues();
 		updatePaises();
-
+		updatePlazas();
 		return true;
 		
 	}
@@ -169,5 +171,43 @@ public class UpdaterBloqueMetadata extends UpdaterBloque {
 
 		return true;
 	}
+
+	private boolean updatePlazas(){
+		//mapeos.put("GetMetaPlazas",GPOVallasConstants.DB_TABLE_PLAZAS);
+		if(!initUpdateOK("GetMetaPlazas")) return false;
+
+		Pagination pagination = new Pagination();
+		pagination.page=0;
+		pagination.pageSize = GPOVallasApplication.defaultPageSize;
+		GetMetaPlazasResponse plazas = (new GetMetaPlazasRequest()).execute(GPOVallasApplication.FechaUpd.toString(),pagination,estado,GetMetaPlazasResponse.class);
+		if (plazas == null || plazas.failed()){
+			updatesFallidos.add("Plaza");
+			return false;
+		}
+		if (!plazas._save()){
+			updatesFallidos.add("Plaza");
+			return false;
+		}
+
+		plazas.pagination.page = plazas.pagination.page +1;
+		while (plazas.pagination.page < plazas.pagination.totalPages){
+			plazas = (new GetMetaPlazasRequest()).execute(GPOVallasApplication.FechaUpd.toString(),plazas.pagination,estado,GetMetaPlazasResponse.class);
+			if(plazas == null || plazas.failed()){
+				updatesFallidos.add("Plaza");
+				return false;
+			}
+
+			if (!plazas._save()){
+				updatesFallidos.add("Plaza");
+				return false;
+			}
+			plazas.pagination.page = plazas.pagination.page + 1;
+		}
+
+		//Guardamos la fecha de la actualización
+		saveUpdate("GetMetaPlazas",fechaUpd);
+		return true;
+	}
+
 
 }

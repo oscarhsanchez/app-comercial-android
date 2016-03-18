@@ -169,6 +169,14 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 			"PendienteEnvio INTEGER DEFAULT 0," +
 			"token TEXT NOT NULL PRIMARY KEY);";
 
+	private String sqlPlazas = "CREATE TABLE IF NOT EXISTS PLAZAS(pk_plaza TEXT NOT NULL, "+
+			"fk_pais TEXT NOT NULL, "+
+			"fk_empresa TEXT NOt NULL, "+
+			"nombre TEXT, "+
+			"estado INTEGER, "+
+			"PendienteEnvio INTEGER DEFAULT 0," +
+			"token TEXT NOT NULL PRIMARY KEY);";
+
 	private String sqlTiposMedios = "CREATE TABLE IF NOT EXISTS TIPOS_MEDIOS (pk_tipo TEXT NOT NULL, "+
 			"fk_pais TEXT NOT NULL, "+
 			"fk_empresa TEXT, "+
@@ -187,6 +195,15 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 			"descripcion TEXT, "+
 			"estado INTEGER, "+
 			"PendienteEnvio INTEGER DEFAULT 0," +
+			"token TEXT NOT NULL PRIMARY KEY);";
+
+	public String sqlArchivos = "CREATE TABLE IF NOT EXISTS ARCHIVOS (pk_archivo TEXT NOT NULL, "+
+			"fk_pais TEXT NOT NULL, "+
+			"nombre TEXT, "+
+			"path TEXT, "+
+			"url TEXT, "+
+			"estado INTEGER, "+
+			"PendienteEnvio INTEGER DEFAULT 0, " +
 			"token TEXT NOT NULL PRIMARY KEY);";
     	
 	public TpvSQLiteHelper(Context contexto, String nombre,
@@ -228,8 +245,10 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 		v.add(GPOVallasConstants.DB_TABLE_META_CATEGORY);
 		v.add(GPOVallasConstants.DB_TABLE_META_VENUE);
 		v.add(GPOVallasConstants.DB_TABLE_PAISES);
+		v.add(GPOVallasConstants.DB_TABLE_PLAZAS);
 		v.add(GPOVallasConstants.DB_TABLE_TIPOS_MEDIOS);
 		v.add(GPOVallasConstants.DB_TABLE_SUBTIPOS_MEDIOS);
+		v.add(GPOVallasConstants.DB_TABLE_ARCHIVOS);
 		
 		for(int i=0; i<v.size(); i++){
 			db.execSQL("DROP TABLE IF EXISTS " + v.get(i));
@@ -285,11 +304,17 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL(sqlPaises);
 		Log.i("SQL Helper", sqlPaises);
 
+		db.execSQL(sqlPlazas);
+		Log.i("SQL Helper", sqlPlazas);
+
 		db.execSQL(sqlTiposMedios);
 		Log.i("SQL Helper", sqlTiposMedios);
 
 		db.execSQL(sqlSubtiposMedios);
         Log.i("SQL Helper", sqlSubtiposMedios);
+
+		db.execSQL(sqlArchivos);
+		Log.i("SQL Helper", sqlArchivos);
 		
 		//Insertamos la version como Parametro
 		DbParameters dbParameters = new DbParameters(db);

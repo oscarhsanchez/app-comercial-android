@@ -2,17 +2,14 @@ package gpovallas.app.briefs;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
-import android.app.Service;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -25,7 +22,7 @@ import gpovallas.app.ApplicationStatus;
 import gpovallas.app.GPOVallasActivity;
 import gpovallas.app.R;
 import gpovallas.app.constants.GPOVallasConstants;
-import gpovallas.db.controllers.ClientesCtrl;
+import gpovallas.db.controllers.ClienteCtrl;
 import gpovallas.obj.Cliente;
 
 public class BriefDetailActivity extends GPOVallasActivity implements AdapterView.OnItemSelectedListener{
@@ -145,7 +142,7 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
 
     public void loadAutoData(){
 
-        clientes = new ClientesCtrl(db).getAll();
+        clientes = new ClienteCtrl(db).getAll();
         List<String> options = new ArrayList<>();
         for (Cliente cliente : clientes){
             options.add(cliente.razon_social);
