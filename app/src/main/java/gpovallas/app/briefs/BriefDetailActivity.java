@@ -25,7 +25,7 @@ import gpovallas.app.ApplicationStatus;
 import gpovallas.app.GPOVallasActivity;
 import gpovallas.app.R;
 import gpovallas.app.constants.GPOVallasConstants;
-import gpovallas.db.controllers.ClientesCtrl;
+import gpovallas.db.controllers.ClienteCtrl;
 import gpovallas.obj.Cliente;
 
 public class BriefDetailActivity extends GPOVallasActivity implements AdapterView.OnItemSelectedListener{
@@ -145,7 +145,7 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
 
     public void loadAutoData(){
 
-        clientes = new ClientesCtrl(db).getAll();
+        clientes = new ClienteCtrl(db).getAll();
         List<String> options = new ArrayList<>();
         for (Cliente cliente : clientes){
             options.add(cliente.razon_social);
