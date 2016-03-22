@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/listViewRow"
+    android:padding="10dp">
+
+    <TextView android:id="@+id/txtPlaza"
+        style="@style/listview_textview"
+        android:layout_weight="0.15"
+        android:gravity="center" />
+
+    <TextView android:id="@+id/txtTipo"
+        style="@style/listview_textview"
+        android:layout_weight="0.15"
+        android:gravity="center" />
+
+    <TextView android:id="@+id/txtUbicacion"
+        style="@style/listview_textview"
+        android:layout_weight="0.30"
+        android:gravity="center" />
+
+    <TextView android:id="@+id/txtTVehicular"
+        style="@style/listview_textview"
+        android:layout_weight="0.15"
+        android:gravity="center" />
+
+    <TextView android:id="@+id/txTTranseuntes"
+        style="@style/listview_textview"
+        android:layout_weight="0.15"
+        android:gravity="center" />
+
+    <TextView android:id="@+id/txtNSE"
+        style="@style/listview_textview"
+        android:layout_weight="0.10"
+        android:gravity="center" />
+
+</LinearLayout>

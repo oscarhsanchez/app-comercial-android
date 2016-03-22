@@ -113,6 +113,19 @@
     <string name="tab_listado">Listado de Medios</string>
     <string name="tab_ubicaciones">Ubicaciones</string>
 
+    <!-- Listados-->
+
+    <string name="listados_Plaza">Plaza</string>
+    <string name="listados_Tipo">Tipo de Medio</string>
+    <string name="listados_Ubicacion">Ubicación</string>
+    <string name="listados_T_Vehicular">T. Vehicular</string>
+    <string name="listados_T_Transeuntes">T. Transeúntes</string>
+    <string name="listados_NSE">NSE</string>
+    <string name="tab_detail_listado_detalle">Datos Generales</string>
+    <string name="tab_detail_listado_ubicacion">Mapa de Ubicación</string>
+    <string name="tab_detail_listado_galeria">Galería</string>
+    <string name="tab_detail_listado_posiciones">Posciones</string>
+
 
     <!-- Facturas -->
     <string name="facturas_TextView_th_numero_Factura">No. de Factura</string>

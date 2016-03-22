@@ -5,5 +5,88 @@
     android:layout_height="match_parent"
     android:baselineAligned="false">
 
+    <LinearLayout
+        style="@style/basic_layout_padding">
+
+        <LinearLayout style="@style/container_filter">
+
+            <ImageView android:id="@+id/img_search_icon"
+                style="@style/wrap_style"
+                android:layout_width="0dp"
+                android:layout_weight="0.05"
+                android:adjustViewBounds="true"
+                android:src="@android:drawable/ic_menu_search"/>
+
+            <EditText android:id="@+id/et_search_filter"
+                style="@style/editText"
+                android:layout_width="0dp"
+                android:layout_weight="0.75"
+                android:hint="Filtrar por..."/>
+
+            <Button android:id="@+id/btn_search_filter"
+                style="@style/wrap_style"
+                android:layout_width="0dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="4dp"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                android:onClick="deleteSearchFilter"
+                android:text="Todos"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/listViewRow">
+
+            <TextView
+                style="@style/listview_textview_th"
+                android:layout_weight="0.15"
+                android:text="@string/listados_Plaza"/>
+
+            <TextView
+                style="@style/listview_textview_th"
+                android:layout_weight="0.15"
+                android:text="@string/listados_Tipo"/>
+
+            <TextView
+                style="@style/listview_textview_th"
+                android:layout_weight="0.30"
+                android:text="@string/listados_Ubicacion"/>
+
+            <TextView
+                style="@style/listview_textview_th"
+                android:layout_weight="0.15"
+                android:text="@string/listados_T_Vehicular"/>
+
+            <TextView
+                style="@style/listview_textview_th"
+                android:layout_weight="0.15"
+                android:text="@string/listados_T_Transeuntes"/>
+
+            <TextView
+                style="@style/listview_textview_th"
+                android:layout_weight="0.10"
+                android:text="@string/listados_NSE"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/basic_style">
+
+            <ListView android:id="@android:id/list"
+                style="@style/basic_style"
+                android:cacheColorHint="#ECECEC"
+                android:textFilterEnabled="true">
+            </ListView>
+
+            <TextView android:id="@android:id/empty"
+                style="@style/basic_style"
+                android:gravity="center"
+                android:text="No se han encontrado ubicaciones que coincidan con los criterios indicados"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
