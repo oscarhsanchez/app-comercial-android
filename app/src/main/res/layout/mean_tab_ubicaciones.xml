@@ -5,12 +5,12 @@
     android:layout_height="match_parent"
     android:baselineAligned="false">
     <RelativeLayout
-        style="@style/basic_layout_padding">
+        style="@style/basic_layout_padding"
+        android:layout_height="match_parent">
         <LinearLayout style="@style/container_filter"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="8dp"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="8dp"
             android:id="@+id/linearLayout">
 
             <ImageView android:id="@+id/img_search_icon"
@@ -98,5 +98,4 @@
             </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
-
 </LinearLayout>

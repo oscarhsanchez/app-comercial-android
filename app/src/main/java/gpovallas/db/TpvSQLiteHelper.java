@@ -188,7 +188,7 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 			"nombre TEXT);";
 
 	private String sqlSubtiposMedios = "CREATE TABLE IF NOT EXISTS SUBTIPOS_MEDIOS (pk_subtipo TEXT NOT NULL, "+
-			"fk_tipo TEXT NOT NULL, "+
+			"fk_tipo TEXT, "+  // debe de ser not null pero de momento se dejo sin el not null ya que daba problemas
 			"fk_empresa TEXT, "+
 			"unidad_negocio TEXT, "+
 			"fk_pais TEXT NOT NULL, "+
