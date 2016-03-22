@@ -2,20 +2,21 @@ package gpovallas.app.briefs;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
-import android.app.Service;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,10 +26,16 @@ import gpovallas.app.ApplicationStatus;
 import gpovallas.app.GPOVallasActivity;
 import gpovallas.app.R;
 import gpovallas.app.constants.GPOVallasConstants;
-import gpovallas.db.controllers.ClientesCtrl;
+import gpovallas.db.controllers.BriefCtrl;
+import gpovallas.db.controllers.ClienteCtrl;
+import gpovallas.db.controllers.PaisCtrl;
+import gpovallas.db.controllers.TipoCtrl;
+import gpovallas.obj.Brief;
 import gpovallas.obj.Cliente;
+import gpovallas.obj.Pais;
+import gpovallas.obj.TipoMedio;
 
-public class BriefDetailActivity extends GPOVallasActivity implements AdapterView.OnItemSelectedListener{
+public class BriefDetailActivity extends GPOVallasActivity implements AdapterView.OnItemSelectedListener {
 
     private static final String TAG = BriefDetailActivity.class.getSimpleName();
     private SQLiteDatabase db;
@@ -39,17 +46,22 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
     private DatePickerDialog dateEntregaPickerDialog;
     private final Calendar c = Calendar.getInstance();
     private List<Cliente> clientes;
+    private List<Pais> paises;
+    private List<TipoMedio> tipos;
+    private Brief mBrief;
 
     private EditText mTxtFechaInicio;
     private EditText mTxtFechaSolicitud;
     private EditText mTxtFechaEntrega;
     private Spinner mSpinnerCliente;
+    private TableLayout mLayoutPaises;
+    private TableLayout mLayoutTipos;
 
     private DatePickerDialog.OnDateSetListener mOnDateSetListenerFechaInicio = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             mTxtFechaInicio.setText(String.format("%02d", dayOfMonth) + "/"
-                    + String.format("%02d", (monthOfYear+1)) + "/"
+                    + String.format("%02d", (monthOfYear + 1)) + "/"
                     + year);
         }
     };
@@ -58,7 +70,7 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             mTxtFechaSolicitud.setText(String.format("%02d", dayOfMonth) + "/"
-                    + String.format("%02d", (monthOfYear+1)) + "/"
+                    + String.format("%02d", (monthOfYear + 1)) + "/"
                     + year);
         }
     };
@@ -67,7 +79,7 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             mTxtFechaEntrega.setText(String.format("%02d", dayOfMonth) + "/"
-                    + String.format("%02d", (monthOfYear+1)) + "/"
+                    + String.format("%02d", (monthOfYear + 1)) + "/"
                     + year);
         }
     };
@@ -85,7 +97,11 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
         mTxtFechaSolicitud = (EditText) findViewById(R.id.txtFechaSolicitud);
         mTxtFechaEntrega = (EditText) findViewById(R.id.txtFechaEntrega);
         mSpinnerCliente = (Spinner) findViewById(R.id.spinnerCliente);
-        loadAutoData();
+        mLayoutPaises = (TableLayout) findViewById(R.id.layoutPaises);
+        mLayoutTipos = (TableLayout) findViewById(R.id.layoutTipos);
+        loadClientes();
+        loadPaises();
+        loadTipos();
         setupListeners();
 
         dateInicioPickerDialog = new DatePickerDialog(BriefDetailActivity.this,
@@ -104,7 +120,7 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
             Log.i(TAG, "nuevo brief");
         } else {
             Log.i(TAG, token_brief);
-            //loadData();
+            loadBriefData();
         }
 
     }
@@ -143,11 +159,11 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
 
     }
 
-    public void loadAutoData(){
+    private void loadClientes() {
 
-        clientes = new ClientesCtrl(db).getAll();
+        clientes = new ClienteCtrl(db).getAll();
         List<String> options = new ArrayList<>();
-        for (Cliente cliente : clientes){
+        for (Cliente cliente : clientes) {
             options.add(cliente.razon_social);
         }
 
@@ -155,6 +171,90 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinnerCliente.setAdapter(dataAdapter);
         mSpinnerCliente.setOnItemSelectedListener(this);
+
+    }
+
+
+    private View.OnClickListener mOnClickListenerCheckPais = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Log.i(TAG, paises.get(v.getId()).nombre);
+        }
+    };
+
+    private void loadPaises() {
+
+        paises = new PaisCtrl(db).getAll();
+        int i = 0;
+        int indexColumn = 1;
+        TableRow insideContainer = new TableRow(BriefDetailActivity.this);
+        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        for (Pais pais : paises) {
+            if (i % 3 == 0) {
+                insideContainer = new TableRow(BriefDetailActivity.this);
+                insideContainer.setLayoutParams(layoutParams);
+                indexColumn = 1;
+            }
+            Log.i(TAG, "" + pais.nombre);
+            CheckBox checkBox = new CheckBox(BriefDetailActivity.this);
+            TableRow.LayoutParams params = new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT, indexColumn++);
+            params.setMargins(0, 0, 0, 5);
+            checkBox.setLayoutParams(params);
+            checkBox.setId(i++);
+            checkBox.setText(pais.nombre);
+            checkBox.setChecked(false);
+            checkBox.setOnClickListener(mOnClickListenerCheckPais);
+            checkBox.setTextColor(getResources().getColor(R.color.grey_list_th));
+            insideContainer.addView(checkBox);
+            if ((i % 3 == 0)) {
+                mLayoutPaises.addView(insideContainer);
+            }
+
+        }
+
+    }
+
+    private View.OnClickListener mOnClickListenerCheckTipos = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Log.i(TAG, tipos.get(v.getId()).pk_tipo);
+            //TODO: Obtener subtipos, separar etiqueta de tipos de subtipos para que quede mas claro
+        }
+    };
+
+    private void loadTipos() {
+
+        tipos = new TipoCtrl(db).getAll();
+        int i = 0;
+        int indexColumn = 1;
+        TableRow insideContainer = new TableRow(BriefDetailActivity.this);
+        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        for (TipoMedio tipoMedio : tipos) {
+            if (i % 2 == 0) {
+                insideContainer = new TableRow(BriefDetailActivity.this);
+                insideContainer.setLayoutParams(layoutParams);
+                indexColumn = 1;
+            }
+            Log.i(TAG, "" + tipoMedio.pk_tipo);
+            CheckBox checkBox = new CheckBox(BriefDetailActivity.this);
+            TableRow.LayoutParams params = new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT, indexColumn++);
+            params.setMargins(0, 0, 0, 5);
+            checkBox.setLayoutParams(params);
+            checkBox.setId(i++);
+            checkBox.setText(tipoMedio.pk_tipo);
+            checkBox.setChecked(false);
+            checkBox.setOnClickListener(mOnClickListenerCheckTipos);
+            checkBox.setTextColor(getResources().getColor(R.color.grey_list_th));
+            insideContainer.addView(checkBox);
+            if ((i % 2 == 0)) {
+                mLayoutTipos.addView(insideContainer);
+            }
+
+        }
 
     }
 
@@ -168,5 +268,19 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
 
     }
 
+    //TODO: Checar que los datos esten llenos y guardar el registro
+    public void save(View v) {
+
+    }
+
+    //TODO: Hacer metodo que cargue la info cuando tengamos un token
+    private void loadBriefData() {
+        mBrief = new BriefCtrl(db).getBriefByToken(token_brief);
+        if (mBrief != null) {
+
+        }
+    }
+
+    //TODO: Idear alguna forma de cargar los subtipos y plazas de existir un token
 
 }
