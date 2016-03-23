@@ -437,12 +437,12 @@
         android:weightSum="0.9">
 
         <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
-            android:layout_weight="0.3"
+            android:layout_weight="0.4"
             android:orientation="vertical">
             <TableLayout
                 style="@style/wrap_style"
                 android:layout_gravity="center_horizontal"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 >
 
@@ -619,12 +619,12 @@
         </LinearLayout>
 
         <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
-            android:layout_weight="0.3"
+            android:layout_weight="0.4"
             android:orientation="vertical">
             <TableLayout
                 style="@style/wrap_style"
                 android:layout_gravity="center_horizontal"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 >
 
