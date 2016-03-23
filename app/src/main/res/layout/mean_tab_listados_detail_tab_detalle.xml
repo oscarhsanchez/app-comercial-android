@@ -459,7 +459,7 @@
                         android:textColor="@color/orangeGpo"
                         android:layout_column="1"
                         android:layout_gravity="right"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
 
                     <TextView android:layout_width="wrap_content"
@@ -470,7 +470,7 @@
                         android:textColor="@color/text_datos_generales_center"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
                 </TableRow>
 
@@ -487,7 +487,7 @@
                         android:textColor="@color/orangeGpo"
                         android:layout_column="1"
                         android:layout_gravity="right"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
 
                     <TextView android:layout_width="wrap_content"
@@ -498,7 +498,7 @@
                         android:textColor="@color/text_datos_generales_center"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
                 </TableRow>
 
@@ -515,7 +515,7 @@
                         android:textColor="@color/orangeGpo"
                         android:layout_column="1"
                         android:layout_gravity="right"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
 
                     <TextView android:layout_width="wrap_content"
@@ -526,7 +526,7 @@
                         android:textColor="@color/text_datos_generales_center"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
                 </TableRow>
 
@@ -543,7 +543,7 @@
                         android:textColor="@color/orangeGpo"
                         android:layout_column="1"
                         android:layout_gravity="right"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
 
                     <TextView android:layout_width="wrap_content"
@@ -554,7 +554,7 @@
                         android:textColor="@color/text_datos_generales_center"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
                 </TableRow>
 
@@ -571,7 +571,7 @@
                         android:textColor="@color/orangeGpo"
                         android:layout_column="1"
                         android:layout_gravity="right"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
 
                     <TextView android:layout_width="wrap_content"
@@ -582,7 +582,7 @@
                         android:textColor="@color/text_datos_generales_center"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
                 </TableRow>
 
@@ -599,7 +599,7 @@
                         android:textColor="@color/orangeGpo"
                         android:layout_column="1"
                         android:layout_gravity="right"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
 
                     <TextView android:layout_width="wrap_content"
@@ -610,7 +610,7 @@
                         android:textColor="@color/text_datos_generales_center"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
                 </TableRow>
 
@@ -641,7 +641,7 @@
                         android:textColor="@color/orangeGpo"
                         android:layout_column="1"
                         android:layout_gravity="right"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
 
                     <TextView android:layout_width="wrap_content"
@@ -652,7 +652,7 @@
                         android:textColor="@color/text_datos_generales_center"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
                 </TableRow>
 
@@ -669,7 +669,7 @@
                         android:textColor="@color/orangeGpo"
                         android:layout_column="1"
                         android:layout_gravity="right"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
 
                     <TextView android:layout_width="wrap_content"
@@ -680,7 +680,7 @@
                         android:textColor="@color/text_datos_generales_center"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
                 </TableRow>
 
@@ -697,7 +697,7 @@
                         android:textColor="@color/orangeGpo"
                         android:layout_column="1"
                         android:layout_gravity="right"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
 
                     <TextView android:layout_width="wrap_content"
@@ -708,7 +708,7 @@
                         android:textColor="@color/text_datos_generales_center"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
                 </TableRow>
 
@@ -725,7 +725,7 @@
                         android:textColor="@color/orangeGpo"
                         android:layout_column="1"
                         android:layout_gravity="right"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
 
                     <TextView android:layout_width="wrap_content"
@@ -736,7 +736,7 @@
                         android:textColor="@color/text_datos_generales_center"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
                 </TableRow>
 
@@ -753,7 +753,7 @@
                         android:textColor="@color/orangeGpo"
                         android:layout_column="1"
                         android:layout_gravity="right"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
 
                     <TextView android:layout_width="wrap_content"
@@ -764,7 +764,7 @@
                         android:textColor="@color/text_datos_generales_center"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
                 </TableRow>
 
@@ -781,7 +781,7 @@
                         android:textColor="@color/orangeGpo"
                         android:layout_column="1"
                         android:layout_gravity="right"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
 
                     <TextView android:layout_width="wrap_content"
@@ -792,7 +792,7 @@
                         android:textColor="@color/text_datos_generales_center"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="20dp"
+                        android:textSize="17dp"
                         android:background="@null"/>
                 </TableRow>
 
