@@ -1,16 +1,806 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout style="@style/main_linear_layout_bg_gris"
+<LinearLayout style="@style/basic_style"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:baselineAligned="false">
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:weightSum="1">
+<!--    <LinearLayout
+        style="@style/basic_style"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+
+            <TextView
+                android:id="@+id/medio_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_clientes_nomComercial"
+                style="@style/basic_style"
+                android:textColor="@color/orangeGpo"
+                android:layout_column="1"
+                android:layout_gravity="right"
+                android:textSize="30dp"
+                android:background="@null" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical"
+            android:layout_marginLeft="100dp">
+            <TableLayout
+                style="@style/wrap_style"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingTop="25dp">
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_codigo"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_codigo"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_nombreComercial"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_nomComercial"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_referencia"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_referencia"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_observaciones"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_observaciones"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_plaza"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_plaza"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_tipoMedio"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_tipoMedio"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+            </TableLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical"
+            android:layout_marginLeft="100dp">
+            <TableLayout
+                style="@style/wrap_style"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingTop="25dp">
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_codigo"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_codigo"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_nombreComercial"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_nomComercial"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_referencia"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_referencia"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_observaciones"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_observaciones"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_plaza"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_plaza"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_tipoMedio"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_tipoMedio"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+            </TableLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>-->
+
     <LinearLayout
-        style="@style/basic_layout_padding">
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
 
         <TextView
-            style="@style/listview_textview"
-            android:text="detalle"
-            android:layout_width="fill_parent" />
-    </LinearLayout>
+            android:id="@+id/medio_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TITLE"
+            style="@style/basic_style"
+            android:textColor="@color/orangeGpo"
+            android:layout_column="1"
+            android:layout_gravity="right"
+            android:textSize="30dp"
+            android:background="@null" />
 
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.33"
+        android:baselineAligned="false"
+
+        android:orientation="horizontal"
+         android:gravity="center"
+        android:weightSum="0.9">
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:orientation="vertical">
+            <TableLayout
+                style="@style/wrap_style"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                >
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_codigo"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_codigo"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_nombreComercial"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_nomComercial"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_referencia"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_referencia"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_observaciones"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_observaciones"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_plaza"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_plaza"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_tipoMedio"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_tipoMedio"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+            </TableLayout>
+
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:orientation="vertical">
+            <TableLayout
+                style="@style/wrap_style"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                >
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_ubicacion"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_ubicacion"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_traficoVehicular"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_traficoVehicular"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_traficoTranseuntes"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_traficoTranseuntes"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_NSE"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_NSE"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_categoria"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_categoria"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_medios_datosG_fechaInstalacion"
+                        style="@style/basic_style"
+                        android:textColor="@color/orangeGpo"
+                        android:layout_column="1"
+                        android:layout_gravity="right"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/med_dgrales_fechaInstalacion"
+                        style="@style/basic_style"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:background="@null"/>
+                </TableRow>
+
+            </TableLayout>
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
 </LinearLayout>

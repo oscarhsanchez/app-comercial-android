@@ -112,6 +112,18 @@
 
     <string name="tab_listado">Listado de Medios</string>
     <string name="tab_ubicaciones">Ubicaciones</string>
+    <string name="lbl_medios_datosG_codigo">Código:</string>
+    <string name="lbl_medios_datosG_nombreComercial">Nombre Comercial:</string>
+    <string name="lbl_medios_datosG_referencia">Referencia:</string>
+    <string name="lbl_medios_datosG_observaciones">Observaciones:</string>
+    <string name="lbl_medios_datosG_plaza">Plaza:</string>
+    <string name="lbl_medios_datosG_tipoMedio">Tipo de Medio:</string>
+    <string name="lbl_medios_datosG_ubicacion">Ubicación:</string>
+    <string name="lbl_medios_datosG_traficoVehicular">Tráfico Vehicular:</string>
+    <string name="lbl_medios_datosG_traficoTranseuntes">Tráfico Transeúntes:</string>
+    <string name="lbl_medios_datosG_NSE">N.S.E:</string>
+    <string name="lbl_medios_datosG_categoria">Categoría:</string>
+    <string name="lbl_medios_datosG_fechaInstalacion">Fecha de Instalación</string>
 
     <!-- Listados-->
 
