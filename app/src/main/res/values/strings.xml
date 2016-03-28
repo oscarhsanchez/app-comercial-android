@@ -14,6 +14,7 @@
     <string name="iniciando_sesion">Iniciando sesión, por favor, espere...</string>
     <string name="cerrar">Cerrar</string>
     <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="loading">Operación en proceso. Por favor espere ...</string>
 
     <string name="frecuencia_prompt">Escoja la frecuencia</string>
     <string name="zona_prompt">Zona</string>
@@ -157,8 +158,10 @@
     <string name="briefs_fecha_inicio">Fecha de Inicio</string>
     <string name="briefs_temporalidad">Temporalidad</string>
     <string name="briefs_objetivos">Objetivos</string>
-    <string name="briefs_paises_plazas">Países y Plazas</string>
-    <string name="briefs_tipos_subtipos">Tipos y Subtipos</string>
+    <string name="briefs_paises">Países</string>
+    <string name="briefs_plazas">Plazas</string>
+    <string name="briefs_tipos">Tipos</string>
+    <string name="briefs_subtipos">Subtipos</string>
     <string name="briefs_fecha_solicitud">Fecha de Solicitud</string>
     <string name="briefs_fecha_entrega">Fecha de Entrega</string>
 

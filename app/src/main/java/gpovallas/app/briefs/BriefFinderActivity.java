@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -30,6 +31,7 @@ public class BriefFinderActivity extends GPOVallasListActivity {
     private SQLiteDatabase db;
     private String filter_nombreBri;
     private BriefFinderAdapter mAdapter;
+    private Button mButtonNewBrief;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,15 @@ public class BriefFinderActivity extends GPOVallasListActivity {
             public void afterTextChanged(Editable s) {
                 filter_nombreBri = s.toString();
                 populate();
+            }
+        });
+
+        mButtonNewBrief = (Button) findViewById(R.id.btn_add_brief);
+        mButtonNewBrief.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BriefFinderActivity.this, BriefDetailActivity.class);
+                startActivity(intent);
             }
         });
 

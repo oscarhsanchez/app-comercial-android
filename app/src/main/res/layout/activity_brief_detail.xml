@@ -18,10 +18,12 @@
 
         <TableLayout
             style="@style/wrap_style"
+            android:layout_width="500dp"
             android:layout_gravity="center_horizontal">
 
             <TableRow
                 style="@style/wrap_style"
+                android:layout_width="match_parent"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp">
 
@@ -31,7 +33,8 @@
                     android:layout_marginRight="15dp"
                     android:text="@string/briefs_cliente"
                     android:textAppearance="@style/defaultTextAppearance"
-                    android:textColor="@color/orangeGpo"/>
+                    android:textColor="@color/orangeGpo"
+                    android:layout_width="wrap_content"/>
 
                 <Spinner
                     android:id="@+id/spinnerCliente"
@@ -43,6 +46,7 @@
 
             <TableRow
                 style="@style/wrap_style"
+                android:layout_width="match_parent"
                 android:layout_marginBottom="15dp">
 
                 <TextView
@@ -66,6 +70,7 @@
 
             <TableRow
                 style="@style/wrap_style"
+                android:layout_width="match_parent"
                 android:layout_marginBottom="15dp">
 
                 <TextView
@@ -89,6 +94,7 @@
 
             <TableRow
                 style="@style/wrap_style"
+                android:layout_width="match_parent"
                 android:layout_marginBottom="15dp">
 
                 <TextView
@@ -126,17 +132,18 @@
 
             <TableRow
                 style="@style/wrap_style"
+                android:layout_width="match_parent"
                 android:layout_marginBottom="15dp">
 
                 <EditText
                     android:id="@+id/txtObjetivos"
                     style="@style/editTextMultiLine"
-                    android:layout_width="match_parent"
+                    android:layout_width="200dp"
                     android:layout_height="100dp"
                     android:layout_column="1"
-                    android:lines="4"
                     android:autoText="false"
-                    android:inputType="textMultiLine"/>
+                    android:inputType="textMultiLine|text"
+                    android:lines="4"/>
 
             </TableRow>
 
@@ -148,7 +155,7 @@
                     android:layout_height="wrap_content"
                     android:layout_column="1"
                     android:layout_marginRight="15dp"
-                    android:text="@string/briefs_paises_plazas"
+                    android:text="@string/briefs_paises"
                     android:textAppearance="@style/defaultTextAppearance"
                     android:textColor="@color/orangeGpo"/>
 
@@ -156,13 +163,61 @@
 
             <TableRow
                 style="@style/wrap_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp">
+
+                <TableLayout
+                    android:id="@+id/layoutPaises"
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_column="1"
+                    android:layout_span="2">
+
+                </TableLayout>
+
+            </TableRow>
+
+            <TableRow
+                style="@style/wrap_style"
                 android:layout_marginBottom="15dp">
 
                 <TextView
                     android:layout_height="wrap_content"
                     android:layout_column="1"
                     android:layout_marginRight="15dp"
-                    android:text="@string/briefs_tipos_subtipos"
+                    android:text="@string/briefs_plazas"
+                    android:textAppearance="@style/defaultTextAppearance"
+                    android:textColor="@color/orangeGpo"/>
+
+            </TableRow>
+
+            <TableRow
+                style="@style/wrap_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp">
+
+                <TableLayout
+                    android:id="@+id/layoutPlazas"
+                    style="@style/wrap_style"
+                    android:layout_width="match_parent"
+                    android:layout_column="1"
+                    android:layout_span="2">
+
+                </TableLayout>
+
+            </TableRow>
+
+            <TableRow
+                style="@style/wrap_style"
+                android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/briefs_tipos"
                     android:textAppearance="@style/defaultTextAppearance"
                     android:textColor="@color/orangeGpo"/>
 
@@ -173,70 +228,109 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp">
 
-                <LinearLayout
+                <TableLayout
+                    android:id="@+id/layoutTipos"
                     style="@style/wrap_style"
                     android:layout_column="1"
-                    android:layout_span="2"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
+                    android:layout_span="2">
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
-                        android:gravity="center"
-                        android:text="@string/briefs_fecha_solicitud"
-                        android:textAppearance="@style/defaultTextAppearance"
-                        android:textColor="@color/orangeGpo"/>
-
-                    <EditText
-                        android:id="@+id/txtFechaSolicitud"
-                        style="@style/editTextDate"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
-                        android:autoText="false"
-                        android:inputType="date"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
-                        android:gravity="center"
-                        android:text="@string/briefs_fecha_entrega"
-                        android:textAppearance="@style/defaultTextAppearance"
-                        android:textColor="@color/orangeGpo"/>
-
-                    <EditText
-                        android:id="@+id/txtFechaEntrega"
-                        style="@style/editTextDate"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
-                        android:autoText="false"
-                        android:inputType="date"/>
-
-                </LinearLayout>
+                </TableLayout>
 
             </TableRow>
 
-            <TableRow style="@style/wrap_style">
+            <TableRow
+                style="@style/wrap_style"
+                android:layout_marginBottom="15dp">
 
-                <LinearLayout
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/briefs_subtipos"
+                    android:textAppearance="@style/defaultTextAppearance"
+                    android:textColor="@color/orangeGpo"/>
+
+            </TableRow>
+
+            <TableRow
+                style="@style/wrap_style"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp">
+
+                <TableLayout
+                    android:id="@+id/layoutSubtipos"
                     style="@style/wrap_style"
-                    android:layout_column="2">
+                    android:layout_column="1"
+                    android:layout_span="2">
 
-                    <Button
-                        android:id="@+id/btn_actualizar_brief"
-                        style="@style/boton_generico"
-                        android:layout_gravity="center_vertical|center_horizontal"
-                        android:onClick="save"
-                        android:text="Guardar"/>
+                </TableLayout>
 
-                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                style="@style/wrap_style"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/briefs_fecha_solicitud"
+                    android:textAppearance="@style/defaultTextAppearance"
+                    android:textColor="@color/orangeGpo"
+                    />
+
+                <EditText
+                    android:id="@+id/txtFechaSolicitud"
+                    style="@style/editTextDate"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:autoText="false"
+                    android:inputType="date"/>
+            </TableRow>
+
+            <TableRow
+                style="@style/wrap_style"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/briefs_fecha_entrega"
+                    android:textAppearance="@style/defaultTextAppearance"
+                    android:textColor="@color/orangeGpo"
+                    />
+
+                <EditText
+                    android:id="@+id/txtFechaEntrega"
+                    style="@style/editTextDate"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:autoText="false"
+                    android:inputType="date"/>
             </TableRow>
 
         </TableLayout>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginBottom="15dp">
+
+            <Button
+                android:id="@+id/btn_actualizar_brief"
+                style="@style/boton_generico"
+                android:onClick="save"
+                android:text="Guardar"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
