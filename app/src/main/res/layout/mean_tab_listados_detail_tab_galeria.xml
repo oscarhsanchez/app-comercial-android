@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout style="@style/main_linear_layout_bg_gris"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:baselineAligned="false">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                style="@style/main_linear_layout_bg_gris">
 
-    <LinearLayout
-        style="@style/basic_layout_padding">
 
-        <TextView
-            style="@style/listview_textview"
-            android:text="Galeria"
-            android:layout_width="fill_parent" />
-    </LinearLayout>
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:numColumns="3"
+        android:scrollbars="none"
+        android:columnWidth="140dp"
+        android:stretchMode="columnWidth"
+        android:horizontalSpacing="5dp"
+        android:verticalSpacing="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:clipToPadding="false"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"/>
 
-</LinearLayout>
+    <TextView
+        android:id="@android:id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No hay imagenes para esta ubicación"
+        android:visibility="gone"/>
+
+</RelativeLayout>
