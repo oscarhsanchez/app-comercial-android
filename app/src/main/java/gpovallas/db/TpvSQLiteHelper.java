@@ -177,6 +177,22 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 			"PendienteEnvio INTEGER DEFAULT 0," +
 			"token TEXT NOT NULL PRIMARY KEY);";
 
+	private String sqlMedios = "CREATE TABLE IF NOT EXISTS MEDIOS(pk_medio TEXT NOT NULL, "+
+			"fk_pais TEXT NOT NULL, "+
+			"fk_ubicacion TEXT NOT NULL, "+
+			"fk_subtipo TEXT NOT NULL, "+
+			"posicion INTEGER, "+
+			"id_cara INTEGER DEFAULT 0, "+
+			"tipo_medio TEXT NOT NULL, "+
+			"estatus_iluminacion TEXT, "+
+			"visibilidad TEXT DEFAULT NULL, "+
+			"estatus_inventario TEXT, "+
+			"slots INTEGER, "+
+			"coste INTEGER, "+
+			"estado INTEGER, "+
+			"PendienteEnvio INTEGER DEFAULT 0, "+
+			"token TEXT NOT NULL PRIMARY KEY);";
+
 	private String sqlTiposMedios = "CREATE TABLE IF NOT EXISTS TIPOS_MEDIOS (pk_tipo TEXT NOT NULL, "+
 			"fk_pais TEXT NOT NULL, "+
 			"fk_empresa TEXT, "+
@@ -249,6 +265,7 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 		v.add(GPOVallasConstants.DB_TABLE_TIPOS_MEDIOS);
 		v.add(GPOVallasConstants.DB_TABLE_SUBTIPOS_MEDIOS);
 		v.add(GPOVallasConstants.DB_TABLE_ARCHIVOS);
+		v.add(GPOVallasConstants.DB_TABLE_MEDIOS);
 		
 		for(int i=0; i<v.size(); i++){
 			db.execSQL("DROP TABLE IF EXISTS " + v.get(i));
@@ -306,6 +323,9 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 
 		db.execSQL(sqlPlazas);
 		Log.i("SQL Helper", sqlPlazas);
+
+		db.execSQL(sqlMedios);
+		Log.i("SQL Helper", sqlMedios);
 
 		db.execSQL(sqlTiposMedios);
 		Log.i("SQL Helper", sqlTiposMedios);

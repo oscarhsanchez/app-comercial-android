@@ -6,11 +6,56 @@
     android:baselineAligned="false">
     <LinearLayout
         style="@style/basic_layout_padding">
+        <LinearLayout
+            style="@style/container_filter">
+            <TextView
+                android:id="@+id/medio_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TITLE"
+                style="@style/basic_style"
+                android:textColor="@color/orangeGpo"
+                android:layout_column="1"
+                android:layout_gravity="right"
+                android:textSize="30dp"
+                android:background="@null" />
+        </LinearLayout>
+        <LinearLayout
+            style="@style/listViewRow">
+            <TextView
+                style="@style/listview_textview_th"
+                android:layout_weight="0.25"
+                android:text="Subtipo de Medio"/>
+            <TextView
+                style="@style/listview_textview_th"
+                android:layout_weight="0.20"
+                android:text="Tipo de Medio"/>
+            <TextView
+                style="@style/listview_textview_th"
+                android:layout_weight="0.25"
+                android:text="Posición"/>
+            <TextView
+                style="@style/listview_textview_th"
+                android:layout_weight="0.15"
+                android:text="Visibilidad"/>
+            <TextView
+                style="@style/listview_textview_th"
+                android:layout_weight="0.15"
+                android:text="Iluminación"/>
+        </LinearLayout>
+        <LinearLayout
+            style="@style/basic_style">
+            <ListView android:id="@android:id/list"
+                style="@style/basic_style"
+                android:cacheColorHint="#ECECEC"
+                android:textFilterEnabled="false">
 
-        <TextView
-            style="@style/listview_textview"
-            android:text="Posiciones"
-            android:layout_width="fill_parent" />
+            </ListView>
+            <TextView android:id="@android:id/empty"
+                style="@style/basic_style"
+                android:gravity="center"
+                android:text="No hay Posiciones..."/>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

@@ -5,8 +5,10 @@ import android.content.Context;
 import gpovallas.app.GPOVallasApplication;
 import gpovallas.obj.Pagination;
 import gpovallas.ws.Updater.Bloque;
+import gpovallas.ws.request.GetMediosRequest;
 import gpovallas.ws.request.GetSubtiposMediosRequest;
 import gpovallas.ws.request.GetTiposMediosRequest;
+import gpovallas.ws.response.GetMediosResponse;
 import gpovallas.ws.response.GetSubtiposMediosResponse;
 import gpovallas.ws.response.GetTiposMediosResponse;
 
@@ -26,8 +28,44 @@ public class UpdaterBloqueMedios extends UpdaterBloque {
 
         //Obtenemos fecha y hora del Servidor
         fechaUpd = getServerDateTime();
+        updateMedios();
         updateTiposMedios();
         updateSubtiposMedios();
+        return true;
+    }
+
+    private boolean updateMedios(){
+        if (!initUpdateOK("GetMedios")) return false;
+        Pagination pagination = new Pagination();
+        pagination.page=0;
+        pagination.pageSize = GPOVallasApplication.defaultPageSize;
+        GetMediosResponse medios = (new GetMediosRequest()).execute(GPOVallasApplication.FechaUpd.toString(),pagination,estado,GetMediosResponse.class);
+        if (medios == null || medios.failed()){
+            updatesFallidos.add("Medio");
+            return false;
+        }
+        if (!medios._save()){
+            updatesFallidos.add("Medio");
+            return false;
+        }
+        medios.pagination.page = medios.pagination.page +1;
+
+        //Comprobamos la paginacion para ver si hay que volver a hacer peticiones
+        while (medios.pagination.page < medios.pagination.totalPages){
+            medios = (new GetMediosRequest()).execute(GPOVallasApplication.FechaUpd.toString(),medios.pagination,estado,GetMediosResponse.class);
+            if (medios==null || medios.failed()){
+                updatesFallidos.add("Medio");
+                return false;
+            }
+            if (!medios._save()){
+                updatesFallidos.add("Medio");
+                return false;
+            }
+            medios.pagination.page = medios.pagination.page +1;
+        }
+        //Guardamos la fecha e Actualización
+        saveUpdate("GetMedios", fechaUpd);
+
         return true;
     }
 
@@ -61,6 +99,7 @@ public class UpdaterBloqueMedios extends UpdaterBloque {
                 updatesFallidos.add("SubtipoMedio");
                 return false;
             }
+            subtiposMedios.pagination.page = subtiposMedios.pagination.page + 1;
         }
 
         //Guardamos la Fecha de Actualización
@@ -99,13 +138,13 @@ public class UpdaterBloqueMedios extends UpdaterBloque {
                 updatesFallidos.add("TiposMedios");
                 return false;
             }
+            tiposMedios.pagination.page = tiposMedios.pagination.page + 1;
 
-            //Guardamos la fecha e Actualización
-            saveUpdate("GetTiposMedios", fechaUpd);
-
-            return true;
         }
-        return false;
+        //Guardamos la fecha e Actualización
+        saveUpdate("GetTiposMedios", fechaUpd);
+
+        return true;
     }
 
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/listViewRow"
+    android:padding="10dp">
+    <TextView android:id="@+id/subtipoMedio"
+        style="@style/listview_textview"
+        android:layout_weight="0.25"
+        android:gravity="center"/>
+    <TextView android:id="@+id/tipoMedio"
+        style="@style/listview_textview"
+        android:layout_weight="0.20"
+        android:gravity="center"/>
+    <TextView android:id="@+id/posicion"
+        style="@style/listview_textview"
+        android:layout_weight="0.25"
+        android:gravity="center"/>
+    <TextView android:id="@+id/visibilidad"
+        style="@style/listview_textview"
+        android:layout_weight="0.15"
+        android:gravity="center"/>
+    <TextView android:id="@+id/iluminacion"
+        style="@style/listview_textview"
+        android:layout_weight="0.15"
+        android:gravity="center"/>
+</LinearLayout>

@@ -155,6 +155,7 @@ public abstract class UpdaterBloque {
 	        mapeos.put("GetAgencias", GPOVallasConstants.DB_TABLE_AGENCIA);
 	        mapeos.put("GetMetaPaises",GPOVallasConstants.DB_TABLE_PAISES);
 			mapeos.put("GetMetaPlazas",GPOVallasConstants.DB_TABLE_PLAZAS);
+			mapeos.put("GetMedios",GPOVallasConstants.DB_TABLE_MEDIOS);
 			mapeos.put("GetTiposMedios",GPOVallasConstants.DB_TABLE_TIPOS_MEDIOS);
 			mapeos.put("GetSubtiposMedios",GPOVallasConstants.DB_TABLE_SUBTIPOS_MEDIOS);
 			mapeos.put("GetArchivos",GPOVallasConstants.DB_TABLE_ARCHIVOS);
