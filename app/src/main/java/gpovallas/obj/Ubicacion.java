@@ -23,6 +23,10 @@ public class Ubicacion extends eEntity {
     public Integer anio;
     public String fecha_instalacion;
     public String observaciones;
+    public String trafico_vehicular;
+    public String trafico_transeuntes;
+    public String nivel_socioeconomico;
+    public String lugares_cercanos;
     public Double latitud;
     public Double longitud;
     public Integer reserva;

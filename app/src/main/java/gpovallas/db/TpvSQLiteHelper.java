@@ -135,6 +135,10 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 			"anio INTEGER, " +
 			"fecha_instalacion TEXT, " +
 			"observaciones TEXT, " +
+			"trafico_vehicular TEXT, " +
+			"trafico_transeuntes TEXT, " +
+			"nivel_socioeconomico TEXT, " +
+			"lugares_cercanos TEXT, " +
 			"latitud FLOAT, " +
 			"longitud FLOAT, " +
 			"reserva INTEGER, " +
