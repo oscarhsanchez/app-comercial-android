@@ -93,7 +93,7 @@
                         android:textSize="17dp"
                         android:background="@null"/>
 
-                    <TextView android:layout_width="wrap_content"
+                    <TextView android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:text="New Text"
                         android:id="@+id/med_dgrales_nomComercial"
@@ -149,7 +149,7 @@
                         android:textSize="17dp"
                         android:background="@null"/>
 
-                    <TextView android:layout_width="wrap_content"
+                    <TextView android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:text="New Text"
                         android:id="@+id/med_dgrales_observaciones"
@@ -248,7 +248,7 @@
                         android:textSize="17dp"
                         android:background="@null"/>
 
-                    <TextView android:layout_width="wrap_content"
+                    <TextView android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:text="New Text"
                         android:id="@+id/med_dgrales_ubicacion"
