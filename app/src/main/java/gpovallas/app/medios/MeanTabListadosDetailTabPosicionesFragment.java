@@ -67,7 +67,7 @@ public class MeanTabListadosDetailTabPosicionesFragment extends Fragment {
         String sql ="SELECT m.pk_medio, tm.descripcion, sm.descripcion, m.posicion, m.visibilidad, m.estatus_iluminacion FROM MEDIOS m ";
         String sqlJoin = "INNER JOIN TIPOS_MEDIOS tm on m.tipo_medio = tm.pk_tipo INNER JOIN SUBTIPOS_MEDIOS sm on m.fk_subtipo = sm.pk_subtipo ";
         String sqlWhere ="WHERE m.fk_ubicacion = '"+mPkUbicacion+"'";
-
+        sql += sqlJoin + sqlWhere;
 
         Log.i(TAG,sql);
         Cursor c = db.rawQuery(sql,null);
