@@ -63,6 +63,8 @@ public class MeanTabListadosDetailTabDetallesFragment  extends Fragment {
         //c.close();
         ubicacion = (Ubicacion) Database.getObjectBy(db,GPOVallasConstants.DB_TABLE_UBICACION, "pk_ubicacion = '"+ mPkUbicacion + "'",Ubicacion.class);
 
+        t = (TextView) mRoot.findViewById(R.id.medio_title);
+        t.setText(ubicacion.ubicacion);
         t = (TextView) mRoot.findViewById(R.id.med_dgrales_codigo);
         t.setText(ubicacion.pk_ubicacion);
         t = (TextView) mRoot.findViewById(R.id.med_dgrales_referencia);

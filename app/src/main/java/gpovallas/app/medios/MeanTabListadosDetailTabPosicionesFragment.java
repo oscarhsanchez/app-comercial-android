@@ -21,6 +21,8 @@ import gpovallas.app.ApplicationStatus;
 import gpovallas.app.R;
 import gpovallas.app.constants.GPOVallasConstants;
 import gpovallas.obj.Medio;
+import gpovallas.obj.Ubicacion;
+import gpovallas.utils.Database;
 
 public class MeanTabListadosDetailTabPosicionesFragment extends Fragment {
     private static final String TAG = MeanTabListadosDetailTabPosicionesFragment.class.getSimpleName();
@@ -30,6 +32,7 @@ public class MeanTabListadosDetailTabPosicionesFragment extends Fragment {
     private TextView t;
     private SQLiteDatabase db;
     private Medio medio;
+    private Ubicacion ubicacion;
     private ArrayList<HashMap<String,String>> arrListados;
     private MeanTabListadoPosicionesAdapter arrayAdapter;
     @Override
@@ -55,14 +58,16 @@ public class MeanTabListadosDetailTabPosicionesFragment extends Fragment {
 
     public void populate(){
         arrListados = new ArrayList<HashMap<String, String>>();
+        ubicacion = (Ubicacion) Database.getObjectBy(db,GPOVallasConstants.DB_TABLE_UBICACION," WHERE pk_ubicacion = '"+mPkUbicacion+"'",Ubicacion.class);
 
-        //String sql = "SELECT tm.pk_tipo, pk_subtipo, ubicacion, referencia, observaciones FROM UBICACION u INNER JOIN TIPOS_MEDIOS tm on u.tipo_medio = tm.pk_tipo "+
-        //        "INNER JOIN SUBTIPOS_MEDIOS sm on tm.pk_tipo = sm.fk_tipo ";
+        t = (TextView) mRoot.findViewById(R.id.medio_title);
+        t.setText(ubicacion.ubicacion);
 
-        String sql ="SELECT m.pk_medio, m.tipo_medio, m.fk_subtipo, m.posicion, m.visibilidad, m.estatus_iluminacion FROM MEDIOS m WHERE "+
-               " m.fk_ubicacion = '"+mPkUbicacion+"'";
+        //String sql ="SELECT m.pk_medio, m.tipo_medio, m.fk_subtipo, m.posicion, m.visibilidad, m.estatus_iluminacion FROM MEDIOS m ";
+        String sql ="SELECT m.pk_medio, tm.descripcion, sm.descripcion, m.posicion, m.visibilidad, m.estatus_iluminacion FROM MEDIOS m ";
+        String sqlJoin = "INNER JOIN TIPOS_MEDIOS tm on m.tipo_medio = tm.pk_tipo INNER JOIN SUBTIPOS_MEDIOS sm on m.fk_subtipo = sm.pk_subtipo ";
+        String sqlWhere ="WHERE m.fk_ubicacion = '"+mPkUbicacion+"'";
 
-        //sql += "ORDER BY ubicacion ASC";
 
         Log.i(TAG,sql);
         Cursor c = db.rawQuery(sql,null);

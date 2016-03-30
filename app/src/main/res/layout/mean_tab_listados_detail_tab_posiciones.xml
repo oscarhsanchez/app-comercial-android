@@ -10,6 +10,11 @@
             style="@style/container_filter">
             <TextView
                 android:id="@+id/medio_title"
+                style="@style/listview_textview"
+                android:layout_width="fill_parent"
+                android:textColor="@color/orangeGpo"/>
+            <!--<TextView
+                android:id="@+id/medio_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TITLE"
@@ -18,7 +23,7 @@
                 android:layout_column="1"
                 android:layout_gravity="right"
                 android:textSize="30dp"
-                android:background="@null" />
+                android:background="@null" />-->
         </LinearLayout>
         <LinearLayout
             style="@style/listViewRow">
