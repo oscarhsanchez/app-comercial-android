@@ -116,6 +116,8 @@ public class LoginActivity extends GPOVallasActivity {
 				// Guardamos los token que vienen en la respuesta
 				GPOVallasApplication.token = response.Session.access_token;
 				Log.d(TAG,"renew token " + response.Session.renew_token);
+
+				GPOVallasApplication.pk_user_session = response.Session.fk_user;
 				
 				new ParametrosTask().execute();
 				
@@ -123,6 +125,7 @@ public class LoginActivity extends GPOVallasActivity {
 				editor.putString(GPOVallasConstants.ACCESS_TOKEN, GPOVallasApplication.token);
 				editor.putString(GPOVallasConstants.RENEW_TOKEN, response.Session.renew_token);
 				editor.apply();
+
 				
 				// Abrir actividad que checara toda la estructura de base de datos
 				Intent intent = new Intent(LoginActivity.this, UpdateDataActivity.class);

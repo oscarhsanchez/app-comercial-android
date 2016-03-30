@@ -21,7 +21,6 @@ import org.acra.annotation.ReportsCrashes;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 
 import gpovallas.exceptions.EfinanzasSender;
 import gpovallas.obj.Cliente;
@@ -52,17 +51,13 @@ public class GPOVallasApplication extends Application {
     public static Pais pais = Pais.Mexico;
     public static String SesionId = null;
     public static String FechaUpd = null;
-    public static String UbicacionId = "";
     public static String ServerActualDateTime = null;
-    public static Object ResultRequestObject = null;
     public static EntityUser usuarioAsignado = null;
-    public static EntityUser usuarioLogueado = null;
-    public static Boolean dispositivoAutorizado = false;
-    public static HashMap<String, String> codFpByParam = new HashMap<String, String>();
     public static Integer defaultPageSize = 200;
     public static Cliente cliente;
     public static Location location;
     public static Typeface GPOFont;
+    public static String pk_user_session = null;
 
     public static enum Entorno {
         TEST("Test", "http://efinanzas.com/api/v1/"),
@@ -108,23 +103,17 @@ public class GPOVallasApplication extends Application {
     }
 
     //variables Version de la App
-    public static String pathToVersionDownload = "http://efinanzas.com/uploads/control_versiones/";
     public static GPOVallasApplication.Entorno appEntorno = GPOVallasApplication.Entorno.PRODUCCION;
     public static GPOVallasApplication.Entidad currentEntity = GPOVallasApplication.Entidad.GPOVALLAS;
-    public static String entitySecret = GPOVallasApplication.currentEntity.key;
 
     public static Double appVersion = 1.00;
     public static Integer ddbbVersion = 100;
 
 
     public static Boolean sendMailMemoryStatus = false;
-    public static Boolean appInstallUpdate = false;
-    public static Boolean appUpdated = false;
-    public static ControlVersiones appMaxVersion = null;
     public static String trazaEjecucion = "";
 
     public static ApplicationStatus appStatusInstance;
-    public static Intent intentService = null;
     public static Boolean senderEnEjecucion = false;
     public static Boolean updaterEnEjecucion = false;
     public static Boolean stockEnEjecucion = false;
@@ -222,7 +211,7 @@ public class GPOVallasApplication extends Application {
 
 
 	/*
-	 * Métodos para comprobar la inactividad del usuario 
+     * Métodos para comprobar la inactividad del usuario
 	 */
 
     private Handler disconnectHandler = new Handler() {

@@ -479,6 +479,7 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
             reg.put("fecha_entrega", mTxtFechaEntrega.getText().toString());
             reg.put("estado", 0);
             reg.put("fk_pais", GPOVallasApplication.Pais.Mexico.toString());
+            reg.put("cod_user", GPOVallasApplication.pk_user_session);
             if (StringUtils.isNotBlank(token_brief)) {
                 reg.put("token", token_brief);
             }

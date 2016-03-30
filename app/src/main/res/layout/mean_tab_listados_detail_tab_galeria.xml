@@ -19,8 +19,7 @@
         android:stretchMode="columnWidth"
         android:horizontalSpacing="5dp"
         android:verticalSpacing="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_margin="15dp"
         android:clipToPadding="false"
         android:gravity="center"
         android:layout_centerHorizontal="true"/>
