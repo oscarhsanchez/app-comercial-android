@@ -3,9 +3,9 @@ package gpovallas.app.medios;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -24,7 +24,6 @@ import java.util.HashMap;
 import gpovallas.adapter.MeanTabListadosAdapter;
 import gpovallas.app.ApplicationStatus;
 import gpovallas.app.R;
-import gpovallas.app.clientes.ClientDetailTabsActivity;
 import gpovallas.app.constants.GPOVallasConstants;
 
 public class MeanTabListadosFragment extends Fragment {
@@ -98,7 +97,7 @@ public class MeanTabListadosFragment extends Fragment {
 
         arrListados = new ArrayList<HashMap<String, String>>();
 
-        String sql = "SELECT pk_ubicacion, fk_plaza as plaza,tipo_medio,ubicacion  " +
+        String sql = "SELECT pk_ubicacion, fk_plaza as plaza,tipo_medio,ubicacion,trafico_vehicular,trafico_transeuntes,nivel_socioeconomico  " +
                 "FROM UBICACION WHERE estado = 1 ";
 
         filter = filter.replace("'", "''");
@@ -119,6 +118,9 @@ public class MeanTabListadosFragment extends Fragment {
                 map.put("plaza", c.getString(c.getColumnIndex("plaza")));
                 map.put("tipo_medio", c.getString(c.getColumnIndex("tipo_medio")));
                 map.put("ubicacion", c.getString(c.getColumnIndex("ubicacion")));
+                map.put("trafico_vehicular",c.getString(c.getColumnIndex("trafico_vehicular")));
+                map.put("trafico_transeuntes",c.getString(c.getColumnIndex("trafico_transeuntes")));
+                map.put("nivel_socioeconomico",c.getString(c.getColumnIndex("nivel_socioeconomico")));
                 arrListados.add(map);
             } while (c.moveToNext());
         }

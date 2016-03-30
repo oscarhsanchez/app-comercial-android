@@ -48,21 +48,13 @@ public class MeanTabListadosDetailTabDetallesFragment  extends Fragment {
     }
 
     public void loadData(){
-        //tipoMedio =(TipoMedio) Database.getObjectBy(db, GPOVallasConstants.DB_TABLE_TIPOS_MEDIOS,"pk_tipo = '"+mPkTipo+"'", TipoMedio.class );
-        //String sql = "SELECT pk_ubicacion, referencia, observaciones, pl.nombre, tipo_medio, ubicacion, "+
-          //      "credito_maximo FROM CLIENTE WHERE pk_cliente = '" + pKCliente+"'";
-        //Log.i(TAG, "populate:" + sql);
 
-        //Cursor c = db.rawQuery(sql, null);
-        //Log.i(TAG, "cursor: "+c.getCount());
-        //if(c.moveToFirst()){
+        ubicacion = (Ubicacion) Database.getObjectBy(db, GPOVallasConstants.DB_TABLE_UBICACION, "pk_ubicacion = '" + mPkUbicacion + "'", Ubicacion.class);
 
-			/*t = (TextView) mRoot.findViewById(R.id.cli_codigo);
-			t.setText(c.getString(0));*/
-        //}
-        //c.close();
-        ubicacion = (Ubicacion) Database.getObjectBy(db,GPOVallasConstants.DB_TABLE_UBICACION, "pk_ubicacion = '"+ mPkUbicacion + "'",Ubicacion.class);
-
+        t = (TextView) mRoot.findViewById(R.id.medio_title);
+        t.setText(ubicacion.ubicacion);
+        t = (TextView) mRoot.findViewById(R.id.med_dgrales_nomComercial);
+        t.setText(ubicacion.fk_empresa);
         t = (TextView) mRoot.findViewById(R.id.med_dgrales_codigo);
         t.setText(ubicacion.pk_ubicacion);
         t = (TextView) mRoot.findViewById(R.id.med_dgrales_referencia);
@@ -73,6 +65,12 @@ public class MeanTabListadosDetailTabDetallesFragment  extends Fragment {
         t.setText(ubicacion.tipo_medio);
         t = (TextView) mRoot.findViewById(R.id.med_dgrales_ubicacion);
         t.setText(ubicacion.ubicacion);
+        t = (TextView) mRoot.findViewById(R.id.med_dgrales_traficoVehicular);
+        t.setText(ubicacion.trafico_vehicular);
+        t = (TextView) mRoot.findViewById(R.id.med_dgrales_traficoTranseuntes);
+        t.setText(ubicacion.trafico_transeuntes);
+        t = (TextView) mRoot.findViewById(R.id.med_dgrales_NSE);
+        t.setText(ubicacion.nivel_socioeconomico);
         t = (TextView) mRoot.findViewById(R.id.med_dgrales_observaciones);
         t.setText(ubicacion.observaciones);
         t = (TextView) mRoot.findViewById(R.id.med_dgrales_categoria);

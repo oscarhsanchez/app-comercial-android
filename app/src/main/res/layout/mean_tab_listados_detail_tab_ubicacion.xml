@@ -3,15 +3,55 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:baselineAligned="false">
+    android:orientation="vertical" >
 
     <LinearLayout
-        style="@style/basic_layout_padding">
+        style="@style/basic_layout_padding"
+        android:weightSum="1">
+
 
         <TextView
+            android:id="@+id/mapa_ubicacion"
             style="@style/listview_textview"
-            android:text="Ubicacion"
-            android:layout_width="fill_parent" />
+            android:layout_width="fill_parent"
+            android:textColor="@color/orangeGpo"/>
+
+
+        <LinearLayout style="@style/container_filter">
+
+            <ImageView android:id="@+id/img_search_icon"
+                style="@style/wrap_style"
+                android:layout_width="0dp"
+                android:layout_weight="0.05"
+                android:adjustViewBounds="true"
+                android:src="@android:drawable/ic_menu_search"/>
+
+            <EditText android:id="@+id/et_search_filter"
+                style="@style/editText"
+                android:layout_width="0dp"
+                android:layout_weight="0.75"
+                android:hint="Filtrar por..."/>
+
+            <Button android:id="@+id/btn_search_filter"
+                style="@style/wrap_style"
+                android:layout_width="0dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="4dp"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                android:onClick="deleteSearchF"
+                android:text="Todos"/>
+
+        </LinearLayout>
+        <LinearLayout
+            style="@style/basic_style">
+            <fragment
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                class="com.google.android.gms.maps.SupportMapFragment"/>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

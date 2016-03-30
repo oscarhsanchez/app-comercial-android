@@ -67,9 +67,9 @@ public class MeanTabListadosAdapter extends BaseAdapter {
             holder.mPlazaText.setText(listado.get("plaza"));
             holder.mTipoText.setText(listado.get("tipo_medio"));
             holder.mUbicacionText.setText(listado.get("ubicacion"));
-            holder.mTVehicularText.setText("");
-            holder.mTTranseuntesText.setText("");
-            holder.mNSEText.setText("");
+            holder.mTVehicularText.setText(listado.get("trafico_vehicular"));
+            holder.mTTranseuntesText.setText(listado.get("trafico_transeuntes"));
+            holder.mNSEText.setText(listado.get("nivel_socioeconomico"));
         }
 
         return view;

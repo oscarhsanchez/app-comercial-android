@@ -66,7 +66,7 @@ public class MeanTabListadoPosicionesAdapter extends BaseAdapter {
             holder.mTipoMedio.setText(listado.get("tipo_medio"));
             holder.mPosicion.setText(listado.get("posicion"));
             holder.mVisibilidad.setText(listado.get("visibilidad"));
-            holder.mIluminación.setText(listado.get("iluminacion0"));
+            holder.mIluminación.setText(listado.get("iluminacion"));
         }
 
         return view;
