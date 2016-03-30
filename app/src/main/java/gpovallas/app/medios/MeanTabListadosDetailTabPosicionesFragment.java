@@ -58,7 +58,7 @@ public class MeanTabListadosDetailTabPosicionesFragment extends Fragment {
 
     public void populate(){
         arrListados = new ArrayList<HashMap<String, String>>();
-        ubicacion = (Ubicacion) Database.getObjectBy(db,GPOVallasConstants.DB_TABLE_UBICACION," WHERE pk_ubicacion = '"+mPkUbicacion+"'",Ubicacion.class);
+        ubicacion = (Ubicacion) Database.getObjectBy(db,GPOVallasConstants.DB_TABLE_UBICACION," pk_ubicacion = '"+mPkUbicacion+"'",Ubicacion.class);
 
         t = (TextView) mRoot.findViewById(R.id.medio_title);
         t.setText(ubicacion.ubicacion);
