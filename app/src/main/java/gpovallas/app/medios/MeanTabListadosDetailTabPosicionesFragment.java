@@ -63,11 +63,13 @@ public class MeanTabListadosDetailTabPosicionesFragment extends Fragment {
         t = (TextView) mRoot.findViewById(R.id.medio_title);
         t.setText(ubicacion.ubicacion);
 
-        //String sql ="SELECT m.pk_medio, m.tipo_medio, m.fk_subtipo, m.posicion, m.visibilidad, m.estatus_iluminacion FROM MEDIOS m ";
-        String sql ="SELECT m.pk_medio, tm.descripcion, sm.descripcion, m.posicion, m.visibilidad, m.estatus_iluminacion FROM MEDIOS m ";
-        String sqlJoin = "INNER JOIN TIPOS_MEDIOS tm on m.tipo_medio = tm.pk_tipo INNER JOIN SUBTIPOS_MEDIOS sm on m.fk_subtipo = sm.pk_subtipo ";
+        //Preguntar si la descripcion del tipo de medio tendra algn valor o siempre mostrará el valor de la pk
+        String sql ="SELECT m.pk_medio, m.tipo_medio, sm.descripcion, m.posicion, m.visibilidad, m.estatus_iluminacion FROM MEDIOS m ";
+        String sqlJoin = "LEFT JOIN TIPOS_MEDIOS tm on tm.pk_tipo = m.tipo_medio LEFT JOIN SUBTIPOS_MEDIOS sm on sm.pk_subtipo = m.fk_subtipo ";
         String sqlWhere ="WHERE m.fk_ubicacion = '"+mPkUbicacion+"'";
         sql += sqlJoin + sqlWhere;
+        //sql += sqlWhere;
+
 
         Log.i(TAG,sql);
         Cursor c = db.rawQuery(sql,null);
@@ -77,9 +79,11 @@ public class MeanTabListadosDetailTabPosicionesFragment extends Fragment {
                 //Log.i(TAG, c.getString(c.getColumnIndex("pk_tipo")));
                 HashMap<String,String> map = new HashMap<String,String>();
                 map.put("tipo_medio", c.getString(c.getColumnIndex("tipo_medio")));
-                map.put("subtipo_medio", c.getString(c.getColumnIndex("fk_subtipo")));
+                map.put("subtipo_medio", c.getString(c.getColumnIndex("descripcion")));
                 map.put("posicion", c.getString(c.getColumnIndex("posicion")));
+                Log.i(TAG, "Visibilidad: " + c.getString(c.getColumnIndex("visibilidad")));
                 map.put("visibilidad", c.getString(c.getColumnIndex("visibilidad")));
+                Log.i(TAG, "Iluminacion: " + c.getString(c.getColumnIndex("estatus_iluminacion")));
                 map.put("iluminacion", c.getString(c.getColumnIndex("estatus_iluminacion")));
                 arrListados.add(map);
             }while (c.moveToNext());

@@ -6,8 +6,8 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="80dp">
 
@@ -33,10 +33,9 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.33"
         android:baselineAligned="false"
-
         android:orientation="horizontal"
          android:gravity="center"
-        android:weightSum="0.9">
+        android:weightSum="0.8">
 
         <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
             android:layout_weight="0.4"
@@ -46,13 +45,15 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                >
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp">
 
                 <TableRow
                     style="@style/wrap_style"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="30dp">
+                    android:layout_marginBottom="30dp"
+                    >
 
                     <TextView android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -228,7 +229,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                >
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp">
 
                 <TableRow
                     style="@style/wrap_style"
