@@ -399,12 +399,33 @@
                         android:textSize="17dp"
                         android:background="@null"/>
                 </TableRow>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="right">
+                    <ImageView
+                        android:layout_marginRight="10dp"
+                        android:layout_width="350dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/indicadores"/>
+                </LinearLayout>
 
             </TableLayout>
+
         </LinearLayout>
 
 
 
 
     </LinearLayout>
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="right">
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:src="@drawable/indicadores"/>
+    </LinearLayout>-->
 </LinearLayout>

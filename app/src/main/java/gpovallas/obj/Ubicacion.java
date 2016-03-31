@@ -14,6 +14,9 @@ public class Ubicacion extends eEntity {
     public String unidad_negocio;
     public String tipo_medio;
     public String fk_plaza;
+    public String fk_zona_fijacion;
+    public String fk_zona_instalacion;
+    public String fk_zona_iluminacion;
     public String estatus;
     public String ubicacion;
     public String direccion_comercial;

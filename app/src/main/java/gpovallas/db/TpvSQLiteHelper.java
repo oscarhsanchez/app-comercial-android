@@ -126,6 +126,9 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 			"unidad_negocio TEXT NOT NULL, " +
 			"tipo_medio TEXT, " +
 			"fk_plaza TEXT, " +
+			"fk_zona_fijacion TEXT, " +
+			"fk_zona_instalacion TEXT, " +
+			"fk_zona_iluminacion TEXT, " +
 			"estatus TEXT, " +
 			"ubicacion TEXT, " +
 			"direccion_comercial TEXT, " +
