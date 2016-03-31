@@ -25,7 +25,7 @@ public class GetArchivosRequest extends WsRequest {
         lastUpdate = ">=[" + lastUpdate + "]";
 
         List<NameValuePair> param = new ArrayList<NameValuePair>(2);
-        param.add(new BasicNameValuePair("updated_at",lastUpdate));
+        //param.add(new BasicNameValuePair("updated_at",lastUpdate));
         param.add(new BasicNameValuePair("pagination",pagStr));
         param.add(new BasicNameValuePair("estado",String.valueOf(state)));
 

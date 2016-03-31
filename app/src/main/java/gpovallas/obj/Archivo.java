@@ -11,9 +11,9 @@ public class Archivo extends eEntity {
 
     public String pk_archivo;
     public String fk_pais;
-    public String Nombre;
-    public String Path;
+    public String nombre;
+    public String path;
     public String url;
     public Integer estado;
-    public String Token;
+    public String token;
 }

@@ -31,8 +31,6 @@ android {
 }
 
 dependencies {
-    compile files('libs/PdfViewer.jar')
-    compile files('libs/achartengine-1.0.0.jar')
     compile files('libs/acra-4.6.1.jar')
     compile files('libs/activation.jar')
     compile files('libs/additionnal.jar')
@@ -41,14 +39,14 @@ dependencies {
     compile files('libs/js-android-sdk-ui-1.8-sources.jar')
     compile files('libs/ksoap2-android-assembly-2.5.8-jar-with-dependencies.jar')
     compile files('libs/mail.jar')
-    compile files('libs/mpandroidchartlibrary-2-1-0.jar')
     compile files('libs/spring-android-core-1.0.1.RELEASE.jar')
     compile files('libs/spring-android-rest-template-1.0.1.RELEASE (1).jar')
-    compile files('libs/urlimageviewhelper-1.0.4.jar')
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.google.android.gms:play-services-maps:8.4.0'
     compile 'org.apache.commons:commons-lang3:3.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.joanzapata.pdfview:android-pdfview:1.0.3@aar'
+    compile 'com.koushikdutta.ion:ion:2.1.6'
 }

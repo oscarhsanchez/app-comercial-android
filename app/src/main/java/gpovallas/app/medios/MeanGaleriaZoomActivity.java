@@ -1,6 +1,5 @@
 package gpovallas.app.medios;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -22,16 +21,16 @@ public class MeanGaleriaZoomActivity extends GPOVallasActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mean_galeria_zoom);
-        setBreadCrumb("Medios", "Detalle Imagen");
 
         mTitleTextView = (TextView) findViewById(R.id.title);
         mImageView = (ImageView) findViewById(R.id.image);
 
         Intent intent = getIntent();
         if (intent != null) {
-            mTitleTextView.setText(intent.getStringExtra(GPOVallasConstants.MEAN_GALLERY_IMAGE_TITLE));
+            setBreadCrumb(intent.getStringExtra(GPOVallasConstants.BREADCUMB_TITLE), "Detalle Imagen");
+            mTitleTextView.setText(intent.getStringExtra(GPOVallasConstants.IMAGE_TITLE));
             Picasso.with(this)
-                    .load(intent.getStringExtra(GPOVallasConstants.MEAN_GALLERY_PATH_IMAGE))
+                    .load(intent.getStringExtra(GPOVallasConstants.PATH_IMAGE))
                     .error(R.drawable.logo_bg_orange)
                     .placeholder(R.drawable.logo_bg_orange)
                     .into(mImageView);

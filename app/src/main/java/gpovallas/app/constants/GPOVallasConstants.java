@@ -38,7 +38,14 @@ public class GPOVallasConstants {
 
     // Mean Intent Attributes
     public static String LISTADO_PK_INTENT = "listado_pk_intent";
-    public static String MEAN_GALLERY_PATH_IMAGE = "path_image";
-    public static String MEAN_GALLERY_IMAGE_TITLE = "image_title";
+
+    // Zoom Image
+    public static String PATH_IMAGE = "path_image";
+    public static String IMAGE_TITLE = "image_title";
+    public static String BREADCUMB_TITLE = "breadcumb_title";
+
+    // Pdf
+    public static String REMOTE_PATH_PDF = "path_pdf";
+    public static String PDF_NAME = "pdf_name";
 
 }

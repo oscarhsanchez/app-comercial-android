@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.TextViewCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,8 +70,9 @@ public class MeanTabListadosDetailTabGaleriaFragment extends Fragment implements
         Log.i(TAG, imagen.url + imagen.nombre);
 
         Intent intent = new Intent(getActivity(), MeanGaleriaZoomActivity.class);
-        intent.putExtra(GPOVallasConstants.MEAN_GALLERY_PATH_IMAGE,imagen.url + imagen.nombre);
-        intent.putExtra(GPOVallasConstants.MEAN_GALLERY_IMAGE_TITLE,mUbicacion.ubicacion);
+        intent.putExtra(GPOVallasConstants.BREADCUMB_TITLE,"Medios");
+        intent.putExtra(GPOVallasConstants.PATH_IMAGE,imagen.url + imagen.nombre);
+        intent.putExtra(GPOVallasConstants.IMAGE_TITLE,mUbicacion.ubicacion);
         startActivity(intent);
     }
 

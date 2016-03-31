@@ -140,7 +140,6 @@
     <string name="tab_detail_listado_posiciones">Posciones</string>
 
 
-
     <!-- Facturas -->
     <string name="facturas_TextView_th_numero_Factura">No. de Factura</string>
     <string name="facturas_TextView_th_RFC">RFC</string>

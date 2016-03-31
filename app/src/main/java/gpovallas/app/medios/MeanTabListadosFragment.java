@@ -103,7 +103,7 @@ public class MeanTabListadosFragment extends Fragment {
         filter = filter.replace("'", "''");
 
         if (!filter.equals("")){
-            sql += " AND plaza LIKE '%" + filter + "%' ";
+            sql += " AND ubicacion LIKE '%" + filter + "%' ";
         }
 
         sql += "ORDER BY ubicacion ASC";

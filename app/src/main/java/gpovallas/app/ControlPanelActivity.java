@@ -23,6 +23,7 @@ import java.util.Date;
 
 import gpovallas.app.briefs.BriefFinderActivity;
 import gpovallas.app.clientes.ClientFinderActivity;
+import gpovallas.app.conoce.ConoceVallasActivity;
 import gpovallas.app.medios.MeanTabsActivity;
 import gpovallas.services.receivers.StartReceiver;
 import gpovallas.utils.Dialogs;
@@ -53,7 +54,7 @@ public class ControlPanelActivity extends GPOVallasActivity {
     }
 
     public void openCatalogo(View v) {
-        Log.v("Control Panel","Cargando MediosTab");
+        Log.v("Control Panel", "Cargando MediosTab");
         startActivity(new Intent(this, MeanTabsActivity.class));
     }
 
@@ -62,7 +63,8 @@ public class ControlPanelActivity extends GPOVallasActivity {
     }
 
     public void openConoce(View v) {
-
+        Log.v("Control Panel", "Cargando MediosTab");
+        startActivity(new Intent(this, ConoceVallasActivity.class));
     }
 
     public void openSettings(View v) {
