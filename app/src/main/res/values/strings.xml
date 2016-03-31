@@ -140,6 +140,7 @@
     <string name="tab_detail_listado_posiciones">Posciones</string>
 
 
+
     <!-- Facturas -->
     <string name="facturas_TextView_th_numero_Factura">No. de Factura</string>
     <string name="facturas_TextView_th_RFC">RFC</string>
@@ -164,5 +165,9 @@
     <string name="briefs_subtipos">Subtipos</string>
     <string name="briefs_fecha_solicitud">Fecha de Solicitud</string>
     <string name="briefs_fecha_entrega">Fecha de Entrega</string>
+
+    <!-- Custom view Map -->
+    <string name="custom_telefono">Telefono: </string>
+    <string name="custom_Categoria">Categoria: </string>
 
 </resources>

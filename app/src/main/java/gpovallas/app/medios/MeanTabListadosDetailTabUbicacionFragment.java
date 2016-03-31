@@ -21,6 +21,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -144,7 +145,10 @@ public class MeanTabListadosDetailTabUbicacionFragment extends Fragment implemen
             //mMap.clear();
             LatLng ubi= new LatLng(latitud, longitud);
             Log.i(TAG, "latitud " + ubi.latitude + " longitud " + ubi.longitude);
-            mMap.addMarker(new MarkerOptions().position(ubi).title(ubicacion.ubicacion));
+            Marker m=mMap.addMarker(new MarkerOptions().position(ubi).title(ubicacion.ubicacion)
+                    .snippet("")
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+            markers.put(m.getId(),"");
             CameraPosition cameraPosition = new CameraPosition.Builder()
                     .target(ubi)
                     .zoom(17).build();
@@ -155,8 +159,10 @@ public class MeanTabListadosDetailTabUbicacionFragment extends Fragment implemen
                 latitud = Double.valueOf(venue.get("latitud"));
                 longitud = Double.valueOf(venue.get("longitud"));
                 ubi= new LatLng(latitud, longitud);
-                Marker marker= mMap.addMarker(new MarkerOptions().position(ubi).title(venue.get("titulo")).snippet("telefono"));
-                markers.put(marker.getId(),venue.get("categoria"));
+                Marker marker= mMap.addMarker(new MarkerOptions().position(ubi)
+                        .title(venue.get("titulo")).snippet("Telefono: "+venue.get("telefono"))
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                markers.put(marker.getId(),"Categoria: "+venue.get("categoria"));
             }
         }
     }
@@ -178,13 +184,17 @@ public class MeanTabListadosDetailTabUbicacionFragment extends Fragment implemen
         }
 
         @Override
+        public View getInfoWindow(Marker marker) {
+
+            return null;
+        }
+
+        @Override
         public View getInfoContents(Marker marker) {
 
             markerShowingInfoWindow = marker;
 
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-
-            // Getting view from the layout file info_window_layout
             View popUp = inflater.inflate(R.layout.map_custom_view, null);
 
             TextView tv = (TextView) popUp.findViewById(R.id.tv_title);
@@ -196,12 +206,5 @@ public class MeanTabListadosDetailTabUbicacionFragment extends Fragment implemen
             tv.setText(categoria);
             return popUp;
         }
-
-        @Override
-        public View getInfoWindow(Marker marker) {
-
-            return null;
-        }
-
     }
 }
