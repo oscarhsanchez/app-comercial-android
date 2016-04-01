@@ -14,7 +14,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -29,15 +32,15 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-import gpovallas.adapter.BriefFinderAdapter;
 import gpovallas.app.ApplicationStatus;
 import gpovallas.app.R;
 import gpovallas.app.constants.GPOVallasConstants;
 import gpovallas.obj.Ubicacion;
 import gpovallas.utils.Database;
 
-public class MeanTabListadosDetailTabUbicacionFragment extends Fragment implements OnMapReadyCallback {
+public class MeanTabListadosDetailTabUbicacionFragment extends Fragment implements OnMapReadyCallback,AdapterView.OnItemSelectedListener {
 
     private static final String TAG = MeanTabListadosDetailTabPosicionesFragment.class.getSimpleName();
     private GoogleMap mMap;
@@ -46,11 +49,14 @@ public class MeanTabListadosDetailTabUbicacionFragment extends Fragment implemen
     private Ubicacion ubicacion;
     private String mPkListado;
     private TextView mUbiacionText;
-    private String filter_nombre;
+    private String filter_categoria;
     private EditText mTxtSearchFilter;
     private ArrayList<HashMap<String, String>> mVenueList;
     private HashMap<String, String> markers;
     private Context mContext;
+    private Spinner spinner;
+    private ArrayList<HashMap<String, String>> arrCategoria;
+    private ArrayAdapter<String> dataAdapter;
 
 
     @Override
@@ -60,6 +66,7 @@ public class MeanTabListadosDetailTabUbicacionFragment extends Fragment implemen
         mUbiacionText = (TextView) mRoot.findViewById(R.id.mapa_ubicacion);
         mContext = this.getContext();
         markers = new HashMap<String, String>();
+        spinner =(Spinner) mRoot.findViewById(R.id.spinner_search_filter);
         SupportMapFragment mapFragment = ((SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map));
         mapFragment.getMapAsync(this);
@@ -75,35 +82,27 @@ public class MeanTabListadosDetailTabUbicacionFragment extends Fragment implemen
     }
 
     public void init(){
+        loadCatalogoCategoria();
         ubicacion = (Ubicacion) Database.getObjectBy(db, GPOVallasConstants.DB_TABLE_UBICACION,"pk_ubicacion = '" + mPkListado+"'", Ubicacion.class);
         mUbiacionText.setText(ubicacion.ubicacion);
 
-        filter_nombre = "";
+        filter_categoria = "";
 
-        mTxtSearchFilter = (EditText) mRoot.findViewById(R.id.et_search_filter);
-        mTxtSearchFilter.addTextChangedListener(new TextWatcher() {
+        spinner.setOnItemSelectedListener(this);
+        // Spinner Drop down elements
 
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
+        List<String> categories = new ArrayList<String>();
 
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+        for (HashMap<String, String> tipo : arrCategoria){
+            categories.add(tipo.get("name"));
+        }
 
-            public void afterTextChanged(Editable s) {
-                filter_nombre = s.toString();
-                populate();
-                loadMarkerts();
-            }
-        });
+        dataAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, categories);
+
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(dataAdapter);
     }
-
-    public void deleteSearchF(View v) {
-        filter_nombre = "";
-        mTxtSearchFilter.setText("");
-        populate();
-        loadMarkerts();
-    }
-
     public void populate() {
 
         mVenueList = new ArrayList<HashMap<String, String>>();
@@ -111,10 +110,8 @@ public class MeanTabListadosDetailTabUbicacionFragment extends Fragment implemen
         String sql = "SELECT m.name as titulo,m.phone as telefono,m.lat as latitud,m.lon as longitud,m.distance,c.name as categoria " +
                 "FROM META_VENUE m INNER JOIN META_CATEGORY c ON c.id = m.fk_category WHERE m.estado = 1 and fk_ubicacion='"+mPkListado+"'";
 
-        filter_nombre = filter_nombre.replace("'", "''");
-
-        if (!TextUtils.isEmpty(filter_nombre)) {
-            sql += " AND categoria LIKE '%" + filter_nombre+ "%' ";
+        if (!TextUtils.isEmpty(filter_categoria)) {
+            sql += " AND m.fk_category = '"+filter_categoria+"'";
         }
 
         //sql += " ORDER BY c.name_social ASC";
@@ -174,6 +171,45 @@ public class MeanTabListadosDetailTabUbicacionFragment extends Fragment implemen
         loadMarkerts();
     }
 
+    public void loadCatalogoCategoria(){
+
+        arrCategoria = new ArrayList<HashMap<String, String>>();
+
+        String sql = "SELECT c.id,c.name" +
+                " FROM META_CATEGORY c LEFT JOIN META_VENUE m ON c.id = m.fk_category WHERE m.fk_ubicacion='"+mPkListado+"' GROUP by c.id";
+
+        Cursor c = db.rawQuery(sql, null);
+        HashMap<String,String> map1 = new HashMap<String, String>();
+        map1.put("id", "");
+        map1.put("name","Todos");
+        arrCategoria.add(map1);
+        Log.i(TAG, "" + c.getCount());
+        if(c.moveToFirst()){
+            do {
+                Log.i(TAG, c.getString(c.getColumnIndex("name")));
+                HashMap<String,String> map = new HashMap<String, String>();
+                map.put("id", c.getString(c.getColumnIndex("id")));
+                map.put("name", c.getString(c.getColumnIndex("name")));
+                arrCategoria.add(map);
+            } while (c.moveToNext());
+        }
+        c.close();
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        HashMap<String, String> tipo =arrCategoria.get(position);
+        Log.i(TAG, "SELECT " + tipo.get("name"));
+        filter_categoria = tipo.get("id");
+        populate();
+        loadMarkerts();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 
     public class InfoWindowAdapterMarker implements GoogleMap.InfoWindowAdapter {
 

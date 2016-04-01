@@ -47,27 +47,6 @@
                     </Spinner>
 
                 </TableRow>
-
-                <TableRow style="@style/wrap_style" android:layout_marginBottom="15dp">
-                    <TextView
-                        android:id="@+id/LblEjecutivo"
-                        android:layout_marginRight="15dp"
-                        android:layout_column="1"
-                        android:layout_height="wrap_content"
-                        android:text="@string/accion_ejecutivo"
-                        android:textColor="@color/orangeGpo"
-                        android:textAppearance="@style/defaultTextAppearance"
-                        />
-
-                    <EditText
-                        style="@style/editText"
-                        android:id="@+id/editaccion_ejecutivo"
-                        android:layout_column="2"
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:autoText="false"
-                        android:inputType="textNoSuggestions"/>
-                </TableRow>
                 <TableRow style="@style/wrap_style" android:layout_marginBottom="15dp">
                     <TextView
                         android:id="@+id/LblFecha"

@@ -26,23 +26,17 @@
                 android:adjustViewBounds="true"
                 android:src="@android:drawable/ic_menu_search"/>
 
-            <EditText android:id="@+id/et_search_filter"
+            <Spinner
+                android:id="@+id/spinner_search_filter"
                 style="@style/editText"
                 android:layout_width="0dp"
-                android:layout_weight="0.75"
-                android:hint="Filtrar por..."/>
-
-            <Button android:id="@+id/btn_search_filter"
-                style="@style/wrap_style"
-                android:layout_width="0dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="4dp"
-                android:layout_weight="0.2"
-                android:gravity="center"
-                android:onClick="deleteSearchF"
-                android:text="Todos"/>
-
+                android:layout_weight="0.95"
+                android:drawSelectorOnTop="true"
+                android:layout_height="wrap_content"
+                android:autoText="false"
+                android:inputType="textNoSuggestions">
+                <requestFocus />
+            </Spinner>
         </LinearLayout>
         <LinearLayout
             style="@style/basic_style">
