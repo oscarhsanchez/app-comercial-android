@@ -16,7 +16,6 @@ public class ClientDetailTabsActivity extends GPOVallasFragmentActivity {
         setContentView(R.layout.clientdetailtab);
         setBreadCrumb("Clientes", "Detalle");
         mPkCliente = getIntent().getStringExtra(GPOVallasConstants.CLIENT_PK_INTENT);
-        // TODO: Validar pkcliente
     }
     
     public void loadFragment(int placeholder, @SuppressWarnings("rawtypes") Class fragmentClass){

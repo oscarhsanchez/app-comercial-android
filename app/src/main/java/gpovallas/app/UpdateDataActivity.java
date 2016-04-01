@@ -16,7 +16,7 @@ import gpovallas.obj.DbParameters;
 import gpovallas.ws.Updater;
 
 /* esta actividad deber�a aparecer despu�s del login del usuario
- * si la base de datos no est� construida del todo ser�a necesario insistir en
+ * si la base de datos no est� construida en su totalidad ser�a necesario insistir en
  * los UPDATES hasta que se terminen
  */
 public class UpdateDataActivity extends GPOVallasActivity {

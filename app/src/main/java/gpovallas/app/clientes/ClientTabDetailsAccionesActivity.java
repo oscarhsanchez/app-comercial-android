@@ -117,7 +117,7 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
         reg.put("hora", hora);
         reg.put("titulo",titulo);
         reg.put("resumen", resumen);
-        reg.put("estado",0);
+        reg.put("estado",1);
         reg.put("fk_pais", GPOVallasApplication.Pais.Mexico.toString());
         if(!token_accion.isEmpty()){
             reg.put("token",token_accion);

@@ -74,7 +74,7 @@ public class UppApp extends AsyncTask<String, Integer, String> {
 		progressDialog.setProgress(progress[0]);
 	} 
 	@Override  
-	protected void onPostExecute(String result) {    // TODO Auto-generated method stub    
+	protected void onPostExecute(String result) {
 		super.onPostExecute(result); 
 		progressDialog.dismiss();
 		Intent intent = new Intent(Intent.ACTION_VIEW);

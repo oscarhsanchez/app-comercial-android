@@ -137,7 +137,7 @@
     <string name="tab_detail_listado_detalle">Datos Generales</string>
     <string name="tab_detail_listado_ubicacion">Mapa de Ubicación</string>
     <string name="tab_detail_listado_galeria">Galería</string>
-    <string name="tab_detail_listado_posiciones">Posciones</string>
+    <string name="tab_detail_listado_posiciones">Posiciones</string>
 
 
     <!-- Facturas -->

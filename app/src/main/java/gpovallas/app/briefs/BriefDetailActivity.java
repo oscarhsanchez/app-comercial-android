@@ -205,6 +205,7 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
 
     }
 
+    //<editor-fold desc="Load data dinamically">
     private void loadClientes() {
 
         clientes = new ClienteCtrl(db).getAll();
@@ -447,6 +448,7 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
         }
         return count;
     }
+    //</editor-fold>
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -477,9 +479,9 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
             reg.put("fecha_inicio", mTxtFechaInicio.getText().toString());
             reg.put("fecha_solicitud", mTxtFechaSolicitud.getText().toString());
             reg.put("fecha_entrega", mTxtFechaEntrega.getText().toString());
-            reg.put("estado", 0);
+            reg.put("estado", 1);
             reg.put("fk_pais", GPOVallasApplication.Pais.Mexico.toString());
-            reg.put("cod_user", GPOVallasApplication.pk_user_session);
+            reg.put("codigo_user", GPOVallasApplication.pk_user_session);
             if (StringUtils.isNotBlank(token_brief)) {
                 reg.put("token", token_brief);
             }
@@ -508,6 +510,7 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
         }
     }
 
+    //<editor-fold desc="Get data Paises y Tipos">
     private String getTipologias() {
         try {
             JSONArray jsonArray = new JSONArray();
@@ -614,6 +617,7 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
         }
         return null;
     }
+    //</editor-fold>
 
     //TODO: Falta cargar correctamente el ejecutivo
     private void loadBriefData() {
@@ -683,6 +687,7 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
         }
     }
 
+    //<editor-fold desc="Populate Paises y Tipos">
     private void populatePaisesPlazas(String paises_plazas) {
         try {
             ArrayList<String> plazasPks = new ArrayList<>();
@@ -778,6 +783,6 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
             Log.e(TAG, e.getMessage(), e);
         }
     }
-
+    //</editor-fold>
 
 }

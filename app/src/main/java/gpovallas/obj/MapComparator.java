@@ -15,7 +15,6 @@ public class MapComparator implements Comparator<Map<String, String>>
     public int compare(Map<String, String> first,
                        Map<String, String> second)
     {
-        // TODO: Null checking, both for maps and values
         String firstValue = first.get(key);
         String secondValue = second.get(key);
         return firstValue.compareTo(secondValue);

@@ -261,7 +261,6 @@ public class GenericSelectActivity extends GPOVallasListActivity {
 
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
-				// TODO Auto-generated method stub
 				final int currentFirstVisibleItem = view.getFirstVisiblePosition();
 
 				mIsScrolling = false;

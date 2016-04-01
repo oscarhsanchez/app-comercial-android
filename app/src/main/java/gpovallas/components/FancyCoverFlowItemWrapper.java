@@ -107,7 +107,7 @@ class FancyCoverFlowItemWrapper extends ViewGroup {
     private void init() {
         this.paint = new Paint();
         this.colorMatrix = new ColorMatrix();
-        // TODO: Define a default value for saturation inside an XML.
+        // Define a default value for saturation inside an XML.
         this.setSaturation(1);
     }
 

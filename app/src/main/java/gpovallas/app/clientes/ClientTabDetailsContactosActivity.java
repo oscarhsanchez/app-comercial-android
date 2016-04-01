@@ -87,7 +87,7 @@ public class ClientTabDetailsContactosActivity extends GPOVallasActivity {
         reg.put("telefono",telefono);
         reg.put("celular",celular);
         reg.put("email",email);
-        reg.put("estado",0);
+        reg.put("estado",1);
         reg.put("fk_pais", GPOVallasApplication.Pais.Mexico.toString());
         if(!token_contacto.isEmpty()){
             reg.put("token",token_contacto);

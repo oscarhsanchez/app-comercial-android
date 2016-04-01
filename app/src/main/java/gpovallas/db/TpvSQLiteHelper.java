@@ -104,10 +104,10 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 			"PendienteEnvio INTEGER DEFAULT 0," +
 			"token TEXT NOT NULL PRIMARY KEY);";
 
-	private String sqlBrief = "CREATE TABLE IF NOT EXISTS BRIEF (pk_brief TEXT NOT NULL, " +
+	private String sqlBrief = "CREATE TABLE IF NOT EXISTS BRIEF (pk_brief TEXT NULL, " +
 			"fk_pais TEXT NOT NULL, " +
 			"fk_cliente TEXT NOT NULL, " +
-			"cod_user TEXT, " +
+			"codigo_user TEXT, " +
 			"paises_plazas TEXT, " +
 			"objetivo TEXT, " +
 			"fecha_inicio TEXT, " +
@@ -117,8 +117,7 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 			"fecha_entrega TEXT, " +
 			"estado INTEGER, " +
 			"token TEXT NOT NULL PRIMARY KEY, " +
-			"PendienteEnvio INTEGER DEFAULT 0," +
-			"codigo_user TEXT);";
+			"PendienteEnvio INTEGER DEFAULT 0);";
 
 	private String sqlUbicacion = "CREATE TABLE IF NOT EXISTS UBICACION (pk_ubicacion TEXT NOT NULL, " +
 			"fk_pais TEXT NOT NULL, " +

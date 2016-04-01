@@ -112,7 +112,6 @@ public class Dates {
 			return new Date(fechaMills.getTime());
 
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

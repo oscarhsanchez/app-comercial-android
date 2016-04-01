@@ -21,7 +21,7 @@ public class PdfViewerActivity extends GPOVallasActivity implements OnLoadComple
 
     private static final String TAG = PdfViewerActivity.class.getSimpleName();
     private static final String PDF_REMOTE_FILES_PATH = Environment.getExternalStorageDirectory() + File.separator
-            + StringUtils.join(Arrays.asList("Vallas", "files", "pdf", "remote"), File.separator);
+            + StringUtils.join(Arrays.asList("Vallas", "files", "pdf"), File.separator);
     private ProgressDialog mProgressDialog;
 
     @Override

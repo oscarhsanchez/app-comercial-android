@@ -392,7 +392,7 @@ public class Utils {
                 rotated = null;
             }
         } catch (Exception e) {
-            // TODO: Log Error Messages Here
+            //Log Error Messages Here
         }
         return bitmap;
     }
@@ -412,7 +412,7 @@ public class Utils {
             else if (orientation == 8)
                 return 270;
         } catch (Exception e) {
-            // TODO: Log Error Messages Here
+            //Log Error Messages Here
         }
         return -1;
     }

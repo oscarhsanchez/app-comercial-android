@@ -43,8 +43,14 @@ public class BriefFinderActivity extends GPOVallasListActivity {
         db = ApplicationStatus.getInstance().getDb(getApplicationContext());
 
         init();
-        populate();
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        populate();
     }
 
     public void finalizar(View v) {
@@ -86,7 +92,7 @@ public class BriefFinderActivity extends GPOVallasListActivity {
         mBriefList = new ArrayList<HashMap<String, String>>();
 
         String sql = "SELECT b.token, b.fecha_solicitud as fecha, c.razon_social as cliente  " +
-                "FROM CLIENTE c INNER JOIN BRIEF b ON b.fk_cliente = c.pk_cliente WHERE b.estado = 1";
+                "FROM BRIEF b LEFT JOIN CLIENTE c ON b.fk_cliente = c.pk_cliente WHERE b.estado = 1 AND b.PendienteEnvio = 0";
 
         filter_nombreBri = filter_nombreBri.replace("'", "''");
 
@@ -103,7 +109,7 @@ public class BriefFinderActivity extends GPOVallasListActivity {
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("token", c.getString(c.getColumnIndex("token")));
                 map.put("fecha", c.getString(c.getColumnIndex("fecha")));
-                map.put("Nombre", c.getString(c.getColumnIndex("cliente")));
+                map.put("cliente", c.getString(c.getColumnIndex("cliente")));
                 mBriefList.add(map);
             } while (c.moveToNext());
         }

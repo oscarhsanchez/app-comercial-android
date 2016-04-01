@@ -20,7 +20,6 @@ public class SQL {
 			return 1;
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			Log.v("SQL update error: ", e.getMessage());
 		}

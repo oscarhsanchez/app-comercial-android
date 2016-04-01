@@ -107,10 +107,8 @@ public class Database {
 										}
 
 									} catch (SecurityException e) {
-										// TODO Auto-generated catch block
 										e.printStackTrace();
 									} catch (NoSuchFieldException e) {
-										// TODO Auto-generated catch block
 										e.printStackTrace();
 									}
 								}
@@ -118,7 +116,6 @@ public class Database {
 							}
 
 						} catch (IllegalArgumentException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 
@@ -128,11 +125,9 @@ public class Database {
 				try {
 					if (valorPropiedad != null) field.set(objeto, valorPropiedad);
 				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 					System.out.println(field.getName());
 				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -141,10 +136,8 @@ public class Database {
 
 
 		} catch (IllegalAccessException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (InstantiationException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -198,16 +191,12 @@ public class Database {
 				where += Pks[i] + " = '" + objeto.getClass().getField(Pks[i]).get(objeto).toString() + "'";
 
 			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (NoSuchFieldException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -277,10 +266,8 @@ public class Database {
 						}
 					}
 				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -307,10 +294,8 @@ public class Database {
 							try {
 								value = clasePropiedad.getField(campoRef).get(campoObjeto).toString();
 							} catch (SecurityException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							} catch (NoSuchFieldException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						}
@@ -325,10 +310,8 @@ public class Database {
 
 					}
 				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -349,16 +332,12 @@ public class Database {
 					where += Pks[i] + " = '" + objeto.getClass().getField(Pks[i]).get(objeto).toString() + "'";
 
 				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SecurityException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (NoSuchFieldException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -420,11 +399,9 @@ public class Database {
 				if (db.update(tableName, values, "token = '" + reg_token + "'", null) > 0) result = 1;
 			}
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block	
 			error = e.getMessage();
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			error = e.getMessage();
 			e.printStackTrace();
 		} catch (IllegalArgumentException e) {
@@ -439,7 +416,6 @@ public class Database {
 				EnviarEmail email = new EnviarEmail(GPOVallasApplication.context);
 				//email.enviarLog(error, GPOVallasApplication.device.cod_terminal_tpv, GPOVallasApplication.appVersion.toString());
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}

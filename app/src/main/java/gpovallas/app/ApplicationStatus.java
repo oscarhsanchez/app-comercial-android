@@ -41,8 +41,6 @@ public class ApplicationStatus {
 	}
 
 	public ApplicationStatus setCredentials(String username, String password) {
-		// TODO pasar esta funcion y storeCredentials a una clase que tenga
-		// mas sentido para ello.
 		this.username = username;
 		this.password = password;
 		return this;

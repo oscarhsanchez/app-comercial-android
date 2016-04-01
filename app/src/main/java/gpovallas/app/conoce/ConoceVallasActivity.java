@@ -1,16 +1,25 @@
 package gpovallas.app.conoce;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
+
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 
 import gpovallas.adapter.ConoceVallasGridAdapter;
@@ -28,9 +37,12 @@ public class ConoceVallasActivity extends GPOVallasActivity implements AdapterVi
     private static final String TAG = ConoceVallasActivity.class.getSimpleName();
     private GridView mGridView;
     private TextView mTextView;
+    private ProgressDialog mProgressDialog;
 
     private SQLiteDatabase db;
     private List<Archivo> mArchivos;
+    private static final String GENERIC_REMOTE_FILES_PATH = Environment.getExternalStorageDirectory() + File.separator
+            + StringUtils.join(Arrays.asList("Vallas", "files", "generic"), File.separator);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +58,13 @@ public class ConoceVallasActivity extends GPOVallasActivity implements AdapterVi
         mGridView.setEmptyView(mTextView);
 
         setupAdapter();
+
+        mProgressDialog = new ProgressDialog(ConoceVallasActivity.this);
+        mProgressDialog.setTitle(android.R.string.dialog_alert_title);
+        mProgressDialog.setMessage(getString(R.string.loading));
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.show();
+
 
     }
 
@@ -74,7 +93,46 @@ public class ConoceVallasActivity extends GPOVallasActivity implements AdapterVi
             intent.putExtra(GPOVallasConstants.IMAGE_TITLE, archivo.nombre);
             startActivity(intent);
         } else {
-            // TODO: Descargar de alguna forma cualquier otro tipo de archivo
+            File directory = new File(GENERIC_REMOTE_FILES_PATH);
+            if (!directory.exists()) {
+                Log.i(TAG, "Creando directorio: " + directory);
+                directory.mkdirs();
+            }
+
+            File path = new File(GENERIC_REMOTE_FILES_PATH + File.separator + archivo.nombre);
+            if (!path.exists()) {
+                Ion.with(this)
+                        .load(archivo.url + archivo.nombre)
+                        .write(path)
+                        .setCallback(new FutureCallback<File>() {
+                            @Override
+                            public void onCompleted(Exception e, File file) {
+                                if (e != null) {
+                                    Log.e(TAG, e.getMessage(), e);
+                                    mProgressDialog.dismiss();
+                                } else {
+
+                                    // Disparamos una actividad que o intente que trata de abrir el archivo en cuestion
+
+                                    MimeTypeMap map = MimeTypeMap.getSingleton();
+                                    String ext = MimeTypeMap.getFileExtensionFromUrl(file.getName());
+                                    String type = map.getMimeTypeFromExtension(ext);
+
+                                    if (type == null)
+                                        type = "*/*";
+
+                                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                                    Uri data = Uri.fromFile(file);
+
+                                    intent.setDataAndType(data, type);
+
+                                    startActivity(intent);
+
+                                }
+                            }
+
+                        });
+            }
         }
     }
 

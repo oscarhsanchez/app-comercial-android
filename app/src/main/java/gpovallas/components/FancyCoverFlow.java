@@ -53,9 +53,6 @@ public class FancyCoverFlow extends Gallery {
 
     private boolean reflectionEnabled = false;
 
-    /**
-     * TODO: Doc
-     */
     private float unselectedAlpha;
 
     /**
@@ -63,9 +60,6 @@ public class FancyCoverFlow extends Gallery {
      */
     private Camera transformationCamera;
 
-    /**
-     * TODO: Doc
-     */
     private int maxRotation = 75;
 
     /**
@@ -73,9 +67,6 @@ public class FancyCoverFlow extends Gallery {
      */
     private float unselectedScale;
 
-    /**
-     * TODO: Doc
-     */
     private float scaleDownGravity = SCALEDOWN_GRAVITY_CENTER;
 
     /**
@@ -203,94 +194,44 @@ public class FancyCoverFlow extends Gallery {
         this.maxRotation = maxRotation;
     }
 
-    /**
-     * TODO: Write doc
-     *
-     * @return
-     */
     public float getUnselectedAlpha() {
         return this.unselectedAlpha;
     }
 
-    /**
-     * TODO: Write doc
-     *
-     * @return
-     */
     public float getUnselectedScale() {
         return unselectedScale;
     }
 
-    /**
-     * TODO: Write doc
-     *
-     * @param unselectedScale
-     */
     public void setUnselectedScale(float unselectedScale) {
         this.unselectedScale = unselectedScale;
     }
 
-    /**
-     * TODO: Doc
-     *
-     * @return
-     */
     public float getScaleDownGravity() {
         return scaleDownGravity;
     }
 
-    /**
-     * TODO: Doc
-     *
-     * @param scaleDownGravity
-     */
     public void setScaleDownGravity(float scaleDownGravity) {
         this.scaleDownGravity = scaleDownGravity;
     }
 
-    /**
-     * TODO: Write doc
-     *
-     * @return
-     */
     public int getActionDistance() {
         return actionDistance;
     }
 
-    /**
-     * TODO: Write doc
-     *
-     * @param actionDistance
-     */
     public void setActionDistance(int actionDistance) {
         this.actionDistance = actionDistance;
     }
 
-    /**
-     * TODO: Write doc
-     *
-     * @param unselectedAlpha
-     */
     @Override
     public void setUnselectedAlpha(float unselectedAlpha) {
         super.setUnselectedAlpha(unselectedAlpha);
         this.unselectedAlpha = unselectedAlpha;
     }
 
-    /**
-     * TODO: Write doc
-     *
-     * @return
-     */
     public float getUnselectedSaturation() {
         return unselectedSaturation;
     }
 
-    /**
-     * TODO: Write doc
-     *
-     * @param unselectedSaturation
-     */
     public void setUnselectedSaturation(float unselectedSaturation) {
         this.unselectedSaturation = unselectedSaturation;
     }

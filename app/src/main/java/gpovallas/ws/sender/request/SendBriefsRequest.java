@@ -3,6 +3,7 @@ package gpovallas.ws.sender.request;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Base64;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -53,9 +54,11 @@ public class SendBriefsRequest extends WsRequest {
         if (send.size() > 0) {
             Gson gson = new Gson();
             String jSend = gson.toJson(send);
+            Log.i("Send Brief", jSend);
             String eSend = "";
             try {
                 eSend = new String(Base64.encodeToString(jSend.getBytes("UTF-8"), Base64.DEFAULT));
+                Log.i("Send Brief", eSend);
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
