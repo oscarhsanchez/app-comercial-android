@@ -38,7 +38,6 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
     private String token_accion;
     private String pk_accion;
     private Spinner spinner;
-    private EditText mTextNombre;
     private EditText mTextFecha;
     private EditText mTextHora;
     private EditText mTextTitulo;
@@ -55,7 +54,6 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
         setContentView(R.layout.client_tab_details_acciones);
         spinner =(Spinner) findViewById(R.id.spinneraccion_tipo);
         loadDataSpinner();
-        mTextNombre = (EditText) findViewById(R.id.editaccion_ejecutivo);
         mTextFecha = (EditText) findViewById(R.id.editaccion_fecha);
         mTextHora = (EditText) findViewById(R.id.editaccion_hora);
         mTextTitulo = (EditText) findViewById(R.id.editaccion_titulo);
@@ -95,14 +93,13 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
 
     public void save(View v){
         //String tipoaccion = mTextTipo.getText().toString();
-        String ejecutivo = mTextNombre.getText().toString();
         String fecha =mTextFecha.toString();
         String hora = mTextHora.toString();
         String titulo =  mTextTitulo.getText().toString();
         String resumen = mTextResumen.getText().toString();
 
 
-        if (pk_Tipo_accion <= 0 || Text.isEmpty(ejecutivo) || Text.isEmpty(fecha) || Text.isEmpty(hora) || Text.isEmpty(titulo)
+        if (pk_Tipo_accion <= 0 || Text.isEmpty(fecha) || Text.isEmpty(hora) || Text.isEmpty(titulo)
                 || Text.isEmpty(resumen)){
             Dialog alertDialog = Dialogs.newAlertDialog(this, "Información", "Debe rellenar todos los campos", "OK");
             alertDialog.show();
@@ -112,7 +109,7 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
         ContentValues reg = new ContentValues();
         reg.put("fk_cliente", pk_accion);
         reg.put("fk_tipo_accion", pk_Tipo_accion);
-        reg.put("codigo_user", ejecutivo);
+        reg.put("codigo_user", GPOVallasApplication.pk_user_session);
         reg.put("fecha", fecha);
         reg.put("hora", hora);
         reg.put("titulo",titulo);
@@ -147,14 +144,10 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
             }
         }
         spinner.setSelection(dataAdapter.getPosition(tipo.get("descripcion")));
-
-        mTextNombre.setText(accion.codigo_user);
         mTextFecha.setText(accion.fecha);
         mTextHora.setText(accion.hora);
         mTextTitulo.setText(accion.titulo);
         mTextResumen.setText(accion.resumen);
-
-
     }
 
     @Override
