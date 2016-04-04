@@ -461,8 +461,7 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
     }
 
     public void save(View v) {
-        if (!Utils.existsEmptyFields(getString(R.string.campo_requerido), mTxtEjecutivo,
-                mTxtFechaEntrega, mTxtFechaInicio, mTxtFechaSolicitud,
+        if (!Utils.existsEmptyFields(getString(R.string.campo_requerido), mTxtFechaEntrega, mTxtFechaInicio, mTxtFechaSolicitud,
                 mTxtTemporalidad, mTxtObjetivos)) {
 
             // Disparar progressDialog

@@ -92,7 +92,7 @@ public class BriefFinderActivity extends GPOVallasListActivity {
         mBriefList = new ArrayList<HashMap<String, String>>();
 
         String sql = "SELECT b.token, b.fecha_solicitud as fecha, c.razon_social as cliente  " +
-                "FROM BRIEF b LEFT JOIN CLIENTE c ON b.fk_cliente = c.pk_cliente WHERE b.estado = 1 AND b.PendienteEnvio = 0";
+                "FROM BRIEF b LEFT JOIN CLIENTE c ON b.fk_cliente = c.pk_cliente WHERE b.estado = 1";
 
         filter_nombreBri = filter_nombreBri.replace("'", "''");
 

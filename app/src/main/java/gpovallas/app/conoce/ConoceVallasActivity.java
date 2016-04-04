@@ -63,7 +63,6 @@ public class ConoceVallasActivity extends GPOVallasActivity implements AdapterVi
         mProgressDialog.setTitle(android.R.string.dialog_alert_title);
         mProgressDialog.setMessage(getString(R.string.loading));
         mProgressDialog.setCancelable(false);
-        mProgressDialog.show();
 
 
     }
@@ -93,6 +92,7 @@ public class ConoceVallasActivity extends GPOVallasActivity implements AdapterVi
             intent.putExtra(GPOVallasConstants.IMAGE_TITLE, archivo.nombre);
             startActivity(intent);
         } else {
+            mProgressDialog.show();
             File directory = new File(GENERIC_REMOTE_FILES_PATH);
             if (!directory.exists()) {
                 Log.i(TAG, "Creando directorio: " + directory);
@@ -113,6 +113,7 @@ public class ConoceVallasActivity extends GPOVallasActivity implements AdapterVi
                                 } else {
 
                                     // Disparamos una actividad que o intente que trata de abrir el archivo en cuestion
+                                    mProgressDialog.dismiss();
 
                                     MimeTypeMap map = MimeTypeMap.getSingleton();
                                     String ext = MimeTypeMap.getFileExtensionFromUrl(file.getName());
