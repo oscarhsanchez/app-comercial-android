@@ -16,7 +16,7 @@ public class UpdaterBloqueArchivos extends UpdaterBloque {
     public UpdaterBloqueArchivos(Context c, Bloque bloque){ super(c,bloque);}
 
     @Override
-    public Boolean update(Integer estado) {
+    public Boolean update(String estado) {
         this.estado = estado;
 
         //Obtenemos echa y hora de Servidor

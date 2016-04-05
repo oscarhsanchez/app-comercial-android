@@ -16,7 +16,7 @@ public class GetAccionesRequest  extends WsRequest {
 
     private final String metodo = "acciones_clientes";
 
-    public <T> T execute(String lastUpdate, Pagination pagination, Integer state,  Class<T> responseClass) {
+    public <T> T execute(String lastUpdate, Pagination pagination, String state,  Class<T> responseClass) {
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
         String pagStr = gson.toJson(pagination);
 
