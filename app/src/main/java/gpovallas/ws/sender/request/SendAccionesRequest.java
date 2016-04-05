@@ -3,6 +3,7 @@ package gpovallas.ws.sender.request;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Base64;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -41,8 +42,8 @@ public class SendAccionesRequest extends WsRequest {
 
             if(c.moveToFirst()){
                 do {
-                    Accion contacto = (Accion) Database.getObjectByCursor(db, Accion.class, c);
-                    send.add(contacto);
+                    Accion accion = (Accion) Database.getObjectByCursor(db, Accion.class, c);
+                    send.add(accion);
                 } while(c.moveToNext());
             }
 
@@ -50,9 +51,11 @@ public class SendAccionesRequest extends WsRequest {
         if (send.size() > 0) {
             Gson gson = new Gson();
             String jSend = gson.toJson(send);
+            Log.i("Send accion", jSend);
             String eSend = "";
             try {
                 eSend = new String(Base64.encodeToString(jSend.getBytes("UTF-8"), Base64.DEFAULT));
+                Log.i("Send accion", jSend);
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }

@@ -49,9 +49,9 @@ public class ClientTabAccionesFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView adapter, View v, int position, long id) {
                 Log.i(TAG, "Posicion cliqueada " + position + " cliente pk " + arrAcciones.get(position).get("token"));
-                Intent x = new Intent(ClientTabAccionesFragment.this.getActivity(),ClientTabDetailsAccionesActivity.class);
-                x.putExtra(GPOVallasConstants.ACTION_PK_INTENT,arrAcciones.get(position).get("pk_accion"));
-                x.putExtra(GPOVallasConstants.ACTION_TOKEN,arrAcciones.get(position).get("token"));
+                Intent x = new Intent(ClientTabAccionesFragment.this.getActivity(), ClientTabDetailsAccionesActivity.class);
+                x.putExtra(GPOVallasConstants.ACTION_PK_INTENT, mPkCliente);
+                x.putExtra(GPOVallasConstants.ACTION_TOKEN, arrAcciones.get(position).get("token"));
                 startActivity(x);
             }
 
@@ -60,31 +60,38 @@ public class ClientTabAccionesFragment extends Fragment {
         mNewAccionView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent x = new Intent(ClientTabAccionesFragment.this.getActivity(),ClientTabDetailsAccionesActivity.class);
-                x.putExtra(GPOVallasConstants.ACTION_PK_INTENT,mPkCliente);
-                x.putExtra(GPOVallasConstants.ACTION_TOKEN,"");
+                Intent x = new Intent(ClientTabAccionesFragment.this.getActivity(), ClientTabDetailsAccionesActivity.class);
+                x.putExtra(GPOVallasConstants.ACTION_PK_INTENT, mPkCliente);
+                x.putExtra(GPOVallasConstants.ACTION_TOKEN, "");
                 startActivity(x);
             }
         });
-        populate();
         return mRoot;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        populate();
     }
 
     public void populate(){
 
         arrAcciones = new ArrayList<HashMap<String, String>>();
 
-        String sql = "SELECT pk_accion,fk_tipo_accion,token,codigo_user AS nombre, fecha, hora  " +
-                "FROM "+GPOVallasConstants.DB_TABLE_ACCION; //WHERE fk_cliente = "+mPkCliente;
+        String sql = "SELECT pk_accion,fk_tipo_accion,token,IFNULL(cod_user,'') AS nombre, fecha,hora" +
+                ", (SELECT descripcion from TIPOACCION WHERE pk_tipo_accion=fk_tipo_accion) as descripcion"+
+                " FROM ACCION WHERE estado=1"; //WHERE fk_cliente = "+mPkCliente;
 
         Cursor c = db.rawQuery(sql, null);
-        Log.i(TAG,""+c.getCount());
+        Log.i(TAG,"datos "+c.getCount());
         if(c.moveToFirst()){
             do {
-                Log.i(TAG,c.getString(c.getColumnIndex("nombre")));
+                //Log.i(TAG,c.getString(c.getColumnIndex("descripcion")));
                 HashMap<String,String> map = new HashMap<String, String>();
                 map.put("pk_accion",c.getString(c.getColumnIndex("pk_accion")));
                 map.put("fk_tipo_accion", c.getString(c.getColumnIndex("fk_tipo_accion")));
+                map.put("descripcion",c.getString(c.getColumnIndex("descripcion")));
                 map.put("token", c.getString(c.getColumnIndex("token")));
                 map.put("nombre", c.getString(c.getColumnIndex("nombre")));
                 map.put("fecha", c.getString(c.getColumnIndex("fecha")));

@@ -93,8 +93,8 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
 
     public void save(View v){
         //String tipoaccion = mTextTipo.getText().toString();
-        String fecha =mTextFecha.toString();
-        String hora = mTextHora.toString();
+        String fecha =mTextFecha.getText().toString();
+        String hora = mTextHora.getText().toString();
         String titulo =  mTextTitulo.getText().toString();
         String resumen = mTextResumen.getText().toString();
 
@@ -109,7 +109,7 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
         ContentValues reg = new ContentValues();
         reg.put("fk_cliente", pk_accion);
         reg.put("fk_tipo_accion", pk_Tipo_accion);
-        reg.put("codigo_user", GPOVallasApplication.pk_user_session);
+        reg.put("cod_user", GPOVallasApplication.pk_user_session);
         reg.put("fecha", fecha);
         reg.put("hora", hora);
         reg.put("titulo",titulo);
@@ -121,7 +121,7 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
         }
         reg.put("PendienteEnvio", 1);
 
-        Boolean result = Database.saveValues(db, GPOVallasConstants.DB_TABLE_CONTACTO, token_accion, reg);
+        Boolean result = Database.saveValues(db, GPOVallasConstants.DB_TABLE_ACCION, token_accion, reg);
         Dialog alertDialog = Dialogs.newAlertDialog(this, "Información","Cambios Guardos.", "OK");
         alertDialog.show();
         setResult(result ? ClientTabDetailsContactosActivity.RESULT_OK : 1);
