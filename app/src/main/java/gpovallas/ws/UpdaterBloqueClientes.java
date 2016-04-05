@@ -20,7 +20,7 @@ public class UpdaterBloqueClientes extends UpdaterBloque {
 		super(c, bloque);
 	}
 
-	public Boolean update(Integer estado){
+	public Boolean update(String estado){
 		
 		this.estado = estado;
 		

@@ -22,7 +22,7 @@ public class UpdaterBloqueMedios extends UpdaterBloque {
     }
 
     @Override
-    public Boolean update(Integer estado) {
+    public Boolean update(String estado) {
 
         this.estado = estado;
 

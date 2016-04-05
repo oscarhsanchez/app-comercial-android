@@ -14,7 +14,7 @@ public class UpdaterBloqueCatorcenas extends UpdaterBloque {
 	}
 
 	@Override
-	public Boolean update(Integer estado) {
+	public Boolean update(String estado) {
 		
 		this.estado = estado;
 		

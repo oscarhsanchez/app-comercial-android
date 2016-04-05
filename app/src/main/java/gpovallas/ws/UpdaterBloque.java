@@ -25,7 +25,7 @@ public abstract class UpdaterBloque {
 	protected SQLiteDatabase db;
 	protected Vector<String> updatesFallidos;
 	protected String fechaUpd;
-	protected Integer estado;
+	protected String estado;
 
 	public UpdaterBloque(Context c, Updater.Bloque bloque) {
 		contexto = c;
@@ -109,7 +109,7 @@ public abstract class UpdaterBloque {
 		return fecha;
 	}
 
-	public abstract Boolean update(Integer estado);
+	public abstract Boolean update(String estado);
 
 	public Vector<String> getUpdatesFallidos(){
 		return updatesFallidos;
@@ -178,7 +178,7 @@ public abstract class UpdaterBloque {
 
 	}
 	
-	public void setEstado(int estado){
+	public void setEstado(String estado){
 		this.estado = estado;
 		
 	}

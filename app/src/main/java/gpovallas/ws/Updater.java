@@ -115,7 +115,7 @@ public class Updater {
                 }
 
                 UpdaterBloque updater = (UpdaterBloque) updaters.get(i);
-                res = updater.update(0); //Como es Actualizacion parcial enviamos el estado = 0
+                res = updater.update(">=0"); //Como es Actualizacion parcial enviamos el estado = 0
                 updatesFallidos.addAll(updater.getUpdatesFallidos());
 
                 if (usarTransacciones) {
@@ -180,7 +180,7 @@ public class Updater {
                 }
 
                 UpdaterBloque updater = (UpdaterBloque) updaters.get(i);
-                res = updater.update(0); //Como es Actualizacion parcial enviamos el estado = 0
+                res = updater.update("0"); //Como es Actualizacion parcial enviamos el estado = 0
                 updatesFallidos.addAll(updater.getUpdatesFallidos());
 
                 if (usarTransacciones) {
@@ -262,7 +262,7 @@ public class Updater {
             activity.runOnUiThread(changeMessage);
 
             db.beginTransaction();
-            updater.update(1); //Como es Actualizacion total enviamos el estado = 1
+            updater.update("1"); //Como es Actualizacion total enviamos el estado = 1
             updatesFallidos.addAll(updater.getUpdatesFallidos());
             if (updater.getUpdatesFallidos().size() > 0) {
                 Log.i("Updater Total: ", "Ha fallado el bloque " + updater.bloque.name());

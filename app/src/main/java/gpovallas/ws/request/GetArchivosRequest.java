@@ -18,7 +18,7 @@ import gpovallas.ws.WsRequest;
 public class GetArchivosRequest extends WsRequest {
     private final String metodo = "archivos";
 
-    public <T> T execute(String lastUpdate, Pagination pagination, Integer state, Class<T> responseClass){
+    public <T> T execute(String lastUpdate, Pagination pagination, String state, Class<T> responseClass){
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
         String pagStr = gson.toJson(pagination);
 
