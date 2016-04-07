@@ -39,5 +39,12 @@ public class ClienteCtrl {
         return clientes;
     }
 
+    public Cliente getByPk(String pk_client) {
+        return (Cliente) Database.getObjectBy(mDatabase,
+                GPOVallasConstants.DB_TABLE_CLIENTE,
+                "pk_cliente = '" + pk_client + "'",
+                Cliente.class);
+    }
+
 
 }

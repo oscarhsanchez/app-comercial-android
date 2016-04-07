@@ -3,6 +3,7 @@ package gpovallas.app.briefs;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
@@ -35,6 +37,7 @@ import gpovallas.app.ApplicationStatus;
 import gpovallas.app.GPOVallasActivity;
 import gpovallas.app.GPOVallasApplication;
 import gpovallas.app.R;
+import gpovallas.app.clientes.ClientFinderActivity;
 import gpovallas.app.constants.GPOVallasConstants;
 import gpovallas.db.controllers.BriefCtrl;
 import gpovallas.db.controllers.ClienteCtrl;
@@ -52,7 +55,7 @@ import gpovallas.utils.Database;
 import gpovallas.utils.Dialogs;
 import gpovallas.utils.Utils;
 
-public class BriefDetailActivity extends GPOVallasActivity implements AdapterView.OnItemSelectedListener {
+public class BriefDetailActivity extends GPOVallasActivity {
 
     private static final String TAG = BriefDetailActivity.class.getSimpleName();
     private static final String JSON_PAIS = "pais";
@@ -60,6 +63,7 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
     private static final String JSON_PLAZA = "plaza";
     private static final String JSON_TIPO = "tipo";
     private static final String JSON_SUBTIPO = "subtipo";
+    private final int REQUEST_CODE = 4324234;
 
     private SQLiteDatabase db;
     private String token_brief;
@@ -68,7 +72,7 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
     private DatePickerDialog dateSolicitudPickerDialog;
     private DatePickerDialog dateEntregaPickerDialog;
     private final Calendar c = Calendar.getInstance();
-    private List<Cliente> clientes;
+    private Cliente cliente;
     private List<Pais> paises;
     private List<Plaza> plazas;
     private List<TipoMedio> tipos;
@@ -81,7 +85,8 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
     private EditText mTxtEjecutivo;
     private EditText mTxtObjetivos;
     private EditText mTxtTemporalidad;
-    private Spinner mSpinnerCliente;
+    private EditText mTxtCliente;
+    private Button mBtnCliente;
     private TableLayout mLayoutPaises;
     private TableLayout mLayoutPlazas;
     private TableLayout mLayoutTipos;
@@ -129,14 +134,14 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
         mTxtEjecutivo = (EditText) findViewById(R.id.txtEjecutivo);
         mTxtTemporalidad = (EditText) findViewById(R.id.txtTemporalidad);
         mTxtObjetivos = (EditText) findViewById(R.id.txtObjetivos);
-        mSpinnerCliente = (Spinner) findViewById(R.id.spinnerCliente);
+        mTxtCliente = (EditText) findViewById(R.id.txtCliente);
+        mBtnCliente = (Button) findViewById(R.id.btnCliente);
         mLayoutPaises = (TableLayout) findViewById(R.id.layoutPaises);
         mLayoutPlazas = (TableLayout) findViewById(R.id.layoutPlazas);
         mLayoutPlazas.setVisibility(View.GONE);
         mLayoutTipos = (TableLayout) findViewById(R.id.layoutTipos);
         mLayoutSubtipos = (TableLayout) findViewById(R.id.layoutSubtipos);
         mLayoutSubtipos.setVisibility(View.GONE);
-        loadClientes();
         loadPaises();
         loadTipos();
         setupListeners();
@@ -203,23 +208,36 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
             }
         });
 
+        mBtnCliente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BriefDetailActivity.this, ClientFinderActivity.class);
+                intent.putExtra("self_activity",false);
+                startActivityForResult(intent, REQUEST_CODE);
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == REQUEST_CODE) {
+                Bundle bundle = data.getExtras();
+                String pk_client = bundle.getString(GPOVallasConstants.CLIENT_PK_INTENT,"0");
+                if (StringUtils.isNotBlank(pk_client)) {
+                    cliente = new ClienteCtrl(db).getByPk(pk_client);
+                    Log.i(TAG,cliente.razon_social);
+                    mTxtCliente.setText(cliente.razon_social.length() > 20 ?
+                            StringUtils.substring(cliente.razon_social,0,17).concat("...") : cliente.razon_social
+                    );
+                }
+            }
+        }
     }
 
     //<editor-fold desc="Load data dinamically">
-    private void loadClientes() {
-
-        clientes = new ClienteCtrl(db).getAll();
-        List<String> options = new ArrayList<>();
-        for (Cliente cliente : clientes) {
-            options.add(cliente.razon_social);
-        }
-
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mSpinnerCliente.setAdapter(dataAdapter);
-        mSpinnerCliente.setOnItemSelectedListener(this);
-
-    }
 
     private CompoundButton.OnCheckedChangeListener mOnCheckedChangeListenerPais = new CompoundButton.OnCheckedChangeListener() {
         @Override
@@ -450,30 +468,20 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
     }
     //</editor-fold>
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Log.i(TAG, "Spinner selected item " + clientes.get(position).razon_social);
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
     public void save(View v) {
-        if (!Utils.existsEmptyFields(getString(R.string.campo_requerido), mTxtFechaEntrega, mTxtFechaInicio, mTxtFechaSolicitud,
+        if (!Utils.existsEmptyFields(getString(R.string.campo_requerido), mTxtCliente,
+                mTxtFechaEntrega, mTxtFechaInicio, mTxtFechaSolicitud,
                 mTxtTemporalidad, mTxtObjetivos)) {
 
             // Disparar progressDialog
             progressDialog = ProgressDialog.show(BriefDetailActivity.this, "", getString(R.string.loading), true);
             progressDialog.show();
 
-            String fk_cliente = clientes.get(mSpinnerCliente.getSelectedItemPosition()).pk_cliente;
-            Log.i(TAG, "Cliente " + fk_cliente);
+            Log.i(TAG, "Cliente " + cliente.pk_cliente);
 
             // Crear content values
             ContentValues reg = new ContentValues();
-            reg.put("fk_cliente", fk_cliente);
+            reg.put("fk_cliente", cliente.pk_cliente);
             reg.put("objetivo", mTxtObjetivos.getText().toString());
             reg.put("fecha_inicio", mTxtFechaInicio.getText().toString());
             reg.put("fecha_solicitud", mTxtFechaSolicitud.getText().toString());
@@ -618,7 +626,6 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
     }
     //</editor-fold>
 
-    //TODO: Falta cargar correctamente el ejecutivo
     private void loadBriefData() {
         mBrief = new BriefCtrl(db).getBriefByToken(token_brief);
         if (mBrief != null) {
@@ -660,24 +667,19 @@ public class BriefDetailActivity extends GPOVallasActivity implements AdapterVie
                 Log.e(TAG, e.getMessage(), e);
             }
 
-            // Setear spinner
-            int position = 0;
-            for (Cliente c : clientes) {
-                if (c.pk_cliente.equals(mBrief.fk_cliente)) {
-                    break;
-                }
-                position++;
-            }
-            mSpinnerCliente.setSelection(position);
+            // Obtener cliente
+            cliente = new ClienteCtrl(db).getByPk(mBrief.fk_cliente);
+            Log.i(TAG,cliente.razon_social);
+            mTxtCliente.setText(cliente.razon_social.length() > 20 ?
+                    StringUtils.substring(cliente.razon_social,0,17).concat("...") : cliente.razon_social
+            );
 
-            // Probar cargar info de paises y plazas
-            //mBrief.paises_plazas = "[{'pais':'MX','opt':[{'plaza':'ACA'},{'plaza':'AGS'}]}]";
+            // Cargar info de paises y plazas
             if (StringUtils.isNotBlank(mBrief.paises_plazas)) {
                 populatePaisesPlazas(mBrief.paises_plazas);
             }
 
             // Cargar info de tipos y subtipos
-            //mBrief.tipologia_medios = "[{'tipo':'VALLA','opt':[{'subtipo':'A'}]}]";
             if (StringUtils.isNotBlank(mBrief.tipologia_medios)) {
                 populateTiposSubtipos(mBrief.tipologia_medios);
             }
