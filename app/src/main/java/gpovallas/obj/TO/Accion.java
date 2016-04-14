@@ -10,7 +10,7 @@ public class Accion {
     public String fk_pais;
     public String fk_cliente;
     public String fk_tipo_accion;
-    public Integer cod_user;
+    public String codigo_user;
     public String fecha;
     public String hora;
     public String titulo;

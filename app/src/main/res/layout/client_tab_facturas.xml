@@ -2,9 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               style="@style/main_linear_layout">
 
-    <gpovallas.com.Header
-        style="@style/header" android:id="@+id/header"/>
-
     <LinearLayout
         style="@style/basic_layout_padding">
         <LinearLayout

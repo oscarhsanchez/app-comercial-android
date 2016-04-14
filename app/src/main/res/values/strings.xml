@@ -103,11 +103,13 @@
 
 
     <!-- Clientes Propuestas -->
-    <string name="c_facturas_th_ejecutivo">Ejecutivo</string>
-    <string name="c_facturas_th_fecha">Fecha de Inicio</string>
-    <string name="c_facturas_th_presupuesto">Presupuesto</string>
-    <string name="c_facturas_th_estado">Estado de la Propuesta</string>
-    <string name="c_facturas_no_resultados">No se encontraron facturas</string>
+    <string name="c_propuesta_th_usuario">Usuario</string>
+    <string name="c_propuesta_th_fecha_inicio">Fecha Inicio</string>
+    <string name="c_propuesta_th_fecha_fin">Fecha Fin</string>
+    <string name="c_propuesta_th_catorcena">Catorcena</string>
+    <string name="c_propuesta_th_unidad">Unidad Negocio</string>
+    <string name="c_propuesta_th_status">Estatus</string>
+    <string name="c_propuesta_no_resultados">No se encontraron propuestas</string>
 
     <!-- Medios -->
 

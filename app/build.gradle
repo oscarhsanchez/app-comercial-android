@@ -30,6 +30,12 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url "https://repo.commonsware.com.s3.amazonaws.com"
+    }
+}
+
 dependencies {
     compile files('libs/acra-4.6.1.jar')
     compile files('libs/activation.jar')
@@ -49,4 +55,5 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.joanzapata.pdfview:android-pdfview:1.0.3@aar'
     compile 'com.koushikdutta.ion:ion:2.1.6'
+    compile 'com.commonsware.cwac:endless:1.2.3'
 }
