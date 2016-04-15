@@ -40,7 +40,6 @@
                     android:text="Todos"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="2dp"
-                    android:onClick="deleteSearchFilter"
                     android:layout_marginRight="10dp"/>
 
         </LinearLayout>

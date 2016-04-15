@@ -31,10 +31,13 @@ public class ClientPropuestaWrapper extends EndlessAdapter implements
     private Context mContext;
     private int offset;
     private int limit;
-    private final int MAX_TRIES = 5;
+    private View loadingView;
+    private String filter_usr;
+    private String filter_status;
 
     public ClientPropuestaWrapper(Context context, ClientPropuestaAdapter adapter, String fk_client,
-                                  List<Propuesta> propuestas, int offset, int limit) {
+                                  List<Propuesta> propuestas, int offset, int limit,
+                                  String filter_usr, String filter_status) {
         super(adapter);
 
         mContext = context;
@@ -42,6 +45,8 @@ public class ClientPropuestaWrapper extends EndlessAdapter implements
         this.limit = limit;
         mPropuestas = propuestas;
         this.fk_client = fk_client;
+        this.filter_usr = filter_usr;
+        this.filter_status = filter_status;
         rotate = new RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF,
                 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         rotate.setDuration(600);
@@ -53,13 +58,13 @@ public class ClientPropuestaWrapper extends EndlessAdapter implements
     protected View getPendingView(ViewGroup parent) {
 
         View row = LayoutInflater.from(mContext).inflate(R.layout.listview_loading_row, null);
-        View child = row.findViewById(android.R.id.text1);
+        loadingView = row.findViewById(android.R.id.text1);
 
-        child.setVisibility(View.GONE);
+        loadingView.setVisibility(View.GONE);
 
-        child = row.findViewById(R.id.throbber);
-        child.setVisibility(View.VISIBLE);
-        child.startAnimation(rotate);
+        loadingView = row.findViewById(R.id.throbber);
+        loadingView.setVisibility(View.VISIBLE);
+        loadingView.startAnimation(rotate);
 
         return (row);
     }
@@ -67,12 +72,12 @@ public class ClientPropuestaWrapper extends EndlessAdapter implements
     @Override
     protected boolean cacheInBackground() throws Exception {
         Log.i(TAG,"Llamando cacheInBackground");
-        new PropuestasTask(this, offset, limit).execute(fk_client);
-        //Solucion tentativa para que si no hay registros no se la pase haciendo n peticiones mientras este uno en la seccion de propuestas
-        if (mPropuestas.size() <= 0 && ClientTabPropuestasFragment.TRIES < MAX_TRIES) {
-            ClientTabPropuestasFragment.TRIES++;
+        if (ClientTabPropuestasFragment.KEEP_LOADING) {
+            new PropuestasTask(this, offset, limit).execute(fk_client,filter_usr,filter_status);
+        } else {
+            loadingView.setVisibility(View.GONE);
         }
-        return ClientTabPropuestasFragment.TRIES < MAX_TRIES;
+        return ClientTabPropuestasFragment.KEEP_LOADING;
     }
 
     @Override
@@ -83,7 +88,12 @@ public class ClientPropuestaWrapper extends EndlessAdapter implements
     @Override
     public void onItemsReady(List<Propuesta> data) {
         Log.i(TAG,"OnItemsReady");
-        mPropuestas.addAll(data);
+        if (data != null && !data.isEmpty()) {
+            mPropuestas.addAll(data);
+            if (ClientTabPropuestasFragment.KEEP_LOADING) {
+                offset = offset + limit;
+            }
+        }
         onDataReady();  // Tell the EndlessAdapter to
                         // remove it's pending
                         // view and call

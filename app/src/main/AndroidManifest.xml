@@ -111,6 +111,12 @@
             android:windowSoftInputMode="adjustPan|stateHidden">
         </activity>
 
+        <activity
+            android:name=".clientes.ClientPropuestaDetailActivity"
+            android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustPan|stateHidden">
+        </activity>
+
         <receiver
             android:name="gpovallas.services.receivers.StartReceiver"
             android:enabled="true"
@@ -128,6 +134,7 @@
             android:name="gpovallas.services.CronTask"
             android:enabled="true"
             android:exported="true"/>
+
 
     </application>
 

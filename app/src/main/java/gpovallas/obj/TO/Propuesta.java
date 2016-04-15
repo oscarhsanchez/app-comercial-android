@@ -25,6 +25,6 @@ public class Propuesta {
     public String created_at;
     public String updated_at;
     public String token;
-    public String detalle; //TODO: Este es un arreglo de PropuestaDetalle, a su vez PropuestaDetalle tiene una propiedad llamada detalle_outdoor puede tener una PropuestaDetalleOutdoor
+    public PropuestaDetalle[] detalle;
 
 }

@@ -32,6 +32,7 @@ public class GPOVallasConstants {
     public static String CONTACT_TOKEN = "contact_token_intent";
     public static String ACTION_PK_INTENT = "action_pk_intent";
     public static String ACTION_TOKEN = "action_token_intent";
+    public static String PROPUESTA_PK_TOKEN = "propuesta_token_intent";
 
     // Brief Intent Attributes
     public static String BRIEF_TOKEN = "brief_token";
