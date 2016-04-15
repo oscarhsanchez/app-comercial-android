@@ -28,19 +28,45 @@
                 android:layout_marginTop="20dp">
 
                 <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
                     android:layout_marginRight="15dp"
                     android:text="@string/briefs_cliente"
                     android:textAppearance="@style/defaultTextAppearance"
-                    android:textColor="@color/orangeGpo"
-                    android:layout_width="wrap_content"/>
+                    android:textColor="@color/orangeGpo"/>
 
-                <Spinner
+                <LinearLayout android:layout_height="wrap_content"
+                              android:layout_width="match_parent"
+                              android:layout_column="2"
+                              android:weightSum="1"
+                    android:orientation="horizontal">
+
+
+                    <EditText
+                        android:id="@+id/txtCliente"
+                        android:layout_weight="0.75"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:lines="1"
+                        android:enabled="false"/>
+
+                    <Button
+                        android:id="@+id/btnCliente"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.25"
+                        android:layout_height="wrap_content"
+                        android:text="Buscar"/>
+
+                </LinearLayout>
+
+
+
+                <!--Spinner
                     android:id="@+id/spinnerCliente"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_column="2"/>
+                    android:layout_column="2"/-->
 
             </TableRow>
 
@@ -319,11 +345,11 @@
         </TableLayout>
 
         <LinearLayout
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
             android:gravity="center"
-            android:orientation="vertical"
-            android:layout_marginBottom="15dp">
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/btn_actualizar_brief"

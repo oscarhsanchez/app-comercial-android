@@ -1,48 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout style="@style/main_linear_layout"
+              xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
 
 
     <LinearLayout
-        style="@style/listViewRow">
+        style="@style/basic_layout_padding">
 
-        <TextView
-            style="@style/listview_textview_th"
-            android:layout_weight="0.3"
-            android:text="@string/c_facturas_th_ejecutivo"/>
 
-        <TextView
-            style="@style/listview_textview_th"
-            android:layout_weight="0.17"
-            android:text="@string/c_facturas_th_fecha"/>
+        <LinearLayout style="@style/container_filter">
 
-        <TextView
-            style="@style/listview_textview_th"
-            android:layout_weight="0.23"
-            android:text="@string/c_facturas_th_presupuesto"/>
+            <ImageView android:id="@+id/img_search_icon"
+                       android:layout_width="0dp"
+                       style="@style/wrap_style"
+                       android:adjustViewBounds="true"
+                       android:layout_weight="0.05"
+                       android:src="@android:drawable/ic_menu_search"/>
 
-        <TextView
-            style="@style/listview_textview_th"
-            android:layout_weight="0.3"
-            android:text="@string/c_facturas_th_estado"/>
+            <EditText android:id="@+id/et_search_filter_cod"
+                      android:layout_width="0dp"
+                      style="@style/editText"
+                      android:layout_marginRight="10dp"
+                      android:layout_weight="0.15"
+                      android:hint="Cód. usuario..."/>
 
-    </LinearLayout>
+            <EditText android:id="@+id/et_search_filter"
+                      android:layout_width="0dp"
+                      style="@style/editText"
+                      android:layout_weight="0.60"
+                      android:hint="Filtrar por..."/>
 
-    <LinearLayout
-        style="@style/basic_style">
+            <Button android:id="@+id/btn_search_filter"
+                    android:layout_width="0dp"
+                    style="@style/wrap_style"
+                    android:layout_weight="0.2"
+                    android:gravity="center"
+                    android:text="Todos"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginRight="10dp"/>
 
-        <ListView android:id="@android:id/list"
-                  style="@style/basic_style"
-                  android:cacheColorHint="#ECECEC"
-                  android:textFilterEnabled="true">
-        </ListView>
+        </LinearLayout>
 
-        <TextView android:id="@android:id/empty"
-                  style="@style/basic_style"
-                  android:gravity="center"
-                  android:text="@string/c_facturas_no_resultados"/>
+        <LinearLayout
+
+            style="@style/listViewRow">
+
+            <TextView
+                style="@style/listview_textview_th"
+                android:layout_weight="0.2"
+                android:text="@string/c_propuesta_th_usuario"/>
+
+            <TextView
+                style="@style/listview_textview_th"
+                android:layout_weight="0.15"
+                android:text="@string/c_propuesta_th_fecha_inicio"/>
+
+            <TextView
+                style="@style/listview_textview_th"
+                android:layout_weight="0.15"
+                android:text="@string/c_propuesta_th_fecha_fin"/>
+
+            <TextView
+                style="@style/listview_textview_th"
+                android:layout_weight="0.15"
+                android:text="@string/c_propuesta_th_catorcena"/>
+
+            <TextView
+                style="@style/listview_textview_th"
+                android:layout_weight="0.2"
+                android:text="@string/c_propuesta_th_unidad"/>
+
+            <TextView
+                style="@style/listview_textview_th"
+                android:layout_weight="0.15"
+                android:text="@string/c_propuesta_th_status"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/basic_style">
+
+            <ListView
+                android:id="@android:id/list"
+                style="@style/basic_style"
+                android:cacheColorHint="#ECECEC"
+                android:textFilterEnabled="true">
+            </ListView>
+
+            <TextView
+                android:id="@android:id/empty"
+                style="@style/basic_style"
+                android:gravity="center"
+                android:text="@string/c_propuesta_no_resultados"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -2,7 +2,6 @@ package gpovallas.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import gpovallas.app.R;
-import gpovallas.obj.Cliente;
-import gpovallas.obj.Propuesta;
+import gpovallas.obj.TO.Propuesta;
 
 /**
  * Created by daniel on 9/03/16.
@@ -55,10 +53,12 @@ public class ClientPropuestaAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.client_propuesta_row, parent, false);
 
             holder = new PropuestaViewHolder();
-            holder.mEjecutivoText = (TextView) convertView.findViewById(R.id.txtEjecutivo);
-            holder.mFechaText = (TextView) convertView.findViewById(R.id.txtFecha);
+            holder.mUsuarioText = (TextView) convertView.findViewById(R.id.txtUsuario);
+            holder.mFechaInicioText = (TextView) convertView.findViewById(R.id.txtFechaInicio);
+            holder.mFechaFinText = (TextView) convertView.findViewById(R.id.txtFechaFin);
+            holder.mCatorcenaText = (TextView) convertView.findViewById(R.id.txtCatorcena);
+            holder.mUnidadText = (TextView) convertView.findViewById(R.id.txtUnidad);
             holder.mEstadoText = (TextView) convertView.findViewById(R.id.txtEstado);
-            holder.mPresupuestoText = (TextView) convertView.findViewById(R.id.txtPresupuesto);
 
             convertView.setTag(holder);
 
@@ -67,7 +67,13 @@ public class ClientPropuestaAdapter extends BaseAdapter {
         }
 
         if (propuesta != null) {
-            //TODO: Poner toda la informacion de la propuesta en los elementos del holder
+            //TODO: Checar si hay que sacar de la base local info de catorcena
+            holder.mUsuarioText.setText(propuesta.codigo_user);
+            holder.mFechaInicioText.setText(propuesta.fecha_inicio);
+            holder.mFechaFinText.setText(propuesta.fecha_fin);
+            holder.mCatorcenaText.setText(propuesta.catorcena);
+            holder.mUnidadText.setText(propuesta.unidad_negocio);
+            holder.mEstadoText.setText(propuesta.status);
         }
 
         return convertView;
@@ -75,9 +81,11 @@ public class ClientPropuestaAdapter extends BaseAdapter {
     }
 
     static class PropuestaViewHolder {
-        TextView mEjecutivoText;
-        TextView mFechaText;
-        TextView mPresupuestoText;
+        TextView mUsuarioText;
+        TextView mFechaInicioText;
+        TextView mFechaFinText;
+        TextView mCatorcenaText;
+        TextView mUnidadText;
         TextView mEstadoText;
     }
 

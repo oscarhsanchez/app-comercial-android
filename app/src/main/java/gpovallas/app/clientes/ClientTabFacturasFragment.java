@@ -1,9 +1,9 @@
 package gpovallas.app.clientes;
 
-import android.app.Fragment;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +36,7 @@ public class ClientTabFacturasFragment extends Fragment {
         if(bundle != null){
             mPkCliente = bundle.getString(GPOVallasConstants.CLIENT_PK_INTENT);
             if(!TextUtils.isEmpty(mPkCliente)){
-                mCliente = (Cliente) Database.getObjectBy(db,GPOVallasConstants.DB_TABLE_CLIENTE,"pkCliente = '" + mPkCliente + "'",Cliente.class);
+                mCliente = (Cliente) Database.getObjectBy(db,GPOVallasConstants.DB_TABLE_CLIENTE,"pk_cliente = '" + mPkCliente + "'",Cliente.class);
             }
         }
         mListView = (ListView) v.findViewById(android.R.id.list);

@@ -91,6 +91,7 @@ public class WsRequest {
                 }
 
                 if (!Text.isEmpty(param)) param = "?" + param;
+                Log.i("Request",GPOVallasApplication.appEntorno.ruta + jsonAction + param);
 
                 HttpGet get = new HttpGet(GPOVallasApplication.appEntorno.ruta + jsonAction + param);
                 get.addHeader("Content-type", contentType);
