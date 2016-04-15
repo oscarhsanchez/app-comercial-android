@@ -79,7 +79,7 @@ public class ClientTabAccionesFragment extends Fragment {
 
         arrAcciones = new ArrayList<HashMap<String, String>>();
 
-        String sql = "SELECT pk_accion,fk_tipo_accion,token,IFNULL(cod_user,'') AS nombre, fecha,hora" +
+        String sql = "SELECT pk_accion,fk_tipo_accion,token,IFNULL(codigo_user,'') AS nombre, fecha,hora" +
                 ", (SELECT descripcion from TIPOACCION WHERE pk_tipo_accion=fk_tipo_accion) as descripcion"+
                 " FROM ACCION WHERE estado=1"; //WHERE fk_cliente = "+mPkCliente;
 

@@ -109,7 +109,7 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
         ContentValues reg = new ContentValues();
         reg.put("fk_cliente", pk_accion);
         reg.put("fk_tipo_accion", pk_Tipo_accion);
-        reg.put("cod_user", GPOVallasApplication.pk_user_session);
+        reg.put("codigo_user", GPOVallasApplication.pk_user_session);
         reg.put("fecha", fecha);
         reg.put("hora", hora);
         reg.put("titulo",titulo);
