@@ -1,6 +1,7 @@
 package gpovallas.task;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,6 +44,7 @@ public class PropuestasTask extends AsyncTask<String ,Void, GetPropuestasRespons
             if (listener != null) {
                 if (getPropuestasResponse.propuestas.length < limit) {
                     //No hay mas registros de este cliente, no alcanzo el limite propuesto, por ende no se sigue intentado buscar mas registros
+                    Log.i("PropuestasTask"," keep _loading false");
                     ClientTabPropuestasFragment.KEEP_LOADING = false;
                 }
                 listener.onItemsReady(new ArrayList<>(Arrays.asList(getPropuestasResponse.propuestas)));

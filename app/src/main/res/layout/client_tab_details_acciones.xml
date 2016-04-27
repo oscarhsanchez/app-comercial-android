@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="gpovallas.app.briefs.BriefDetailActivity">
     <LinearLayout
-        style="@style/main_linear_layout_bg_gris"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:baselineAligned="false"

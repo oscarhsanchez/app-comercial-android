@@ -128,6 +128,22 @@
     <string name="lbl_medios_datosG_categoria">Categoría:</string>
     <string name="lbl_medios_datosG_fechaInstalacion">Fecha de Instalación</string>
 
+    <!-- Propuestas -->
+
+    <string name="lbl_propuesta_codigo">Codigo Usuario:</string>
+    <string name="lbl_propuesta_fechaInicio">Fecha Inicio:</string>
+    <string name="lbl_propuesta_fechaFin">Fecha Fin:</string>
+    <string name="lbl_propuesta_catorcena">Catorcena:</string>
+    <string name="lbl_propuesta_unidaNegocio">Unidad Negocio:</string>
+    <string name="lbl_propuesta_status">status:</string>
+    
+    <!-- Detalle Outdoor-->
+    
+    <string name="lbl_outdoor_medio">Medio</string>
+    <string name="lbl_outdoor_Unidad">Unidad de Negocio</string>
+    <string name="lbl_outdoor_tipo_negocion">Tipo de Negociación</string>
+    <string name="lbl_outdoor_precio">Precio</string>
+
     <!-- Listados-->
 
     <string name="listados_Plaza">Plaza</string>

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/main_linear_layout_bg_gris"
     tools:context="gpovallas.app.clientes.ClientPropuestaDetailActivity">
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:orientation="vertical">
 
@@ -17,11 +16,237 @@
             android:id="@+id/header"
             style="@style/header"/>
 
-        <ExpandableListView
-            android:id="@+id/lvExp"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:baselineAligned="false">
 
+            <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:orientation="vertical">
+                <TableLayout
+                    style="@style/wrap_style"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="10dp">
+
+                    <TableRow
+                        style="@style/wrap_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="30dp">
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_propuesta_codigo"
+                            style="@style/basic_style"
+                            android:textColor="@color/orangeGpo"
+                            android:layout_column="1"
+                            android:layout_gravity="right"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/propuesta_codigo"
+                            style="@style/basic_style"
+                            android:textColor="@color/text_datos_generales_center"
+                            android:layout_column="2"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+                    </TableRow>
+                    <TableRow
+                        style="@style/wrap_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="30dp">
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_propuesta_catorcena"
+                            style="@style/basic_style"
+                            android:textColor="@color/orangeGpo"
+                            android:layout_column="1"
+                            android:layout_gravity="right"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/propuesta_catorcena"
+                            style="@style/basic_style"
+                            android:textColor="@color/text_datos_generales_center"
+                            android:layout_column="2"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+                    </TableRow>
+                    <TableRow
+                        style="@style/wrap_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="30dp">
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_propuesta_unidaNegocio"
+                            style="@style/basic_style"
+                            android:textColor="@color/orangeGpo"
+                            android:layout_column="1"
+                            android:layout_gravity="right"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/propuesta_unidadNegocio"
+                            style="@style/basic_style"
+                            android:textColor="@color/text_datos_generales_center"
+                            android:layout_column="2"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:orientation="vertical">
+                <TableLayout
+                    style="@style/wrap_style"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="10dp">
+                    <TableRow
+                        style="@style/wrap_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="30dp">
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_propuesta_fechaInicio"
+                            style="@style/basic_style"
+                            android:textColor="@color/orangeGpo"
+                            android:layout_column="1"
+                            android:layout_gravity="right"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                        <TextView android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/propuesta_fechaInicio"
+                            style="@style/basic_style"
+                            android:textColor="@color/text_datos_generales_center"
+                            android:layout_column="2"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+                    </TableRow>
+                    <TableRow
+                        style="@style/wrap_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="30dp">
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_propuesta_fechaFin"
+                            style="@style/basic_style"
+                            android:textColor="@color/orangeGpo"
+                            android:layout_column="1"
+                            android:layout_gravity="right"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                        <TextView android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/propuesta_fechaFin"
+                            style="@style/basic_style"
+                            android:textColor="@color/text_datos_generales_center"
+                            android:layout_column="2"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+                    </TableRow>
+                    <TableRow
+                        style="@style/wrap_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="30dp">
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_propuesta_status"
+                            style="@style/basic_style"
+                            android:textColor="@color/orangeGpo"
+                            android:layout_column="1"
+                            android:layout_gravity="right"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                        <TextView android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/propuesta_status"
+                            style="@style/basic_style"
+                            android:textColor="@color/text_datos_generales_center"
+                            android:layout_column="2"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            style="@style/listViewRow">
+
+            <TextView
+                android:layout_weight="0.15"
+                style="@style/listview_textview_th"
+                android:text="Plaza" />
+
+            <TextView
+                style="@style/listview_textview_th"
+                android:text="Tipo de negociación"
+                android:layout_weight="0.25" />
+
+            <TextView
+                android:layout_weight="0.15"
+                style="@style/listview_textview_th"
+                android:text="Subtipo"/>
+
+            <TextView
+                android:layout_weight="0.25"
+                style="@style/listview_textview_th"
+                android:text="Cantidad"/>
+
+            <TextView
+                android:layout_weight="0.20"
+                style="@style/listview_textview_th"
+                android:text="Total"/>
+
+        </LinearLayout>
+        <LinearLayout
+            style="@style/basic_style"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+            <ExpandableListView
+                android:id="@+id/lvExp"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:groupIndicator="@android:color/transparent"
+                android:divider="@android:color/darker_gray"
+                android:dividerHeight="0.5dp" />
+        </LinearLayout>
     </LinearLayout>
-
-</ScrollView>
+</LinearLayout>

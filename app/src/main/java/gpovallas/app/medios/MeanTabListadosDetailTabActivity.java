@@ -15,7 +15,7 @@ public class MeanTabListadosDetailTabActivity extends GPOVallasFragmentActivity 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mean_tab_listados_detail_tab);
-        setBreadCrumb("Listado", "Detalle");
+        setBreadCrumb("Ubicación", "Detalle");
         mPkListado = getIntent().getStringExtra(GPOVallasConstants.LISTADO_PK_INTENT);
     }
 

@@ -1,18 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical"
-              android:padding="8dp"
-              android:background="#000000">
+<LinearLayout style="@style/listViewRow"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="8dp">
 
+    <ImageView android:src="@drawable/expander_group"
+        android:id="@+id/explist_indicator"
+        android:layout_width="50px"
+        android:layout_height="50px"/>
 
     <TextView
-        android:id="@+id/lblListHeader"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
-        android:textSize="17dp"
-        android:textColor="#f9f93d" />
+        android:id="@+id/lblListPlaza"
+        style="@style/listview_textview"
+        android:layout_weight="0.15"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/lblTipoNego"
+        style="@style/listview_textview"
+        android:layout_weight="0.25"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/lblSubtipo"
+        style="@style/listview_textview"
+        android:layout_weight="0.15"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/lblCantidad"
+        style="@style/listview_textview"
+        android:layout_weight="0.25"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/lblTotal"
+        style="@style/listview_textview"
+        android:layout_weight="0.20"
+        android:gravity="center"/>
+
 
 </LinearLayout>

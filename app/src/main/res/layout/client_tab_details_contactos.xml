@@ -8,7 +8,7 @@
     <LinearLayout
         style="@style/main_linear_layout_bg_gris"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:orientation="vertical">
 
@@ -19,7 +19,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="459dp">
 
             <TableLayout
                 style="@style/wrap_style"
