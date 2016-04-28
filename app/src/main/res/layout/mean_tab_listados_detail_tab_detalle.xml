@@ -34,8 +34,8 @@
         android:layout_weight="0.33"
         android:baselineAligned="false"
         android:orientation="horizontal"
-         android:gravity="center"
-        android:weightSum="0.8">
+        android:gravity="center"
+        android:weightSum="0.89">
 
         <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
             android:layout_weight="0.4"
@@ -52,7 +52,8 @@
                     style="@style/wrap_style"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="30dp">
+                    android:layout_marginBottom="30dp"
+                    >
 
                     <TextView android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -216,6 +217,16 @@
                         android:background="@null"/>
                 </TableRow>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="right">
+                    <ImageView
+                        android:layout_marginRight="10dp"
+                        android:layout_width="350dp"
+                        android:layout_height="60dp"
+                        />
+                </LinearLayout>
             </TableLayout>
 
         </LinearLayout>
@@ -228,7 +239,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingLeft="15dp"
+                android:paddingLeft="45dp"
                 android:paddingRight="10dp">
 
                 <TableRow
@@ -428,3 +439,6 @@
             android:src="@drawable/indicadores"/>
     </LinearLayout>-->
 </LinearLayout>
+
+
+

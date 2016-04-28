@@ -14,20 +14,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gpovallas.app.R;
-import gpovallas.app.clientes.ClientTabPropuestasFragment;
+import gpovallas.app.clientes.ClientTabFacturasFragment;
 import gpovallas.listeners.IItemsReadyListener;
 import gpovallas.obj.TO.Factura;
 import gpovallas.obj.TO.Propuesta;
-import gpovallas.task.PropuestasTask;
 
 /**
- * Created by daniel on 13/04/16.
+ * Created by synergy on 25/04/16.
  */
-public class ClientPropuestaWrapper extends EndlessAdapter implements
-        IItemsReadyListener {
+public class ClientFacturaWrapper extends EndlessAdapter implements IItemsReadyListener {
 
     private final static String TAG = ClientPropuestaWrapper.class.getSimpleName();
-    private List<Propuesta> mPropuestas;
+    private List<Factura> mPropuestas;
     private String fk_client;
     private RotateAnimation rotate = null;
     private Context mContext;
@@ -37,15 +35,15 @@ public class ClientPropuestaWrapper extends EndlessAdapter implements
     private String filter_usr;
     private String filter_status;
 
-    public ClientPropuestaWrapper(Context context, ClientPropuestaAdapter adapter, String fk_client,
-                                  List<Propuesta> propuestas, int offset, int limit,
-                                  String filter_usr, String filter_status) {
+    public ClientFacturaWrapper(Context context, ClientFacturasAdapter adapter, String fk_client,
+                                List<Factura> facturas, int offset, int limit,
+                                String filter_usr, String filter_status){
         super(adapter);
 
         mContext = context;
         this.offset = offset;
         this.limit = limit;
-        mPropuestas = propuestas;
+        mPropuestas = facturas;
         this.fk_client = fk_client;
         this.filter_usr = filter_usr;
         this.filter_status = filter_status;
@@ -54,6 +52,7 @@ public class ClientPropuestaWrapper extends EndlessAdapter implements
         rotate.setDuration(600);
         rotate.setRepeatMode(Animation.RESTART);
         rotate.setRepeatCount(Animation.INFINITE);
+
     }
 
     @Override
@@ -73,13 +72,7 @@ public class ClientPropuestaWrapper extends EndlessAdapter implements
 
     @Override
     protected boolean cacheInBackground() throws Exception {
-        Log.i(TAG, "Llamando cacheInBackground");
-        if (ClientTabPropuestasFragment.KEEP_LOADING) {
-            new PropuestasTask(this, offset, limit).execute(fk_client,filter_usr,filter_status);
-        } else {
-            loadingView.setVisibility(View.GONE);
-        }
-        return ClientTabPropuestasFragment.KEEP_LOADING;
+        return false;
     }
 
     @Override
@@ -89,10 +82,15 @@ public class ClientPropuestaWrapper extends EndlessAdapter implements
 
     @Override
     public void onItemsReady(ArrayList<Propuesta> data) {
+
+    }
+
+    @Override
+    public void onItemsReadyF(ArrayList<Factura> data) {
         Log.i(TAG, "OnItemsReady");
         if (data != null && !data.isEmpty()) {
             mPropuestas.addAll(data);
-            if (ClientTabPropuestasFragment.KEEP_LOADING) {
+            if (ClientTabFacturasFragment.KEEP_LOADING) {
                 offset = offset + limit;
             }
         }
@@ -101,11 +99,4 @@ public class ClientPropuestaWrapper extends EndlessAdapter implements
         // view and call
         // notifyDataSetChanged()
     }
-
-    @Override
-    public void onItemsReadyF(ArrayList<Factura> data) {
-
-    }
-
 }
-

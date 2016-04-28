@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/main_linear_layout_bg_gris"
+    tools:context="gpovallas.app.clientes.ClientFacturaDetailActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="vertical">
+        <gpovallas.com.Header
+            android:id="@+id/header"
+            style="@style/header"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:baselineAligned="false">
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:orientation="vertical">
+                <TableLayout
+                    style="@style/wrap_style"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="10dp">
+
+                    <TableRow style="@style/wrap_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15dp">
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/facturas_TextView_fecha"
+                            style="@style/basic_style"
+                            android:textColor="@color/orangeGpo"
+                            android:layout_column="1"
+                            android:layout_gravity="right"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/fac_txt_fecha"
+                            style="@style/basic_style"
+                            android:textColor="@color/text_datos_generales_center"
+                            android:layout_column="2"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                    </TableRow>
+
+                    <TableRow style="@style/wrap_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15dp">
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/facturas_TextView_codigo"
+                            style="@style/basic_style"
+                            android:textColor="@color/orangeGpo"
+                            android:layout_column="1"
+                            android:layout_gravity="right"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/fac_txt_codigo"
+                            style="@style/basic_style"
+                            android:textColor="@color/text_datos_generales_center"
+                            android:layout_column="2"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                    </TableRow>
+
+                    <TableRow android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15dp">
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/facturas_TextView_diasCredito"
+                            style="@style/basic_style"
+                            android:textColor="@color/orangeGpo"
+                            android:layout_column="1"
+                            android:layout_gravity="right"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/fac_txt_diasCredito"
+                            style="@style/basic_style"
+                            android:textColor="@color/text_datos_generales_center"
+                            android:layout_column="2"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                    </TableRow>
+                    <TableRow android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15dp">
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/facturas_TextView_tipoDoc"
+                            style="@style/basic_style"
+                            android:textColor="@color/orangeGpo"
+                            android:layout_column="1"
+                            android:layout_gravity="right"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/fac_txt_tipoDoc"
+                            style="@style/basic_style"
+                            android:textColor="@color/text_datos_generales_center"
+                            android:layout_column="2"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                    </TableRow>
+
+                </TableLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:orientation="vertical">
+
+                <TableLayout
+                    style="@style/wrap_style"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="10dp">
+
+                    <TableRow android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15dp">
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/facturas_TextView_unidadNegocio"
+                            style="@style/basic_style"
+                            android:textColor="@color/orangeGpo"
+                            android:layout_column="1"
+                            android:layout_gravity="right"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/fac_txt_unidadNegocio"
+                            style="@style/basic_style"
+                            android:textColor="@color/text_datos_generales_center"
+                            android:layout_column="2"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                    </TableRow>
+
+                    <TableRow android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15dp">
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/facturas_TextView_codigoUsuario"
+                            style="@style/basic_style"
+                            android:textColor="@color/orangeGpo"
+                            android:layout_column="1"
+                            android:layout_gravity="right"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/fac_txt_codigoUsuario"
+                            style="@style/basic_style"
+                            android:textColor="@color/text_datos_generales_center"
+                            android:layout_column="2"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                    </TableRow>
+
+                    <TableRow android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15dp">
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/facturas_TextView_impuesto"
+                            style="@style/basic_style"
+                            android:textColor="@color/orangeGpo"
+                            android:layout_column="1"
+                            android:layout_gravity="right"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/fac_txt_impuesto"
+                            style="@style/basic_style"
+                            android:textColor="@color/text_datos_generales_center"
+                            android:layout_column="2"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                    </TableRow>
+
+                    <TableRow android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15dp">
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/facturas_TextView_estatus"
+                            style="@style/basic_style"
+                            android:textColor="@color/orangeGpo"
+                            android:layout_column="1"
+                            android:layout_gravity="right"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/fac_txt_status"
+                            style="@style/basic_style"
+                            android:textColor="@color/text_datos_generales_center"
+                            android:layout_column="2"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                    </TableRow>
+
+                </TableLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            style="@style/listViewRow">
+
+            <TextView
+                android:layout_weight="0.40"
+                style="@style/listview_textview_th"
+                android:text="Concepto" />
+
+            <TextView
+                android:layout_weight="0.20"
+                style="@style/listview_textview_th"
+                android:text="Unidad"/>
+
+            <TextView
+                android:layout_weight="0.13"
+                style="@style/listview_textview_th"
+                android:text="Cantidad"/>
+
+            <TextView
+                android:layout_weight="0.13"
+                style="@style/listview_textview_th"
+                android:text="Precio"/>
+
+            <TextView
+                android:layout_weight="0.14"
+                style="@style/listview_textview_th"
+                android:text="Importe"/>
+
+        </LinearLayout>
+        <LinearLayout
+            style="@style/basic_style"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            android:layout_width="match_parent">
+
+            <ListView android:id="@android:id/list"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:groupIndicator="@android:color/transparent"
+                android:divider="@android:color/darker_gray"
+                android:dividerHeight="0.5dp">
+
+            </ListView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"></LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="0.45"
+                android:orientation="vertical">
+
+                <TableLayout
+                    style="@style/wrap_style"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="10dp">
+
+                    <TableRow android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp">
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/facturas_TextView_neto"
+                            style="@style/basic_style"
+                            android:textColor="@color/orangeGpo"
+                            android:layout_column="1"
+                            android:layout_gravity="left"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/fac_txt_neto"
+                            style="@style/basic_style"
+                            android:textColor="@color/text_datos_generales_center"
+                            android:layout_column="2"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                    </TableRow>
+
+                    <TableRow android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp">
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/facturas_TextView_impuestos"
+                            style="@style/basic_style"
+                            android:textColor="@color/orangeGpo"
+                            android:layout_column="1"
+                            android:layout_gravity="left"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/fac_txt_impuestos"
+                            style="@style/basic_style"
+                            android:textColor="@color/text_datos_generales_center"
+                            android:layout_column="2"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                    </TableRow>
+
+                    <TableRow android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp">
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/facturas_TextView_total"
+                            style="@style/basic_style"
+                            android:textColor="@color/orangeGpo"
+                            android:layout_column="1"
+                            android:layout_gravity="left"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/fac_txt_total"
+                            style="@style/basic_style"
+                            android:textColor="@color/text_datos_generales_center"
+                            android:layout_column="2"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="17sp"
+                            android:background="@null"/>
+
+                    </TableRow>
+
+                </TableLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

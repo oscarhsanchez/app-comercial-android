@@ -28,5 +28,5 @@ public class Factura {
     public String updated_at;
     public String token;
     public Integer estado;
-    public String detalle; //TODO: Esto es un arreglo de mas objetos, viene el detalle de la factura
+    public FacturaDetalle[] detalle; //TODO: Esto es un arreglo de mas objetos, viene el detalle de la factura
 }

@@ -136,9 +136,9 @@
     <string name="lbl_propuesta_catorcena">Catorcena:</string>
     <string name="lbl_propuesta_unidaNegocio">Unidad Negocio:</string>
     <string name="lbl_propuesta_status">status:</string>
-    
+
     <!-- Detalle Outdoor-->
-    
+
     <string name="lbl_outdoor_medio">Medio</string>
     <string name="lbl_outdoor_Unidad">Unidad de Negocio</string>
     <string name="lbl_outdoor_tipo_negocion">Tipo de Negociación</string>
@@ -162,6 +162,24 @@
     <string name="facturas_TextView_th_numero_Factura">No. de Factura</string>
     <string name="facturas_TextView_th_RFC">RFC</string>
     <string name="facturas_TextView_th_estado">Estado</string>
+    <string name="facturas_TextView_th_fecha">Fecha</string>
+    <string name="facturas_TextView_th_codigo">Codigo</string>
+    <string name="facturas_TextView_th_diasCredito">Días crédito</string>
+    <string name="facturas_TextView_th_tipoDoc">Tipo documento</string>
+    <string name="facturas_TextView_th_unidadNegocio">Unidad negocio</string>
+    <string name="facturas_TextView_th_estatus">estatus</string>
+
+    <string name="facturas_TextView_fecha">Fecha:</string>
+    <string name="facturas_TextView_codigo">Codigo:</string>
+    <string name="facturas_TextView_diasCredito">Días crédito:</string>
+    <string name="facturas_TextView_tipoDoc">Tipo documento:</string>
+    <string name="facturas_TextView_unidadNegocio">Unidad negocio:</string>
+    <string name="facturas_TextView_estatus">estatus:</string>
+    <string name="facturas_TextView_codigoUsuario">Código de Usuario:</string>
+    <string name="facturas_TextView_impuesto">Impuesto:</string>
+    <string name="facturas_TextView_neto">Neto:</string>
+    <string name="facturas_TextView_impuestos">Impuestos:</string>
+    <string name="facturas_TextView_total">Total:</string>
 
     <string name="search_not_found_records">No se ha encontrado información que coincida con los criterios de búsqueda indicados</string>
 

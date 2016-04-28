@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    style="@style/listViewRow"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="8dp">
+
+    <TextView android:id="@+id/fac_txt_concepto"
+        style="@style/listview_textview"
+        android:layout_weight="0.40"
+        android:gravity="center"/>
+
+    <TextView android:id="@+id/fac_txt_unidad"
+        style="@style/listview_textview"
+        android:layout_weight="0.20"
+        android:gravity="center"/>
+
+    <TextView android:id="@+id/fac_txt_cantidad"
+        style="@style/listview_textview"
+        android:layout_weight="0.13"
+        android:gravity="center"/>
+
+    <TextView android:id="@+id/fac_txt_precio"
+        style="@style/listview_textview"
+        android:layout_weight="0.13"
+        android:gravity="center"/>
+
+    <TextView android:id="@+id/fac_txt_importe"
+        style="@style/listview_textview"
+        android:layout_weight="0.14"
+        android:gravity="center"/>
+
+</LinearLayout>

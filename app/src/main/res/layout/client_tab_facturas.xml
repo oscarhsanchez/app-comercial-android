@@ -14,7 +14,7 @@
                 android:layout_weight="0.05"
                 android:src="@android:drawable/ic_menu_search"/>
 
-            <EditText android:id="@+id/et_search_filter_fact1"
+            <EditText android:id="@+id/et_search_filter_fact"
                 android:layout_width="0dp"
                 style="@style/editText"
                 android:layout_marginRight="10dp"
@@ -44,6 +44,33 @@
             style="@style/listViewRow">
 
             <TextView
+                android:layout_weight="0.165"
+                style="@style/listview_textview_th"
+                android:text="@string/facturas_TextView_th_fecha"/>
+
+            <TextView
+                android:layout_weight="0.165"
+                style="@style/listview_textview_th"
+                android:text="@string/facturas_TextView_th_codigo" />
+
+            <TextView
+                android:layout_weight="0.165"
+                style="@style/listview_textview_th"
+                android:text="@string/facturas_TextView_th_diasCredito"/>
+            <TextView
+                android:layout_weight="0.1675"
+                style="@style/listview_textview_th"
+                android:text="@string/facturas_TextView_th_tipoDoc"/>
+            <TextView
+                android:layout_weight="0.1675"
+                style="@style/listview_textview_th"
+                android:text="@string/facturas_TextView_th_unidadNegocio"/>
+            <TextView
+                android:layout_weight="0.165"
+                style="@style/listview_textview_th"
+                android:text="@string/facturas_TextView_th_estatus"/>
+
+            <!--<TextView
                 android:layout_weight="0.35"
                 style="@style/listview_textview_th"
                 android:text="@string/facturas_TextView_th_numero_Factura"/>
@@ -56,7 +83,7 @@
             <TextView
                 android:layout_weight="0.30"
                 style="@style/listview_textview_th"
-                android:text="@string/facturas_TextView_th_estado"/>
+                android:text="@string/facturas_TextView_th_estado"/>-->
 
         </LinearLayout>
 

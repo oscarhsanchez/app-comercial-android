@@ -25,6 +25,7 @@ public class GPOVallasConstants {
     public static String DB_TABLE_TIPOS_MEDIOS = "TIPOS_MEDIOS";
     public static String DB_TABLE_SUBTIPOS_MEDIOS = "SUBTIPOS_MEDIOS";
     public static String DB_TABLE_ARCHIVOS = "ARCHIVOS";
+    public static String DB_TABLE_FACTURAS = "FACTURAS";
 
     // Client Intent Attributes
     public static String CLIENT_PK_INTENT = "client_pk_intent";
@@ -33,6 +34,7 @@ public class GPOVallasConstants {
     public static String ACTION_PK_INTENT = "action_pk_intent";
     public static String ACTION_TOKEN = "action_token_intent";
     public static String PROPUESTA_PK_TOKEN = "propuesta_token_intent";
+    public static String FACTURA_PK_INTENT = "factura_pk_intent";
 
     // Brief Intent Attributes
     public static String BRIEF_TOKEN = "brief_token";
