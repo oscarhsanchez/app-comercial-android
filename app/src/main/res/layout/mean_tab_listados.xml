@@ -37,7 +37,7 @@
         </LinearLayout>
 
         <LinearLayout
-            style="@style/listViewRow">
+            style="@style/listViewHeader">
 
             <TextView
                 style="@style/listview_textview_th"

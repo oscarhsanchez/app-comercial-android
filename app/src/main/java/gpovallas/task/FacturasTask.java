@@ -45,14 +45,16 @@ public class FacturasTask extends AsyncTask<String,Void,GetFacturasResponse> {
         super.onPostExecute(getFacturasResponse);
         Log.i(String.valueOf(FacturasTask.class), "Entró a On Post Execute");
         if(getFacturasResponse != null && !getFacturasResponse.failed()
-                && getFacturasResponse.facturas !=null && getFacturasResponse.facturas.length > 0){
+                && getFacturasResponse.facturas !=null){
             if (listener != null){
-                if (getFacturasResponse.facturas.length < limit){
+                if (getFacturasResponse.facturas.length>0 && getFacturasResponse.facturas.length < limit){
                     //No hay mas registros de este cliente, no alcanzo el limite propuesto, por ende no se sigue intentado buscar mas registros
                     ClientTabFacturasFragment.KEEP_LOADING = false;
                 }
                 listener.onItemsReadyF(new ArrayList<>(Arrays.asList(getFacturasResponse.facturas)));
             }
+        }else{
+            if(listener!=null) listener.onItemReadyError();
         }
     }
 }

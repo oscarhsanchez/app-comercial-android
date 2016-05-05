@@ -11,4 +11,6 @@ import gpovallas.obj.TO.Propuesta;
 public interface IItemsReadyListener {
     void onItemsReady(ArrayList<Propuesta> data);
     void onItemsReadyF(ArrayList<Factura> data);
+
+    void onItemReadyError();
 }

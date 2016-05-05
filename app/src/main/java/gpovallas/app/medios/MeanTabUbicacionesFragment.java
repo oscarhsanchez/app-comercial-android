@@ -1,12 +1,11 @@
 package gpovallas.app.medios;
 
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -33,6 +32,7 @@ import gpovallas.app.ApplicationStatus;
 import gpovallas.app.R;
 
 public class MeanTabUbicacionesFragment extends Fragment implements OnMapReadyCallback {
+
     private static final String TAG = MeanTabUbicacionesFragment.class.getSimpleName();
     private GoogleMap mMap;
     private View mRoot;
@@ -117,7 +117,7 @@ public class MeanTabUbicacionesFragment extends Fragment implements OnMapReadyCa
         filter = filter.replace("'", "''");
 
         if (!filter.equals("")){
-            sql += " AND plaza LIKE '%" + filter + "%' ";
+            sql += " AND ubicacion LIKE '%" + filter + "%' ";
         }
 
         sql += "ORDER BY ubicacion ASC";

@@ -107,5 +107,10 @@ public class ClientPropuestaWrapper extends EndlessAdapter implements
 
     }
 
+    @Override
+    public void onItemReadyError() {
+
+    }
+
 }
 

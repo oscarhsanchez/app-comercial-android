@@ -282,7 +282,7 @@ public class BriefDetailActivity extends GPOVallasActivity {
             CheckBox checkBox = new CheckBox(BriefDetailActivity.this);
             TableRow.LayoutParams params = new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT, indexColumn++);
-            params.setMargins(0, 0, 0, 5);
+            params.setMargins(0, 0, 5, 5);
             checkBox.setLayoutParams(params);
             checkBox.setId(i++);
             checkBox.setText(pais.nombre);
@@ -311,7 +311,7 @@ public class BriefDetailActivity extends GPOVallasActivity {
             TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
             for (Plaza plaza : plazas) {
-                if (i % 4 == 0) {
+                if (i % 10 == 0) {
                     insideContainer = new TableRow(BriefDetailActivity.this);
                     insideContainer.setLayoutParams(layoutParams);
                     indexColumn = 1;
@@ -319,7 +319,7 @@ public class BriefDetailActivity extends GPOVallasActivity {
                 CheckBox checkBox = new CheckBox(BriefDetailActivity.this);
                 TableRow.LayoutParams params = new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT, indexColumn++);
-                params.setMargins(0, 0, 0, 5);
+                params.setMargins(0, 0, 5, 5);
                 checkBox.setLayoutParams(params);
                 checkBox.setId(i++);
                 checkBox.setText(plaza.pk_plaza);
@@ -327,7 +327,7 @@ public class BriefDetailActivity extends GPOVallasActivity {
                 //checkBox.setOnClickListener(mOnClickListenerCheckPais);
                 checkBox.setTextColor(getResources().getColor(R.color.grey_list_th));
                 insideContainer.addView(checkBox);
-                if ((i % 4 == 0)) {
+                if ((i % 10 == 0)) {
                     mLayoutPlazas.addView(insideContainer);
                 }
 
@@ -388,7 +388,7 @@ public class BriefDetailActivity extends GPOVallasActivity {
         TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         for (TipoMedio tipoMedio : tipos) {
-            if (i % 2 == 0) {
+            if (i % 4 == 0) {
                 insideContainer = new TableRow(BriefDetailActivity.this);
                 insideContainer.setLayoutParams(layoutParams);
                 indexColumn = 1;
@@ -396,7 +396,7 @@ public class BriefDetailActivity extends GPOVallasActivity {
             CheckBox checkBox = new CheckBox(BriefDetailActivity.this);
             TableRow.LayoutParams params = new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT, indexColumn++);
-            params.setMargins(0, 0, 0, 5);
+            params.setMargins(0, 0, 5, 5);
             checkBox.setLayoutParams(params);
             checkBox.setId(i++);
             checkBox.setText(tipoMedio.pk_tipo);
@@ -404,7 +404,7 @@ public class BriefDetailActivity extends GPOVallasActivity {
             checkBox.setOnCheckedChangeListener(mOnCheckedChangeListenerTipos);
             checkBox.setTextColor(getResources().getColor(R.color.grey_list_th));
             insideContainer.addView(checkBox);
-            if ((i % 2 == 0)) {
+            if ((i % 4 == 0)) {
                 mLayoutTipos.addView(insideContainer);
             }
 

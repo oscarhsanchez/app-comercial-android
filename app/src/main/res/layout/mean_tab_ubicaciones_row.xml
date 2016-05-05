@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/listViewRow"
-    android:padding="10dp">
+    android:padding="5dp">
 
     <TextView android:id="@+id/txtPlaza"
         android:layout_weight="0.20"

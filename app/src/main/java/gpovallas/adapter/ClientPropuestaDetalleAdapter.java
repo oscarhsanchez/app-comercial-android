@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -92,8 +93,20 @@ public class ClientPropuestaDetalleAdapter extends BaseExpandableListAdapter {
         ImageView image = (ImageView) convertView.findViewById( R.id.explist_indicator);
         if(mPropuestaDetalleOutdoorList.get(mPropuestaDetalleList.get(groupPosition).token) != null){
             image.setVisibility(View.VISIBLE);
+            if(isExpanded){
+                image.setImageResource(R.drawable.icon_arrow_up);
+            }else{
+                image.setImageResource(R.drawable.icon_expand);
+            }
         }else{
             image.setVisibility( View.INVISIBLE );
+        }
+
+        LinearLayout childHeader = (LinearLayout) convertView.findViewById(R.id.childHeader);
+        if(isExpanded){
+            childHeader.setVisibility(View.VISIBLE);
+        }else{
+            childHeader.setVisibility(View.GONE);
         }
 
         TextView lblListHeader = (TextView) convertView

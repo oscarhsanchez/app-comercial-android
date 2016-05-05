@@ -2,7 +2,8 @@
 <resources>
     <color name="bgColorApp">#ffffff</color>
     <color name="orangeGpo">#f47121</color>
-    <color name="orangeGpoAlpha">#80f47121</color>
+    <color name="orangeGpoLight">#FFA652</color>
+    <color name="childHeaderColor">#c47c4f</color>
     <color name="orangeDarkGpo">#C13E00</color>
     <color name="gpoListHeader">#FFA452</color>
     <color name="efinanzasGray">#FFE0E0E0</color>
@@ -23,7 +24,10 @@
 	<color name="boton_tick_off">#ffffff</color>
     <color name="bg_generic">#ECECEC</color>
     <color name="grey_list_th">#aeaeae</color>
-	
+
+
+    <color name="text_enabled">#3e4041</color>
+    <color name="text_disabled">#60ffffff</color>
 	<color name="bg_colorFiltro">#2CAECC</color>
 	<color name="txt_color">#738485</color>
     <color name="cabecera_fragment">#90A6A6</color>

@@ -19,15 +19,17 @@
         android:layout_weight="0.30"
         android:gravity="center" />
 
-    <TextView android:id="@+id/txtTVehicular"
+    <ImageView android:id="@+id/txtTVehicular"
         style="@style/listview_textview"
         android:layout_weight="0.15"
-        android:gravity="center" />
+        android:gravity="center"
+        android:scaleType="fitCenter"/>
 
-    <TextView android:id="@+id/txTTranseuntes"
+    <ImageView android:id="@+id/txTTranseuntes"
         style="@style/listview_textview"
         android:layout_weight="0.15"
-        android:gravity="center" />
+        android:gravity="center"
+        android:scaleType="fitCenter"/>
 
     <TextView android:id="@+id/txtNSE"
         style="@style/listview_textview"

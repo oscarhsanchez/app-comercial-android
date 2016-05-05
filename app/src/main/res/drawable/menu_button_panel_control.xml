@@ -4,21 +4,21 @@
 
 	<item android:state_pressed="true">
         <shape>
-			<solid android:color="@color/orangeGpoAlpha" />
+			<solid android:color="@color/orangeGpoLight" />
 		   	<corners android:radius="10dp" />
 		</shape>
     </item>
 
     <item android:state_focused="true">
         <shape>
-			<solid android:color="@color/orangeGpoAlpha" />
+			<solid android:color="@color/orangeGpoLight" />
 		   	<corners android:radius="10dp" />
 		</shape>
     </item>
 
     <item>
         <shape>
-            <solid android:color="@color/efinanzasGray" />
+            <solid android:color="@android:color/transparent" />
 		   	<corners android:radius="10dp" /> 
         </shape>
     </item>

@@ -1,109 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              style="@style/main_linear_layout">
+    style="@style/main_linear_layout">
 
-    <LinearLayout
-        style="@style/basic_layout_padding">
+    <LinearLayout style="@style/basic_layout_padding">
+
         <LinearLayout
-            style="@style/container_filter">
+            style="@style/container_filter"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
             <ImageView
                 android:id="@+id/img_search_icon"
-                android:layout_width="0dp"
                 style="@style/wrap_style"
-                android:adjustViewBounds="true"
-                android:layout_weight="0.05"
-                android:src="@android:drawable/ic_menu_search"/>
-
-            <EditText android:id="@+id/et_search_filter_fact"
                 android:layout_width="0dp"
+                android:layout_weight="0.05"
+                android:adjustViewBounds="true"
+                android:src="@android:drawable/ic_menu_search" />
+
+            <EditText
+                android:id="@+id/et_search_filter_fact"
                 style="@style/editText"
+                android:layout_width="0dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="0.15"
-                android:hint="Cod. Facturas..."/>
+                android:hint="Cod. Facturas..." />
 
-            <EditText android:id="@+id/et_search_filter"
-                android:layout_width="0dp"
+            <EditText
+                android:id="@+id/et_search_filter"
                 style="@style/editText"
-                android:layout_weight="0.60"
-                android:hint="Filtrar por..."/>
-
-            <Button android:id="@+id/btn_search_filter"
                 android:layout_width="0dp"
+                android:layout_weight="0.60"
+                android:hint="Filtrar por..." />
+
+            <Button
+                android:id="@+id/btn_search_filter"
                 style="@style/wrap_style"
+                android:layout_width="0dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="4dp"
                 android:layout_weight="0.2"
                 android:gravity="center"
-                android:text="Todos"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="2dp"
                 android:onClick="deleteSearchFilter"
-                android:layout_marginRight="10dp"/>
+                android:text="Todos" />
 
         </LinearLayout>
 
-        <LinearLayout
-            style="@style/listViewRow">
+        <LinearLayout style="@style/listViewHeader">
 
             <TextView
-                android:layout_weight="0.165"
                 style="@style/listview_textview_th"
-                android:text="@string/facturas_TextView_th_fecha"/>
+                android:layout_weight="0.165"
+                android:text="@string/facturas_TextView_th_fecha" />
 
             <TextView
-                android:layout_weight="0.165"
                 style="@style/listview_textview_th"
+                android:layout_weight="0.165"
                 android:text="@string/facturas_TextView_th_codigo" />
 
             <TextView
+                style="@style/listview_textview_th"
                 android:layout_weight="0.165"
-                style="@style/listview_textview_th"
-                android:text="@string/facturas_TextView_th_diasCredito"/>
+                android:text="@string/facturas_TextView_th_diasCredito" />
+
             <TextView
+                style="@style/listview_textview_th"
                 android:layout_weight="0.1675"
-                style="@style/listview_textview_th"
-                android:text="@string/facturas_TextView_th_tipoDoc"/>
+                android:text="@string/facturas_TextView_th_tipoDoc" />
+
             <TextView
+                style="@style/listview_textview_th"
                 android:layout_weight="0.1675"
-                style="@style/listview_textview_th"
-                android:text="@string/facturas_TextView_th_unidadNegocio"/>
+                android:text="@string/facturas_TextView_th_unidadNegocio" />
+
             <TextView
+                style="@style/listview_textview_th"
                 android:layout_weight="0.165"
-                style="@style/listview_textview_th"
-                android:text="@string/facturas_TextView_th_estatus"/>
+                android:text="@string/c_propuesta_th_status" />
 
-            <!--<TextView
-                android:layout_weight="0.35"
-                style="@style/listview_textview_th"
-                android:text="@string/facturas_TextView_th_numero_Factura"/>
-
-            <TextView
-                android:layout_weight="0.35"
-                style="@style/listview_textview_th"
-                android:text="@string/facturas_TextView_th_RFC" />
-
-            <TextView
-                android:layout_weight="0.30"
-                style="@style/listview_textview_th"
-                android:text="@string/facturas_TextView_th_estado"/>-->
 
         </LinearLayout>
 
-        <LinearLayout
-            style="@style/basic_style">
+        <RelativeLayout style="@style/basic_style">
 
             <ListView
                 android:id="@android:id/list"
-                android:textFilterEnabled="true"
+                style="@style/basic_style"
                 android:cacheColorHint="@color/bg_generic"
-                style="@style/basic_style">
-
-            </ListView>
+                android:textFilterEnabled="true" />
 
             <TextView
-                android:id="@android:id/empty"
+                android:id="@+id/empty"
                 style="@style/basic_style"
                 android:gravity="center"
-                android:text="@string/search_not_found_records"/>
-        </LinearLayout>
+                android:visibility="gone"
+                android:text="@string/search_not_found_records" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>

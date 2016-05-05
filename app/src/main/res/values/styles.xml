@@ -466,13 +466,15 @@
         <item name="android:textAppearance">@style/defaultTextAppearance</item>
         <item name="android:textSize">20sp</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:textColor">@color/grey_list_th</item>
         <item name="android:layout_marginRight">3dp</item>
     </style>
 
     <style name="listview_textview_th" parent="@style/listview_textview">
-        <item name="android:background">@color/grey_list_th</item>
+        <item name="android:background">@color/orangeGpoLight</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">19sp</item>
         <item name="android:textStyle">bold</item>
@@ -499,7 +501,11 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:weightSum">1</item>
     </style>
-        
+
+	<style name="listViewHeader" parent="listViewRow">
+		<item name="android:layout_height">40dp</item>
+	</style>
+
     <style name="btnCerrar" parent="@style/boton_generico">
         <item name="android:drawableLeft">@drawable/btn_cerrar_default</item>
         <item name="android:drawablePadding">10dp</item>

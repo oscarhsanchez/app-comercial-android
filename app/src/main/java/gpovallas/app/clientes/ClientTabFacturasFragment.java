@@ -16,6 +16,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,15 +28,17 @@ import gpovallas.adapter.ClientFacturasAdapter;
 import gpovallas.app.ApplicationStatus;
 import gpovallas.app.R;
 import gpovallas.app.constants.GPOVallasConstants;
+import gpovallas.listeners.IItemsReadyListener;
 import gpovallas.obj.Cliente;
 import gpovallas.obj.TO.Factura;
+import gpovallas.obj.TO.Propuesta;
 import gpovallas.task.FacturasTask;
 import gpovallas.ws.response.GetFacturasResponse;
 
 /**
  * Created by daniel on 8/03/16.
  */
-public class ClientTabFacturasFragment extends Fragment {
+public class ClientTabFacturasFragment extends Fragment implements IItemsReadyListener {
 
     private static final String TAG = ClientTabFacturasFragment.class.getSimpleName();
     private ListView mListView;
@@ -45,6 +49,7 @@ public class ClientTabFacturasFragment extends Fragment {
     private String filter_status;
     private EditText txtSearchFilter;
     private EditText txtSearchFilterCodFact;
+    private ProgressBar progressBar;
     private List<Factura> mFacturasList;
     private ClientFacturasAdapter mAdapter;
     private ClientFacturaWrapper mFacturasWrapper;
@@ -52,63 +57,46 @@ public class ClientTabFacturasFragment extends Fragment {
     private final int limit = 25;
     private int offset = 0;
     public static boolean KEEP_LOADING = true;
-    
+
     @Override
     @Nullable
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle saveInstanceState){
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle saveInstanceState) {
         View v = inflater.inflate(R.layout.client_tab_facturas, container, false);
         db = ApplicationStatus.getInstance().getDb(getActivity());
         Bundle bundle = getArguments();
-        if(bundle != null){
+        if (bundle != null) {
             mPkCliente = bundle.getString(GPOVallasConstants.CLIENT_PK_INTENT);
-            if(!TextUtils.isEmpty(mPkCliente)){
+            if (!TextUtils.isEmpty(mPkCliente)) {
                 //mCliente = (Cliente) Database.getObjectBy(db,GPOVallasConstants.DB_TABLE_CLIENTE,"pk_cliente = '" + mPkCliente + "'",Cliente.class);
                 Log.i(TAG, mPkCliente);
             }
         }
+        progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
         mListView = (ListView) v.findViewById(android.R.id.list);
         mListView.setOnItemClickListener(mOnItemClickListener);
         //mListView.setAdapter(setUpAdapter(mCliente));
         init(v);
-        populate();
         return v;
     }
 
-    /*private ListAdapter setUpAdapter(Cliente mCliente) {
-    }*/
-    private void populate(){
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        populate();
+    }
+
+    private void populate() {
         //Inicializamos la bandera para seguir buscando
-        KEEP_LOADING=true;
+        KEEP_LOADING = true;
         //Inicializamos el offset
         offset = 0;
         //Obtenemos todos los objetos del tipo facturas para este cliente con un máximo de 40
         mFacturasList = new ArrayList<>();
-        try{
-            GetFacturasResponse response = new FacturasTask(null,offset,limit).execute(mPkCliente,filter_codFact, filter_status,"true","","").get();
-            if(response != null && !response.failed() && response.facturas != null && response.facturas.length > 0){
-                Log.i(TAG, "Primera Petición de Facturas Exitosa!!!");
-                mFacturasList = new ArrayList<>(Arrays.asList(response.facturas));
-                if(mFacturasList.size() < limit){
-                    //No hay mas registros de este cliente, por ende no se sigue intentado buscar mas registros
-                    KEEP_LOADING = false;
-                }else{
-                    offset = offset + limit;
-                }
-
-            }
-        }catch(Exception e){
-            Log.i(TAG, e.getMessage(),e);
-        }
-
-        //Inicializar FacturaAdapter
-        mAdapter = new ClientFacturasAdapter(getActivity(),mFacturasList);
-        //Inicializar Wrapper con el Adapter, el wrapper se utiliza para hacer paginado
-        mFacturasWrapper = new ClientFacturaWrapper(getActivity(),mAdapter,mPkCliente,mFacturasList,offset,limit,filter_codFact,filter_status);
-        mFacturasWrapper.setRunInBackground(false);
-        mListView.setAdapter(mFacturasWrapper);
+        new FacturasTask(this, offset, limit).execute(mPkCliente, filter_codFact, filter_status, "true", "", "");
     }
 
-    private void deleteSearchFilter(){
+    private void deleteSearchFilter() {
         filter_codFact = "";
         filter_status = "";
         txtSearchFilter.setText("");
@@ -116,7 +104,7 @@ public class ClientTabFacturasFragment extends Fragment {
         populate();
     }
 
-    private void init(View v){
+    private void init(View v) {
         filter_codFact = "";
         filter_status = "";
         txtSearchFilter = (EditText) v.findViewById(R.id.et_search_filter);
@@ -178,4 +166,45 @@ public class ClientTabFacturasFragment extends Fragment {
             }
         }
     };
+
+    @Override
+    public void onItemsReady(ArrayList<Propuesta> data) {
+
+    }
+
+    @Override
+    public void onItemsReadyF(ArrayList<Factura> data) {
+        progressBar.setVisibility(View.GONE);
+
+        TextView empty = (TextView) getActivity().findViewById(R.id.empty);
+        if(empty!=null) {
+            if (data == null || data.size() == 0) {
+                empty.setVisibility(View.VISIBLE);
+            } else {
+                empty.setVisibility(View.GONE);
+            }
+        }
+
+        Log.i(TAG, "Primera Petición de Facturas Exitosa!!!");
+        mFacturasList = data;
+        if (mFacturasList.size() < limit) {
+            //No hay mas registros de este cliente, por ende no se sigue intentado buscar mas registros
+            KEEP_LOADING = false;
+        } else {
+            offset = offset + limit;
+        }
+
+
+        //Inicializar FacturaAdapter
+        mAdapter = new ClientFacturasAdapter(getActivity(), mFacturasList);
+        //Inicializar Wrapper con el Adapter, el wrapper se utiliza para hacer paginado
+        mFacturasWrapper = new ClientFacturaWrapper(getActivity(), mAdapter, mPkCliente, mFacturasList, offset, limit, filter_codFact, filter_status);
+        mFacturasWrapper.setRunInBackground(false);
+        mListView.setAdapter(mFacturasWrapper);
+    }
+
+    @Override
+    public void onItemReadyError() {
+        progressBar.setVisibility(View.GONE);
+    }
 }

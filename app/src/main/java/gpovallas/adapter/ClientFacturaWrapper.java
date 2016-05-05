@@ -99,4 +99,9 @@ public class ClientFacturaWrapper extends EndlessAdapter implements IItemsReadyL
         // view and call
         // notifyDataSetChanged()
     }
+
+    @Override
+    public void onItemReadyError() {
+
+    }
 }

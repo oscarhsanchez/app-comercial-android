@@ -1,36 +1,42 @@
 package gpovallas.app.medios;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import gpovallas.app.GPOVallasActivity;
 import gpovallas.app.R;
 import gpovallas.app.constants.GPOVallasConstants;
 
-public class MeanGaleriaZoomActivity extends GPOVallasActivity {
+public class MeanGaleriaZoomActivity extends Fragment {
 
     private static final String TAG = MeanGaleriaZoomActivity.class.getSimpleName();
-    private TextView mTitleTextView;
     private ImageView mImageView;
 
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mean_galeria_zoom);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.activity_mean_galeria_zoom, container, false);
 
-        mTitleTextView = (TextView) findViewById(R.id.title);
-        mImageView = (ImageView) findViewById(R.id.image);
+        mImageView = (ImageView) v.findViewById(R.id.image);
 
-        Intent intent = getIntent();
-        if (intent != null) {
-            setBreadCrumb(intent.getStringExtra(GPOVallasConstants.BREADCUMB_TITLE), "Detalle Imagen");
-            mTitleTextView.setText(intent.getStringExtra(GPOVallasConstants.IMAGE_TITLE));
-            Picasso.with(this)
-                    .load(intent.getStringExtra(GPOVallasConstants.PATH_IMAGE))
+        return v;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        Bundle extras = getArguments();
+        if (extras != null) {
+            Picasso.with(getActivity())
+                    .load(extras.getString(GPOVallasConstants.PATH_IMAGE))
                     .error(R.drawable.logo_bg_orange)
                     .placeholder(R.drawable.logo_bg_orange)
                     .into(mImageView);

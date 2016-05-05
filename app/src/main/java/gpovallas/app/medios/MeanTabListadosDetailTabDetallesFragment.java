@@ -5,10 +5,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -51,8 +53,6 @@ public class MeanTabListadosDetailTabDetallesFragment  extends Fragment {
 
         ubicacion = (Ubicacion) Database.getObjectBy(db, GPOVallasConstants.DB_TABLE_UBICACION, "pk_ubicacion = '" + mPkUbicacion + "'", Ubicacion.class);
 
-        t = (TextView) mRoot.findViewById(R.id.medio_title);
-        t.setText(ubicacion.ubicacion);
         t = (TextView) mRoot.findViewById(R.id.med_dgrales_nomComercial);
         t.setText(ubicacion.fk_empresa);
         t = (TextView) mRoot.findViewById(R.id.med_dgrales_codigo);
@@ -65,10 +65,6 @@ public class MeanTabListadosDetailTabDetallesFragment  extends Fragment {
         t.setText(ubicacion.tipo_medio);
         t = (TextView) mRoot.findViewById(R.id.med_dgrales_ubicacion);
         t.setText(ubicacion.ubicacion);
-        t = (TextView) mRoot.findViewById(R.id.med_dgrales_traficoVehicular);
-        t.setText(ubicacion.trafico_vehicular);
-        t = (TextView) mRoot.findViewById(R.id.med_dgrales_traficoTranseuntes);
-        t.setText(ubicacion.trafico_transeuntes);
         t = (TextView) mRoot.findViewById(R.id.med_dgrales_NSE);
         t.setText(ubicacion.nivel_socioeconomico);
         t = (TextView) mRoot.findViewById(R.id.med_dgrales_observaciones);
@@ -77,5 +73,31 @@ public class MeanTabListadosDetailTabDetallesFragment  extends Fragment {
         t.setText(ubicacion.categoria);
         t = (TextView) mRoot.findViewById(R.id.med_dgrales_fechaInstalacion);
         t.setText(ubicacion.fecha_instalacion);
+
+        ImageView ivVehicular = (ImageView) mRoot.findViewById(R.id.med_dgrales_traficoVehicular);
+        if(!TextUtils.isEmpty(ubicacion.trafico_vehicular)){
+            if(ubicacion.trafico_vehicular.equalsIgnoreCase("ALTO")){
+                ivVehicular.setImageResource(R.drawable.green_up_arrow);
+            }else if(ubicacion.trafico_vehicular.equalsIgnoreCase("MODERADO")){
+                ivVehicular.setImageResource(R.drawable.orange_right_arrow);
+            }else if(ubicacion.trafico_vehicular.equalsIgnoreCase("BAJO")){
+                ivVehicular.setImageResource(R.drawable.red_down_arrow);
+            }
+        }else{
+            ivVehicular.setImageResource(R.drawable.icon_minus);
+        }
+
+        ImageView ivTranseuntes = (ImageView) mRoot.findViewById(R.id.med_dgrales_traficoTranseuntes);
+        if(!TextUtils.isEmpty(ubicacion.trafico_transeuntes)){
+            if(ubicacion.trafico_transeuntes.equalsIgnoreCase("ALTO")){
+                ivTranseuntes.setImageResource(R.drawable.green_up_arrow);
+            }else if(ubicacion.trafico_transeuntes.equalsIgnoreCase("MODERADO")){
+                ivTranseuntes.setImageResource(R.drawable.orange_right_arrow);
+            }else if(ubicacion.trafico_transeuntes.equalsIgnoreCase("BAJO")){
+                ivTranseuntes.setImageResource(R.drawable.red_down_arrow);
+            }
+        }else{
+            ivTranseuntes.setImageResource(R.drawable.icon_minus);
+        }
     }
 }

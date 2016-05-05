@@ -74,11 +74,13 @@
     <string name="lbl_clientes_direccion">Dirección:</string>
     <string name="lbl_clientes_no_exterior">No. Exterior:</string>
     <string name="lbl_clientes_colonia">Colonia:</string>
-    <string name="lbl_clientes_cp">C.P.</string>
+    <string name="lbl_clientes_cp">C.P.:</string>
     <string name="lbl_clientes_ciudad">Ciudad:</string>
     <string name="lbl_clientes_no_interior">No. Interior:</string>
-    <string name="lbl_clientes_delegacion">Delegación</string>
+    <string name="lbl_clientes_delegacion">Delegación:</string>
     <string name="lbl_clientes_pais">País:</string>
+    <string name="lbl_direccion">Dirección</string>
+    <string name="lbl_datos_basicos">Datos Básicos</string>
 
 
     <!-- Contactos -->

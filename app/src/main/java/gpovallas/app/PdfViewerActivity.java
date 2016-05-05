@@ -3,7 +3,13 @@ package gpovallas.app;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.joanzapata.pdfview.PDFView;
 import com.joanzapata.pdfview.listener.OnLoadCompleteListener;
@@ -17,30 +23,32 @@ import java.util.Arrays;
 
 import gpovallas.app.constants.GPOVallasConstants;
 
-public class PdfViewerActivity extends GPOVallasActivity implements OnLoadCompleteListener {
+public class PdfViewerActivity extends Fragment implements OnLoadCompleteListener {
 
     private static final String TAG = PdfViewerActivity.class.getSimpleName();
     private static final String PDF_REMOTE_FILES_PATH = Environment.getExternalStorageDirectory() + File.separator
             + StringUtils.join(Arrays.asList("Vallas", "files", "pdf"), File.separator);
     private ProgressDialog mProgressDialog;
+    private PDFView pdfView;
+    private ProgressBar progressBar;
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.activity_pdf_viewer, container, false);
+
+        pdfView = (PDFView) v.findViewById(R.id.pdfview);
+        progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
+
+        return v;
+    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pdf_viewer);
-        setBreadCrumb("Conoce Grupo Vallas", "Pdf");
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
-
-        mProgressDialog = new ProgressDialog(PdfViewerActivity.this);
-        mProgressDialog.setTitle(android.R.string.dialog_alert_title);
-        mProgressDialog.setMessage(getString(R.string.loading));
-        mProgressDialog.setCancelable(false);
-        mProgressDialog.show();
-
-        final PDFView pdfView = (PDFView) findViewById(R.id.pdfview);
-
-        String pdfRemotePath = getIntent().getStringExtra(GPOVallasConstants.REMOTE_PATH_PDF);
-        String pdfName = getIntent().getStringExtra(GPOVallasConstants.PDF_NAME);
+        String pdfRemotePath = getArguments().getString(GPOVallasConstants.REMOTE_PATH_PDF);
+        String pdfName = getArguments().getString(GPOVallasConstants.PDF_NAME);
 
         File directory = new File(PDF_REMOTE_FILES_PATH);
         if (!directory.exists()) {
@@ -60,19 +68,19 @@ public class PdfViewerActivity extends GPOVallasActivity implements OnLoadComple
                                 Log.e(TAG, e.getMessage(), e);
                                 mProgressDialog.dismiss();
                             } else {
-                                initPdfViewer(pdfView, file);
+                                initPdfViewer(file);
                             }
                         }
 
                     });
         } else {
-            initPdfViewer(pdfView, path);
+            initPdfViewer(path);
         }
 
 
     }
 
-    private void initPdfViewer(PDFView pdfView, File path) {
+    private void initPdfViewer(File path) {
         pdfView.fromFile(path)
                 .defaultPage(1)
                 .showMinimap(false)
@@ -84,9 +92,7 @@ public class PdfViewerActivity extends GPOVallasActivity implements OnLoadComple
 
     @Override
     public void loadComplete(int nbPages) {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
+        progressBar.setVisibility(View.GONE);
     }
 
 

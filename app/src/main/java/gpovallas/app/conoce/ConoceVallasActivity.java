@@ -1,16 +1,18 @@
 package gpovallas.app.conoce;
 
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
-import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.koushikdutta.async.future.FutureCallback;
@@ -32,10 +34,10 @@ import gpovallas.app.medios.MeanGaleriaZoomActivity;
 import gpovallas.db.controllers.ArchivoCtrl;
 import gpovallas.obj.Archivo;
 
-public class ConoceVallasActivity extends GPOVallasActivity implements AdapterView.OnItemClickListener {
+public class ConoceVallasActivity extends FragmentActivity implements AdapterView.OnItemClickListener {
 
     private static final String TAG = ConoceVallasActivity.class.getSimpleName();
-    private GridView mGridView;
+    private ListView mListView;
     private TextView mTextView;
     private ProgressDialog mProgressDialog;
 
@@ -48,14 +50,13 @@ public class ConoceVallasActivity extends GPOVallasActivity implements AdapterVi
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conoce_vallas);
-        setBreadCrumb("Conoce Grupo Vallas", "");
 
         db = ApplicationStatus.getInstance().getDbRead(getApplicationContext());
 
         mTextView = (TextView) findViewById(android.R.id.empty);
-        mGridView = (GridView) findViewById(R.id.gridView);
-        mGridView.setOnItemClickListener(this);
-        mGridView.setEmptyView(mTextView);
+        mListView = (ListView) findViewById(R.id.gridView);
+        mListView.setOnItemClickListener(this);
+        mListView.setEmptyView(mTextView);
 
         setupAdapter();
 
@@ -67,10 +68,14 @@ public class ConoceVallasActivity extends GPOVallasActivity implements AdapterVi
 
     }
 
+    public void closeApp(View v){
+        finish();
+    }
+
     private void setupAdapter() {
         mArchivos = new ArchivoCtrl(db).getAll();
         ConoceVallasGridAdapter adapter = new ConoceVallasGridAdapter(this, R.layout.conoce_grid_item, mArchivos);
-        mGridView.setAdapter(adapter);
+        mListView.setAdapter(adapter);
     }
 
     @Override
@@ -78,19 +83,30 @@ public class ConoceVallasActivity extends GPOVallasActivity implements AdapterVi
         Archivo archivo = mArchivos.get(position);
         Log.i(TAG, archivo.nombre);
         if (StringUtils.containsIgnoreCase(archivo.nombre, "pdf")) {
-            Intent intent = new Intent(this, PdfViewerActivity.class);
-            intent.putExtra(GPOVallasConstants.REMOTE_PATH_PDF, archivo.url + archivo.nombre);
-            intent.putExtra(GPOVallasConstants.PDF_NAME, archivo.nombre);
-            startActivity(intent);
+
+            PdfViewerActivity fragment = new PdfViewerActivity();
+            Bundle extras = new Bundle();
+            extras.putString(GPOVallasConstants.REMOTE_PATH_PDF, archivo.url + archivo.nombre);
+            extras.putString(GPOVallasConstants.PDF_NAME, archivo.nombre);
+            fragment.setArguments(extras);
+
+            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.document_container, fragment);
+            transaction.commit();
+
         } else if (StringUtils.containsIgnoreCase(archivo.nombre, "jpg")
                 || StringUtils.containsIgnoreCase(archivo.nombre, "png")
                 || StringUtils.containsIgnoreCase(archivo.nombre, "ico")
                 || StringUtils.containsIgnoreCase(archivo.nombre, "gif")) {
-            Intent intent = new Intent(this, MeanGaleriaZoomActivity.class);
-            intent.putExtra(GPOVallasConstants.BREADCUMB_TITLE, "Conoce Grupo Vallas");
-            intent.putExtra(GPOVallasConstants.PATH_IMAGE, archivo.url + archivo.nombre);
-            intent.putExtra(GPOVallasConstants.IMAGE_TITLE, archivo.nombre);
-            startActivity(intent);
+
+            MeanGaleriaZoomActivity fragment = new MeanGaleriaZoomActivity();
+            Bundle extras = new Bundle();
+            extras.putString(GPOVallasConstants.PATH_IMAGE, archivo.url + archivo.nombre);
+            fragment.setArguments(extras);
+
+            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.document_container, fragment);
+            transaction.commit();
         } else {
             mProgressDialog.show();
             File directory = new File(GENERIC_REMOTE_FILES_PATH);

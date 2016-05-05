@@ -1,41 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout style="@style/listViewRow"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="8dp">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <ImageView android:src="@drawable/expander_group"
-        android:id="@+id/explist_indicator"
-        android:layout_width="50px"
-        android:layout_height="50px"/>
+    <LinearLayout
+        style="@style/listViewRow"
+        android:layout_height="60dp"
+        android:background="@drawable/list_selector"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp">
 
-    <TextView
-        android:id="@+id/lblListPlaza"
-        style="@style/listview_textview"
-        android:layout_weight="0.15"
-        android:gravity="center"/>
+        <ImageView
+            android:id="@+id/explist_indicator"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.05"
+            android:padding="3dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_expand" />
 
-    <TextView
-        android:id="@+id/lblTipoNego"
-        style="@style/listview_textview"
-        android:layout_weight="0.25"
-        android:gravity="center"/>
+        <TextView
+            android:id="@+id/lblListPlaza"
+            style="@style/listview_textview"
+            android:layout_weight="0.15"
+            android:gravity="center" />
 
-    <TextView
-        android:id="@+id/lblSubtipo"
-        style="@style/listview_textview"
-        android:layout_weight="0.15"
-        android:gravity="center"/>
+        <TextView
+            android:id="@+id/lblTipoNego"
+            style="@style/listview_textview"
+            android:layout_weight="0.25"
+            android:gravity="center" />
 
-    <TextView
-        android:id="@+id/lblCantidad"
-        style="@style/listview_textview"
-        android:layout_weight="0.25"
-        android:gravity="center"/>
-    <TextView
-        android:id="@+id/lblTotal"
-        style="@style/listview_textview"
-        android:layout_weight="0.20"
-        android:gravity="center"/>
+        <TextView
+            android:id="@+id/lblSubtipo"
+            style="@style/listview_textview"
+            android:layout_weight="0.15"
+            android:gravity="center" />
 
+        <TextView
+            android:id="@+id/lblCantidad"
+            style="@style/listview_textview"
+            android:layout_weight="0.20"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/lblTotal"
+            style="@style/listview_textview"
+            android:layout_weight="0.20"
+            android:gravity="center" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/childHeader"
+        style="@style/listViewHeader">
+
+        <TextView
+            style="@style/listview_textview_th"
+            android:layout_weight="0.25"
+            android:background="@color/childHeaderColor"
+            android:text="Medio" />
+
+        <TextView
+            style="@style/listview_textview_th"
+            android:layout_weight="0.25"
+            android:background="@color/childHeaderColor"
+            android:text="Unidad" />
+
+        <TextView
+            style="@style/listview_textview_th"
+            android:layout_weight="0.35"
+            android:background="@color/childHeaderColor"
+            android:text="Tipo" />
+
+        <TextView
+            style="@style/listview_textview_th"
+            android:layout_weight="0.15"
+            android:background="@color/childHeaderColor"
+            android:text="Precio" />
+
+
+    </LinearLayout>
 
 </LinearLayout>

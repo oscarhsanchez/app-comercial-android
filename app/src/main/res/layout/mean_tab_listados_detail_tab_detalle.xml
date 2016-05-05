@@ -1,50 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout style="@style/basic_style"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/basic_style"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
+
     <LinearLayout
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
-
-        <!--<TextView
-            android:id="@+id/medio_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TITLE"
-            style="@style/basic_style"
-            android:textColor="@color/orangeGpo"
-            android:layout_column="1"
-            android:layout_gravity="right"
-            android:textSize="30dp"
-            android:background="@null" />-->
-        <TextView
-            android:id="@+id/medio_title"
-            style="@style/listview_textview"
-            android:layout_width="fill_parent"
-            android:textColor="@color/orangeGpo"/>
-
-    </LinearLayout>
-    <LinearLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.33"
         android:baselineAligned="false"
-        android:orientation="horizontal"
+        android:padding="20dp"
         android:gravity="center"
-        android:weightSum="0.89">
+        android:orientation="horizontal"
+        android:weightSum="1">
 
-        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
-            android:layout_weight="0.4"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
             android:orientation="vertical">
+
             <TableLayout
                 style="@style/wrap_style"
-                android:layout_gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
                 android:paddingLeft="15dp"
                 android:paddingRight="10dp">
 
@@ -52,29 +34,29 @@
                     style="@style/wrap_style"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="30dp"
-                    >
+                    android:layout_marginBottom="30dp">
 
-                    <TextView android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/lbl_medios_datosG_codigo"
+                    <TextView
                         style="@style/basic_style"
-                        android:textColor="@color/orangeGpo"
-                        android:layout_column="1"
-                        android:layout_gravity="right"
-                        android:textSize="17dp"
-                        android:background="@null"/>
-
-                    <TextView android:layout_width="wrap_content"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="New Text"
+                        android:layout_column="1"
+                        android:background="@null"
+                        android:text="@string/lbl_medios_datosG_codigo"
+                        android:textColor="@color/orangeGpo"
+                        android:textSize="18sp" />
+
+                    <TextView
                         android:id="@+id/med_dgrales_codigo"
                         style="@style/basic_style"
-                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="17dp"
-                        android:background="@null"/>
+                        android:background="@null"
+                        android:text="New Text"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:textSize="17sp" />
                 </TableRow>
 
                 <TableRow
@@ -83,26 +65,27 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="30dp">
 
-                    <TextView android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/lbl_medios_datosG_nombreComercial"
+                    <TextView
                         style="@style/basic_style"
-                        android:textColor="@color/orangeGpo"
-                        android:layout_column="1"
-                        android:layout_gravity="right"
-                        android:textSize="17dp"
-                        android:background="@null"/>
-
-                    <TextView android:layout_width="300dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="New Text"
+                        android:layout_column="1"
+                        android:background="@null"
+                        android:text="@string/lbl_medios_datosG_nombreComercial"
+                        android:textColor="@color/orangeGpo"
+                        android:textSize="18sp" />
+
+                    <TextView
                         android:id="@+id/med_dgrales_nomComercial"
                         style="@style/basic_style"
-                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="17dp"
-                        android:background="@null"/>
+                        android:background="@null"
+                        android:text="New Text"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:textSize="17sp" />
                 </TableRow>
 
                 <TableRow
@@ -111,26 +94,27 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="30dp">
 
-                    <TextView android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/lbl_medios_datosG_referencia"
+                    <TextView
                         style="@style/basic_style"
-                        android:textColor="@color/orangeGpo"
-                        android:layout_column="1"
-                        android:layout_gravity="right"
-                        android:textSize="17dp"
-                        android:background="@null"/>
-
-                    <TextView android:layout_width="wrap_content"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="New Text"
+                        android:layout_column="1"
+                        android:background="@null"
+                        android:text="@string/lbl_medios_datosG_referencia"
+                        android:textColor="@color/orangeGpo"
+                        android:textSize="18sp" />
+
+                    <TextView
                         android:id="@+id/med_dgrales_referencia"
                         style="@style/basic_style"
-                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="17dp"
-                        android:background="@null"/>
+                        android:background="@null"
+                        android:text="New Text"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:textSize="17sp" />
                 </TableRow>
 
                 <TableRow
@@ -139,26 +123,27 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="30dp">
 
-                    <TextView android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/lbl_medios_datosG_observaciones"
+                    <TextView
                         style="@style/basic_style"
-                        android:textColor="@color/orangeGpo"
-                        android:layout_column="1"
-                        android:layout_gravity="right"
-                        android:textSize="17dp"
-                        android:background="@null"/>
-
-                    <TextView android:layout_width="300dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="New Text"
+                        android:layout_column="1"
+                        android:background="@null"
+                        android:text="@string/lbl_medios_datosG_observaciones"
+                        android:textColor="@color/orangeGpo"
+                        android:textSize="18sp" />
+
+                    <TextView
                         android:id="@+id/med_dgrales_observaciones"
                         style="@style/basic_style"
-                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="17dp"
-                        android:background="@null"/>
+                        android:background="@null"
+                        android:text="New Text"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:textSize="17sp" />
                 </TableRow>
 
                 <TableRow
@@ -167,26 +152,27 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="30dp">
 
-                    <TextView android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/lbl_medios_datosG_plaza"
+                    <TextView
                         style="@style/basic_style"
-                        android:textColor="@color/orangeGpo"
-                        android:layout_column="1"
-                        android:layout_gravity="right"
-                        android:textSize="17dp"
-                        android:background="@null"/>
-
-                    <TextView android:layout_width="wrap_content"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="New Text"
+                        android:layout_column="1"
+                        android:background="@null"
+                        android:text="@string/lbl_medios_datosG_plaza"
+                        android:textColor="@color/orangeGpo"
+                        android:textSize="18sp" />
+
+                    <TextView
                         android:id="@+id/med_dgrales_plaza"
                         style="@style/basic_style"
-                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="17dp"
-                        android:background="@null"/>
+                        android:background="@null"
+                        android:text="New Text"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:textSize="17sp" />
                 </TableRow>
 
                 <TableRow
@@ -195,50 +181,44 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="30dp">
 
-                    <TextView android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/lbl_medios_datosG_tipoMedio"
+                    <TextView
                         style="@style/basic_style"
-                        android:textColor="@color/orangeGpo"
-                        android:layout_column="1"
-                        android:layout_gravity="right"
-                        android:textSize="17dp"
-                        android:background="@null"/>
-
-                    <TextView android:layout_width="wrap_content"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="New Text"
+                        android:layout_column="1"
+                        android:background="@null"
+                        android:text="@string/lbl_medios_datosG_tipoMedio"
+                        android:textColor="@color/orangeGpo"
+                        android:textSize="18sp" />
+
+                    <TextView
                         android:id="@+id/med_dgrales_tipoMedio"
                         style="@style/basic_style"
-                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="17dp"
-                        android:background="@null"/>
+                        android:background="@null"
+                        android:text="New Text"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:textSize="17sp" />
                 </TableRow>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:gravity="right">
-                    <ImageView
-                        android:layout_marginRight="10dp"
-                        android:layout_width="350dp"
-                        android:layout_height="60dp"
-                        />
-                </LinearLayout>
             </TableLayout>
 
         </LinearLayout>
 
-        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
-            android:layout_weight="0.4"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
             android:orientation="vertical">
+
             <TableLayout
                 style="@style/wrap_style"
-                android:layout_gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
                 android:paddingLeft="45dp"
                 android:paddingRight="10dp">
 
@@ -248,26 +228,27 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="30dp">
 
-                    <TextView android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/lbl_medios_datosG_ubicacion"
+                    <TextView
                         style="@style/basic_style"
-                        android:textColor="@color/orangeGpo"
-                        android:layout_column="1"
-                        android:layout_gravity="right"
-                        android:textSize="17dp"
-                        android:background="@null"/>
-
-                    <TextView android:layout_width="300dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="New Text"
+                        android:layout_column="1"
+                        android:background="@null"
+                        android:text="@string/lbl_medios_datosG_ubicacion"
+                        android:textColor="@color/orangeGpo"
+                        android:textSize="18sp" />
+
+                    <TextView
                         android:id="@+id/med_dgrales_ubicacion"
                         style="@style/basic_style"
-                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="17dp"
-                        android:background="@null"/>
+                        android:background="@null"
+                        android:text="New Text"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:textSize="17sp" />
                 </TableRow>
 
                 <TableRow
@@ -276,26 +257,24 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="30dp">
 
-                    <TextView android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/lbl_medios_datosG_traficoVehicular"
+                    <TextView
                         style="@style/basic_style"
-                        android:textColor="@color/orangeGpo"
-                        android:layout_column="1"
-                        android:layout_gravity="right"
-                        android:textSize="17dp"
-                        android:background="@null"/>
-
-                    <TextView android:layout_width="wrap_content"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="New Text"
+                        android:layout_column="1"
+                        android:background="@null"
+                        android:text="@string/lbl_medios_datosG_traficoVehicular"
+                        android:textColor="@color/orangeGpo"
+                        android:textSize="18sp" />
+
+                    <ImageView
                         android:id="@+id/med_dgrales_traficoVehicular"
                         style="@style/basic_style"
-                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:scaleType="fitStart"
                         android:layout_column="2"
-                        android:layout_marginLeft="15dp"
-                        android:textSize="17dp"
-                        android:background="@null"/>
+                        android:layout_marginLeft="15dp" />
                 </TableRow>
 
                 <TableRow
@@ -304,26 +283,24 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="30dp">
 
-                    <TextView android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/lbl_medios_datosG_traficoTranseuntes"
+                    <TextView
                         style="@style/basic_style"
-                        android:textColor="@color/orangeGpo"
-                        android:layout_column="1"
-                        android:layout_gravity="right"
-                        android:textSize="17dp"
-                        android:background="@null"/>
-
-                    <TextView android:layout_width="wrap_content"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="New Text"
+                        android:layout_column="1"
+                        android:background="@null"
+                        android:text="@string/lbl_medios_datosG_traficoTranseuntes"
+                        android:textColor="@color/orangeGpo"
+                        android:textSize="18sp" />
+
+                    <ImageView
                         android:id="@+id/med_dgrales_traficoTranseuntes"
                         style="@style/basic_style"
-                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="17dp"
-                        android:background="@null"/>
+                        android:scaleType="fitStart"/>
                 </TableRow>
 
                 <TableRow
@@ -332,26 +309,27 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="30dp">
 
-                    <TextView android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/lbl_medios_datosG_NSE"
+                    <TextView
                         style="@style/basic_style"
-                        android:textColor="@color/orangeGpo"
-                        android:layout_column="1"
-                        android:layout_gravity="right"
-                        android:textSize="17dp"
-                        android:background="@null"/>
-
-                    <TextView android:layout_width="wrap_content"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="New Text"
+                        android:layout_column="1"
+                        android:background="@null"
+                        android:text="@string/lbl_medios_datosG_NSE"
+                        android:textColor="@color/orangeGpo"
+                        android:textSize="18sp" />
+
+                    <TextView
                         android:id="@+id/med_dgrales_NSE"
                         style="@style/basic_style"
-                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="17dp"
-                        android:background="@null"/>
+                        android:background="@null"
+                        android:text="New Text"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:textSize="17sp" />
                 </TableRow>
 
                 <TableRow
@@ -360,26 +338,27 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="30dp">
 
-                    <TextView android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/lbl_medios_datosG_categoria"
+                    <TextView
                         style="@style/basic_style"
-                        android:textColor="@color/orangeGpo"
-                        android:layout_column="1"
-                        android:layout_gravity="right"
-                        android:textSize="17dp"
-                        android:background="@null"/>
-
-                    <TextView android:layout_width="wrap_content"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="New Text"
+                        android:layout_column="1"
+                        android:background="@null"
+                        android:text="@string/lbl_medios_datosG_categoria"
+                        android:textColor="@color/orangeGpo"
+                        android:textSize="18sp" />
+
+                    <TextView
                         android:id="@+id/med_dgrales_categoria"
                         style="@style/basic_style"
-                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="17dp"
-                        android:background="@null"/>
+                        android:background="@null"
+                        android:text="New Text"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:textSize="17sp" />
                 </TableRow>
 
                 <TableRow
@@ -388,43 +367,34 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="30dp">
 
-                    <TextView android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/lbl_medios_datosG_fechaInstalacion"
+                    <TextView
                         style="@style/basic_style"
-                        android:textColor="@color/orangeGpo"
-                        android:layout_column="1"
-                        android:layout_gravity="right"
-                        android:textSize="17dp"
-                        android:background="@null"/>
-
-                    <TextView android:layout_width="wrap_content"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="New Text"
+                        android:layout_column="1"
+                        android:background="@null"
+                        android:text="@string/lbl_medios_datosG_fechaInstalacion"
+                        android:textColor="@color/orangeGpo"
+                        android:textSize="18sp" />
+
+                    <TextView
                         android:id="@+id/med_dgrales_fechaInstalacion"
                         style="@style/basic_style"
-                        android:textColor="@color/text_datos_generales_center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp"
-                        android:textSize="17dp"
-                        android:background="@null"/>
+                        android:background="@null"
+                        android:text="New Text"
+                        android:textColor="@color/text_datos_generales_center"
+                        android:textSize="17sp" />
                 </TableRow>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:gravity="right">
-                    <ImageView
-                        android:layout_marginRight="10dp"
-                        android:layout_width="350dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/indicadores"/>
-                </LinearLayout>
+
+
 
             </TableLayout>
 
         </LinearLayout>
-
-
 
 
     </LinearLayout>

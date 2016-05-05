@@ -11,9 +11,13 @@ import gpovallas.obj.Contacto;
 import gpovallas.utils.Database;
 import android.app.ProgressDialog;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import gpovallas.utils.Text;
 import android.app.Dialog;
@@ -38,6 +42,20 @@ public class ClientTabDetailsContactosActivity extends GPOVallasActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.client_tab_details_contactos);
+
+        Display display = getWindowManager().getDefaultDisplay();
+        int width;
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB_MR2) {
+            Point size = new Point();
+            display.getSize(size);
+            width = size.x;
+        } else {
+            width = display.getWidth();
+        }
+
+        getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+
         mTextNombre =(EditText) findViewById(R.id.editcontacto_nombre);
         mTextApellidos = (EditText) findViewById(R.id.editcontacto_apellido);
         mTextTitulo = (EditText) findViewById(R.id.editcontacto_titulo);
@@ -57,6 +75,10 @@ public class ClientTabDetailsContactosActivity extends GPOVallasActivity {
             loadData();
         }
 
+    }
+
+    public void cancel(View v){
+        finish();
     }
 
     public void save(View v){

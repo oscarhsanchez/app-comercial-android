@@ -2,44 +2,48 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
-    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
-        android:orientation="vertical" android:paddingTop="5dip" android:paddingBottom="5dip" android:paddingRight="22dip">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingRight="12dip">
+
         <Button
             android:id="@+id/btn_new_accion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
             android:background="@null"
+            android:padding="10dp"
             android:drawablePadding="5dp"
             android:drawableRight="@drawable/btn_add"
-            android:layout_gravity="right"
             android:text="@string/briefs_nuevo"
-            android:textColor="@color/borderGray"/>
+            android:textColor="@color/borderGray" />
     </LinearLayout>
 
-    <LinearLayout
-        style="@style/listViewRow">
+    <LinearLayout style="@style/listViewHeader">
 
         <TextView
-            android:layout_weight="0.25"
             style="@style/listview_textview_th"
+            android:layout_weight="0.25"
             android:text="Tipo de acción" />
 
         <TextView
             style="@style/listview_textview_th"
-            android:text="Ejecutivo"
-            android:layout_weight="0.25" />
+            android:layout_weight="0.25"
+            android:text="Ejecutivo" />
 
         <TextView
-            android:layout_weight="0.25"
             style="@style/listview_textview_th"
-            android:text="Fecha"/>
+            android:layout_weight="0.25"
+            android:text="Fecha" />
 
         <TextView
-            android:layout_weight="0.25"
             style="@style/listview_textview_th"
-            android:text="Hora"/>
+            android:layout_weight="0.25"
+            android:text="Hora" />
 
     </LinearLayout>
 
@@ -48,20 +52,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ListView android:id="@android:id/list"
-            android:textFilterEnabled="true"
+        <ListView
+            android:id="@android:id/list"
+            style="@style/basic_style"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:cacheColorHint="#ECECEC"
-            style="@style/basic_style"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </ListView>
+            android:textFilterEnabled="true"></ListView>
 
-        <TextView android:id="@android:id/empty"
+        <TextView
+            android:id="@android:id/empty"
             style="@style/basic_style"
-            android:gravity="center"
-            android:text="No se han encontrado acciones"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="No se han encontrado acciones" />
 
     </LinearLayout>
 
