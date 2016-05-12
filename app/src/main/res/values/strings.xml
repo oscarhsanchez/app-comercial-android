@@ -207,4 +207,16 @@
     <string name="custom_telefono">Telefono: </string>
     <string name="custom_Categoria">Categoria: </string>
 
+
+    <!-- Briefs -->
+    <string name="circuito_th_presupuesto">Presupuesto</string>
+    <string name="circuito_th_tipologia_campania">Tipología de campaña</string>
+    <string name="circuito_th_plazas">Plazas</string>
+    <string name="circuito_th_fecha_inicio">Fecha de inicio</string>
+    <string name="circuito_th_catorcenas">Nº de catorcenas</string>
+    <string name="circuito_th_flexibilidad">Flexibilidad fechas</string>
+    <string name="circuito_th_tipologias">Tipologías</string>
+    <string name="circuito_th_tipologias_deseados">Tipología de lugares deseados</string>
+    <string name="circuito_th_tipologias_restrictivos">Tipologías de lugares restrictivos</string>
+    <string name="circuito_th_tipo_subtipo_medio">Tipos y subtipos de medios</string>
 </resources>

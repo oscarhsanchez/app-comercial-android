@@ -112,6 +112,10 @@
             android:name=".clientes.ClientPropuestaDetailActivity"
             android:screenOrientation="sensorLandscape"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".creaCircuito.CreaCircuitoActivity"
+            android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
 
         <receiver
             android:name="gpovallas.services.receivers.StartReceiver"
