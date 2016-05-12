@@ -24,6 +24,7 @@ import java.util.Date;
 import gpovallas.app.briefs.BriefFinderActivity;
 import gpovallas.app.clientes.ClientFinderActivity;
 import gpovallas.app.conoce.ConoceVallasActivity;
+import gpovallas.app.creaCircuito.CreaCircuitoActivity;
 import gpovallas.app.medios.MeanTabsActivity;
 import gpovallas.services.receivers.StartReceiver;
 import gpovallas.utils.Dialogs;
@@ -59,7 +60,8 @@ public class ControlPanelActivity extends GPOVallasActivity {
     }
 
     public void openCircuito(View v) {
-
+        Log.v("Control Panel", "Cargando Circuito");
+        startActivity(new Intent(this, CreaCircuitoActivity.class));
     }
 
     public void openConoce(View v) {
