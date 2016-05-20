@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -41,6 +42,7 @@ public class CreaCircuitoActivity extends GPOVallasActivity {
     private Spinner mSpnTipologia;
     private EditText mTxtPresupuesto;
     private EditText mTxtCatorcena;
+    private ImageButton mBtnCalendar;
     private CheckBox mCbFlexibilidadFechas;
     private Button mBtnEnviar;
     private TableLayout mLayoutRestrictivos;
@@ -57,9 +59,8 @@ public class CreaCircuitoActivity extends GPOVallasActivity {
     private DatePickerDialog.OnDateSetListener mOnDateSetListenerFechaInicio = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            mTxtFechaInicio.setText(year + "-"
-                    + String.format("%02d", (monthOfYear + 1)) + "-"
-                    + String.format("%02d", dayOfMonth));
+            mTxtFechaInicio.setText(String.format("%02d", dayOfMonth) + "/"
+                    + String.format("%02d", (monthOfYear + 1)) + "/" + year);
         }
     };
 
@@ -80,6 +81,7 @@ public class CreaCircuitoActivity extends GPOVallasActivity {
         mLayoutPaises = (TableLayout) findViewById(R.id.layoutPaises);
         mLayoutPlazas = (TableLayout) findViewById(R.id.layoutPlazas);
         mBtnEnviar = (Button) findViewById(R.id.btn_enviar);
+        mBtnCalendar = (ImageButton) findViewById(R.id.btnCalendar);
         mCbFlexibilidadFechas = (CheckBox) findViewById(R.id.cbFlexibilidadFechas);
         mLayoutTipos = (TableLayout) findViewById(R.id.layoutTipos);
         mLayoutRestrictivos = (TableLayout) findViewById(R.id.layoutRestrictivos);
@@ -109,11 +111,22 @@ public class CreaCircuitoActivity extends GPOVallasActivity {
             }
         });
 
+        mBtnCalendar.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!dateInicioPickerDialog.isShowing()) {
+                            dateInicioPickerDialog.show();
+                        }
+                    }
+                }
+        );
+
         mBtnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(mTxtPresupuesto.getText().toString()) || mSpnTipologia.getSelectedItemPosition() != 0
-                        || TextUtils.isEmpty(mTxtCatorcena.getText().toString())){
+                if (TextUtils.isEmpty(mTxtPresupuesto.getText().toString()) || mSpnTipologia.getSelectedItemPosition() != 0
+                        || TextUtils.isEmpty(mTxtCatorcena.getText().toString())) {
 
                     Dialogs.newAlertDialog(CreaCircuitoActivity.this, "Advertenia",
                             "Debe rellenar los campos obligatorios", "Aceptar").show();
@@ -178,9 +191,7 @@ public class CreaCircuitoActivity extends GPOVallasActivity {
             if ((i % 3 == 0)) {
                 mLayoutPaises.addView(insideContainer);
             }
-
         }
-
     }
 
     private void loadPlazas(String fkPaisesIn) {

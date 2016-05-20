@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:baselineAligned="false"
     android:orientation="vertical"
     tools:context="gpovallas.app.briefs.BriefDetailActivity">
@@ -14,7 +14,6 @@
 
     <ScrollView
         style="@style/main_linear_layout_bg_gris"
-
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -26,104 +25,94 @@
             <TableLayout
                 style="@style/wrap_style"
                 android:layout_width="match_parent"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:layout_marginBottom="10dp">
 
-                <TableRow android:layout_marginBottom="15dp"
-                    android:layout_marginTop="20dp"
-                    android:gravity="center|left">
+                <TableRow
+                    android:gravity="center|left"
+                    android:weightSum="2">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
                         android:layout_column="0"
-                        android:layout_marginRight="15dp"
-                        android:text="@string/circuito_th_presupuesto"
-                        android:textAppearance="@style/defaultTextAppearance"
-                        android:textColor="@color/orangeGpo" />
+                        android:gravity="center|left"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="25dp"
+                        android:layout_marginEnd="25dp">
 
-                    <EditText
-                        android:id="@+id/txtPresupuesto"
-                        style="@style/editText"
-                        android:layout_width="300dp"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:text="@string/circuito_th_presupuesto"
+                            android:textAppearance="@style/defaultTextAppearance"
+                            android:textColor="@color/orangeGpo" />
+
+                        <EditText
+                            android:id="@+id/txtPresupuesto"
+                            style="@style/editText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autoText="false"
+                            android:inputType="number" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center|left"
+                        android:orientation="horizontal"
                         android:layout_column="1"
-                        android:layout_weight="0"
-                        android:autoText="false"
-                        android:inputType="number" />
+                        android:layout_marginStart="25dp"
+                        android:layout_marginLeft="25dp">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:text="@string/circuito_th_tipologia_campania"
+                            android:textAppearance="@style/defaultTextAppearance"
+                            android:textColor="@color/orangeGpo" />
 
+                        <Spinner
+                            android:id="@+id/spnTipologia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
                 </TableRow>
 
-                <TableRow
-                    android:layout_marginBottom="15dp"
-                    android:gravity="center|left">
+            </TableLayout>
 
-                    <TextView
-                        android:layout_height="wrap_content"
-                        android:layout_column="0"
-                        android:layout_marginRight="15dp"
-                        android:text="@string/circuito_th_tipologia_campania"
-                        android:textAppearance="@style/defaultTextAppearance"
-                        android:textColor="@color/orangeGpo" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="Datos adicionales"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:textColor="@color/text_datos_generales_center"
+                android:textSize="18sp"
+                android:layout_margin="2dp"/>
 
-                    <Spinner
-                        android:id="@+id/spnTipologia"
-                        style="@style/editTextDate"
-                        android:layout_width="300dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="0"
-                        android:layout_column="1"/>
-                </TableRow>
+            <TableLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:padding="10dp"
+                android:background="@drawable/form_fieldset_transparent">
 
-                <TableRow
-                    android:layout_marginBottom="15dp">
-
-                    <TextView
-                        android:layout_height="wrap_content"
-                        android:layout_column="0"
-                        android:layout_marginRight="15dp"
-                        android:text="@string/circuito_th_fecha_inicio"
-                        android:textAppearance="@style/defaultTextAppearance"
-                        android:textColor="@color/orangeGpo" />
-
-                    <EditText
-                        android:id="@+id/txtFechaInicio"
-                        style="@style/editTextDate"
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:autoText="false"
-                        android:inputType="date" />
-                </TableRow>
-
-
-
-
-                <TableRow
-                    android:layout_marginBottom="15dp">
-
-                    <TextView
-                        android:layout_height="wrap_content"
-                        android:layout_column="0"
-                        android:layout_marginRight="15dp"
-                        android:text="@string/circuito_th_catorcenas"
-                        android:textAppearance="@style/defaultTextAppearance"
-                        android:textColor="@color/orangeGpo" />
-
-                    <EditText
-                        android:id="@+id/txtCatorcena"
-                        style="@style/editText"
-                        android:layout_width="400dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
-                        android:layout_column="1"
-                        android:layout_span="2"
-                        android:autoText="false"
-                        android:inputType="number" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_marginBottom="15dp">
+                <TableRow android:layout_marginBottom="10dp">
 
                     <TextView
                         android:layout_height="wrap_content"
@@ -138,21 +127,77 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
-                        android:layout_weight="0"
                         android:layout_marginLeft="-5dp"
-                        android:buttonTint="@color/orangeGpo"/>
+                        android:layout_weight="0"
+                        android:buttonTint="@color/orangeGpo" />
                 </TableRow>
 
-
-                <TableRow
-                    android:layout_marginBottom="15dp">
+                <TableRow android:layout_marginBottom="10dp">
 
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_column="0"
-                        android:layout_gravity="top|left"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:text="@string/circuito_th_fecha_inicio"
+                        android:textAppearance="@style/defaultTextAppearance"
+                        android:textColor="@color/orangeGpo" />
+
+                    <EditText
+                        android:id="@+id/txtFechaInicio"
+                        style="@style/editTextDate"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:autoText="false"
+                        android:hint="Seleccione fecha..."
+                        android:inputType="date"
+                        android:textColorHint="#aaaaaa" />
+
+                    <ImageButton
+                        android:id="@+id/btnCalendar"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_column="2"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0"
+                        android:background="@null"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_calendar" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:text="@string/circuito_th_catorcenas"
+                        android:textAppearance="@style/defaultTextAppearance"
+                        android:textColor="@color/orangeGpo" />
+
+                    <EditText
+                        android:id="@+id/txtCatorcena"
+                        style="@style/editText"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="0"
+                        android:autoText="false"
+                        android:inputType="number" />
+                </TableRow>
+
+
+                <TableRow android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_gravity="top|start"
                         android:paddingTop="10dp"
-                        android:text="@string/briefs_paises"
+                        android:text="@string/circuito_th_paises"
                         android:textAppearance="@style/defaultTextAppearance"
                         android:textColor="@color/orangeGpo" />
 
@@ -161,21 +206,21 @@
                         android:id="@+id/layoutPaises"
                         style="@style/wrap_style"
                         android:layout_width="wrap_content"
-                        android:layout_weight="1"
                         android:layout_column="1"
-                        android:layout_span="2">
+                        android:layout_span="2"
+                        android:layout_weight="1">
 
                     </TableLayout>
 
                 </TableRow>
 
-                <TableRow
-                    android:layout_marginBottom="15dp">
+                <TableRow android:layout_marginBottom="10dp">
 
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_column="0"
                         android:layout_marginRight="15dp"
+                        android:layout_marginEnd="15dp"
                         android:text="@string/circuito_th_plazas"
                         android:textAppearance="@style/defaultTextAppearance"
                         android:textColor="@color/orangeGpo" />
@@ -184,20 +229,19 @@
                         android:id="@+id/layoutPlazas"
                         style="@style/wrap_style"
                         android:layout_width="wrap_content"
-                        android:layout_weight="1"
                         android:layout_column="1"
-                        android:layout_span="2">
+                        android:layout_span="2"
+                        android:layout_weight="1">
 
                     </TableLayout>
                 </TableRow>
 
-                <TableRow
-                    android:layout_marginBottom="15dp">
+                <TableRow android:layout_marginBottom="10dp">
 
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_column="0"
-                        android:layout_gravity="top|left"
+                        android:layout_gravity="top|start"
                         android:paddingTop="10dp"
                         android:text="@string/circuito_th_tipologias"
                         android:textAppearance="@style/defaultTextAppearance"
@@ -208,21 +252,20 @@
                         android:id="@+id/layoutTipos"
                         style="@style/wrap_style"
                         android:layout_width="wrap_content"
-                        android:layout_weight="1"
                         android:layout_column="1"
-                        android:layout_span="2">
+                        android:layout_span="2"
+                        android:layout_weight="1">
 
                     </TableLayout>
                 </TableRow>
 
 
-                <TableRow
-                    android:layout_marginBottom="15dp">
+                <TableRow android:layout_marginBottom="10dp">
 
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_column="0"
-                        android:layout_gravity="top|left"
+                        android:layout_gravity="top|start"
                         android:paddingTop="10dp"
                         android:text="@string/circuito_th_tipologias_deseados"
                         android:textAppearance="@style/defaultTextAppearance"
@@ -232,22 +275,21 @@
                         android:id="@+id/layoutDeseados"
                         style="@style/wrap_style"
                         android:layout_width="wrap_content"
-                        android:layout_weight="1"
                         android:layout_column="1"
-                        android:layout_span="2">
+                        android:layout_span="2"
+                        android:layout_weight="1">
 
                     </TableLayout>
 
                 </TableRow>
 
 
-                <TableRow
-                    android:layout_marginBottom="15dp">
+                <TableRow android:layout_marginBottom="10dp">
 
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_column="0"
-                        android:layout_gravity="left|top"
+                        android:layout_gravity="start|top"
                         android:paddingTop="10dp"
                         android:text="@string/circuito_th_tipologias_restrictivos"
                         android:textAppearance="@style/defaultTextAppearance"
@@ -257,21 +299,20 @@
                     <TableLayout
                         android:id="@+id/layoutRestrictivos"
                         style="@style/wrap_style"
-                        android:layout_weight="1"
                         android:layout_column="1"
-                        android:layout_span="2">
+                        android:layout_span="2"
+                        android:layout_weight="1">
 
                     </TableLayout>
 
                 </TableRow>
 
-                <TableRow
-                    android:layout_marginBottom="15dp">
+                <TableRow android:layout_marginBottom="10dp">
 
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_column="0"
-                        android:layout_gravity="left|top"
+                        android:layout_gravity="start|top"
                         android:paddingTop="10dp"
                         android:text="@string/circuito_th_tipo_subtipo_medio"
                         android:textAppearance="@style/defaultTextAppearance"
@@ -280,14 +321,12 @@
                     <TableLayout
                         android:id="@+id/layoutSubtipos"
                         style="@style/wrap_style"
-                        android:layout_weight="1"
                         android:layout_column="1"
-                        android:layout_span="2">
+                        android:layout_span="2"
+                        android:layout_weight="1">
 
                     </TableLayout>
                 </TableRow>
-
-
 
 
             </TableLayout>
@@ -296,15 +335,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:gravity="center|right"
-                android:orientation="vertical"
-                android:layout_marginRight="15dp">
+                android:layout_marginRight="15dp"
+                android:gravity="center|end"
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/btn_enviar"
                     style="@style/boton_generico"
-                    android:onClick="save"
-                    android:text="Enviar" />
+                    android:text="Enviar"
+                    android:minWidth="200dp"/>
 
             </LinearLayout>
 
