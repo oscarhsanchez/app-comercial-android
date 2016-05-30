@@ -73,13 +73,19 @@ public class ClientTabContactosFragment extends Fragment {
 		populate();
         return mRoot;
 	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		populate();
+	}
 	
 	public void populate(){
 
 		arrContactos = new ArrayList<HashMap<String, String>>();
 
 		String sql = "SELECT fk_cliente,token,IFNULL(nombre, '') AS nombre, apellidos, cargo  " +
-						"FROM CONTACTO"; //WHERE fk_cliente = "+mPkCliente;
+						"FROM CONTACTO WHERE fk_cliente = '"+mPkCliente+"'";
 
 		Cursor c = db.rawQuery(sql, null);
 		Log.i(TAG,""+c.getCount());

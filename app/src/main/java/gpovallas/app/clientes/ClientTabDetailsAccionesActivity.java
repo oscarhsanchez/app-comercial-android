@@ -145,7 +145,7 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
         Dialog alertDialog = Dialogs.newAlertDialog(this, "Información","Cambios Guardos.", "OK");
         alertDialog.show();
         setResult(result ? ClientTabDetailsContactosActivity.RESULT_OK : 1);
-
+        finish();
     }
 
 
@@ -210,7 +210,10 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 Log.i(TAG,"HORA = "+hourOfDay+":"+minute);
-                mTextHora.setText(hourOfDay + ":" + minute);
+                int hour = hourOfDay;
+                String hora = String.valueOf(hourOfDay);
+                if(hourOfDay<10){hora = "0"+hora;}
+                mTextHora.setText(hora + ":00");
             }
         };
         TimePickerDialog pickerDialog = new TimePickerDialog(this,listener,17,10,true);

@@ -81,7 +81,7 @@ public class ClientTabAccionesFragment extends Fragment {
 
         String sql = "SELECT pk_accion,fk_tipo_accion,token,IFNULL(codigo_user,'') AS nombre, fecha,hora" +
                 ", (SELECT descripcion from TIPOACCION WHERE pk_tipo_accion=fk_tipo_accion) as descripcion"+
-                " FROM ACCION WHERE estado=1"; //WHERE fk_cliente = "+mPkCliente;
+                " FROM ACCION WHERE estado=1 and fk_cliente = '"+mPkCliente+"'";
 
         Cursor c = db.rawQuery(sql, null);
         Log.i(TAG,"datos "+c.getCount());

@@ -56,17 +56,21 @@ public class MeanTabUbicacionesFragment extends Fragment implements OnMapReadyCa
 
             @Override
             public void onItemClick(AdapterView adapter, View v, int position, long id) {
-                Log.i(TAG, "Posicion cliqueada " + position + " cliente pk " + arrUbicaciones.get(position).get("latitud"));
-                float latitud = Float.valueOf(arrUbicaciones.get(position).get("latitud"));
-                float longitud = Float.valueOf( arrUbicaciones.get(position).get("longitud"));
-                //mMap.clear();
-                LatLng  ubicacion= new LatLng(latitud, longitud);
-                //mMap.addMarker(new MarkerOptions().position(ubicacion).title(arrUbicaciones.get(position).get("ubicacion")));
-                CameraPosition cameraPosition = new CameraPosition.Builder()
-                        .target(ubicacion)
-                        .zoom(17).build();
-                //Zoom in and animate the camera.
-                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                try{
+                    Log.i(TAG, "Posicion cliqueada " + position + " cliente pk " + arrUbicaciones.get(position).get("latitud"));
+                    float latitud = Float.valueOf(arrUbicaciones.get(position).get("latitud"));
+                    float longitud = Float.valueOf( arrUbicaciones.get(position).get("longitud"));
+                    //mMap.clear();
+                    LatLng  ubicacion= new LatLng(latitud, longitud);
+                    //mMap.addMarker(new MarkerOptions().position(ubicacion).title(arrUbicaciones.get(position).get("ubicacion")));
+                    CameraPosition cameraPosition = new CameraPosition.Builder()
+                            .target(ubicacion)
+                            .zoom(17).build();
+                    //Zoom in and animate the camera.
+                    mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                }catch (Exception ex){
+                    Log.i(TAG,"Error en el zoom del medio "+ex);
+                }
 
             }
 

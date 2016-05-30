@@ -23,6 +23,7 @@ import gpovallas.utils.Text;
 import android.app.Dialog;
 import android.content.ContentValues;
 import gpovallas.utils.Dialogs;
+import gpovallas.utils.Utils;
 
 public class ClientTabDetailsContactosActivity extends GPOVallasActivity {
     private static final String TAG = ClientTabDetailsContactosActivity.class.getSimpleName();
@@ -100,6 +101,12 @@ public class ClientTabDetailsContactosActivity extends GPOVallasActivity {
             return;
         }
 
+        if(!Utils.isValidEmailAddress(email)){
+            Dialog alertDialog = Dialogs.newAlertDialog(this, "Información","Email es inválido", "OK");
+            alertDialog.show();
+            return;
+        }
+
         ContentValues reg = new ContentValues();
         reg.put("fk_cliente",pk_contacto);
         reg.put("nombre", nombre);
@@ -120,7 +127,7 @@ public class ClientTabDetailsContactosActivity extends GPOVallasActivity {
         Dialog alertDialog = Dialogs.newAlertDialog(this, "Información","Cambios Guardos.", "OK");
         alertDialog.show();
         setResult(result ? ClientTabDetailsContactosActivity.RESULT_OK : 1);
-
+        finish();
     }
 
 

@@ -50,7 +50,7 @@
                         android:layout_height="wrap_content"
                         android:layout_column="2"
                         android:autoText="false"
-                        android:inputType="textNoSuggestions">
+                        android:inputType="textNoSuggestions|textCapWords">
 
                         <requestFocus />
                     </EditText>
@@ -77,7 +77,7 @@
                         android:layout_height="wrap_content"
                         android:layout_column="2"
                         android:autoText="false"
-                        android:inputType="textNoSuggestions" />
+                        android:inputType="textNoSuggestions|textCapWords" />
                 </TableRow>
 
                 <TableRow
