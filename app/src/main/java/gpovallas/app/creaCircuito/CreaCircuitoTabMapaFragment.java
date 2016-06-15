@@ -72,9 +72,9 @@ public class CreaCircuitoTabMapaFragment extends Fragment implements OnMapReadyC
         arrUbicaciones = new ArrayList<HashMap<String, String>>();
 
         String sql = "SELECT pk_ubicacion, fk_plaza as plaza, ubicacion, latitud, longitud  " +
-                "FROM UBICACION WHERE estado = 1 and pk_ubicacion in("+fk_ubicaciones+")";
+                "FROM UBICACION WHERE estado = 1 and pk_ubicacion in ("+fk_ubicaciones+")";
 
-        sql += "ORDER BY ubicacion ASC";
+        sql += " ORDER BY ubicacion ASC";
 
         Cursor c = db.rawQuery(sql, null);
         Log.i(TAG, "" + c.getCount());

@@ -60,12 +60,13 @@ public class CreaCircuitoDetailTabsActivity extends GPOVallasFragmentActivity{
     }
 
     private void cadena_fk_ubicaciones(){
+        fk_ubicaciones = "'";
         for (Agrupacion a:listAgrupaciones) {
-            fk_ubicaciones += a.fk_ubicacion+",";
+            fk_ubicaciones += a.fk_ubicacion+"','";
         }
         for (Circuito c:listCircuito){
-            fk_ubicaciones += c.fk_ubicacion+",";
+            fk_ubicaciones += c.fk_ubicacion+"','";
         }
-        fk_ubicaciones = fk_ubicaciones.substring(0,fk_ubicaciones.length()-1);
+        fk_ubicaciones = fk_ubicaciones.substring(0,fk_ubicaciones.length()-2);
     }
 }
