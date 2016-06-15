@@ -51,4 +51,9 @@ public class GPOVallasConstants {
     public static String REMOTE_PATH_PDF = "path_pdf";
     public static String PDF_NAME = "pdf_name";
 
+    //Circuito
+    public static String AGRUPACIONES_INTENT ="list_agrupaciones";
+    public static String CIRCUITOS_INTENT ="list_circuitos";
+    public static String FK_UBICACION_INTENT = "fk_ubiciaciones";
+
 }

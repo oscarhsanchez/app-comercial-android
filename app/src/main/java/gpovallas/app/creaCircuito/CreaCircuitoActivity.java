@@ -1,10 +1,16 @@
 package gpovallas.app.creaCircuito;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.text.TextUtilsCompat;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +24,14 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -28,16 +39,22 @@ import gpovallas.app.ApplicationStatus;
 import gpovallas.app.GPOVallasActivity;
 import gpovallas.app.R;
 import gpovallas.app.briefs.BriefDetailActivity;
+import gpovallas.app.clientes.ClientDetailTabsActivity;
+import gpovallas.app.constants.GPOVallasConstants;
 import gpovallas.db.controllers.PaisCtrl;
 import gpovallas.db.controllers.PlazaCtrl;
 import gpovallas.obj.Pais;
 import gpovallas.obj.Plaza;
+import gpovallas.obj.TO.Agrupacion;
+import gpovallas.obj.TO.Circuito;
 import gpovallas.utils.Dialogs;
+import gpovallas.ws.request.GetCircuitoRequest;
+import gpovallas.ws.response.GetCircuitoResponse;
 
 public class CreaCircuitoActivity extends GPOVallasActivity {
 
     private static final String TAG = CreaCircuitoActivity.class.getSimpleName();
-
+    private ProgressDialog progressDialog;
     private EditText mTxtFechaInicio;
     private Spinner mSpnTipologia;
     private EditText mTxtPresupuesto;
@@ -50,6 +67,8 @@ public class CreaCircuitoActivity extends GPOVallasActivity {
     private TableLayout mLayoutPlazas;
     private TableLayout mLayoutTipos;
     private TableLayout mLayoutDeseados;
+    private ArrayList<Agrupacion> listAgrupaciones;
+    private ArrayList<Circuito> listCircuito;
 
     private List<Pais> paises;
     private List<Plaza> plazas;
@@ -63,6 +82,11 @@ public class CreaCircuitoActivity extends GPOVallasActivity {
                     + String.format("%02d", (monthOfYear + 1)) + "/" + year);
         }
     };
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
 
     @Override
@@ -96,6 +120,9 @@ public class CreaCircuitoActivity extends GPOVallasActivity {
                 c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
 
 
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
 
@@ -125,15 +152,51 @@ public class CreaCircuitoActivity extends GPOVallasActivity {
         mBtnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(mTxtPresupuesto.getText().toString()) || mSpnTipologia.getSelectedItemPosition() != 0
+                /*if (TextUtils.isEmpty(mTxtPresupuesto.getText().toString()) || mSpnTipologia.getSelectedItemPosition() != 0
                         || TextUtils.isEmpty(mTxtCatorcena.getText().toString())) {
 
                     Dialogs.newAlertDialog(CreaCircuitoActivity.this, "Advertenia",
                             "Debe rellenar los campos obligatorios", "Aceptar").show();
                     return;
-                }
+                }*/
+                progressDialog = ProgressDialog.show(CreaCircuitoActivity.this, "", getString(R.string.circuito_progress_request), true);
+                new circuitoTask().execute("50000", "2015-05-01", "2015-05-30");
             }
         });
+    }
+
+    private class circuitoTask extends AsyncTask<String, Integer, GetCircuitoResponse>{
+        @Override
+        protected GetCircuitoResponse doInBackground(String... params) {
+            GetCircuitoRequest request = new GetCircuitoRequest();
+            return request.execute(params[0],params[1],params[2],GetCircuitoResponse.class);
+        }
+        @Override
+        protected void onPostExecute(GetCircuitoResponse response) {
+            if(progressDialog!=null) progressDialog.dismiss();
+            if (response != null && !response.failed()) {
+                listAgrupaciones = new ArrayList<>(Arrays.asList(response.agrupaciones));
+                listCircuito = new ArrayList<>(Arrays.asList(response.circuito));
+
+                Intent intent = new Intent(CreaCircuitoActivity.this, CreaCircuitoDetailTabsActivity.class);
+                intent.putExtra(GPOVallasConstants.AGRUPACIONES_INTENT, listAgrupaciones);
+                intent.putExtra(GPOVallasConstants.CIRCUITOS_INTENT,listCircuito);
+                startActivity(intent);
+            }else {
+                Log.d(TAG, "No se pudo terminar la peticion");
+                if (response != null && response.error != null) {
+                    Dialogs.newAlertDialog(CreaCircuitoActivity.this,
+                            getString(android.R.string.dialog_alert_title),
+                            response.error.description,
+                            getString(android.R.string.ok)).show();
+                } else {
+                    Dialogs.newAlertDialog(CreaCircuitoActivity.this,
+                            getString(android.R.string.dialog_alert_title),
+                            getString(R.string.error_generico),
+                            getString(android.R.string.ok)).show();
+                }
+            }
+        }
     }
 
 

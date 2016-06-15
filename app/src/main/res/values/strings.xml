@@ -220,4 +220,8 @@
     <string name="circuito_th_tipologias_deseados">Tip. de lugares deseados:</string>
     <string name="circuito_th_tipologias_restrictivos">Tip.de lugares restrictivos:</string>
     <string name="circuito_th_tipo_subtipo_medio">Tipos y subtipos de medios:</string>
+    <string name="circuito_progress_request">Procesando solicitud...</string>
+    <string name="tab_agrupaciones">Agrupaciones</string>
+    <string name="tab_medios">Medios</string>
+    <string name="tab_circuito_mapa">Mapa</string>
 </resources>

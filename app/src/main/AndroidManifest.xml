@@ -66,8 +66,8 @@
         <activity
             android:name=".clientes.ClientTabDetailsContactosActivity"
             android:screenOrientation="sensorLandscape"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/AppDialog"/>
+            android:theme="@style/AppDialog"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".briefs.BriefFinderActivity"
             android:screenOrientation="sensorLandscape"
@@ -96,18 +96,18 @@
             android:name=".medios.MeanTabListadosDetailTabActivity"
             android:screenOrientation="sensorLandscape"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
+        <!--<activity
             android:name=".medios.MeanGaleriaZoomActivity"
             android:screenOrientation="sensorLandscape"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
+            android:windowSoftInputMode="adjustPan|stateHidden" />-->
         <activity
             android:name=".conoce.ConoceVallasActivity"
             android:screenOrientation="sensorLandscape"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
+        <!--<activity
             android:name=".PdfViewerActivity"
             android:screenOrientation="sensorLandscape"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
+            android:windowSoftInputMode="adjustPan|stateHidden" />-->
         <activity
             android:name=".clientes.ClientPropuestaDetailActivity"
             android:screenOrientation="sensorLandscape"
@@ -135,7 +135,12 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".clientes.ClientFacturaDetailActivity"></activity>
+        <activity android:name=".clientes.ClientFacturaDetailActivity"
+            android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".creaCircuito.CreaCircuitoDetailTabsActivity"
+            android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
     </application>
 
 </manifest>

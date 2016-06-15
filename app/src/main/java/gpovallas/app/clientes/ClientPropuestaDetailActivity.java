@@ -113,19 +113,13 @@ public class ClientPropuestaDetailActivity extends GPOVallasActivity {
         if (mPropuesta != null & mPropuesta.detalle != null) {
             for(int i = 0;i < mPropuesta.detalle.length;i++) {
                 mPropuestaDetalleList.add(mPropuesta.detalle[i]);
-                //if (mPropuesta.detalle[i].detalle_outdoor.length> 0) {
+                if (mPropuesta.detalle[i].detalle_outdoor.length > 0) {
                     List<PropuestaDetalleOutdoor> detalleOutdoorList = new ArrayList<>();
-                    for (int j = 0; j < 3; j++) {//for (int j = 0; j < mPropuesta.detalle.length; j++) {
-                        PropuestaDetalleOutdoor p = new PropuestaDetalleOutdoor();
-                        p.token = "001"+j;
-                        p.fk_medio ="DF2745";
-                        p.tipo_negociacion="tipo";
-                        p.unidad_negocio ="unidad";
-                        p.precio = 14.0f;
-                        detalleOutdoorList.add(p);//mPropuesta.detalle[i].detalle_outdoor[j]);
+                    for (int j = 0; j < mPropuesta.detalle.length; j++) {
+                        detalleOutdoorList.add(mPropuesta.detalle[i].detalle_outdoor[j]);
                     }
                     mPropuestaDetalleOutdoorMap.put(mPropuesta.detalle[i].token, detalleOutdoorList);
-                //}
+                }
 
             }
         }

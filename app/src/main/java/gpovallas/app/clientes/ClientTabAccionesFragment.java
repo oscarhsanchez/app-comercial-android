@@ -41,6 +41,7 @@ public class ClientTabAccionesFragment extends Fragment {
         Bundle bundle = getArguments();
         if (bundle != null) {
             mPkCliente = bundle.getString(GPOVallasConstants.CLIENT_PK_INTENT);
+
             Log.i(TAG, mPkCliente);
         }
         db = ApplicationStatus.getInstance().getDb(getActivity());

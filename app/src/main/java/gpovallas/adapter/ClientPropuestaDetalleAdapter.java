@@ -91,21 +91,18 @@ public class ClientPropuestaDetalleAdapter extends BaseExpandableListAdapter {
         //convertView.findViewById(R.id.)
 
         ImageView image = (ImageView) convertView.findViewById( R.id.explist_indicator);
+        LinearLayout childHeader = (LinearLayout) convertView.findViewById(R.id.childHeader);
         if(mPropuestaDetalleOutdoorList.get(mPropuestaDetalleList.get(groupPosition).token) != null){
             image.setVisibility(View.VISIBLE);
             if(isExpanded){
                 image.setImageResource(R.drawable.icon_arrow_up);
+                childHeader.setVisibility(View.VISIBLE);
             }else{
                 image.setImageResource(R.drawable.icon_expand);
+                childHeader.setVisibility(View.GONE);
             }
         }else{
             image.setVisibility( View.INVISIBLE );
-        }
-
-        LinearLayout childHeader = (LinearLayout) convertView.findViewById(R.id.childHeader);
-        if(isExpanded){
-            childHeader.setVisibility(View.VISIBLE);
-        }else{
             childHeader.setVisibility(View.GONE);
         }
 
