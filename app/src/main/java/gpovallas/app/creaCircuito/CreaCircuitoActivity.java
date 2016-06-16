@@ -24,10 +24,6 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
-
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -82,12 +78,6 @@ public class CreaCircuitoActivity extends GPOVallasActivity {
                     + String.format("%02d", (monthOfYear + 1)) + "/" + year);
         }
     };
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -120,9 +110,6 @@ public class CreaCircuitoActivity extends GPOVallasActivity {
                 c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
 
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
 
