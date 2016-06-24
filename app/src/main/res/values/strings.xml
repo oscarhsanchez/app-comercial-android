@@ -214,6 +214,8 @@
     <string name="circuito_th_plazas">Plazas:</string>
     <string name="circuito_th_paises">Países:</string>
     <string name="circuito_th_fecha_inicio">Fecha de inicio:</string>
+    <string name="circuito_th_fecha_fin">Fecha de fin:</string>
+    <string name="circuito_th_catorcena_spinner">catorcena:</string>
     <string name="circuito_th_catorcenas">Nº de catorcenas:</string>
     <string name="circuito_th_flexibilidad">Flexibilidad fechas:</string>
     <string name="circuito_th_tipologias">Tipologías:</string>

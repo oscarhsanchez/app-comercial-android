@@ -3,17 +3,16 @@ package gpovallas.app.creaCircuito;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.support.v4.text.TextUtilsCompat;
-import android.support.v7.widget.AppCompatCheckBox;
-import android.text.TextUtils;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -29,6 +28,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import gpovallas.app.ApplicationStatus;
@@ -47,15 +47,17 @@ import gpovallas.utils.Dialogs;
 import gpovallas.ws.request.GetCircuitoRequest;
 import gpovallas.ws.response.GetCircuitoResponse;
 
-public class CreaCircuitoActivity extends GPOVallasActivity {
+public class CreaCircuitoActivity extends GPOVallasActivity implements OnItemSelectedListener {
 
     private static final String TAG = CreaCircuitoActivity.class.getSimpleName();
     private ProgressDialog progressDialog;
     private EditText mTxtFechaInicio;
+    private EditText mTxtFechaFin;
+    private EditText mTextNCatorcena;
     private Spinner mSpnTipologia;
     private EditText mTxtPresupuesto;
     private EditText mTxtCatorcena;
-    private ImageButton mBtnCalendar;
+    private ImageButton mBtnCalendar,mBtnCalendarR,mBtnCalendarFR;
     private CheckBox mCbFlexibilidadFechas;
     private Button mBtnEnviar;
     private TableLayout mLayoutRestrictivos;
@@ -63,8 +65,12 @@ public class CreaCircuitoActivity extends GPOVallasActivity {
     private TableLayout mLayoutPlazas;
     private TableLayout mLayoutTipos;
     private TableLayout mLayoutDeseados;
+    private Spinner spinner;
     private ArrayList<Agrupacion> listAgrupaciones;
     private ArrayList<Circuito> listCircuito;
+    private ArrayList<HashMap<String, String>> arrCatorcenas;
+    private ArrayAdapter<String> dataAdapter;
+    private Integer id_catorcena;
 
     private List<Pais> paises;
     private List<Plaza> plazas;
@@ -75,6 +81,14 @@ public class CreaCircuitoActivity extends GPOVallasActivity {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             mTxtFechaInicio.setText(String.format("%02d", dayOfMonth) + "/"
+                    + String.format("%02d", (monthOfYear + 1)) + "/" + year);;
+        }
+    };
+    private DatePickerDialog dateFinPickerDialog;
+    private DatePickerDialog.OnDateSetListener mOnDateSetListenerFechaFin = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            mTxtFechaFin.setText(String.format("%02d", dayOfMonth) + "/"
                     + String.format("%02d", (monthOfYear + 1)) + "/" + year);
         }
     };
@@ -88,7 +102,9 @@ public class CreaCircuitoActivity extends GPOVallasActivity {
         db = ApplicationStatus.getInstance().getDbRead(getApplicationContext());
         c = Calendar.getInstance();
 
-        mTxtFechaInicio = (EditText) findViewById(R.id.txtFechaInicio);
+        mTxtFechaInicio = (EditText) findViewById(R.id.txtFechaInicioR);
+        mTxtFechaFin = (EditText) findViewById(R.id.txtFechaFin);
+        mTextNCatorcena = (EditText) findViewById(R.id.txtCatorcenaR);
         mSpnTipologia = (Spinner) findViewById(R.id.spnTipologia);
         mTxtPresupuesto = (EditText) findViewById(R.id.txtPresupuesto);
         mTxtCatorcena = (EditText) findViewById(R.id.txtCatorcena);
@@ -96,19 +112,66 @@ public class CreaCircuitoActivity extends GPOVallasActivity {
         mLayoutPlazas = (TableLayout) findViewById(R.id.layoutPlazas);
         mBtnEnviar = (Button) findViewById(R.id.btn_enviar);
         mBtnCalendar = (ImageButton) findViewById(R.id.btnCalendar);
+        mBtnCalendarR = (ImageButton) findViewById(R.id.btnCalendarR);
+        mBtnCalendarFR = (ImageButton) findViewById(R.id.btnCalendarFR);
         mCbFlexibilidadFechas = (CheckBox) findViewById(R.id.cbFlexibilidadFechas);
         mLayoutTipos = (TableLayout) findViewById(R.id.layoutTipos);
         mLayoutRestrictivos = (TableLayout) findViewById(R.id.layoutRestrictivos);
         mLayoutDeseados = (TableLayout) findViewById(R.id.layoutDeseados);
+        spinner =(Spinner) findViewById(R.id.spnCatorcena);
         mLayoutDeseados.setVisibility(View.GONE);
 
         loadPaises();
         setupListeners();
+        loadCatalogoCatorcena();
+        loadDataSpinner();
 
         dateInicioPickerDialog = new DatePickerDialog(CreaCircuitoActivity.this,
                 mOnDateSetListenerFechaInicio,
                 c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
 
+        dateFinPickerDialog = new DatePickerDialog(CreaCircuitoActivity.this,
+                mOnDateSetListenerFechaFin,
+                c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+    }
+
+    public void loadDataSpinner(){
+
+        spinner.setOnItemSelectedListener(this);
+        // Spinner Drop down elements
+
+        List <String> categories = new ArrayList<String>();
+
+        for (HashMap<String, String> tipo : arrCatorcenas){
+            categories.add(tipo.get("catorcena"));
+        }
+
+        dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(dataAdapter);
+    }
+
+    public void loadCatalogoCatorcena(){
+
+        arrCatorcenas = new ArrayList<HashMap<String, String>>();
+
+        String sql = "SELECT id, catorcena  " +
+                "FROM "+GPOVallasConstants.DB_TABLE_CATORCENA;
+
+        Cursor c = db.rawQuery(sql, null);
+        Log.i(TAG,""+c.getCount());
+        if(c.moveToFirst()){
+            do {
+                Log.i(TAG, c.getString(c.getColumnIndex("catorcena")));
+                HashMap<String,String> map = new HashMap<String, String>();
+                map.put("id", c.getString(c.getColumnIndex("id")));
+                map.put("catorcena", c.getString(c.getColumnIndex("catorcena")));
+                arrCatorcenas.add(map);
+            } while (c.moveToNext());
+        }
+        c.close();
 
     }
 
@@ -125,12 +188,42 @@ public class CreaCircuitoActivity extends GPOVallasActivity {
             }
         });
 
+        mTxtFechaFin.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (!dateInicioPickerDialog.isShowing()) {
+                    dateInicioPickerDialog.show();
+                }
+                return true;
+            }
+        });
+/*
         mBtnCalendar.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (!dateInicioPickerDialog.isShowing()) {
                             dateInicioPickerDialog.show();
+                        }
+                    }
+                }
+        );*/
+        mBtnCalendarR.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!dateInicioPickerDialog.isShowing()) {
+                            dateInicioPickerDialog.show();
+                        }
+                    }
+                }
+        );
+        mBtnCalendarFR.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!dateFinPickerDialog.isShowing()) {
+                            dateFinPickerDialog.show();
                         }
                     }
                 }
@@ -147,9 +240,21 @@ public class CreaCircuitoActivity extends GPOVallasActivity {
                     return;
                 }*/
                 progressDialog = ProgressDialog.show(CreaCircuitoActivity.this, "", getString(R.string.circuito_progress_request), true);
-                new circuitoTask().execute("50000", "2015-05-01", "2015-05-30");
+                new circuitoTask().execute(mTxtPresupuesto.getText().toString(),mTxtFechaInicio.getText().toString(), mTxtFechaFin.getText().toString());
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        HashMap<String, String> tipo =arrCatorcenas.get(position);
+        Log.i(TAG, "SELECT " + tipo.get("id"));
+        id_catorcena = Integer.parseInt(tipo.get("id"));
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
     private class circuitoTask extends AsyncTask<String, Integer, GetCircuitoResponse>{
