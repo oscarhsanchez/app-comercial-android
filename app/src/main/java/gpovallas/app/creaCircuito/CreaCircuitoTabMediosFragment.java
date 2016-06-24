@@ -1,5 +1,6 @@
 package gpovallas.app.creaCircuito;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 import gpovallas.adapter.CircuitoCircuitosAdapter;
 import gpovallas.app.R;
 import gpovallas.app.constants.GPOVallasConstants;
+import gpovallas.app.medios.MeanTabListadosDetailTabActivity;
 import gpovallas.obj.TO.Circuito;
 
 /**
@@ -36,6 +39,21 @@ public class CreaCircuitoTabMediosFragment extends Fragment {
             listCircuito = bundle.getParcelableArrayList(GPOVallasConstants.CIRCUITOS_INTENT);
         }
         populate();
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView adapter, View v, int position, long id) {
+                Log.i(TAG, "Posicion cliqueada " + position + " ubicacion pk " + listCircuito.get(position).fk_ubicacion);
+                Circuito c= listCircuito.get(position);
+                Intent intent = new Intent(CreaCircuitoTabMediosFragment.this.getActivity(), MeanTabListadosDetailTabActivity.class);
+                intent.putExtra(GPOVallasConstants.LISTADO_PK_INTENT, c.fk_ubicacion);
+                startActivity(intent);
+            }
+
+        });
+        /*
+
+         */
         return mRoot;
     }
 
