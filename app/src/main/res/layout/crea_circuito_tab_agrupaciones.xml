@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/main_linear_layout_bg_gris"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="vertical">
+
+    <LinearLayout style="@style/listViewHeader">
+
+        <TextView
+            style="@style/listview_textview_th"
+            android:layout_weight="0.30"
+            android:text="Descripción" />
+
+        <TextView
+            style="@style/listview_textview_th"
+            android:layout_weight="0.30"
+            android:text="Ubicación" />
+
+        <TextView
+            style="@style/listview_textview_th"
+            android:layout_weight="0.40"
+            android:text="Coste" />
+
+    </LinearLayout>
+
+
+    <LinearLayout style="@style/basic_style">
+
+        <ListView
+            android:id="@android:id/list"
+            style="@style/basic_style"
+            android:cacheColorHint="#ECECEC"
+            android:textFilterEnabled="true"/>
+
+    </LinearLayout>
+
+</LinearLayout>

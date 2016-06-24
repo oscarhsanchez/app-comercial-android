@@ -6,32 +6,47 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        style="@style/basic_layout_padding"
+        style="@style/basic_layout"
         android:weightSum="1">
 
+        <LinearLayout style="@style/container_filter"
+            android:background="#FFFFFF"
+            android:padding="10dp">
 
-        <TextView
-            android:id="@+id/mapa_ubicacion"
-            style="@style/listview_textview"
-            android:layout_width="fill_parent"
-            android:textColor="@color/orangeGpo"/>
+            <TextView
+                style="@style/listview_textview"
+                android:layout_width="wrap_content"
+                android:text="Ubicación:"
+                android:gravity="left|center"
+                android:textColor="@color/text_enabled" />
+
+            <TextView
+                android:id="@+id/mapa_ubicacion"
+                style="@style/listview_textview"
+                android:layout_width="fill_parent"
+                android:gravity="left|center"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/orangeGpo"/>
+        </LinearLayout>
 
 
         <LinearLayout style="@style/container_filter">
 
             <ImageView android:id="@+id/img_search_icon"
                 style="@style/wrap_style"
-                android:layout_width="0dp"
-                android:layout_weight="0.05"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 android:src="@android:drawable/ic_menu_search"/>
 
             <Spinner
                 android:id="@+id/spinner_search_filter"
                 style="@style/editText"
-                android:layout_width="0dp"
-                android:layout_weight="0.95"
+                android:layout_width="match_parent"
+                android:minHeight="50dp"
                 android:drawSelectorOnTop="true"
+                android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content"
                 android:autoText="false"
                 android:inputType="textNoSuggestions">
@@ -39,7 +54,7 @@
             </Spinner>
         </LinearLayout>
         <LinearLayout
-            style="@style/basic_style">
+            style="@style/basic_layout_padding">
             <fragment
                 android:id="@+id/map"
                 android:layout_width="match_parent"

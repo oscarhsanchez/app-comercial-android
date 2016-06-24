@@ -55,10 +55,14 @@ public class MeanTabListadosDetailTabFragment extends Fragment implements TabHos
                         // Poner todos los tabs en naranja
                         for (int i = 0; i < mTabHost.getTabWidget().getTabCount(); i++) {
                             mTabHost.getTabWidget().getChildTabViewAt(i).setBackgroundResource(R.color.orangeGpo);
+                            mTabHost.getTabWidget().getChildTabViewAt(i).findViewById(R.id.indicator_selected).setVisibility(View.GONE);
                         }
 
                         // Colorear la vista actual de gris
-                        v.setBackgroundResource(R.color.bg_generic);
+                        //v.setBackgroundResource(R.color.bg_generic);
+
+                        View selector = v.findViewById(R.id.indicator_selected);
+                        selector.setVisibility(View.VISIBLE);
 
                         String tabId = mTabHost.getCurrentTabTag();
 
@@ -104,8 +108,13 @@ public class MeanTabListadosDetailTabFragment extends Fragment implements TabHos
         Log.d(TAG, "buildTab(): tag=" + tab_title);
         View indicator = LayoutInflater.from(mTabHost.getContext()).inflate(R.layout.tabs_bg, mContainer);
 
-        if (tabContentId == R.id.tab_detalle) {
+       /* if (tabContentId == R.id.tab_detalle) {
             indicator.setBackgroundResource(R.color.bg_generic);
+        }*/
+
+        View selector = indicator.findViewById(R.id.indicator_selected);
+        if (tabContentId == R.id.tab_detalle) {
+            selector.setVisibility(View.VISIBLE);
         }
 
         TextView tv = (TextView) indicator.findViewById(R.id.tabsText);

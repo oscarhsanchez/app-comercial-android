@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="55dip"
-              android:orientation="vertical" >
+    style="@style/listViewRow"
+    android:padding="10dp"
+    android:background="#f2f2f2">
 
     <TextView
-        android:id="@+id/lblListItem"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textSize="17dip"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />
+        android:id="@+id/lbloutdoormedio"
+        style="@style/listview_textview"
+        android:layout_weight="0.25"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/lbloutdoorunidad"
+        style="@style/listview_textview"
+        android:layout_weight="0.25"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/lbloutdoortipo"
+        style="@style/listview_textview"
+        android:layout_weight="0.35"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/lbloutdoorprecio"
+        style="@style/listview_textview"
+        android:layout_weight="0.15"
+        android:gravity="center"/>
+
 
 </LinearLayout>

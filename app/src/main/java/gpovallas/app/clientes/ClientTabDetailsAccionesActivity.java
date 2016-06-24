@@ -6,15 +6,19 @@ import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.ArrayAdapter;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TimePicker;
 
 import java.util.ArrayList;
@@ -27,7 +31,6 @@ import gpovallas.app.GPOVallasApplication;
 import gpovallas.app.R;
 import gpovallas.app.constants.GPOVallasConstants;
 import gpovallas.obj.Accion;
-import gpovallas.obj.TipoAccion;
 import gpovallas.utils.Database;
 import gpovallas.utils.Dialogs;
 import gpovallas.utils.Text;
@@ -49,9 +52,23 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.client_tab_details_acciones);
+
+        Display display = getWindowManager().getDefaultDisplay();
+        int width;
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB_MR2){
+            Point size = new Point();
+            display.getSize(size);
+            width = size.x;
+        }else{
+            width = display.getWidth();
+        }
+
+        getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+
         db = ApplicationStatus.getInstance().getDbRead(getApplicationContext());
         loadCatalogoTipoAccion();
-        setContentView(R.layout.client_tab_details_acciones);
+
         spinner =(Spinner) findViewById(R.id.spinneraccion_tipo);
         loadDataSpinner();
         mTextFecha = (EditText) findViewById(R.id.editaccion_fecha);
@@ -90,6 +107,9 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
         spinner.setAdapter(dataAdapter);
     }
 
+    public void cancel(View v){
+        finish();
+    }
 
     public void save(View v){
         //String tipoaccion = mTextTipo.getText().toString();
@@ -109,7 +129,7 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
         ContentValues reg = new ContentValues();
         reg.put("fk_cliente", pk_accion);
         reg.put("fk_tipo_accion", pk_Tipo_accion);
-        reg.put("cod_user", GPOVallasApplication.pk_user_session);
+        reg.put("codigo_user", GPOVallasApplication.pk_user_session);
         reg.put("fecha", fecha);
         reg.put("hora", hora);
         reg.put("titulo",titulo);
@@ -125,7 +145,7 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
         Dialog alertDialog = Dialogs.newAlertDialog(this, "Información","Cambios Guardos.", "OK");
         alertDialog.show();
         setResult(result ? ClientTabDetailsContactosActivity.RESULT_OK : 1);
-
+        finish();
     }
 
 
@@ -190,7 +210,10 @@ public class ClientTabDetailsAccionesActivity extends GPOVallasActivity implemen
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 Log.i(TAG,"HORA = "+hourOfDay+":"+minute);
-                mTextHora.setText(hourOfDay + ":" + minute);
+                int hour = hourOfDay;
+                String hora = String.valueOf(hourOfDay);
+                if(hourOfDay<10){hora = "0"+hora;}
+                mTextHora.setText(hora + ":00");
             }
         };
         TimePickerDialog pickerDialog = new TimePickerDialog(this,listener,17,10,true);

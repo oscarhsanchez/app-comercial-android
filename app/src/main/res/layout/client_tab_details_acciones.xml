@@ -16,30 +16,33 @@
             android:id="@+id/header"
             style="@style/header" />
 
-        <LinearLayout
-            android:orientation="vertical"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <TableLayout
+                android:id="@+id/table"
                 style="@style/wrap_style"
-                android:layout_gravity="center_horizontal">
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true">
 
                 <TableRow style="@style/wrap_style" android:layout_marginBottom="10dp" android:layout_marginTop="10dp">
                     <TextView
                         android:id="@+id/LblTipo"
-                        android:layout_marginRight="15dp"
-                        android:layout_column="1"
                         android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_marginRight="15dp"
                         android:text="@string/accion_tipoaccion"
-                        android:textColor="@color/orangeGpo"
-                        android:textAppearance="@style/defaultTextAppearance" />
+                        android:textAppearance="@style/defaultTextAppearance"
+                        android:textColor="@color/orangeGpo" />
 
                     <Spinner
                         android:id="@+id/spinneraccion_tipo"
                         style="@style/editText"
                         android:layout_column="2"
-                        android:layout_width="300dp"
+                        android:layout_width="500dp"
                         android:layout_height="wrap_content"
                         android:autoText="false"
                         android:inputType="textNoSuggestions">
@@ -62,7 +65,7 @@
                         style="@style/editText"
                         android:id="@+id/editaccion_fecha"
                         android:layout_column="2"
-                        android:layout_width="300dp"
+                        android:layout_width="500dp"
                         android:layout_height="wrap_content"
                         android:focusable="false"
                         android:focusableInTouchMode="false"
@@ -83,7 +86,7 @@
                         style="@style/editText"
                         android:id="@+id/editaccion_hora"
                         android:layout_column="2"
-                        android:layout_width="300dp"
+                        android:layout_width="500dp"
                         android:layout_height="wrap_content"
                         android:onClick="showTimePickerDialog"
                         android:focusable="false"
@@ -104,7 +107,7 @@
                         style="@style/editText"
                         android:id="@+id/editaccion_titulo"
                         android:layout_column="2"
-                        android:layout_width="300dp"
+                        android:layout_width="500dp"
                         android:layout_height="wrap_content"
                         android:autoText="false"/>
                 </TableRow>
@@ -123,25 +126,34 @@
                         style="@style/editText"
                         android:id="@+id/editaccion_resumen"
                         android:layout_column="2"
-                        android:layout_width="300dp"
+                        android:layout_width="500dp"
                         android:layout_height="wrap_content"
                         android:autoText="false"/>
                 </TableRow>
 
-                <TableRow style="@style/wrap_style">
-
-                    <LinearLayout
-                        style="@style/wrap_style"
-                        android:layout_column="2">
-                        <Button
-                            android:id="@+id/btn_actualizar_accion"
-                            android:text="Guardar"
-                            android:onClick="save"
-                            android:layout_gravity="center_vertical|center_horizontal"
-                            style="@style/boton_generico"/>
-                    </LinearLayout>
-                </TableRow>
             </TableLayout>
-        </LinearLayout>
+            <LinearLayout
+                style="@style/wrap_style"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/table">
+
+                <Button
+                    android:id="@+id/btn_cancelar"
+                    style="@style/boton_generico"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:onClick="cancel"
+                    android:text="Cancelar"
+                    android:layout_marginRight="10dp"/>
+
+                <Button
+                    android:id="@+id/btn_actualizar_accion"
+                    android:text="Guardar"
+                    android:onClick="save"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    style="@style/boton_generico"/>
+            </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 </ScrollView>

@@ -56,14 +56,14 @@ public class ConoceVallasGridAdapter extends ArrayAdapter {
         // Cargar la imagen con picasso en el image view
         int resource = 0;
         if (StringUtils.containsIgnoreCase(archivo.nombre,"pdf")) {
-            resource = R.drawable.pdf;
+            resource = R.drawable.icon_pdf;
         } else if (StringUtils.containsIgnoreCase(archivo.nombre,"jpg")
                 || StringUtils.containsIgnoreCase(archivo.nombre,"png")
                 || StringUtils.containsIgnoreCase(archivo.nombre,"ico")
                 || StringUtils.containsIgnoreCase(archivo.nombre,"gif")) {
-            resource = R.drawable.image;
+            resource = R.drawable.icon_img;
         } else {
-            resource = R.drawable.file;
+            resource = R.drawable.icon_file;
         }
         Picasso.with(mContext)
                 .load(resource)

@@ -106,7 +106,7 @@ public class ClientTabDatosFragment extends Fragment {
 		t = (TextView) mRoot.findViewById(R.id.cli_pais);
 		t.setText(cliente.domicilio_pais);
 		t = (TextView) mRoot.findViewById(R.id.cli_ciudad);
-		t.setText(cliente.estado);
+		t.setText(cliente.estatus == null ? "":cliente.estatus);
 
 
 	}

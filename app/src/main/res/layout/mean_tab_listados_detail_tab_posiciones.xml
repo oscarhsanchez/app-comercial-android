@@ -1,65 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout style="@style/main_linear_layout_bg_gris"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/main_linear_layout_bg_gris"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:baselineAligned="false">
-    <LinearLayout
-        style="@style/basic_layout_padding">
-        <LinearLayout
-            style="@style/container_filter">
+
+    <LinearLayout style="@style/basic_layout">
+
+        <LinearLayout style="@style/container_filter"
+            android:background="#FFFFFF"
+            android:padding="10dp">
+
+            <TextView
+                style="@style/listview_textview"
+                android:layout_width="wrap_content"
+                android:text="Ubicación:"
+                android:gravity="left|center"
+                android:textColor="@color/text_enabled" />
+
             <TextView
                 android:id="@+id/medio_title"
                 style="@style/listview_textview"
+                android:gravity="left|center"
                 android:layout_width="fill_parent"
-                android:textColor="@color/orangeGpo"/>
-            <!--<TextView
-                android:id="@+id/medio_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TITLE"
-                style="@style/basic_style"
-                android:textColor="@color/orangeGpo"
-                android:layout_column="1"
-                android:layout_gravity="right"
-                android:textSize="30dp"
-                android:background="@null" />-->
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/orangeGpo" />
         </LinearLayout>
-        <LinearLayout
-            style="@style/listViewRow">
+
+        <LinearLayout style="@style/listViewHeader">
+
             <TextView
                 style="@style/listview_textview_th"
                 android:layout_weight="0.25"
-                android:text="Subtipo de Medio"/>
+                android:text="Subtipo de Medio" />
+
             <TextView
                 style="@style/listview_textview_th"
                 android:layout_weight="0.20"
-                android:text="Tipo de Medio"/>
+                android:text="Tipo de Medio" />
+
             <TextView
                 style="@style/listview_textview_th"
                 android:layout_weight="0.25"
-                android:text="Posición"/>
+                android:text="Posición" />
+
             <TextView
                 style="@style/listview_textview_th"
                 android:layout_weight="0.15"
-                android:text="Visibilidad"/>
+                android:text="Visibilidad" />
+
             <TextView
                 style="@style/listview_textview_th"
                 android:layout_weight="0.15"
-                android:text="Iluminación"/>
+                android:text="Iluminación" />
         </LinearLayout>
-        <LinearLayout
-            style="@style/basic_style">
-            <ListView android:id="@android:id/list"
+
+        <LinearLayout style="@style/basic_style">
+
+            <ListView
+                android:id="@android:id/list"
                 style="@style/basic_style"
                 android:cacheColorHint="#ECECEC"
                 android:textFilterEnabled="false">
 
             </ListView>
-            <TextView android:id="@android:id/empty"
+
+            <TextView
+                android:id="@android:id/empty"
                 style="@style/basic_style"
                 android:gravity="center"
-                android:text="No hay Posiciones..."/>
+                android:text="No hay Posiciones..." />
         </LinearLayout>
     </LinearLayout>
 

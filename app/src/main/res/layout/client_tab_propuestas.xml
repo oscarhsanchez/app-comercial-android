@@ -10,7 +10,9 @@
         style="@style/basic_layout_padding">
 
 
-        <LinearLayout style="@style/container_filter">
+        <LinearLayout style="@style/container_filter"
+            android:paddingRight="0dp"
+            android:paddingLeft="0dp">
 
             <ImageView android:id="@+id/img_search_icon"
                        android:layout_width="0dp"
@@ -46,7 +48,7 @@
 
         <LinearLayout
 
-            style="@style/listViewRow">
+            style="@style/listViewHeader">
 
             <TextView
                 style="@style/listview_textview_th"
@@ -80,7 +82,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             style="@style/basic_style">
 
             <ListView
@@ -91,12 +93,19 @@
             </ListView>
 
             <TextView
-                android:id="@android:id/empty"
+                android:id="@+id/empty"
                 style="@style/basic_style"
                 android:gravity="center"
+                android:visibility="gone"
                 android:text="@string/c_propuesta_no_resultados"/>
 
-        </LinearLayout>
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
 
     </LinearLayout>
 

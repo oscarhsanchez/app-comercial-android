@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout style="@style/main_linear_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <gpovallas.com.Header android:id="@+id/header" style="@style/header"/>
+
+    <TabHost
+        android:id="@android:id/tabhost"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:tabStripEnabled="true"/>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@android:id/tabs">
+
+                <FrameLayout
+                    android:id="@+id/tab_Agrupaciones"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"/>
+
+                <FrameLayout
+                    android:id="@+id/tab_Medios"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"/>
+                <FrameLayout
+                    android:id="@+id/tab_Mapa_circuito"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"/>
+            </FrameLayout>
+
+
+        </RelativeLayout>
+
+    </TabHost>
+
+</LinearLayout>

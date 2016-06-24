@@ -1,39 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout style="@style/main_linear_layout_bg_gris"
-              xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:baselineAligned="false">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/main_linear_layout_bg_gris"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false">
 
-    <gpovallas.com.Header
-        android:id="@+id/header"
-        style="@style/header"/>
 
-    <LinearLayout
+    <RelativeLayout
         style="@style/basic_layout_padding"
         android:layout_width="match_parent"
-        android:padding="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
-
-        <TextView
-            android:layout_margin="8dp"
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Prueba"
-            style="@style/listview_textview"
-            android:textColor="@color/orangeGpo"/>
 
         <ImageView
             android:id="@+id/image"
-            android:layout_margin="15dp"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
             android:adjustViewBounds="true"
-            android:scaleType="fitXY"/>
+            android:scaleType="fitCenter"
+            android:layout_centerInParent="true"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

@@ -16,6 +16,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,6 +29,8 @@ import gpovallas.adapter.ClientPropuestaWrapper;
 import gpovallas.app.ApplicationStatus;
 import gpovallas.app.R;
 import gpovallas.app.constants.GPOVallasConstants;
+import gpovallas.listeners.IItemsReadyListener;
+import gpovallas.obj.TO.Factura;
 import gpovallas.obj.TO.Propuesta;
 import gpovallas.task.PropuestasTask;
 import gpovallas.ws.response.GetPropuestasResponse;
@@ -34,15 +38,16 @@ import gpovallas.ws.response.GetPropuestasResponse;
 /**
  * Created by daniel on 8/03/16.
  */
-public class ClientTabPropuestasFragment extends Fragment {
+public class ClientTabPropuestasFragment extends Fragment implements IItemsReadyListener {
 
     private static final String TAG = ClientTabPropuestasFragment.class.getSimpleName();
 
     private ClientPropuestaWrapper mPropuestaWrapper;
     private ClientPropuestaAdapter mAdapter;
     private ListView mListView;
-    private List<Propuesta> mPropuestaList;
+    private ArrayList<Propuesta> mPropuestaList;
     private String mPkCliente;
+    private ProgressBar progressBar;
 
     private EditText txtSearchFilter;
     private EditText txtSearchFilterCodCli;
@@ -66,13 +71,21 @@ public class ClientTabPropuestasFragment extends Fragment {
                 Log.i(TAG, mPkCliente);
             }
         }
+        progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
         mListView = (ListView) v.findViewById(android.R.id.list);
         mListView.setOnItemClickListener(mOnItemClickListener);
         mListView.setEmptyView(v.findViewById(android.R.id.empty));
         init(v);
-        populate();
 
         return v;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+
+        populate();
     }
 
     private void populate() {
@@ -83,34 +96,9 @@ public class ClientTabPropuestasFragment extends Fragment {
         offset = 0;
         // Obtenemos todos los objetos de tipo Propuesta para este cliente con un maximo de 25
         mPropuestaList = new ArrayList<>();
-        try {
-            GetPropuestasResponse response = new PropuestasTask(null, offset, limit).execute(mPkCliente, filter_codCli, filter_status).get();
-            if (response != null && !response.failed()
-                    && response.propuestas != null && response.propuestas.length > 0) {
-                Log.i(TAG, "No hubo error en primera peticion de propuestas");
-                mPropuestaList = new ArrayList<>(Arrays.asList(response.propuestas));
-                if (mPropuestaList.size() < limit) {
-                    //No hay mas registros de este cliente, por ende no se sigue intentado buscar mas registros
-                    KEEP_LOADING = false;
-                } else {
-                    offset = offset + limit;
-                }
-            }
-        } catch (InterruptedException | ExecutionException e) {
-            Log.e(TAG, e.getMessage(), e);
-        }
-
-        // Inicializar PropuestaAdapter
-        mAdapter = new ClientPropuestaAdapter(getActivity(), mPropuestaList);
-
-        // Inicializar Wrapper con el Adapter, el wrapper se utiliza para hacer paginado
-        mPropuestaWrapper = new ClientPropuestaWrapper(getActivity(), mAdapter, mPkCliente,
-                mPropuestaList, offset, limit,filter_codCli, filter_status);
-        mPropuestaWrapper.setRunInBackground(false);
-
-        mListView.setAdapter(mPropuestaWrapper);
-
+        new PropuestasTask(this, offset, limit).execute(mPkCliente, filter_codCli, filter_status);
     }
+
 
     private void deleteSearchFilter() {
         filter_codCli = "";
@@ -180,4 +168,47 @@ public class ClientTabPropuestasFragment extends Fragment {
     };
 
 
+    @Override
+    public void onItemsReady(ArrayList<Propuesta> data) {
+        progressBar.setVisibility(View.GONE);
+
+        TextView empty = (TextView) getActivity().findViewById(R.id.empty);
+        if(empty!=null) {
+            if (data == null || data.size() == 0) {
+                empty.setVisibility(View.VISIBLE);
+            } else {
+                empty.setVisibility(View.GONE);
+            }
+        }
+
+        Log.i(TAG, "No hubo error en primera peticion de propuestas");
+        mPropuestaList = data;
+        if (mPropuestaList.size() < limit) {
+            //No hay mas registros de este cliente, por ende no se sigue intentado buscar mas registros
+            KEEP_LOADING = false;
+        } else {
+            offset = offset + limit;
+        }
+
+
+        // Inicializar PropuestaAdapter
+        mAdapter = new ClientPropuestaAdapter(getActivity(), mPropuestaList);
+
+        // Inicializar Wrapper con el Adapter, el wrapper se utiliza para hacer paginado
+        mPropuestaWrapper = new ClientPropuestaWrapper(getActivity(), mAdapter, mPkCliente,
+                mPropuestaList, offset, limit, filter_codCli, filter_status);
+        mPropuestaWrapper.setRunInBackground(false);
+
+        mListView.setAdapter(mPropuestaWrapper);
+    }
+
+    @Override
+    public void onItemsReadyF(ArrayList<Factura> data) {
+
+    }
+
+    @Override
+    public void onItemReadyError() {
+        progressBar.setVisibility(View.GONE);
+    }
 }

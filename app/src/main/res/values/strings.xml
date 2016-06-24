@@ -74,11 +74,13 @@
     <string name="lbl_clientes_direccion">Dirección:</string>
     <string name="lbl_clientes_no_exterior">No. Exterior:</string>
     <string name="lbl_clientes_colonia">Colonia:</string>
-    <string name="lbl_clientes_cp">C.P.</string>
+    <string name="lbl_clientes_cp">C.P.:</string>
     <string name="lbl_clientes_ciudad">Ciudad:</string>
     <string name="lbl_clientes_no_interior">No. Interior:</string>
-    <string name="lbl_clientes_delegacion">Delegación</string>
+    <string name="lbl_clientes_delegacion">Delegación:</string>
     <string name="lbl_clientes_pais">País:</string>
+    <string name="lbl_direccion">Dirección</string>
+    <string name="lbl_datos_basicos">Datos Básicos</string>
 
 
     <!-- Contactos -->
@@ -128,6 +130,22 @@
     <string name="lbl_medios_datosG_categoria">Categoría:</string>
     <string name="lbl_medios_datosG_fechaInstalacion">Fecha de Instalación</string>
 
+    <!-- Propuestas -->
+
+    <string name="lbl_propuesta_codigo">Codigo Usuario:</string>
+    <string name="lbl_propuesta_fechaInicio">Fecha Inicio:</string>
+    <string name="lbl_propuesta_fechaFin">Fecha Fin:</string>
+    <string name="lbl_propuesta_catorcena">Catorcena:</string>
+    <string name="lbl_propuesta_unidaNegocio">Unidad Negocio:</string>
+    <string name="lbl_propuesta_status">status:</string>
+
+    <!-- Detalle Outdoor-->
+
+    <string name="lbl_outdoor_medio">Medio</string>
+    <string name="lbl_outdoor_Unidad">Unidad de Negocio</string>
+    <string name="lbl_outdoor_tipo_negocion">Tipo de Negociación</string>
+    <string name="lbl_outdoor_precio">Precio</string>
+
     <!-- Listados-->
 
     <string name="listados_Plaza">Plaza</string>
@@ -146,6 +164,24 @@
     <string name="facturas_TextView_th_numero_Factura">No. de Factura</string>
     <string name="facturas_TextView_th_RFC">RFC</string>
     <string name="facturas_TextView_th_estado">Estado</string>
+    <string name="facturas_TextView_th_fecha">Fecha</string>
+    <string name="facturas_TextView_th_codigo">Codigo</string>
+    <string name="facturas_TextView_th_diasCredito">Días crédito</string>
+    <string name="facturas_TextView_th_tipoDoc">Tipo documento</string>
+    <string name="facturas_TextView_th_unidadNegocio">Unidad negocio</string>
+    <string name="facturas_TextView_th_estatus">estatus</string>
+
+    <string name="facturas_TextView_fecha">Fecha:</string>
+    <string name="facturas_TextView_codigo">Codigo:</string>
+    <string name="facturas_TextView_diasCredito">Días crédito:</string>
+    <string name="facturas_TextView_tipoDoc">Tipo documento:</string>
+    <string name="facturas_TextView_unidadNegocio">Unidad negocio:</string>
+    <string name="facturas_TextView_estatus">estatus:</string>
+    <string name="facturas_TextView_codigoUsuario">Código de Usuario:</string>
+    <string name="facturas_TextView_impuesto">Impuesto:</string>
+    <string name="facturas_TextView_neto">Neto:</string>
+    <string name="facturas_TextView_impuestos">Impuestos:</string>
+    <string name="facturas_TextView_total">Total:</string>
 
     <string name="search_not_found_records">No se ha encontrado información que coincida con los criterios de búsqueda indicados</string>
 
@@ -171,4 +207,21 @@
     <string name="custom_telefono">Telefono: </string>
     <string name="custom_Categoria">Categoria: </string>
 
+
+    <!-- Briefs -->
+    <string name="circuito_th_presupuesto">Presupuesto:</string>
+    <string name="circuito_th_tipologia_campania">Tipología de campaña:</string>
+    <string name="circuito_th_plazas">Plazas:</string>
+    <string name="circuito_th_paises">Países:</string>
+    <string name="circuito_th_fecha_inicio">Fecha de inicio:</string>
+    <string name="circuito_th_catorcenas">Nº de catorcenas:</string>
+    <string name="circuito_th_flexibilidad">Flexibilidad fechas:</string>
+    <string name="circuito_th_tipologias">Tipologías:</string>
+    <string name="circuito_th_tipologias_deseados">Tip. de lugares deseados:</string>
+    <string name="circuito_th_tipologias_restrictivos">Tip.de lugares restrictivos:</string>
+    <string name="circuito_th_tipo_subtipo_medio">Tipos y subtipos de medios:</string>
+    <string name="circuito_progress_request">Procesando solicitud...</string>
+    <string name="tab_agrupaciones">Agrupaciones</string>
+    <string name="tab_medios">Medios</string>
+    <string name="tab_circuito_mapa">Mapa</string>
 </resources>

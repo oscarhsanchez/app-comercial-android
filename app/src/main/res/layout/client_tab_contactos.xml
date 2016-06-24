@@ -2,56 +2,60 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
-	<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:orientation="vertical" android:paddingTop="5dip" android:paddingBottom="5dip" android:paddingRight="22dip">
-		<Button
-			android:id="@+id/btn_new_contacto"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:background="@null"
-			android:drawablePadding="5dp"
-			android:drawableRight="@drawable/btn_add"
-			android:layout_gravity="right"
-			android:text="@string/briefs_nuevo"
-			android:textColor="@color/borderGray"/>
-	</LinearLayout>
-         
-   	<LinearLayout
-	    style="@style/listViewRow">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingRight="12dip">
 
-     	 <TextView
-	         android:layout_weight="0.30"
-	         style="@style/listview_textview_th"
-	         android:text="Nombre" />
+        <Button
+            android:id="@+id/btn_new_contacto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@null"
+            android:drawablePadding="5dp"
+            android:drawableRight="@drawable/btn_add"
+            android:padding="10dp"
+            android:text="@string/briefs_nuevo"
+            android:textColor="@color/borderGray" />
+    </LinearLayout>
 
-	     <TextView
-	        android:layout_weight="0.30"
-	        style="@style/listview_textview_th"
-	        android:text="Apellidos"/>
-	     
-	     <TextView
-	        android:layout_weight="0.40"
-	        style="@style/listview_textview_th"
-	        android:text="Cargo"/>
+    <LinearLayout style="@style/listViewHeader">
+
+        <TextView
+            style="@style/listview_textview_th"
+            android:layout_weight="0.30"
+            android:text="Nombre" />
+
+        <TextView
+            style="@style/listview_textview_th"
+            android:layout_weight="0.30"
+            android:text="Apellidos" />
+
+        <TextView
+            style="@style/listview_textview_th"
+            android:layout_weight="0.40"
+            android:text="Cargo" />
 
     </LinearLayout>
 
- 	<LinearLayout
-	    style="@style/basic_style">
+    <LinearLayout style="@style/basic_style">
 
-		<ListView android:id="@android:id/list"
-		    android:textFilterEnabled="true"
-		    android:cacheColorHint="#ECECEC"
-	        style="@style/basic_style">
-		</ListView>
+        <ListView
+            android:id="@android:id/list"
+            style="@style/basic_style"
+            android:cacheColorHint="#ECECEC"
+            android:textFilterEnabled="true"/>
 
-		<TextView android:id="@android:id/empty"
-		    style="@style/basic_style"
-		    android:gravity="center"
-		    android:text="No se han encontrado contactos"/>
+        <TextView
+            android:id="@android:id/empty"
+            style="@style/basic_style"
+            android:gravity="center"
+            android:text="No se han encontrado contactos" />
 
-	</LinearLayout>
-   
+    </LinearLayout>
+
 </LinearLayout>

@@ -71,8 +71,8 @@ public class LoginActivity extends GPOVallasActivity {
 		}*/
 
 
-		mTextUsername.setText("");
-		mTextPass.setText("");
+		mTextUsername.setText("admin");
+		mTextPass.setText("123");
 
 		mLabelVersion.setText("Versión: " + GPOVallasApplication.appVersion.toString());
 		mLabelEntorno.setText("Entorno: " + GPOVallasApplication.appEntorno.descripcion);

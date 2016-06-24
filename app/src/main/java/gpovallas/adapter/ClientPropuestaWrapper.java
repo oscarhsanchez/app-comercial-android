@@ -10,11 +10,13 @@ import android.view.animation.RotateAnimation;
 
 import com.commonsware.cwac.endless.EndlessAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import gpovallas.app.R;
 import gpovallas.app.clientes.ClientTabPropuestasFragment;
 import gpovallas.listeners.IItemsReadyListener;
+import gpovallas.obj.TO.Factura;
 import gpovallas.obj.TO.Propuesta;
 import gpovallas.task.PropuestasTask;
 
@@ -71,7 +73,7 @@ public class ClientPropuestaWrapper extends EndlessAdapter implements
 
     @Override
     protected boolean cacheInBackground() throws Exception {
-        Log.i(TAG,"Llamando cacheInBackground");
+        Log.i(TAG, "Llamando cacheInBackground");
         if (ClientTabPropuestasFragment.KEEP_LOADING) {
             new PropuestasTask(this, offset, limit).execute(fk_client,filter_usr,filter_status);
         } else {
@@ -86,8 +88,8 @@ public class ClientPropuestaWrapper extends EndlessAdapter implements
     }
 
     @Override
-    public void onItemsReady(List<Propuesta> data) {
-        Log.i(TAG,"OnItemsReady");
+    public void onItemsReady(ArrayList<Propuesta> data) {
+        Log.i(TAG, "OnItemsReady");
         if (data != null && !data.isEmpty()) {
             mPropuestas.addAll(data);
             if (ClientTabPropuestasFragment.KEEP_LOADING) {
@@ -95,9 +97,19 @@ public class ClientPropuestaWrapper extends EndlessAdapter implements
             }
         }
         onDataReady();  // Tell the EndlessAdapter to
-                        // remove it's pending
-                        // view and call
-                        // notifyDataSetChanged()
+        // remove it's pending
+        // view and call
+        // notifyDataSetChanged()
+    }
+
+    @Override
+    public void onItemsReadyF(ArrayList<Factura> data) {
+
+    }
+
+    @Override
+    public void onItemReadyError() {
+
     }
 
 }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    style="@style/listViewRow"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="8dp">
+
+    <TextView android:id="@+id/txtFecha"
+        style="@style/listview_textview"
+        android:layout_weight="0.165"
+        android:gravity="center"/>
+
+    <TextView android:id="@+id/txtCodigo"
+        style="@style/listview_textview"
+        android:layout_weight="0.165"
+        android:gravity="center"/>
+
+    <TextView android:id="@+id/txtDiasCredito"
+        style="@style/listview_textview"
+        android:layout_weight="0.165"
+        android:gravity="center"/>
+
+    <TextView android:id="@+id/txtTipoDocumento"
+        style="@style/listview_textview"
+        android:layout_weight="0.1675"
+        android:gravity="center"/>
+
+    <TextView android:id="@+id/txtUnidadNegocio"
+        style="@style/listview_textview"
+        android:layout_weight="0.1675"
+        android:gravity="center"/>
+
+    <TextView android:id="@+id/txtStatus"
+        style="@style/listview_textview"
+        android:layout_weight="0.165"
+        android:gravity="center"/>
+
+</LinearLayout>

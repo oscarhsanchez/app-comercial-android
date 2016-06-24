@@ -1,12 +1,11 @@
 package gpovallas.app.medios;
 
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -33,6 +32,7 @@ import gpovallas.app.ApplicationStatus;
 import gpovallas.app.R;
 
 public class MeanTabUbicacionesFragment extends Fragment implements OnMapReadyCallback {
+
     private static final String TAG = MeanTabUbicacionesFragment.class.getSimpleName();
     private GoogleMap mMap;
     private View mRoot;
@@ -56,17 +56,21 @@ public class MeanTabUbicacionesFragment extends Fragment implements OnMapReadyCa
 
             @Override
             public void onItemClick(AdapterView adapter, View v, int position, long id) {
-                Log.i(TAG, "Posicion cliqueada " + position + " cliente pk " + arrUbicaciones.get(position).get("latitud"));
-                float latitud = Float.valueOf(arrUbicaciones.get(position).get("latitud"));
-                float longitud = Float.valueOf( arrUbicaciones.get(position).get("longitud"));
-                //mMap.clear();
-                LatLng  ubicacion= new LatLng(latitud, longitud);
-                //mMap.addMarker(new MarkerOptions().position(ubicacion).title(arrUbicaciones.get(position).get("ubicacion")));
-                CameraPosition cameraPosition = new CameraPosition.Builder()
-                        .target(ubicacion)
-                        .zoom(17).build();
-                //Zoom in and animate the camera.
-                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                try{
+                    Log.i(TAG, "Posicion cliqueada " + position + " cliente pk " + arrUbicaciones.get(position).get("latitud"));
+                    float latitud = Float.valueOf(arrUbicaciones.get(position).get("latitud"));
+                    float longitud = Float.valueOf( arrUbicaciones.get(position).get("longitud"));
+                    //mMap.clear();
+                    LatLng  ubicacion= new LatLng(latitud, longitud);
+                    //mMap.addMarker(new MarkerOptions().position(ubicacion).title(arrUbicaciones.get(position).get("ubicacion")));
+                    CameraPosition cameraPosition = new CameraPosition.Builder()
+                            .target(ubicacion)
+                            .zoom(17).build();
+                    //Zoom in and animate the camera.
+                    mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                }catch (Exception ex){
+                    Log.i(TAG,"Error en el zoom del medio "+ex);
+                }
 
             }
 
@@ -117,7 +121,7 @@ public class MeanTabUbicacionesFragment extends Fragment implements OnMapReadyCa
         filter = filter.replace("'", "''");
 
         if (!filter.equals("")){
-            sql += " AND plaza LIKE '%" + filter + "%' ";
+            sql += " AND ubicacion LIKE '%" + filter + "%' ";
         }
 
         sql += "ORDER BY ubicacion ASC";

@@ -11,14 +11,19 @@ import gpovallas.obj.Contacto;
 import gpovallas.utils.Database;
 import android.app.ProgressDialog;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import gpovallas.utils.Text;
 import android.app.Dialog;
 import android.content.ContentValues;
 import gpovallas.utils.Dialogs;
+import gpovallas.utils.Utils;
 
 public class ClientTabDetailsContactosActivity extends GPOVallasActivity {
     private static final String TAG = ClientTabDetailsContactosActivity.class.getSimpleName();
@@ -38,6 +43,20 @@ public class ClientTabDetailsContactosActivity extends GPOVallasActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.client_tab_details_contactos);
+
+        Display display = getWindowManager().getDefaultDisplay();
+        int width;
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB_MR2) {
+            Point size = new Point();
+            display.getSize(size);
+            width = size.x;
+        } else {
+            width = display.getWidth();
+        }
+
+        getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+
         mTextNombre =(EditText) findViewById(R.id.editcontacto_nombre);
         mTextApellidos = (EditText) findViewById(R.id.editcontacto_apellido);
         mTextTitulo = (EditText) findViewById(R.id.editcontacto_titulo);
@@ -59,6 +78,10 @@ public class ClientTabDetailsContactosActivity extends GPOVallasActivity {
 
     }
 
+    public void cancel(View v){
+        finish();
+    }
+
     public void save(View v){
         //progressDialog = ProgressDialog.show(ClientTabDetailsContactosActivity.this, "", getString(R.string.contacto_save), true);
 
@@ -74,6 +97,12 @@ public class ClientTabDetailsContactosActivity extends GPOVallasActivity {
         if (Text.isEmpty(nombre) || Text.isEmpty(apellidos) || Text.isEmpty(titulo) || Text.isEmpty(cargo) || Text.isEmpty(telefono)
                 || Text.isEmpty(celular) || Text.isEmpty(email)){
             Dialog alertDialog = Dialogs.newAlertDialog(this, "Información","Debe rellenar todos los campos", "OK");
+            alertDialog.show();
+            return;
+        }
+
+        if(!Utils.isValidEmailAddress(email)){
+            Dialog alertDialog = Dialogs.newAlertDialog(this, "Información","Email es inválido", "OK");
             alertDialog.show();
             return;
         }
@@ -98,7 +127,7 @@ public class ClientTabDetailsContactosActivity extends GPOVallasActivity {
         Dialog alertDialog = Dialogs.newAlertDialog(this, "Información","Cambios Guardos.", "OK");
         alertDialog.show();
         setResult(result ? ClientTabDetailsContactosActivity.RESULT_OK : 1);
-
+        finish();
     }
 
 

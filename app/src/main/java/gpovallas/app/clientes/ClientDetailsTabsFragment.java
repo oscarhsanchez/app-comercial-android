@@ -56,13 +56,17 @@ public class ClientDetailsTabsFragment extends Fragment implements OnTabChangeLi
 					
 					if (event.getAction() == MotionEvent.ACTION_UP) {
                         
-                        // Poner todos los tabs en naranja
+                        // Poner todos los tabs en blanco
                         for (int i = 0; i < mTabHost.getTabWidget().getTabCount(); i++) {
                             mTabHost.getTabWidget().getChildTabViewAt(i).setBackgroundResource(R.color.orangeGpo);
+                            mTabHost.getTabWidget().getChildTabViewAt(i).findViewById(R.id.indicator_selected).setVisibility(View.GONE);
                         }
 
                         // Colorear la vista actual de gris
-                        v.setBackgroundResource(R.color.bg_generic);
+                        //v.setBackgroundResource(R.color.orangeDarkGpo);
+                        View selector = v.findViewById(R.id.indicator_selected);
+                        selector.setVisibility(View.VISIBLE);
+
 
                         String tabId = mTabHost.getCurrentTabTag();
 
@@ -115,12 +119,16 @@ public class ClientDetailsTabsFragment extends Fragment implements OnTabChangeLi
 
         /*ImageView img = (ImageView) indicator.findViewById(R.id.tabsImage);
         img.setImageResource(drawableIcon);*/
-        if (tabContentId == R.id.tab_datos) {
-            indicator.setBackgroundResource(R.color.bg_generic);
-        }
+       /* if (tabContentId == R.id.tab_datos) {
+            indicator.setBackgroundResource(R.color.orangeDarkGpo);
+        }*/
 
         TextView tv = (TextView) indicator.findViewById(R.id.tabsText);
         tv.setText(tab_title);
+        View selector = indicator.findViewById(R.id.indicator_selected);
+        if (tabContentId == R.id.tab_datos) {
+            selector.setVisibility(View.VISIBLE);
+        }
 
         TabSpec tabSpec = mTabHost.newTabSpec(tab_title);
         tabSpec.setIndicator(indicator);
