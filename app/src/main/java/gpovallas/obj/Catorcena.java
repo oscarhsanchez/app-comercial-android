@@ -9,6 +9,8 @@ public class Catorcena extends eEntity {
 	}
 	
 	public Integer id;
+    public String fecha_inicio;
+    public String fecha_fin;
     public Integer anio;
     public Integer catorcena;
     public String mes;

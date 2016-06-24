@@ -1,9 +1,11 @@
 package gpovallas.app.creaCircuito;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.AdapterView;
@@ -28,6 +30,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,13 +40,17 @@ import gpovallas.app.R;
 import gpovallas.app.briefs.BriefDetailActivity;
 import gpovallas.app.clientes.ClientDetailTabsActivity;
 import gpovallas.app.constants.GPOVallasConstants;
+import gpovallas.db.controllers.CatorcenaCtrl;
 import gpovallas.db.controllers.PaisCtrl;
 import gpovallas.db.controllers.PlazaCtrl;
+import gpovallas.obj.Catorcena;
 import gpovallas.obj.Pais;
 import gpovallas.obj.Plaza;
 import gpovallas.obj.TO.Agrupacion;
 import gpovallas.obj.TO.Circuito;
+import gpovallas.utils.Dates;
 import gpovallas.utils.Dialogs;
+import gpovallas.utils.Utils;
 import gpovallas.ws.request.GetCircuitoRequest;
 import gpovallas.ws.response.GetCircuitoResponse;
 
@@ -68,7 +75,7 @@ public class CreaCircuitoActivity extends GPOVallasActivity implements OnItemSel
     private Spinner spinner;
     private ArrayList<Agrupacion> listAgrupaciones;
     private ArrayList<Circuito> listCircuito;
-    private ArrayList<HashMap<String, String>> arrCatorcenas;
+    private List<Catorcena> arrCatorcenas;
     private ArrayAdapter<String> dataAdapter;
     private Integer id_catorcena;
 
@@ -93,6 +100,7 @@ public class CreaCircuitoActivity extends GPOVallasActivity implements OnItemSel
         }
     };
 
+    @SuppressLint("WrongViewCast")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,7 +131,6 @@ public class CreaCircuitoActivity extends GPOVallasActivity implements OnItemSel
 
         loadPaises();
         setupListeners();
-        loadCatalogoCatorcena();
         loadDataSpinner();
 
         dateInicioPickerDialog = new DatePickerDialog(CreaCircuitoActivity.this,
@@ -137,41 +144,19 @@ public class CreaCircuitoActivity extends GPOVallasActivity implements OnItemSel
 
     public void loadDataSpinner(){
 
+        arrCatorcenas = new CatorcenaCtrl(db).getAll();
+
         spinner.setOnItemSelectedListener(this);
         // Spinner Drop down elements
 
         List <String> categories = new ArrayList<String>();
-
-        for (HashMap<String, String> tipo : arrCatorcenas){
-            categories.add(tipo.get("catorcena"));
+        for (Catorcena catorcena : arrCatorcenas) {
+            categories.add(catorcena.mes + " " + catorcena.anio);
         }
 
         dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
-
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         spinner.setAdapter(dataAdapter);
-    }
-
-    public void loadCatalogoCatorcena(){
-
-        arrCatorcenas = new ArrayList<HashMap<String, String>>();
-
-        String sql = "SELECT id, catorcena  " +
-                "FROM "+GPOVallasConstants.DB_TABLE_CATORCENA;
-
-        Cursor c = db.rawQuery(sql, null);
-        Log.i(TAG,""+c.getCount());
-        if(c.moveToFirst()){
-            do {
-                Log.i(TAG, c.getString(c.getColumnIndex("catorcena")));
-                HashMap<String,String> map = new HashMap<String, String>();
-                map.put("id", c.getString(c.getColumnIndex("id")));
-                map.put("catorcena", c.getString(c.getColumnIndex("catorcena")));
-                arrCatorcenas.add(map);
-            } while (c.moveToNext());
-        }
-        c.close();
 
     }
 
@@ -247,9 +232,20 @@ public class CreaCircuitoActivity extends GPOVallasActivity implements OnItemSel
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        HashMap<String, String> tipo =arrCatorcenas.get(position);
-        Log.i(TAG, "SELECT " + tipo.get("id"));
-        id_catorcena = Integer.parseInt(tipo.get("id"));
+        Catorcena catorcena = arrCatorcenas.get(position);
+        Log.i(TAG,catorcena.catorcena+"");
+        //mTextNCatorcena.setText(catorcena.catorcena);
+        //Setear numero de catorcenas y fechas
+        mTxtFechaInicio.setText(Dates.ConvertSfDataStringToJavaString(catorcena.fecha_inicio));
+        Calendar calendar = Dates.getCalendarFromDate(Dates.ConvertSfDataStringToDate(catorcena.fecha_inicio));
+        dateInicioPickerDialog.updateDate(calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        mTxtFechaFin.setText(Dates.ConvertSfDataStringToJavaString(catorcena.fecha_fin));
+        calendar = Dates.getCalendarFromDate(Dates.ConvertSfDataStringToDate(catorcena.fecha_fin));
+        dateFinPickerDialog.updateDate(calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        mTextNCatorcena.setText(catorcena.catorcena + "");
+
     }
 
     @Override

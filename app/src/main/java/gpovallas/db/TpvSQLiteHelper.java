@@ -94,6 +94,8 @@ public class TpvSQLiteHelper extends SQLiteOpenHelper {
 			"token TEXT NOT NULL PRIMARY KEY);";
 
 	private String sqlCatorcena = "CREATE TABLE IF NOT EXISTS CATORCENA (id INTEGER NOT NULL, " +
+			"fecha_inicio TEXT, " +
+			"fecha_fin TEXT, " +
 			"anio INTEGER, " +
 			"catorcena INTEGER, " +
 			"mes TEXT, " +
