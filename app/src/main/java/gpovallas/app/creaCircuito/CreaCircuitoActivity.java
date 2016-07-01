@@ -4,10 +4,11 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.util.Log;
@@ -31,26 +32,26 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import gpovallas.app.ApplicationStatus;
 import gpovallas.app.GPOVallasActivity;
 import gpovallas.app.R;
-import gpovallas.app.briefs.BriefDetailActivity;
-import gpovallas.app.clientes.ClientDetailTabsActivity;
+import gpovallas.app.clientes.ClientFinderActivity;
 import gpovallas.app.constants.GPOVallasConstants;
 import gpovallas.db.controllers.CatorcenaCtrl;
+import gpovallas.db.controllers.ClienteCtrl;
 import gpovallas.db.controllers.PaisCtrl;
 import gpovallas.db.controllers.PlazaCtrl;
 import gpovallas.obj.Catorcena;
+import gpovallas.obj.CircuitoParametro;
+import gpovallas.obj.Cliente;
 import gpovallas.obj.Pais;
 import gpovallas.obj.Plaza;
 import gpovallas.obj.TO.Agrupacion;
 import gpovallas.obj.TO.Circuito;
 import gpovallas.utils.Dates;
 import gpovallas.utils.Dialogs;
-import gpovallas.utils.Utils;
 import gpovallas.ws.request.GetCircuitoRequest;
 import gpovallas.ws.response.GetCircuitoResponse;
 
@@ -64,7 +65,9 @@ public class CreaCircuitoActivity extends GPOVallasActivity implements OnItemSel
     private Spinner mSpnTipologia;
     private EditText mTxtPresupuesto;
     private EditText mTxtCatorcena;
-    private ImageButton mBtnCalendar,mBtnCalendarR,mBtnCalendarFR;
+    private EditText mTxtCliente;
+    private Button mBtnCliente;
+    private ImageButton mBtnCalendarR,mBtnCalendarFR;
     private CheckBox mCbFlexibilidadFechas;
     private Button mBtnEnviar;
     private TableLayout mLayoutRestrictivos;
@@ -75,9 +78,11 @@ public class CreaCircuitoActivity extends GPOVallasActivity implements OnItemSel
     private Spinner spinner;
     private ArrayList<Agrupacion> listAgrupaciones;
     private ArrayList<Circuito> listCircuito;
+    private CircuitoParametro parametro;
     private List<Catorcena> arrCatorcenas;
     private ArrayAdapter<String> dataAdapter;
     private Integer id_catorcena;
+    private Cliente cliente;
 
     private List<Pais> paises;
     private List<Plaza> plazas;
@@ -100,6 +105,8 @@ public class CreaCircuitoActivity extends GPOVallasActivity implements OnItemSel
         }
     };
 
+    private final int REQUEST_CODE = 4324234;
+
     @SuppressLint("WrongViewCast")
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -112,6 +119,8 @@ public class CreaCircuitoActivity extends GPOVallasActivity implements OnItemSel
 
         mTxtFechaInicio = (EditText) findViewById(R.id.txtFechaInicioR);
         mTxtFechaFin = (EditText) findViewById(R.id.txtFechaFin);
+        mTxtCliente = (EditText) findViewById(R.id.txtCliente);
+        mBtnCliente = (Button) findViewById(R.id.btnCliente);
         mTextNCatorcena = (EditText) findViewById(R.id.txtCatorcenaR);
         mSpnTipologia = (Spinner) findViewById(R.id.spnTipologia);
         mTxtPresupuesto = (EditText) findViewById(R.id.txtPresupuesto);
@@ -119,7 +128,6 @@ public class CreaCircuitoActivity extends GPOVallasActivity implements OnItemSel
         mLayoutPaises = (TableLayout) findViewById(R.id.layoutPaises);
         mLayoutPlazas = (TableLayout) findViewById(R.id.layoutPlazas);
         mBtnEnviar = (Button) findViewById(R.id.btn_enviar);
-        mBtnCalendar = (ImageButton) findViewById(R.id.btnCalendar);
         mBtnCalendarR = (ImageButton) findViewById(R.id.btnCalendarR);
         mBtnCalendarFR = (ImageButton) findViewById(R.id.btnCalendarFR);
         mCbFlexibilidadFechas = (CheckBox) findViewById(R.id.cbFlexibilidadFechas);
@@ -163,6 +171,15 @@ public class CreaCircuitoActivity extends GPOVallasActivity implements OnItemSel
 
     private void setupListeners() {
 
+        mBtnCliente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CreaCircuitoActivity.this, ClientFinderActivity.class);
+                intent.putExtra("self_activity",false);
+                startActivityForResult(intent, REQUEST_CODE);
+            }
+        });
+
         mTxtFechaInicio.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -181,6 +198,29 @@ public class CreaCircuitoActivity extends GPOVallasActivity implements OnItemSel
                 }
                 return true;
             }
+        });
+
+        mTextNCatorcena.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int numCatorcenas = 1;
+                if(!TextUtils.isEmpty(s)){
+                    numCatorcenas = Integer.parseInt(s.toString());
+                }
+
+                Date dateInicio = Dates.ConvertTextFieldStringToDate(mTxtFechaInicio.getText().toString());
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(dateInicio);
+                //Sumamos la catorcena * los dias introducidos en mTextNCatorcena
+                cal.add(Calendar.DAY_OF_YEAR, (14 * numCatorcenas) -1);
+                mTxtFechaFin.setText(Dates.format(cal.getTime(), "dd/MM/yyyy"));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
         });
 /*
         mBtnCalendar.setOnClickListener(
@@ -244,7 +284,11 @@ public class CreaCircuitoActivity extends GPOVallasActivity implements OnItemSel
         calendar = Dates.getCalendarFromDate(Dates.ConvertSfDataStringToDate(catorcena.fecha_fin));
         dateFinPickerDialog.updateDate(calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-        mTextNCatorcena.setText(catorcena.catorcena + "");
+        int numCatorcenas = catorcena.catorcena;
+        if(!TextUtils.isEmpty(mTextNCatorcena.getText().toString())){
+            numCatorcenas = Integer.parseInt(mTextNCatorcena.getText().toString());
+        }
+        mTextNCatorcena.setText(numCatorcenas + "");
 
     }
 
@@ -265,10 +309,12 @@ public class CreaCircuitoActivity extends GPOVallasActivity implements OnItemSel
             if (response != null && !response.failed()) {
                 listAgrupaciones = new ArrayList<>(Arrays.asList(response.agrupaciones));
                 listCircuito = new ArrayList<>(Arrays.asList(response.circuito));
+                parametro = response.parameters;
 
                 Intent intent = new Intent(CreaCircuitoActivity.this, CreaCircuitoDetailTabsActivity.class);
                 intent.putExtra(GPOVallasConstants.AGRUPACIONES_INTENT, listAgrupaciones);
                 intent.putExtra(GPOVallasConstants.CIRCUITOS_INTENT,listCircuito);
+                intent.putExtra(GPOVallasConstants.PARAMETRO_INTENT, parametro);
                 startActivity(intent);
             }else {
                 Log.d(TAG, "No se pudo terminar la peticion");
@@ -394,5 +440,23 @@ public class CreaCircuitoActivity extends GPOVallasActivity implements OnItemSel
             }
         }
         return count;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == REQUEST_CODE) {
+                Bundle bundle = data.getExtras();
+                String pk_client = bundle.getString(GPOVallasConstants.CLIENT_PK_INTENT,"0");
+                if (StringUtils.isNotBlank(pk_client)) {
+                    cliente = new ClienteCtrl(db).getByPk(pk_client);
+                    Log.i(TAG,cliente.razon_social);
+                    mTxtCliente.setText(cliente.razon_social.length() > 20 ?
+                            StringUtils.substring(cliente.razon_social,0,17).concat("...") : cliente.razon_social
+                    );
+                }
+            }
+        }
     }
 }

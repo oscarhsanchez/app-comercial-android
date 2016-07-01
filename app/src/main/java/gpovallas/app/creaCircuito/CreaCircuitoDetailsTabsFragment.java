@@ -35,7 +35,7 @@ public class CreaCircuitoDetailsTabsFragment extends Fragment implements TabHost
     @Override
     public void onResume() {
         super.onResume();
-        loadTab(R.id.tab_Agrupaciones);
+        loadTab(R.id.tab_Resumen);
     }
 
     @Override
@@ -74,12 +74,15 @@ public class CreaCircuitoDetailsTabsFragment extends Fragment implements TabHost
 
                         switch (iTabActual) {
                             case 0:
-                                loadTab(R.id.tab_Agrupaciones);
+                                loadTab(R.id.tab_Resumen);
                                 break;
                             case 1:
-                                loadTab(R.id.tab_Medios);
+                                loadTab(R.id.tab_Agrupaciones);
                                 break;
                             case 2:
+                                loadTab(R.id.tab_Medios);
+                                break;
+                            case 3:
                                 loadTab(R.id.tab_Mapa_circuito);
                         }
                     }
@@ -91,8 +94,11 @@ public class CreaCircuitoDetailsTabsFragment extends Fragment implements TabHost
 
     }
 
+
     private void setupTabs() {
         mTabHost.setup(); // you must call this before adding your tabs!
+        mTabHost.addTab(newTab(getActivity().getString(R.string.tab_resumen),
+                R.id.tab_Resumen));
         mTabHost.addTab(newTab(getActivity().getString(R.string.tab_agrupaciones),
                 R.id.tab_Agrupaciones));
         mTabHost.addTab(newTab(getActivity().getString(R.string.tab_medios),
@@ -108,7 +114,7 @@ public class CreaCircuitoDetailsTabsFragment extends Fragment implements TabHost
 
 
         View selector = indicator.findViewById(R.id.indicator_selected);
-        if (tabContentId == R.id.tab_Agrupaciones) {
+        if (tabContentId == R.id.tab_Resumen) {
             selector.setVisibility(View.VISIBLE);
         }
         TextView tv = (TextView) indicator.findViewById(R.id.tabsText);
@@ -124,6 +130,9 @@ public class CreaCircuitoDetailsTabsFragment extends Fragment implements TabHost
     public void loadTab(int tab) {
 
         switch (tab) {
+            case R.id.tab_Resumen:
+                ((CreaCircuitoDetailTabsActivity) getActivity()).loadFragment(R.id.tab_Resumen, CreaCircuitoTabResumenFragment.class);
+                break;
             case R.id.tab_Agrupaciones:
                 ((CreaCircuitoDetailTabsActivity) getActivity()).loadFragment(R.id.tab_Agrupaciones, CreaCircuitoTabAgrupacionesFragment.class);
                 break;
@@ -140,14 +149,17 @@ public class CreaCircuitoDetailsTabsFragment extends Fragment implements TabHost
     public void updateTab(int placeholder, Fragment fragment) {
 
         switch (placeholder) {
-            case R.id.tab_Agrupaciones:
+            case R.id.tab_Resumen:
                 mTabHost.setCurrentTab(0);
                 break;
-            case R.id.tab_Medios:
+            case R.id.tab_Agrupaciones:
                 mTabHost.setCurrentTab(1);
                 break;
-            case R.id.tab_Mapa_circuito:
+            case R.id.tab_Medios:
                 mTabHost.setCurrentTab(2);
+                break;
+            case R.id.tab_Mapa_circuito:
+                mTabHost.setCurrentTab(3);
         }
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();

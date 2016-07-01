@@ -241,9 +241,10 @@
                     <TextView
                         android:id="@+id/med_dgrales_ubicacion"
                         style="@style/basic_style"
-                        android:layout_width="300dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_column="2"
+                        android:layout_column="3"
+                        android:layout_weight="0"
                         android:layout_marginLeft="15dp"
                         android:background="@null"
                         android:text="New Text"
@@ -272,6 +273,7 @@
                         style="@style/basic_style"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        android:layout_weight="0"
                         android:scaleType="fitStart"
                         android:layout_column="2"
                         android:layout_marginLeft="15dp" />
@@ -299,6 +301,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_column="2"
+                        android:layout_weight="0"
                         android:layout_marginLeft="15dp"
                         android:scaleType="fitStart"/>
                 </TableRow>
@@ -324,8 +327,9 @@
                         style="@style/basic_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_column="2"
+                        android:layout_column="3"
                         android:layout_marginLeft="15dp"
+                        android:layout_weight="0"
                         android:background="@null"
                         android:text="New Text"
                         android:textColor="@color/text_datos_generales_center"
@@ -353,9 +357,10 @@
                         style="@style/basic_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_column="2"
+                        android:layout_column="3"
                         android:layout_marginLeft="15dp"
                         android:background="@null"
+                        android:layout_weight="0"
                         android:text="New Text"
                         android:textColor="@color/text_datos_generales_center"
                         android:textSize="17sp" />
@@ -382,10 +387,11 @@
                         style="@style/basic_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_column="2"
+                        android:layout_column="3"
                         android:layout_marginLeft="15dp"
                         android:background="@null"
                         android:text="New Text"
+                        android:layout_weight="0"
                         android:textColor="@color/text_datos_generales_center"
                         android:textSize="17sp" />
                 </TableRow>

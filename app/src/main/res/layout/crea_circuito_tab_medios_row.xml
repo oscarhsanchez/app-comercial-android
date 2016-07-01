@@ -5,30 +5,27 @@
     android:padding="10dp">
 
     <TextView android:id="@+id/txtUbicacion_medio"
-        android:layout_weight="0.15"
+        android:layout_weight="0.17"
         android:gravity="center"
         style="@style/listview_textview"/>
 
     <TextView android:id="@+id/txtPosicion_medio"
-        android:layout_weight="0.15"
+        android:layout_weight="0.17"
         android:gravity="center"
         style="@style/listview_textview"/>
 
     <TextView android:id="@+id/txtTipo_medio"
-        android:layout_weight="0.25"
+        android:layout_weight="0.27"
         android:gravity="center"
         style="@style/listview_textview"/>
     <TextView android:id="@+id/txtIluminacion_medio"
-        android:layout_weight="0.25"
+        android:layout_weight="0.27"
         android:gravity="center"
         style="@style/listview_textview"/>
     <TextView android:id="@+id/txtCoste_medio"
-        android:layout_weight="0.10"
+        android:layout_weight="0.12"
         android:gravity="center"
         style="@style/listview_textview" />
-    <TextView android:id="@+id/txtScore_medio"
-        android:layout_weight="0.10"
-        android:gravity="center"
-        style="@style/listview_textview"/>
+
 
 </LinearLayout>

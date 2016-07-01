@@ -143,7 +143,7 @@ public class ControlPanelActivity extends GPOVallasActivity {
             case R.id.update_parcial:
                 Message mensaje = handler.obtainMessage();
                 mensaje = handler.obtainMessage();
-                mensaje.arg1 = 4;
+                mensaje.arg1 = 0;
 
                 handler.sendMessage(mensaje);
                 break;

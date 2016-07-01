@@ -29,7 +29,7 @@
         style="@style/listview_textview"
         android:layout_weight="0.15"
         android:gravity="center"
-        android:scaleType="fitCenter"/>
+        android:scaleType="centerInside"/>
 
     <TextView android:id="@+id/txtNSE"
         style="@style/listview_textview"

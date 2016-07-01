@@ -53,6 +53,7 @@ public class MeanGaleriaAdapter extends ArrayAdapter {
         Picasso.with(mContext)
                 .load(imagenUbicacion.url+imagenUbicacion.nombre)
                 .error(R.drawable.logo_bg_orange)
+                .fit()
                 .placeholder(R.drawable.logo_bg_orange)
                 .into(holder.image);
 

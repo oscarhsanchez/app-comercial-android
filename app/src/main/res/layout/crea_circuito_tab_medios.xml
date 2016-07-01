@@ -10,30 +10,26 @@
 
         <TextView
             style="@style/listview_textview_th"
-            android:layout_weight="0.15"
+            android:layout_weight="0.17"
             android:text="Ubicacion" />
 
         <TextView
             style="@style/listview_textview_th"
-            android:layout_weight="0.15"
+            android:layout_weight="0.17"
             android:text="Posición" />
 
         <TextView
             style="@style/listview_textview_th"
-            android:layout_weight="0.25"
+            android:layout_weight="0.27"
             android:text="Tipo" />
         <TextView
             style="@style/listview_textview_th"
-            android:layout_weight="0.25"
+            android:layout_weight="0.27"
             android:text="Iluminicación" />
         <TextView
             style="@style/listview_textview_th"
-            android:layout_weight="0.10"
+            android:layout_weight="0.12"
             android:text="Coste" />
-        <TextView
-            style="@style/listview_textview_th"
-            android:layout_weight="0.10"
-            android:text="Score" />
 
     </LinearLayout>
     <LinearLayout style="@style/basic_style">

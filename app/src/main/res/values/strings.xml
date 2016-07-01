@@ -128,7 +128,7 @@
     <string name="lbl_medios_datosG_traficoTranseuntes">Tráfico Transeúntes:</string>
     <string name="lbl_medios_datosG_NSE">N.S.E:</string>
     <string name="lbl_medios_datosG_categoria">Categoría:</string>
-    <string name="lbl_medios_datosG_fechaInstalacion">Fecha de Instalación</string>
+    <string name="lbl_medios_datosG_fechaInstalacion">Fecha de Instalación:</string>
 
     <!-- Propuestas -->
 
@@ -215,7 +215,7 @@
     <string name="circuito_th_paises">Países:</string>
     <string name="circuito_th_fecha_inicio">Fecha de inicio:</string>
     <string name="circuito_th_fecha_fin">Fecha de fin:</string>
-    <string name="circuito_th_catorcena_spinner">catorcena:</string>
+    <string name="circuito_th_catorcena_spinner">Catorcena:</string>
     <string name="circuito_th_catorcenas">Nº de catorcenas:</string>
     <string name="circuito_th_flexibilidad">Flexibilidad fechas:</string>
     <string name="circuito_th_tipologias">Tipologías:</string>
@@ -226,4 +226,11 @@
     <string name="tab_agrupaciones">Agrupaciones</string>
     <string name="tab_medios">Medios</string>
     <string name="tab_circuito_mapa">Mapa</string>
+    <string name="circuito_th_fechas">Fechas</string>
+    <string name="tab_resumen">Resumen</string>
+    <string name="circuito_footer_total">Total:</string>
+    <string name="circuito_rentabilidad">Rentabilidad:</string>
+    <string name="guardar">Guardar</string>
+    <string name="reservar">Reservar</string>
+    <string name="circuito_cliente">Cliente:</string>
 </resources>

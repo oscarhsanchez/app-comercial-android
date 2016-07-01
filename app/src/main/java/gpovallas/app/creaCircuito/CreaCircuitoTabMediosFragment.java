@@ -17,6 +17,7 @@ import gpovallas.adapter.CircuitoCircuitosAdapter;
 import gpovallas.app.R;
 import gpovallas.app.constants.GPOVallasConstants;
 import gpovallas.app.medios.MeanTabListadosDetailTabActivity;
+import gpovallas.obj.CircuitoParametro;
 import gpovallas.obj.TO.Circuito;
 
 /**
@@ -25,6 +26,7 @@ import gpovallas.obj.TO.Circuito;
 public class CreaCircuitoTabMediosFragment extends Fragment {
     private static final String TAG = CreaCircuitoTabMediosFragment.class.getSimpleName();
     private ArrayList<Circuito> listCircuito;
+    private CircuitoParametro parametro;
     private CircuitoCircuitosAdapter arrayAdapter;
     private ListView mListView;
     private View mRoot;
@@ -37,6 +39,7 @@ public class CreaCircuitoTabMediosFragment extends Fragment {
         Log.i(TAG, bundle.toString());
         if (bundle != null) {
             listCircuito = bundle.getParcelableArrayList(GPOVallasConstants.CIRCUITOS_INTENT);
+            parametro = (CircuitoParametro) bundle.getSerializable(GPOVallasConstants.PARAMETRO_INTENT);
         }
         populate();
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -58,7 +61,7 @@ public class CreaCircuitoTabMediosFragment extends Fragment {
     }
 
     public void populate(){
-        arrayAdapter = new CircuitoCircuitosAdapter(this.getActivity(),listCircuito);
+        arrayAdapter = new CircuitoCircuitosAdapter(this.getActivity(),listCircuito, parametro);
         mListView.setAdapter(arrayAdapter);
     }
 }

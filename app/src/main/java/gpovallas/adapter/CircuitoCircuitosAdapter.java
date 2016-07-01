@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import gpovallas.app.R;
+import gpovallas.obj.CircuitoParametro;
 import gpovallas.obj.TO.Circuito;
 
 /**
@@ -21,12 +22,15 @@ public class CircuitoCircuitosAdapter extends BaseAdapter {
     private static final String TAG = CircuitoCircuitosAdapter.class.getSimpleName();
 
     private ArrayList<Circuito> listCircuitos;
+    private CircuitoParametro parametro;
     private Activity activity;
     private Context mContext;
 
-    public CircuitoCircuitosAdapter(Context context, ArrayList<Circuito>listCircuitos){
+    public CircuitoCircuitosAdapter(Context context, ArrayList<Circuito>listCircuitos,
+                                    CircuitoParametro parametro){
         this.mContext = context;
         this.listCircuitos = listCircuitos;
+        this.parametro = parametro;
     }
 
     @Override
@@ -63,9 +67,8 @@ public class CircuitoCircuitosAdapter extends BaseAdapter {
         TextView iluminacion = (TextView)convertView.findViewById(R.id.txtIluminacion_medio);
         iluminacion.setText(detail.estatus_iluminacion);
         TextView coste = (TextView)convertView.findViewById(R.id.txtCoste_medio);
-        coste.setText(String.valueOf(detail.coste));
-        TextView score = (TextView)convertView.findViewById(R.id.txtScore_medio);
-        score.setText(String.valueOf(detail.score));
+        double costePorcentaje = (detail.coste*parametro.margin.high)/100;
+        coste.setText(String.valueOf(detail.coste +costePorcentaje));
         return convertView;
 
     }

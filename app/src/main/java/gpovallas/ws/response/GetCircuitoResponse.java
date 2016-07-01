@@ -1,5 +1,6 @@
 package gpovallas.ws.response;
 
+import gpovallas.obj.CircuitoParametro;
 import gpovallas.obj.TO.Agrupacion;
 import gpovallas.obj.TO.Circuito;
 import gpovallas.ws.WsResponse;
@@ -10,4 +11,5 @@ import gpovallas.ws.WsResponse;
 public class GetCircuitoResponse extends WsResponse {
     public Agrupacion[] agrupaciones;
     public Circuito[] circuito;
+    public CircuitoParametro parameters;
 }

@@ -1,14 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/main_linear_layout_selector">
 
 
     <fragment
         android:id="@+id/tabs_fragment_circuito"
-        android:layout_alignParentBottom="true"
         android:name="gpovallas.app.creaCircuito.CreaCircuitoDetailsTabsFragment"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/footer"
+        android:layout_alignParentTop="true" />
+
+
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/form_fieldset_transparent"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/lbl_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/circuito_footer_total"
+            android:textSize="20sp"
+            android:maxLines="1"
+            android:textColor="@color/orangeGpo"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/circuito_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="23sp"
+            android:maxLines="1"
+            android:textColor="@color/text_enabled"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/lbl_total"/>
+
+        <TextView
+            android:id="@+id/lbl_rentabilidad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@+id/circuito_total"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:textColor="@color/orangeGpo"
+            android:text="@string/circuito_rentabilidad"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/rentabilidadGreen"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_toRightOf="@+id/lbl_rentabilidad"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/img_stock_ok_off" />
+
+        <ImageView
+            android:id="@+id/rentabilidadYellow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_toRightOf="@+id/rentabilidadGreen"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/img_stock_low_off" />
+
+        <ImageView
+            android:id="@+id/rentabilidadRed"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_toRightOf="@+id/rentabilidadYellow"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/img_stock_empty_off" />
+
+
+        <Button
+            android:id="@+id/btn_guardar"
+            style="@style/boton_generico"
+            android:layout_marginLeft="30dp"
+            android:minWidth="150dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/btn_reservar"
+            android:text="@string/guardar" />
+
+
+        <Button
+            android:id="@+id/btn_reservar"
+            style="@style/boton_generico"
+            android:layout_marginLeft="10dp"
+            android:minWidth="150dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="@string/reservar" />
+    </RelativeLayout>
 
 </RelativeLayout>

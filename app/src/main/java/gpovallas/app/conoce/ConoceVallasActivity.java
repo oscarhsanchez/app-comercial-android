@@ -31,6 +31,7 @@ import gpovallas.app.PdfViewerActivity;
 import gpovallas.app.R;
 import gpovallas.app.constants.GPOVallasConstants;
 import gpovallas.app.medios.MeanGaleriaZoomActivity;
+import gpovallas.app.medios.MeanGaleriaZoomFragment;
 import gpovallas.db.controllers.ArchivoCtrl;
 import gpovallas.obj.Archivo;
 
@@ -99,7 +100,7 @@ public class ConoceVallasActivity extends FragmentActivity implements AdapterVie
                 || StringUtils.containsIgnoreCase(archivo.nombre, "ico")
                 || StringUtils.containsIgnoreCase(archivo.nombre, "gif")) {
 
-            MeanGaleriaZoomActivity fragment = new MeanGaleriaZoomActivity();
+            MeanGaleriaZoomFragment fragment = new MeanGaleriaZoomFragment();
             Bundle extras = new Bundle();
             extras.putString(GPOVallasConstants.PATH_IMAGE, archivo.url + archivo.nombre);
             fragment.setArguments(extras);

@@ -21,32 +21,34 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TableLayout
+            <LinearLayout
                 style="@style/wrap_style"
                 android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:gravity="top|left"
+                android:orientation="horizontal"
                 android:padding="16dp"
-                android:layout_marginBottom="10dp">
+                android:weightSum="2">
 
-                <TableRow
-                    android:gravity="center|left"
-                    android:weightSum="2">
+                <TableLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dp">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:layout_column="0"
+                    <TableRow
+                        android:layout_marginBottom="5dp"
                         android:gravity="center|left"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="25dp"
-                        android:layout_marginEnd="25dp">
+                        android:weightSum="2">
+
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
+                            android:layout_column="0"
                             android:layout_marginEnd="15dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_weight="0"
                             android:text="@string/circuito_th_presupuesto"
                             android:textAppearance="@style/defaultTextAppearance"
                             android:textColor="@color/orangeGpo" />
@@ -54,27 +56,66 @@
                         <EditText
                             android:id="@+id/txtPresupuesto"
                             style="@style/editText"
-                            android:layout_width="match_parent"
+                            android:layout_width="250dp"
                             android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:layout_weight="0"
                             android:autoText="false"
                             android:inputType="number" />
-                    </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_marginBottom="5dp"
                         android:gravity="center|left"
-                        android:orientation="horizontal"
-                        android:layout_column="1"
-                        android:layout_marginStart="25dp"
-                        android:layout_marginLeft="25dp">
+                        android:weightSum="2">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_column="0"
                             android:layout_marginRight="15dp"
+                            android:layout_weight="0"
+                            android:text="@string/circuito_cliente"
+                            android:textAppearance="@style/defaultTextAppearance"
+                            android:textColor="@color/orangeGpo" />
+
+
+                        <EditText
+                            android:id="@+id/txtCliente"
+                            style="@style/editText"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:layout_weight="0"
+                            android:enabled="false"
+                            android:lines="1" />
+
+
+                        <Button
+                            android:id="@+id/btnCliente"
+                            android:layout_width="90dp"
+                            android:layout_height="match_parent"
+                            android:layout_column="2"
+                            android:layout_marginLeft="10dp"
+                            android:text="Buscar" />
+
+                    </TableRow>
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp">
+
+                    <TableRow android:gravity="center|left">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_marginEnd="15dp"
+                            android:layout_marginRight="15dp"
                             android:text="@string/circuito_th_tipologia_campania"
                             android:textAppearance="@style/defaultTextAppearance"
                             android:textColor="@color/orangeGpo" />
@@ -84,224 +125,264 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
 
-                    </LinearLayout>
-                </TableRow>
 
-            </TableLayout>
-            <TableLayout
-                style="@style/wrap_style"
-                android:layout_width="match_parent"
-                android:padding="16dp"
-                android:layout_marginBottom="10dp">
+                    </TableRow>
+                </TableLayout>
 
-                <TableRow android:layout_marginBottom="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:text="@string/circuito_th_catorcena_spinner"
-                        android:textAppearance="@style/defaultTextAppearance"
-                        android:textColor="@color/orangeGpo" />
-
-                    <Spinner
-                        android:id="@+id/spnCatorcena"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </TableRow>
-
-
-                <TableRow android:layout_marginBottom="10dp">
-
-                    <TextView
-                        android:layout_height="wrap_content"
-                        android:layout_column="0"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:text="@string/circuito_th_fecha_inicio"
-                        android:textAppearance="@style/defaultTextAppearance"
-                        android:textColor="@color/orangeGpo" />
-
-                    <EditText
-                        android:id="@+id/txtFechaInicioR"
-                        style="@style/editTextDate"
-                        android:layout_width="250dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:autoText="false"
-                        android:hint="Seleccione fecha..."
-                        android:inputType="date"
-                        android:textColorHint="#aaaaaa" />
-
-                    <ImageButton
-                        android:id="@+id/btnCalendarR"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_column="2"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_weight="0"
-                        android:background="@null"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/ic_calendar" />
-                </TableRow>
-                <TableRow android:layout_marginBottom="10dp">
-
-                    <TextView
-                        android:layout_height="wrap_content"
-                        android:layout_column="0"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:text="@string/circuito_th_catorcenas"
-                        android:textAppearance="@style/defaultTextAppearance"
-                        android:textColor="@color/orangeGpo" />
-
-                    <EditText
-                        android:id="@+id/txtCatorcenaR"
-                        style="@style/editText"
-                        android:layout_width="250dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:layout_weight="0"
-                        android:text="1"
-                        android:inputType="number" />
-                </TableRow>
-                <TableRow android:layout_marginBottom="10dp">
-
-                    <TextView
-                        android:layout_height="wrap_content"
-                        android:layout_column="0"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:text="@string/circuito_th_fecha_fin"
-                        android:textAppearance="@style/defaultTextAppearance"
-                        android:textColor="@color/orangeGpo" />
-
-                    <EditText
-                        android:id="@+id/txtFechaFin"
-                        style="@style/editTextDate"
-                        android:layout_width="250dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:autoText="false"
-                        android:hint="Seleccione fecha..."
-                        android:inputType="date"
-                        android:textColorHint="#aaaaaa" />
-
-                    <ImageButton
-                        android:id="@+id/btnCalendarFR"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_column="2"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_weight="0"
-                        android:background="@null"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/ic_calendar" />
-                </TableRow>
-
-            </TableLayout>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp"
+                android:layout_margin="2dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:text="Datos adicionales"
-                android:textStyle="bold"
+                android:paddingTop="10dp"
+                android:text="@string/circuito_th_fechas"
                 android:textAllCaps="true"
                 android:textColor="@color/text_datos_generales_center"
                 android:textSize="18sp"
-                android:layout_margin="2dp"/>
+                android:textStyle="bold" />
 
-            <TableLayout
-                android:layout_height="wrap_content"
+            <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
+                android:background="@drawable/form_fieldset_transparent"
+                android:orientation="horizontal"
                 android:padding="10dp"
-                android:background="@drawable/form_fieldset_transparent">
+                android:weightSum="2">
 
-                <TableRow android:layout_marginBottom="10dp">
 
-                    <TextView
-                        android:layout_height="wrap_content"
-                        android:layout_column="0"
-                        android:layout_gravity="top|left"
-                        android:text="@string/circuito_th_flexibilidad"
-                        android:textAppearance="@style/defaultTextAppearance"
-                        android:textColor="@color/orangeGpo" />
+                <TableLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
-                    <CheckBox
-                        android:id="@+id/cbFlexibilidadFechas"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:layout_marginLeft="-5dp"
-                        android:layout_weight="0"
-                        android:buttonTint="@color/orangeGpo" />
-                </TableRow>
+                    <TableRow android:layout_marginBottom="10dp">
 
-                <TableRow android:layout_marginBottom="10dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginRight="15dp"
+                            android:text="@string/circuito_th_catorcena_spinner"
+                            android:textAppearance="@style/defaultTextAppearance"
+                            android:textColor="@color/orangeGpo" />
 
-                    <TextView
-                        android:layout_height="wrap_content"
-                        android:layout_column="0"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:text="@string/circuito_th_fecha_inicio"
-                        android:textAppearance="@style/defaultTextAppearance"
-                        android:textColor="@color/orangeGpo" />
+                        <Spinner
+                            android:id="@+id/spnCatorcena"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </TableRow>
 
-                    <EditText
-                        android:id="@+id/txtFechaInicio"
-                        style="@style/editTextDate"
-                        android:layout_width="250dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:autoText="false"
-                        android:hint="Seleccione fecha..."
-                        android:inputType="date"
-                        android:textColorHint="#aaaaaa" />
 
-                    <ImageButton
-                        android:id="@+id/btnCalendar"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_column="2"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_weight="0"
-                        android:background="@null"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/ic_calendar" />
-                </TableRow>
+                    <TableRow android:layout_marginBottom="10dp">
 
-                <TableRow android:layout_marginBottom="10dp">
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginRight="15dp"
+                            android:text="@string/circuito_th_catorcenas"
+                            android:textAppearance="@style/defaultTextAppearance"
+                            android:textColor="@color/orangeGpo" />
 
-                    <TextView
-                        android:layout_height="wrap_content"
-                        android:layout_column="0"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:text="@string/circuito_th_catorcenas"
-                        android:textAppearance="@style/defaultTextAppearance"
-                        android:textColor="@color/orangeGpo" />
+                        <EditText
+                            android:id="@+id/txtCatorcenaR"
+                            style="@style/editText"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:layout_weight="0"
+                            android:inputType="number"
+                            android:text="1" />
+                    </TableRow>
 
-                    <EditText
-                        android:id="@+id/txtCatorcena"
-                        style="@style/editText"
-                        android:layout_width="250dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:layout_weight="0"
-                        android:autoText="false"
-                        android:inputType="number" />
-                </TableRow>
+
+                    <TableRow android:layout_marginBottom="10dp">
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:layout_gravity="top|left"
+                            android:text="@string/circuito_th_flexibilidad"
+                            android:textAppearance="@style/defaultTextAppearance"
+                            android:textColor="@color/orangeGpo" />
+
+                        <CheckBox
+                            android:id="@+id/cbFlexibilidadFechas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:layout_marginLeft="-5dp"
+                            android:layout_weight="0"
+                            android:buttonTint="@color/orangeGpo" />
+                    </TableRow>
+
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TableRow android:layout_marginBottom="10dp">
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginRight="15dp"
+                            android:text="@string/circuito_th_fecha_inicio"
+                            android:textAppearance="@style/defaultTextAppearance"
+                            android:textColor="@color/orangeGpo" />
+
+                        <EditText
+                            android:id="@+id/txtFechaInicioR"
+                            style="@style/editTextDate"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:autoText="false"
+                            android:hint="Seleccione fecha..."
+                            android:inputType="date"
+                            android:textColorHint="#aaaaaa" />
+
+                        <ImageButton
+                            android:id="@+id/btnCalendarR"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_column="2"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_weight="0"
+                            android:background="@null"
+                            android:scaleType="fitStart"
+                            android:src="@drawable/ic_calendar" />
+                    </TableRow>
+
+
+                    <TableRow android:layout_marginBottom="10dp">
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginRight="15dp"
+                            android:text="@string/circuito_th_fecha_fin"
+                            android:textAppearance="@style/defaultTextAppearance"
+                            android:textColor="@color/orangeGpo" />
+
+                        <EditText
+                            android:id="@+id/txtFechaFin"
+                            style="@style/editTextDate"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:autoText="false"
+                            android:hint="Seleccione fecha..."
+                            android:inputType="date"
+                            android:textColorHint="#aaaaaa" />
+
+                        <ImageButton
+                            android:id="@+id/btnCalendarFR"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_column="2"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_weight="0"
+                            android:background="@null"
+                            android:scaleType="fitStart"
+                            android:src="@drawable/ic_calendar" />
+                    </TableRow>
+
+                </TableLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="10dp"
+                android:text="Datos adicionales"
+                android:textAllCaps="true"
+                android:textColor="@color/text_datos_generales_center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/form_fieldset_transparent"
+                android:padding="10dp">
+
+
+                <!--  <TableRow android:layout_marginBottom="10dp">
+
+                      <TextView
+                          android:layout_height="wrap_content"
+                          android:layout_column="0"
+                          android:layout_marginRight="15dp"
+                          android:layout_marginEnd="15dp"
+                          android:text="@string/circuito_th_fecha_inicio"
+                          android:textAppearance="@style/defaultTextAppearance"
+                          android:textColor="@color/orangeGpo" />
+
+                      <EditText
+                          android:id="@+id/txtFechaInicio"
+                          style="@style/editTextDate"
+                          android:layout_width="250dp"
+                          android:layout_height="wrap_content"
+                          android:layout_column="1"
+                          android:autoText="false"
+                          android:hint="Seleccione fecha..."
+                          android:inputType="date"
+                          android:textColorHint="#aaaaaa" />
+
+                      <ImageButton
+                          android:id="@+id/btnCalendar"
+                          android:layout_width="45dp"
+                          android:layout_height="45dp"
+                          android:layout_column="2"
+                          android:layout_marginLeft="5dp"
+                          android:layout_marginStart="5dp"
+                          android:layout_weight="0"
+                          android:background="@null"
+                          android:scaleType="fitCenter"
+                          android:src="@drawable/ic_calendar" />
+                  </TableRow>
+
+                  <TableRow android:layout_marginBottom="10dp">
+
+                      <TextView
+                          android:layout_height="wrap_content"
+                          android:layout_column="0"
+                          android:layout_marginRight="15dp"
+                          android:layout_marginEnd="15dp"
+                          android:text="@string/circuito_th_catorcenas"
+                          android:textAppearance="@style/defaultTextAppearance"
+                          android:textColor="@color/orangeGpo" />
+
+                      <EditText
+                          android:id="@+id/txtCatorcena"
+                          style="@style/editText"
+                          android:layout_width="250dp"
+                          android:layout_height="wrap_content"
+                          android:layout_column="1"
+                          android:layout_weight="0"
+                          android:autoText="false"
+                          android:inputType="number" />
+                  </TableRow>-->
 
 
                 <TableRow android:layout_marginBottom="10dp">
@@ -333,8 +414,8 @@
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_column="0"
-                        android:layout_marginRight="15dp"
                         android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
                         android:text="@string/circuito_th_plazas"
                         android:textAppearance="@style/defaultTextAppearance"
                         android:textColor="@color/orangeGpo" />
@@ -456,8 +537,8 @@
                 <Button
                     android:id="@+id/btn_enviar"
                     style="@style/boton_generico"
-                    android:text="Enviar"
-                    android:minWidth="200dp"/>
+                    android:minWidth="200dp"
+                    android:text="Enviar" />
 
             </LinearLayout>
 
