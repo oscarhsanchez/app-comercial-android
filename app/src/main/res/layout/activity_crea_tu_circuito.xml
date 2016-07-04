@@ -56,7 +56,7 @@
                         <EditText
                             android:id="@+id/txtPresupuesto"
                             style="@style/editText"
-                            android:layout_width="250dp"
+                            android:layout_width="@dimen/et_width"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
                             android:layout_weight="0"
@@ -84,7 +84,7 @@
                         <EditText
                             android:id="@+id/txtCliente"
                             style="@style/editText"
-                            android:layout_width="250dp"
+                            android:layout_width="@dimen/et_width"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
                             android:layout_weight="0"
@@ -193,7 +193,7 @@
                         <EditText
                             android:id="@+id/txtCatorcenaR"
                             style="@style/editText"
-                            android:layout_width="250dp"
+                            android:layout_width="@dimen/et_width"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
                             android:layout_weight="0"
@@ -243,7 +243,7 @@
                         <EditText
                             android:id="@+id/txtFechaInicioR"
                             style="@style/editTextDate"
-                            android:layout_width="250dp"
+                            android:layout_width="@dimen/et_width"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
                             android:autoText="false"
@@ -279,7 +279,7 @@
                         <EditText
                             android:id="@+id/txtFechaFin"
                             style="@style/editTextDate"
-                            android:layout_width="250dp"
+                            android:layout_width="@dimen/et_width"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
                             android:autoText="false"

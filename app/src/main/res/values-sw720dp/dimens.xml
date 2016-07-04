@@ -14,4 +14,5 @@
     <dimen name="menu_button_terciario_panel_control_textsize">17sp</dimen>
     <dimen name="login_logo_gkm_width">70dp</dimen>
     <dimen name="menu_button_panel_control_margin">40dp</dimen>
+    <dimen name="et_width">250dp</dimen>
 </resources>
