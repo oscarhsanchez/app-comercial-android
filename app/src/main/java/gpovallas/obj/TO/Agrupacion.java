@@ -19,7 +19,7 @@ public class Agrupacion implements Parcelable {
     public String token;
     public Integer estado;
     public String fk_ubicacion;
-    public String coste;
+    public Double coste;
 
     private Agrupacion(Parcel in) {
         pk_agrupacion = in.readString();
@@ -29,7 +29,7 @@ public class Agrupacion implements Parcelable {
         token= in.readString();
         estado= Integer.getInteger(in.readString());
         fk_ubicacion= in.readString();
-        coste= in.readString();
+        coste= in.readDouble();
 
     }
 
@@ -47,7 +47,7 @@ public class Agrupacion implements Parcelable {
         dest.writeString(token);
         dest.writeString(String.valueOf(estado));
         dest.writeString(fk_ubicacion);
-        dest.writeString(coste);
+        dest.writeDouble(coste);
     }
 
     public static final Parcelable.Creator<Agrupacion> CREATOR = new Parcelable.Creator<Agrupacion>() {

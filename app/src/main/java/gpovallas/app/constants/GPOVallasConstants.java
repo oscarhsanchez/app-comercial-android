@@ -56,5 +56,6 @@ public class GPOVallasConstants {
     public static String CIRCUITOS_INTENT ="list_circuitos";
     public static String FK_UBICACION_INTENT = "fk_ubiciaciones";
     public static String PARAMETRO_INTENT ="list_parametros";
+    public static final String CIRCUITO_PROVISIONAL = "provisional";
 
 }

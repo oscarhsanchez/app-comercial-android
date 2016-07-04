@@ -5,6 +5,7 @@ import gpovallas.app.GPOVallasFragmentActivity;
 import gpovallas.app.R;
 import gpovallas.app.constants.GPOVallasConstants;
 import gpovallas.obj.CircuitoParametro;
+import gpovallas.obj.CircuitoProvisional;
 import gpovallas.obj.TO.Agrupacion;
 import gpovallas.obj.TO.Circuito;
 import gpovallas.utils.Numbers;
@@ -24,6 +25,7 @@ public class CreaCircuitoDetailTabsActivity extends GPOVallasFragmentActivity{
     private String fk_ubicaciones;
     private TextView mTvTotal;
     private ImageView mRentGreen, mRentYellow, mRentRed;
+    private CircuitoProvisional circuito;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class CreaCircuitoDetailTabsActivity extends GPOVallasFragmentActivity{
         listAgrupaciones =  bundle.getParcelableArrayList(GPOVallasConstants.AGRUPACIONES_INTENT);
         listCircuito = bundle.getParcelableArrayList(GPOVallasConstants.CIRCUITOS_INTENT);
         parametro = (CircuitoParametro) bundle.getSerializable(GPOVallasConstants.PARAMETRO_INTENT);
+        circuito = (CircuitoProvisional) bundle.getSerializable(GPOVallasConstants.CIRCUITO_PROVISIONAL);
 
         mRentGreen = (ImageView) findViewById(R.id.rentabilidadGreen);
         mRentYellow = (ImageView) findViewById(R.id.rentabilidadYellow);
@@ -52,11 +55,12 @@ public class CreaCircuitoDetailTabsActivity extends GPOVallasFragmentActivity{
                 Bundle bundle = new Bundle();
                 if(placeholder == R.id.tab_Agrupaciones){
                     bundle.putParcelableArrayList(GPOVallasConstants.AGRUPACIONES_INTENT, listAgrupaciones);
+                    bundle.putSerializable(GPOVallasConstants.PARAMETRO_INTENT, parametro);
                 }else if(placeholder == R.id.tab_Medios){
                     bundle.putParcelableArrayList(GPOVallasConstants.CIRCUITOS_INTENT,listCircuito);
                     bundle.putSerializable(GPOVallasConstants.PARAMETRO_INTENT, parametro);
                 }else if(placeholder == R.id.tab_Resumen){
-                    //Mandaremos
+                    bundle.putSerializable(GPOVallasConstants.CIRCUITO_PROVISIONAL, circuito);
                 }else{
                     bundle.putString(GPOVallasConstants.FK_UBICACION_INTENT,fk_ubicaciones);
                 }
@@ -83,6 +87,12 @@ public class CreaCircuitoDetailTabsActivity extends GPOVallasFragmentActivity{
             totalCostes += cir.coste;
             totalMargen += cir.coste + ((cir.coste*parametro.margin.high)/100);
         }
+
+        for(Agrupacion agr : listAgrupaciones){
+            totalCostes += agr.coste;
+            totalMargen += agr.coste + ((agr.coste*parametro.margin.high)/100);
+        }
+
         mTvTotal.setText(String.valueOf(totalMargen));
 
         double rentabilidad = ((totalMargen*100)/totalCostes) -100;

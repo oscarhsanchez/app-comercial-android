@@ -45,6 +45,7 @@ import gpovallas.db.controllers.PaisCtrl;
 import gpovallas.db.controllers.PlazaCtrl;
 import gpovallas.obj.Catorcena;
 import gpovallas.obj.CircuitoParametro;
+import gpovallas.obj.CircuitoProvisional;
 import gpovallas.obj.Cliente;
 import gpovallas.obj.Pais;
 import gpovallas.obj.Plaza;
@@ -311,10 +312,20 @@ public class CreaCircuitoActivity extends GPOVallasActivity implements OnItemSel
                 listCircuito = new ArrayList<>(Arrays.asList(response.circuito));
                 parametro = response.parameters;
 
+                //Guardamos los datos en un obj para mostrarlos en la actividad siguiente
+                CircuitoProvisional cir = new CircuitoProvisional();
+                cir.cliente = cliente != null ? cliente.razon_social : "";
+                cir.fecha_fin = mTxtFechaFin.getText().toString();
+                cir.fecha_inicio = mTxtFechaInicio.getText().toString();
+                cir.num_catorcena = Integer.parseInt(mTextNCatorcena.getText().toString());
+                cir.presupuesto = Long.parseLong(mTxtPresupuesto.getText().toString());
+
+
                 Intent intent = new Intent(CreaCircuitoActivity.this, CreaCircuitoDetailTabsActivity.class);
                 intent.putExtra(GPOVallasConstants.AGRUPACIONES_INTENT, listAgrupaciones);
                 intent.putExtra(GPOVallasConstants.CIRCUITOS_INTENT,listCircuito);
                 intent.putExtra(GPOVallasConstants.PARAMETRO_INTENT, parametro);
+                intent.putExtra(GPOVallasConstants.CIRCUITO_PROVISIONAL, cir);
                 startActivity(intent);
             }else {
                 Log.d(TAG, "No se pudo terminar la peticion");

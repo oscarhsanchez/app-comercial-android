@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/main_linear_layout_bg_gris"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="vertical"
+    android:padding="32dp">
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_marginBottom="20dp"
+            android:gravity="center|left">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:text="@string/circuito_th_presupuesto"
+                android:textAppearance="@style/defaultTextAppearance"
+                android:textColor="@color/orangeGpo" />
+
+            <TextView
+                android:id="@+id/txtPresupuesto"
+                style="@style/listview_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_weight="0"
+                android:textColor="@color/txt_color" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_marginBottom="20dp"
+            android:gravity="center|left">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_marginRight="15dp"
+                android:text="@string/circuito_cliente"
+                android:textAppearance="@style/defaultTextAppearance"
+                android:textColor="@color/orangeGpo" />
+
+
+            <TextView
+                android:id="@+id/txtCliente"
+                style="@style/listview_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_weight="0"
+                android:textColor="@color/txt_color" />
+
+
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="20dp">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:text="@string/circuito_th_fecha_inicio"
+                android:textAppearance="@style/defaultTextAppearance"
+                android:textColor="@color/orangeGpo" />
+
+            <TextView
+                android:id="@+id/txtFechaInicio"
+                style="@style/listview_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_weight="0"
+                android:textColor="@color/txt_color" />
+
+        </TableRow>
+
+
+        <TableRow android:layout_marginBottom="20dp">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:text="@string/circuito_th_fecha_fin"
+                android:textAppearance="@style/defaultTextAppearance"
+                android:textColor="@color/orangeGpo" />
+
+            <TextView
+                android:id="@+id/txtFechaFin"
+                style="@style/listview_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_weight="0"
+                android:textColor="@color/txt_color" />
+
+
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="20dp">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:text="@string/circuito_th_catorcenas"
+                android:textAppearance="@style/defaultTextAppearance"
+                android:textColor="@color/orangeGpo" />
+
+            <TextView
+                android:id="@+id/txtCatorcena"
+                style="@style/listview_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:textColor="@color/txt_color" />
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

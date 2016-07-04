@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import gpovallas.app.R;
+import gpovallas.obj.CircuitoParametro;
 import gpovallas.obj.TO.Agrupacion;
 
 /**
@@ -22,13 +23,16 @@ public class CircuitoAgrupacionesAdapter extends BaseAdapter {
     private static final String TAG = CircuitoAgrupacionesAdapter.class.getSimpleName();
 
     private ArrayList<Agrupacion> listAgrupacion;
+    private CircuitoParametro parametro;
     private Activity activity;
     private Context mContext;
 
-    public CircuitoAgrupacionesAdapter(Context context,ArrayList<Agrupacion>listAgrupacion){
+    public CircuitoAgrupacionesAdapter(Context context,ArrayList<Agrupacion>listAgrupacion,
+                                       CircuitoParametro parametro){
         this.listAgrupacion = listAgrupacion;
         //this.activity = activity;
         this.mContext = context;
+        this.parametro = parametro;
     }
 
     @Override
@@ -61,7 +65,8 @@ public class CircuitoAgrupacionesAdapter extends BaseAdapter {
         TextView ubicacion = (TextView)convertView.findViewById(R.id.txtUbicacion_circuito);
         ubicacion.setText(detail.fk_ubicacion);
         TextView coste = (TextView)convertView.findViewById(R.id.txtCoste_circuito);
-        coste.setText(detail.coste);
+        double costePorcentaje = (detail.coste*parametro.margin.high)/100;
+        coste.setText(String.valueOf(detail.coste +costePorcentaje));
         return convertView;
     }
 }

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import gpovallas.adapter.CircuitoAgrupacionesAdapter;
 import gpovallas.app.R;
 import gpovallas.app.constants.GPOVallasConstants;
+import gpovallas.obj.CircuitoParametro;
 import gpovallas.obj.TO.Agrupacion;
 
 /**
@@ -23,6 +24,7 @@ public class CreaCircuitoTabAgrupacionesFragment extends Fragment {
     private static final String TAG = CreaCircuitoTabAgrupacionesFragment.class.getSimpleName();
 
     private ArrayList<Agrupacion> listAgrupaciones;
+    private CircuitoParametro parametro;
     private CircuitoAgrupacionesAdapter arrayAdapter;
     private ListView mListView;
     private View mRoot;
@@ -36,13 +38,14 @@ public class CreaCircuitoTabAgrupacionesFragment extends Fragment {
         Log.i(TAG, bundle.toString());
         if (bundle != null) {
             listAgrupaciones = bundle.getParcelableArrayList(GPOVallasConstants.AGRUPACIONES_INTENT);
+            parametro = (CircuitoParametro) bundle.getSerializable(GPOVallasConstants.PARAMETRO_INTENT);
         }
         populate();
         return mRoot;
     }
 
     public void populate(){
-        arrayAdapter = new CircuitoAgrupacionesAdapter(this.getActivity(), listAgrupaciones);
+        arrayAdapter = new CircuitoAgrupacionesAdapter(this.getActivity(), listAgrupaciones,parametro);
         mListView.setAdapter(arrayAdapter);
     }
 }
